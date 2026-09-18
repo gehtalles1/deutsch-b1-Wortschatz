@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="h-full bg-slate-50/80">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>德语 B1 核心词汇深度特训</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Serif+Georgia&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .font-german {
+            font-family: 'Noto Serif Georgia', Georgia, serif;
+        }
+        .custom-glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+    </style>
+</head>
+<body class="h-full text-slate-800 antialiased selection:bg-teal-100 selection:text-teal-900 flex flex-col justify-between bg-gradient-to-br from-slate-50 via-zinc-50 to-teal-50/20">
+
+    <!-- Header Area -->
+    <header class="sticky top-0 z-30 custom-glass border-b border-slate-200/60 px-4 py-3.5 sm:px-8 shadow-sm">
+        <div class="max-w-3xl mx-auto flex items-center justify-between">
+            <a href="index.html" class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-500 hover:text-slate-900 transition-all py-1.5 px-3 rounded-full hover:bg-slate-100/80">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+                返回主页
+            </a>
+            <div class="text-center">
+                <h1 class="text-xs sm:text-sm font-bold tracking-widest text-slate-400 uppercase">Wortschatz Training</h1>
+                <p class="text-sm sm:text-base font-extrabold text-slate-900 tracking-tight">德语 B1 核心词汇特训</p>
+            </div>
+            <button onclick="resetPractice()" class="text-xs sm:text-sm font-semibold text-slate-500 hover:text-teal-700 transition-all py-1.5 px-3 rounded-full hover:bg-slate-100/80">
+                重新开始
+            </button>
+        </div>
+        <!-- Progress Bar -->
+        <div class="max-w-3xl mx-auto mt-3">
+            <div class="flex justify-between items-center text-xs font-bold text-slate-400 mb-1.5 tracking-wider uppercase">
+                <span id="progress-text">进度：1 / 34</span>
+                <span id="progress-percent">3%</span>
+            </div>
+            <div class="w-full h-1.5 bg-slate-200/70 rounded-full overflow-hidden p-0.5">
+                <div id="progress-bar" class="h-full bg-slate-900 transition-all duration-300 rounded-full" style="width: 3%"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Section -->
+    <main class="flex-1 max-w-3xl w-full mx-auto p-4 sm:p-6 flex flex-col justify-center">
+
+        <!-- QUIZ CONTAINER -->
+        <div id="quiz-container" class="space-y-6">
+            <!-- Word Header Card -->
+            <div class="bg-white/90 backdrop-blur-sm rounded-3xl p-6 sm:p-9 border border-slate-200/70 shadow-xl shadow-slate-200/50 relative overflow-hidden transition-all">
+                <div class="flex items-center justify-between mb-4">
+                    <span id="word-badge" class="px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase border">
+                        Substantiv
+                    </span>
+                    <span id="question-index-tag" class="text-xs font-bold text-slate-400 tracking-widest uppercase">
+                        Q1
+                    </span>
+                </div>
+
+                <div class="py-2">
+                    <h2 id="target-word" class="font-german text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-3">
+                        das Abenteuer, -
+                    </h2>
+                    <p id="question-prompt" class="text-sm sm:text-base font-medium text-slate-600 leading-relaxed">
+                        名词 "Abenteuer" (冒险) 的正确冠词是哪一个？
+                    </p>
+                </div>
+            </div>
+
+            <!-- Options Grid -->
+            <div id="options-grid" class="grid grid-cols-1 gap-3.5">
+                <!-- Dynamic options -->
+            </div>
+
+            <!-- Explanation Card -->
+            <div id="explanation-card" class="hidden bg-slate-900 text-slate-100 rounded-2xl p-5 sm:p-6 shadow-lg border border-slate-800 text-sm leading-relaxed space-y-2">
+                <div class="font-semibold text-teal-400 flex items-center gap-2 text-xs sm:text-sm uppercase tracking-wider">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    词汇解析与用法
+                </div>
+                <div id="explanation-text" class="text-slate-300 text-xs sm:text-sm font-normal"></div>
+            </div>
+        </div>
+
+        <!-- RESULT CONTAINER -->
+        <div id="result-container" class="hidden bg-white/90 backdrop-blur-sm rounded-3xl p-8 sm:p-10 border border-slate-200/70 shadow-xl shadow-slate-200/50 text-center space-y-8">
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-900 text-teal-400 shadow-lg shadow-slate-900/10 mb-2">
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            </div>
+
+            <div>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2 tracking-tight">特训完成</h2>
+                <p class="text-sm text-slate-500 font-medium">已完成所有词汇测试，积累词汇量是语言通关的基石</p>
+            </div>
+
+            <div class="max-w-md mx-auto py-3 px-6 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-around">
+                <div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">本次练习题目</div>
+                    <div id="stat-total" class="text-2xl font-extrabold text-slate-900">34</div>
+                </div>
+                <div class="h-8 w-px bg-slate-200"></div>
+                <div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">重点标注/复习词汇</div>
+                    <div id="stat-mistakes" class="text-2xl font-extrabold text-slate-900">0</div>
+                </div>
+            </div>
+
+            <!-- Incorrect Words Review List -->
+            <div id="mistakes-section" class="text-left hidden space-y-4 pt-2">
+                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                    需重点巩固的词汇
+                </h3>
+                <div id="mistakes-list" class="space-y-2.5 max-h-64 overflow-y-auto pr-1"></div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-6 border-t border-slate-100">
+                <button onclick="resetPractice()" class="w-full sm:w-auto px-8 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm transition-all shadow-md hover:shadow-lg">
+                    再练一次
+                </button>
+                <a href="index.html" class="w-full sm:w-auto px-8 py-3 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 font-bold text-sm transition-all text-center">
+                    返回主页
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Bottom Actions Nav -->
+    <footer id="bottom-nav" class="sticky bottom-0 z-30 custom-glass border-t border-slate-200/60 px-4 py-3.5 sm:px-8">
+        <div class="max-w-3xl mx-auto flex items-center justify-between gap-3">
+            <button id="btn-prev" onclick="prevQuestion()" disabled class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 text-slate-600 hover:bg-slate-100 disabled:opacity-30 disabled:cursor-not-allowed transition-all">
+                上一题
+            </button>
+
+            <button id="btn-toggle-explain" onclick="toggleExplanation()" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 hover:bg-slate-200/80 text-slate-700 transition-all flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                查看释义
+            </button>
+
+            <button id="btn-next" onclick="nextQuestion()" class="px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-md transition-all">
+                下一题
+            </button>
+        </div>
+    </footer>
+
+    <script>
+        const rawVocabularyData = [
+            {
+                id: 1,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'das Abenteuer, -',
+                question: '名词 "Abenteuer" (冒险) 的正确冠词是哪一个？',
+                options: ['der', 'die', 'das', 'die (Pl.)'],
+                answer: 2,
+                detail: 'das Abenteuer, 单复数同形 (die Abenteuer)。词义：冒险，惊险活动。'
+            },
+            {
+                id: 2,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Abfall, "-e',
+                question: '名词 "der Abfall" 的正确中文释义是？',
+                options: ['出口，离开', '垃圾，废品', '降价，打折', '瀑布'],
+                answer: 1,
+                detail: 'der Abfall, "-e (垃圾，废品)。近义词：der Müll。常见组合：der Abfalleimer (垃圾桶)。'
+            },
+            {
+                id: 3,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Abfahrt, -en',
+                question: '名词 "die Abfahrt" 的主要含义是什么？',
+                options: ['到达', '出发，驶出', '交通拥堵', '转弯'],
+                answer: 1,
+                detail: 'die Abfahrt, -en (出发，驶出)。反义词：die Ankunft (到达)。'
+            },
+            {
+                id: 4,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Absicht, -en',
+                question: '句子 “Ich habe nicht die Absicht, das zu tun.” 中 "die Absicht" 意思是？',
+                options: ['能力', '意图，目的', '习惯', '允许'],
+                answer: 1,
+                detail: 'die Absicht, -en (意图，打算，目的)。副词形式：absichtlich (故意地)。'
+            },
+            {
+                id: 5,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Abteilung, -en',
+                question: '在公司或机构中，"die Abteilung" 通常指？',
+                options: ['部门，科室', '主管，经理', '薪资待遇', '合同协议'],
+                answer: 0,
+                detail: 'die Abteilung, -en (部门)。源自动词 abteilen (隔开，划分)。'
+            },
+            {
+                id: 6,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Alltag',
+                question: '德语单词 "der Alltag" 的正确含义是？',
+                options: ['假期', '日常生活', '古代', '工作日'],
+                answer: 1,
+                detail: 'der Alltag (日常生活)。形容词形式：alltäglich (日常的，平淡的)。'
+            },
+            {
+                id: 7,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Ampel, -n',
+                question: '“An der Ampel rot halten.” 句子中的 "die Ampel" 指的是？',
+                options: ['斑马线', '交通信号灯 / 红绿灯', '公交车站', '十字路口'],
+                answer: 1,
+                detail: 'die Ampel, -n (交通信号灯)。'
+            },
+            {
+                id: 8,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'das Amt, "-er',
+                question: '名词 "das Amt" 的复数形式是哪一个？',
+                options: ['die Ämter', 'die Amte', 'die Ämtern', 'die Amten'],
+                answer: 0,
+                detail: 'das Amt, "-er (政府机关，局，官职)。例：das Auswärtige Amt (外交部)。'
+            },
+            {
+                id: 9,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Ahnung',
+                question: '常用语 “Keine Ahnung!” 中的 "die Ahnung" 表示什么？',
+                options: ['智力', '知情，概念，主意', '计划', '兴趣'],
+                answer: 1,
+                detail: 'die Ahnung (知晓，概念)。Keine Ahnung! = 我不知道 / 毫不知情！'
+            },
+            {
+                id: 10,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Abschluss, "-e',
+                question: '在教育与职业语境中，"der Abschluss" 常常指？',
+                options: ['开始', '毕业，结业，完成', '中断', '求职申请'],
+                answer: 1,
+                detail: 'der Abschluss, "-e (毕业，结束，缔结)。例：einen Schulabschluss machen (获得学校毕业证书)。'
+            },
+            {
+                id: 11,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'das Abitur',
+                question: '在德国教育体系中，"das Abitur" (简称 Abi) 代表？',
+                options: ['职业高中入学考试', '高中毕业考试/大学入学资格', '硕士毕业论文', '语言B2证书'],
+                answer: 1,
+                detail: 'das Abitur (D) / Matura (A, CH): 高中毕业文凭/大学入学资格。'
+            },
+            {
+                id: 12,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Absender, -',
+                question: '信件或包裹上的 "der Absender" 意思是？',
+                options: ['收件人', '寄件人，发件人', '邮递员', '中转站'],
+                answer: 1,
+                detail: 'der Absender, - / die Absenderin, -nen (寄件人)。反义词：der Empfänger (收件人)。'
+            },
+            {
+                id: 13,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'abbiegen',
+                question: '动词 "abbiegen" (转弯) 的完成时 (Perfekt) 形式是？',
+                options: ['hat abgebogen', 'ist abgebogen', 'hat abbiegen', 'ist abbiegt'],
+                answer: 1,
+                detail: 'abbiegen (biegt ab, bog ab, ist abgebogen)。表示位置方向移动，助动词使用 sein。'
+            },
+            {
+                id: 14,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'abgeben',
+                question: '“Hausaufgaben beim Lehrer abgeben” 中的 "abgeben" 意思是？',
+                options: ['抄写', '放弃', '上交，递交', '修改'],
+                answer: 2,
+                detail: 'abgeben (gibt ab, gab ab, hat abgegeben) - 上交，提交。'
+            },
+            {
+                id: 15,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'abhängen',
+                question: '动词 "abhängen" 表示“取决于……”时，搭配哪个固定介词？',
+                options: ['an (+ Dat.)', 'auf (+ Akk.)', 'von (+ Dat.)', 'mit (+ Dat.)'],
+                answer: 2,
+                detail: 'abhängen von + Dat. (取决于……)。形容词形式：abhängig von.'
+            },
+            {
+                id: 16,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'abheben',
+                question: '在银行或 ATM 机旁，"Geld abheben" 的意思是？',
+                options: ['存钱', '取钱，提款', '转账', '换汇'],
+                answer: 1,
+                detail: 'abheben (hebt ab, hob ab, hat abgehoben) - 取钱，提款；飞机起飞。'
+            },
+            {
+                id: 17,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'abholen',
+                question: '“Ich hole dich vom Bahnhof ab.” 句中的 "abholen" 意思是？',
+                options: ['送某人', '接某人，取某物', '道别', '邀请'],
+                answer: 1,
+                detail: 'abholen (holt ab, holte ab, hat abgeholt) - (去某处)接人，取物品。'
+            },
+            {
+                id: 18,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'abschreiben',
+                question: '在考试语境中，"abschreiben" 通常表示？',
+                options: ['默写', '抄袭，作弊抄写', '签字', '注销'],
+                answer: 1,
+                detail: 'abschreiben (schreibt ab, schrieb ab, hat abgeschrieben) - 抄写；(考试)抄袭。'
+            },
+            {
+                id: 19,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'ablehnen',
+                question: '动词 "ablehnen" 的含义与下列哪个选项相反？',
+                options: ['akzeptieren (接受)', 'absagen (取消)', 'abmachen (商定)', 'analysieren (分析)'],
+                answer: 0,
+                detail: 'ablehnen (lehnt ab, lehnte ab, hat abgelehnt) - 拒绝，否决。反义词为 akzeptieren / annehmen.'
+            },
+            {
+                id: 20,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'abnehmen',
+                question: '在健康与体重话题中，"abnehmen" 的含义是？',
+                options: ['增加体重', '减肥，体重减轻', '保持身材', '体检'],
+                answer: 1,
+                detail: 'abnehmen (nimmt ab, nahm ab, hat abgenommen) - 减少，减肥。反义词：zunehmen (增加，增重)。'
+            },
+            {
+                id: 21,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'abonnieren',
+                question: '“eine Zeitschrift / einen Kanal abonnieren” 意思是？',
+                options: ['一次性付款', '点赞评论', '订阅 (杂志/频道等)', '推荐'],
+                answer: 2,
+                detail: 'abonnieren (abonniert, abonnierte, hat abonniert) - 订阅。名词：das Abonnement (订阅)。'
+            },
+            {
+                id: 22,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'absagen',
+                question: '“einen Arzttermin absagen” 的意思是？',
+                options: ['预约医生', '推迟预约', '取消预约', '确认预约'],
+                answer: 2,
+                detail: 'absagen (sagt ab, sagte ab, hat abgesagt) - 取消，拒绝。反义词：zusagen (答应，确认)。'
+            },
+            {
+                id: 23,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'abstimmen',
+                question: '动词 "abstimmen" 在会议或政治语境中表示？',
+                options: ['争吵', '投票，表决', '撰写', '延期'],
+                answer: 1,
+                detail: 'abstimmen (stimmt ab, stimmte ab, hat abgestimmt) - 投票表决。常用：über ein Thema abstimmen.'
+            },
+            {
+                id: 24,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'achten',
+                question: '“Achten Sie auf den Verkehr!” 句中的 "achten" 与 auf 搭配表示？',
+                options: ['忽视', '注意，留心', '等待', '佩服'],
+                answer: 1,
+                detail: 'achten auf + Akk. - 注意，留心。例：Achten Sie auf die Gesundheit!'
+            },
+            {
+                id: 25,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'sich amüsieren',
+                question: '反身动词 "sich amüsieren" 的意思是？',
+                options: ['感到厌倦', '感到惊讶', '玩得开心，过得愉快', '生气'],
+                answer: 2,
+                detail: 'sich amüsieren (amüsiert sich, amüsierte sich, hat sich amüsiert) - 感到开心，自娱自乐。'
+            },
+            {
+                id: 26,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'anbieten',
+                question: '动词 "anbieten" (提供) 的过去时(Präteritum)和完成时(Perfekt)是？',
+                options: ['angebot, hat angeboten', 'bot an, hat angeboten', 'bietet an, hat geboten', 'biete an, ist angeboten'],
+                answer: 1,
+                detail: 'anbieten (bietet an, bot an, hat angeboten) - 提供，给出。名词：das Angebot (优惠，提供)。'
+            },
+            {
+                id: 27,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'abhängig',
+                question: '形容词 "abhängig" (依赖的) 的反义词是？',
+                options: ['unabhängig', 'inabhängig', 'missabhängig', 'entabhängig'],
+                answer: 0,
+                detail: 'abhängig von + Dat. (依赖……的)。否定前缀为 un- -> unabhängig (独立的)。'
+            },
+            {
+                id: 28,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'abwesend',
+                question: '形容词 "abwesend" 的中文释义是？',
+                options: ['在场的', '缺席的，不在场的', '空闲的', '忙碌的'],
+                answer: 1,
+                detail: 'abwesend (缺席的，心不在焉的)。反义词：anwesend (在场的)。'
+            },
+            {
+                id: 29,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'ähnlich',
+                question: '“Diese beiden Wörter sind sich sehr ähnlich.” 句中 "ähnlich" 意思是？',
+                options: ['完全相同的', '相似的，类似的', '相反的', '毫无关系的'],
+                answer: 1,
+                detail: 'ähnlich (相似的，相近的)。用法：jemandem/etwas (Dat.) ähnlich sein.'
+            },
+            {
+                id: 30,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'aktuell',
+                question: '德语单词 "aktuell" 的正确中文释义是？(注意不要与英语 actual 混淆)',
+                options: ['真实的，实际的', '当前的，最新的，时下的', '古代的', '精确的'],
+                answer: 1,
+                detail: 'aktuell (当前的，最新时事的)。德语中“实际上的”是 wirklich 或 tatsächlich。'
+            },
+            {
+                id: 31,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'allgemein',
+                question: '表达 “Im Allgemeinen” 中，形容词 "allgemein" 的意思是？',
+                options: ['特殊的', '具体的', '普遍的，一般的', '紧急的'],
+                answer: 2,
+                detail: 'allgemein (普遍的，概括的)。im Allgemeinen = 总体而言，一般情况下。'
+            },
+            {
+                id: 32,
+                type: 'Adverb',
+                badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
+                word: 'abwärts',
+                question: '副词 "abwärts" 表示什么方向？',
+                options: ['向上', '向下', '向前', '向后'],
+                answer: 1,
+                detail: 'abwärts (向下)。反义词：aufwärts (向上)。'
+            },
+            {
+                id: 33,
+                type: 'Konjunktion',
+                badgeClass: 'bg-violet-50 text-violet-700 border-violet-200',
+                word: 'als ob',
+                question: '连词短语 "als ob" 的含义及常用语法特征是？',
+                options: ['“因为”，引导原因', '“好像/仿佛”，常后接虚拟式(Konjunktiv II)', '“虽然”，引导让步', '“为了”，引导目的'],
+                answer: 1,
+                detail: 'als ob (好像，仿佛)。例：Er tut so, als ob er alles wüsste.'
+            },
+            {
+                id: 34,
+                type: 'Partikel',
+                badgeClass: 'bg-zinc-100 text-zinc-700 border-zinc-200',
+                word: 'allerdings',
+                question: '在阅读中，"allerdings" 常用作转折，意思最接近于？',
+                options: ['deshalb (因此)', 'aber / jedoch (然而，不过)', 'ausserdem (此外)', 'deswegen (所以)'],
+                answer: 1,
+                detail: 'allerdings (不过，然而；当然，固然)。表示轻微转折或确认。'
+            }
+        ];
+
+        // Native Audio Synthesizer
+        let audioCtx = null;
+        function getAudioContext() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
+
+        function playSound(isCorrect) {
+            try {
+                const ctx = getAudioContext();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+
+                const now = ctx.currentTime;
+
+                if (isCorrect) {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(523.25, now); // C5
+                    osc.frequency.setValueAtTime(659.25, now + 0.08); // E5
+                    gain.gain.setValueAtTime(0.12, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+                    osc.start(now);
+                    osc.stop(now + 0.3);
+                } else {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(220, now);
+                    osc.frequency.exponentialRampToValueAtTime(140, now + 0.2);
+                    gain.gain.setValueAtTime(0.1, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+                    osc.start(now);
+                    osc.stop(now + 0.2);
+                }
+            } catch (e) {
+                console.error("Audio error:", e);
+            }
+        }
+
+        // Fisher-Yates Shuffle
+        function shuffleArray(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        // App State
+        let vocabularyData = [];
+        let currentIndex = 0;
+        let userAnswers = [];
+        let showExplanation = false;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            resetPractice();
+        });
+
+        function resetPractice() {
+            vocabularyData = shuffleArray(rawVocabularyData);
+            currentIndex = 0;
+            userAnswers = new Array(vocabularyData.length).fill(null);
+            showExplanation = false;
+
+            document.getElementById('quiz-container').classList.remove('hidden');
+            document.getElementById('bottom-nav').classList.remove('hidden');
+            document.getElementById('result-container').classList.add('hidden');
+
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const currentData = vocabularyData[currentIndex];
+
+            // Render Badges and Titles
+            document.getElementById('word-badge').className = `px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase border ${currentData.badgeClass}`;
+            document.getElementById('word-badge').textContent = currentData.type;
+            document.getElementById('question-index-tag').textContent = `Q${currentIndex + 1}`;
+            document.getElementById('target-word').textContent = currentData.word;
+            document.getElementById('question-prompt').textContent = currentData.question;
+
+            // Progress Bar
+            const progressPercent = Math.round(((currentIndex + 1) / vocabularyData.length) * 100);
+            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+            document.getElementById('progress-text').textContent = `进度：${currentIndex + 1} / ${vocabularyData.length}`;
+            document.getElementById('progress-percent').textContent = `${progressPercent}%`;
+
+            // Options
+            const optionsGrid = document.getElementById('options-grid');
+            optionsGrid.innerHTML = '';
+
+            const selectedAnswer = userAnswers[currentIndex];
+            const isAnswered = selectedAnswer !== null;
+
+            currentData.options.forEach((optText, optIndex) => {
+                const btn = document.createElement('button');
+                btn.className = getOptionStyle(optIndex, selectedAnswer, currentData.answer);
+
+                btn.innerHTML = `
+                    <div class="flex items-center justify-between w-full">
+                        <span class="flex items-center gap-3.5">
+                            <span class="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold border transition-all ${getOptionMarkerStyle(optIndex, selectedAnswer, currentData.answer)}">
+                                ${String.fromCharCode(65 + optIndex)}
+                            </span>
+                            <span class="font-medium">${optText}</span>
+                        </span>
+                        ${getOptionIcon(optIndex, selectedAnswer, currentData.answer)}
+                    </div>
+                `;
+
+                btn.onclick = () => selectOption(optIndex);
+                optionsGrid.appendChild(btn);
+            });
+
+            // Explanation
+            const explainCard = document.getElementById('explanation-card');
+            const explainText = document.getElementById('explanation-text');
+            explainText.textContent = currentData.detail;
+
+            if (showExplanation || isAnswered) {
+                explainCard.classList.remove('hidden');
+            } else {
+                explainCard.classList.add('hidden');
+            }
+
+            // Controls
+            document.getElementById('btn-prev').disabled = currentIndex === 0;
+
+            const btnNext = document.getElementById('btn-next');
+            if (currentIndex === vocabularyData.length - 1) {
+                btnNext.textContent = '完成特训';
+                btnNext.className = 'px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-teal-700 hover:bg-teal-800 text-white shadow-md transition-all';
+            } else {
+                btnNext.textContent = '下一题';
+                btnNext.className = 'px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-md transition-all';
+            }
+        }
+
+        function getOptionStyle(index, selected, correct) {
+            const base = "w-full text-left p-4 sm:p-4.5 rounded-2xl border text-sm sm:text-base transition-all duration-200 flex items-center justify-between ";
+
+            if (selected === null) {
+                return base + "border-slate-200/80 bg-white hover:border-slate-400 hover:shadow-md text-slate-800";
+            }
+
+            if (index === correct) {
+                return base + "border-emerald-300 bg-emerald-50/90 text-emerald-900 font-semibold shadow-sm";
+            }
+
+            if (index === selected && selected !== correct) {
+                return base + "border-rose-300 bg-rose-50/90 text-rose-900 font-semibold shadow-sm";
+            }
+
+            return base + "border-slate-100 bg-slate-50/50 text-slate-400 opacity-50";
+        }
+
+        function getOptionMarkerStyle(index, selected, correct) {
+            if (selected === null) {
+                return "border-slate-200 text-slate-500 bg-slate-50";
+            }
+            if (index === correct) {
+                return "border-emerald-500 text-white bg-emerald-600 shadow-sm";
+            }
+            if (index === selected && selected !== correct) {
+                return "border-rose-500 text-white bg-rose-500 shadow-sm";
+            }
+            return "border-slate-200 text-slate-300 bg-slate-100";
+        }
+
+        function getOptionIcon(index, selected, correct) {
+            if (selected === null) return '';
+            if (index === correct) {
+                return `<svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>`;
+            }
+            if (index === selected && selected !== correct) {
+                return `<svg class="w-5 h-5 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>`;
+            }
+            return '';
+        }
+
+        function selectOption(index) {
+            if (userAnswers[currentIndex] === null) {
+                const isCorrect = index === vocabularyData[currentIndex].answer;
+                playSound(isCorrect);
+            }
+            userAnswers[currentIndex] = index;
+            showExplanation = true;
+            renderQuestion();
+        }
+
+        function toggleExplanation() {
+            showExplanation = !showExplanation;
+            const explainCard = document.getElementById('explanation-card');
+            if (showExplanation) {
+                explainCard.classList.remove('hidden');
+            } else {
+                explainCard.classList.add('hidden');
+            }
+        }
+
+        function nextQuestion() {
+            if (currentIndex < vocabularyData.length - 1) {
+                currentIndex++;
+                showExplanation = false;
+                renderQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                showExplanation = false;
+                renderQuestion();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quiz-container').classList.add('hidden');
+            document.getElementById('bottom-nav').classList.add('hidden');
+            document.getElementById('result-container').classList.remove('hidden');
+
+            let mistakeCount = 0;
+            const mistakesList = document.getElementById('mistakes-list');
+            mistakesList.innerHTML = '';
+
+            userAnswers.forEach((ans, idx) => {
+                const item = vocabularyData[idx];
+                if (ans !== item.answer) {
+                    mistakeCount++;
+                    const mistakeDiv = document.createElement('div');
+                    mistakeDiv.className = 'p-4 bg-slate-50 rounded-2xl border border-slate-200/80 text-xs sm:text-sm';
+                    mistakeDiv.innerHTML = `
+                        <div class="font-german font-bold text-slate-900 text-base mb-1">${item.word}</div>
+                        <div class="text-slate-600 leading-relaxed">${item.detail}</div>
+                    `;
+                    mistakesList.appendChild(mistakeDiv);
+                }
+            });
+
+            document.getElementById('stat-total').textContent = vocabularyData.length;
+            document.getElementById('stat-mistakes').textContent = mistakeCount;
+
+            const mistakesSection = document.getElementById('mistakes-section');
+            if (mistakeCount > 0) {
+                mistakesSection.classList.remove('hidden');
+            } else {
+                mistakesSection.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
