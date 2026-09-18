@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="h-full bg-slate-50/80">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>德语 B1 核心词汇特训</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Serif+Georgia&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .font-german {
+            font-family: 'Noto Serif Georgia', Georgia, serif;
+        }
+        .custom-glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+    </style>
+</head>
+<body class="h-full text-slate-800 antialiased selection:bg-teal-100 selection:text-teal-900 flex flex-col justify-between bg-gradient-to-br from-slate-50 via-zinc-50 to-teal-50/20">
+    <!-- Header Area -->
+    <header class="sticky top-0 z-30 custom-glass border-b border-slate-200/60 px-4 py-3.5 sm:px-8 shadow-sm">
+        <div class="max-w-3xl mx-auto flex items-center justify-between">
+            <a href="index.html" class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-500 hover:text-slate-900 transition-all py-1.5 px-3 rounded-full hover:bg-slate-100/80">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+                返回主页
+            </a>
+            <div class="text-center">
+                <h1 class="text-xs sm:text-sm font-bold tracking-widest text-slate-400 uppercase">Wortschatz Training</h1>
+                <p class="text-sm sm:text-base font-extrabold text-slate-900 tracking-tight">德语 B1 核心词汇特训</p>
+            </div>
+            <button onclick="resetPractice()" class="text-xs sm:text-sm font-semibold text-slate-500 hover:text-teal-700 transition-all py-1.5 px-3 rounded-full hover:bg-slate-100/80">
+                重新开始
+            </button>
+        </div>
+        <!-- Progress Bar -->
+        <div class="max-w-3xl mx-auto mt-3">
+            <div class="flex justify-between items-center text-xs font-bold text-slate-400 mb-1.5 tracking-wider uppercase">
+                <span id="progress-text">进度：1 / 63</span>
+                <span id="progress-percent">2%</span>
+            </div>
+            <div class="w-full h-1.5 bg-slate-200/70 rounded-full overflow-hidden p-0.5">
+                <div id="progress-bar" class="h-full bg-slate-900 transition-all duration-300 rounded-full" style="width: 2%"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Section -->
+    <main class="flex-1 max-w-3xl w-full mx-auto p-4 sm:p-6 flex flex-col justify-center">
+        <!-- QUIZ CONTAINER -->
+        <div id="quiz-container" class="space-y-6">
+            <!-- Word Header Card -->
+            <div class="bg-white/90 backdrop-blur-sm rounded-3xl p-6 sm:p-9 border border-slate-200/70 shadow-xl shadow-slate-200/50 relative overflow-hidden transition-all">
+                <div class="flex items-center justify-between mb-4">
+                    <span id="word-badge" class="px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase border">
+                        Substantiv
+                    </span>
+                    <span id="question-index-tag" class="text-xs font-bold text-slate-400 tracking-widest uppercase">
+                        Q1
+                    </span>
+                </div>
+                <div class="py-2">
+                    <h2 id="target-word" class="font-german text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-3">
+                        damals
+                    </h2>
+                    <p id="question-prompt" class="text-sm sm:text-base font-medium text-slate-600 leading-relaxed">
+                        副词 "damals" 常用于描述过去的某个特定时期。下列哪个句子中 "damals" 使用最恰当？
+                    </p>
+                </div>
+            </div>
+
+            <!-- Options Grid -->
+            <div id="options-grid" class="grid grid-cols-1 gap-3.5">
+                <!-- Dynamic options -->
+            </div>
+
+            <!-- Explanation Card -->
+            <div id="explanation-card" class="hidden bg-slate-900 text-slate-100 rounded-2xl p-5 sm:p-6 shadow-lg border border-slate-800 text-sm leading-relaxed space-y-2">
+                <div class="font-semibold text-teal-400 flex items-center gap-2 text-xs sm:text-sm uppercase tracking-wider">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    词汇解析与用法
+                </div>
+                <div id="explanation-text" class="text-slate-300 text-xs sm:text-sm font-normal"></div>
+            </div>
+        </div>
+
+        <!-- RESULT CONTAINER -->
+        <div id="result-container" class="hidden bg-white/90 backdrop-blur-sm rounded-3xl p-8 sm:p-10 border border-slate-200/70 shadow-xl shadow-slate-200/50 text-center space-y-8">
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-900 text-teal-400 shadow-lg shadow-slate-900/10 mb-2">
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <div>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2 tracking-tight">特训完成</h2>
+                <p class="text-sm text-slate-500 font-medium">已完成所有词汇测试，积累词汇量是语言通关的基石</p>
+            </div>
+            <div class="max-w-md mx-auto py-3 px-6 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-around">
+                <div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">本次练习题目</div>
+                    <div id="stat-total" class="text-2xl font-extrabold text-slate-900">63</div>
+                </div>
+                <div class="h-8 w-px bg-slate-200"></div>
+                <div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">重点标注/复习词汇</div>
+                    <div id="stat-mistakes" class="text-2xl font-extrabold text-slate-900">0</div>
+                </div>
+            </div>
+
+            <!-- Incorrect Words Review List -->
+            <div id="mistakes-section" class="text-left hidden space-y-4 pt-2">
+                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                    需重点巩固的词汇
+                </h3>
+                <div id="mistakes-list" class="space-y-2.5 max-h-64 overflow-y-auto pr-1"></div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-6 border-t border-slate-100">
+                <button onclick="resetPractice()" class="w-full sm:w-auto px-8 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm transition-all shadow-md hover:shadow-lg">
+                    再练一次
+                </button>
+                <a href="index.html" class="w-full sm:w-auto px-8 py-3 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 font-bold text-sm transition-all text-center">
+                    返回主页
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Actions Nav -->
+    <footer id="bottom-nav" class="sticky bottom-0 z-30 custom-glass border-t border-slate-200/60 px-4 py-3.5 sm:px-8">
+        <div class="max-w-3xl mx-auto flex items-center justify-between gap-3">
+            <button id="btn-prev" onclick="prevQuestion()" disabled class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 text-slate-600 hover:bg-slate-100 disabled:opacity-30 disabled:cursor-not-allowed transition-all">
+                上一题
+            </button>
+            <button id="btn-toggle-explain" onclick="toggleExplanation()" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 hover:bg-slate-200/80 text-slate-700 transition-all flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                查看释义
+            </button>
+            <button id="btn-next" onclick="nextQuestion()" class="px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-md transition-all">
+                下一题
+            </button>
+        </div>
+    </footer>
+
+    <script>
+        const rawVocabularyData = [
+            {
+                id: 1,
+                type: 'Adverb',
+                badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
+                word: 'damals',
+                question: '副词 "damals" 常用于描述过去的特定时期。下列哪个句子中 "damals" 使用最恰当？',
+                options: [
+                    'Ich gehe damals oft ins Kino.',
+                    'Damals war ich noch ein Kind und wohnte in Berlin.',
+                    'Damals werde ich eine Reise machen.',
+                    'Damals bin ich morgen um 8 Uhr frei.'
+                ],
+                answer: 1,
+                detail: 'damals 表示“在当时/那时”，指过去特定的某个时期，谓语动词需使用过去时态（如 Präteritum 或 Perfekt）。'
+            },
+            {
+                id: 2,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Dame, -n',
+                question: '在正式信件或演讲开头，德语中的“女士们，先生们！”正确表达是？',
+                options: [
+                    'Sehr geehrte Damen und Herren,',
+                    'Liebe Frauen und Männer,',
+                    'Guten Tag Damen und Herren,',
+                    'Sehr geehrte Mädchen und Jungen,'
+                ],
+                answer: 0,
+                detail: 'die Dame, -n (女士/淑女)。信函正式尊称为 "Sehr geehrte Damen und Herren,"。'
+            },
+            {
+                id: 3,
+                type: 'Konjunktion',
+                badgeClass: 'bg-violet-50 text-violet-700 border-violet-200',
+                word: 'damit',
+                question: '作为从属连词时，"damit" 引导什么从句？且从句中的变位动词放在什么位置？',
+                options: [
+                    '引导原因从句，动词紧跟在 damit 后面',
+                    '引导目的从句，变位动词置于从句末尾',
+                    '引导让步从句，变位动词置于句首',
+                    '引导时间从句，变位动词置于第二位'
+                ],
+                answer: 1,
+                detail: 'damit 引导目的从句（主句与从句主语不同时使用），从句动词必须尾置。例：Ich helfe dir, damit du pünktlich fertig wirst.'
+            },
+            {
+                id: 4,
+                type: 'Adverb',
+                badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
+                word: 'danach',
+                question: '叙述副词 "danach" (之后/然后) 位于句首时，主语和变位动词的位置关系是？',
+                options: [
+                    'Danach ich gehe nach Hause.',
+                    'Danach gehe ich nach Hause.',
+                    'Danach nach Hause gehe ich.',
+                    'Danach ich werde nach Hause gehen.'
+                ],
+                answer: 1,
+                detail: 'danach 放在句首占第1位，变位动词必须紧跟在第2位，主语后置（Danach + Verb + Subjekt）。'
+            },
+            {
+                id: 5,
+                type: 'Adverb',
+                badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
+                word: 'daneben',
+                question: '句子 "Das Haus ist neu, und daneben steht ein großer Baum." 中 "daneben" 的意思是？',
+                options: ['在对面', '在旁边 / 在其旁', '在上面', '在中间'],
+                answer: 1,
+                detail: 'daneben 是代副词（da + neben），表示“在旁、在那个的旁边”。'
+            },
+            {
+                id: 6,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'danken',
+                question: '动词 "danken" (感谢) 的标准介词与格搭配关系是？',
+                options: [
+                    'jemanden (Akk.) danken',
+                    'jemandem (Dat.) für etwas (Akk.) danken',
+                    'jemanden (Akk.) mit etwas (Dat.) danken',
+                    'jemandem (Dat.) über etwas (Akk.) danken'
+                ],
+                answer: 1,
+                detail: 'danken 搭配：jemandem (Dat.) für etwas (Akk.) danken（为某事向某人道谢）。例：Ich danke dir für die Hilfe.'
+            },
+            {
+                id: 7,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Dank',
+                question: '表达“非常感谢！”时，下列哪项使用的是名词 "der Dank" 的正确短语？',
+                options: ['Herzlichen Dank!', 'Vielen Danke!', 'Mit große Dank!', 'Gute Dank!'],
+                answer: 0,
+                detail: 'der Dank (阳性名词)。常见搭配：Herzlichen Dank! 或 Vielen Dank!（注意 danke 为副词/感叹词，不要混淆）。'
+            },
+            {
+                id: 8,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'dankbar',
+                question: '形容词 "dankbar" (感激的) 表示“因某事感谢某人”时，正确的介词与格搭配是？',
+                options: [
+                    'dankbar auf + Akk.',
+                    'jemandem (Dat.) für etwas (Akk.) dankbar sein',
+                    'dankbar mit + Dat.',
+                    'dankbar über + Dat.'
+                ],
+                answer: 1,
+                detail: 'jemandem (Dat.) für etwas (Akk.) dankbar sein（对某人因某事充满感激）。例：Ich bin dir sehr dankbar dafür.'
+            },
+            {
+                id: 9,
+                type: 'Partikel',
+                badgeClass: 'bg-zinc-100 text-zinc-700 border-zinc-200',
+                word: 'danke',
+                question: '当别人问你 “Möchtest du noch einen Kaffee?” 你想客气地拒绝时，最佳回答是？',
+                options: ['Danke, gern!', 'Nein, danke.', 'Bitte sehr!', 'Doch, danke!'],
+                answer: 1,
+                detail: '单独回答 "Danke!" 有时会被理解为“好的，谢谢（接受）”；明确表示客气拒绝时应说 "Nein, danke."。'
+            },
+            {
+                id: 10,
+                type: 'Adverb',
+                badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
+                word: 'dann',
+                question: '副词 "dann" (然后/那时) 与连词 "denn" (因为) 在语法上的核心区别是？',
+                options: [
+                    'dann 表示原因，denn 表示时间',
+                    'dann 是时间副词表示顺序，denn 是并列连词表示原因',
+                    '两者完全同义可互换',
+                    'dann 只能用于虚拟式，denn 只能用于过去时'
+                ],
+                answer: 1,
+                detail: 'dann 是时间副词（然后，接着）；denn 是并列连词（不占位，表示原因）。'
+            },
+            {
+                id: 11,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'darstellen',
+                question: '动词 "darstellen" (扮演/呈现/构成) 属于哪种动词类型及三时态变位？',
+                options: [
+                    '不可分动词 (gedarstellt)',
+                    '可分动词 (stellt dar, stellte dar, hat dargestellt)',
+                    '反身动词 (sich darstellen)',
+                    '情态动词 (mag darstellen)'
+                ],
+                answer: 1,
+                detail: 'darstellen 是可分动词，前缀 dar- 可分离。变位：stellt dar, stellte dar, hat dargestellt。'
+            },
+            {
+                id: 12,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Darstellung, -en',
+                question: '名词 "die Darstellung" 的主要含义不包括下列哪一项？',
+                options: ['描绘，展示', '表演，扮演', '陈述，阐述', '折扣，降价'],
+                answer: 3,
+                detail: 'die Darstellung, -en 意为：表现、描绘、阐述、表演。不含“折扣”之意。'
+            },
+            {
+                id: 13,
+                type: 'Konjunktion',
+                badgeClass: 'bg-violet-50 text-violet-700 border-violet-200',
+                word: 'dass',
+                question: '关于从属连词 "dass" 引导的宾语从句，下列语序正确的是？',
+                options: [
+                    'Ich weiß, dass du kommst heute.',
+                    'Ich weiß, dass heute du kommst.',
+                    'Ich weiß, dass du heute kommst.',
+                    'Ich weiß, dass kommst du heute.'
+                ],
+                answer: 2,
+                detail: 'dass 引导宾语从句时，变位动词必须置于从句的最末尾（"dass du heute kommst"）。'
+            },
+            {
+                id: 14,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Datei, -en',
+                question: '在计算机操作中，“保存文件”和“删除文件”用德语表达正确的是？',
+                options: [
+                    'eine Datei speichern / löschen',
+                    'eine Datei machen / suchen',
+                    'eine Datei schreiben / lesen',
+                    'eine Datei öffnen / abgeben'
+                ],
+                answer: 0,
+                detail: 'die Datei, -en (电子文件/数据文档)。保存文件为 Datei speichern，删除文件为 Datei löschen。'
+            },
+            {
+                id: 15,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'das Datum, die Daten',
+                question: '名词 "das Datum" 指“日期”时，其正确的复数形式是？',
+                options: ['die Datums', 'die Daten', 'die Datümer', 'die Datume'],
+                answer: 1,
+                detail: 'das Datum (日期) 的复数是 die Daten。注意：die Daten 也可单独作复数名词表示“数据/信息”。'
+            },
+            {
+                id: 16,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Daten (Plural)',
+                question: '在信息技术与网络安全中，“保护个人数据”的正确德语表达是？',
+                options: [
+                    'persönliche Daten schützen',
+                    'persönliche Daten dauern',
+                    'persönliche Daten danken',
+                    'persönliche Daten absagen'
+                ],
+                answer: 0,
+                detail: 'die Daten (仅复数) 意为“数据，资料”。例如：Datenschutz (数据保护)，persönliche Daten schützen (保护个人数据)。'
+            },
+            {
+                id: 17,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'dauern',
+                question: '问句 “Wie lange dauert die Fahrt?” 中，动词 "dauern" 表达的意思是？',
+                options: ['行驶，驾驶', '持续，需要……时间', '等待，搁置', '延期，推迟'],
+                answer: 1,
+                detail: 'dauern 表示“持续，花……时间”。常见疑问句：Wie lange dauert ...? (这需要多久？)'
+            },
+            {
+                id: 18,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Dauer',
+                question: '介词短语 "auf die Dauer" 的中文含义是？',
+                options: ['在短时间内', '长此以往，长久看来', '在特定时间', '按小时计算'],
+                answer: 1,
+                detail: 'die Dauer (持续时间)。短语 auf die Dauer 意为“长期来看，久而久之”。'
+            },
+            {
+                id: 19,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'dauernd',
+                question: '句子 "Er beschwert sich dauernd über den Lärm." 中 "dauernd" 作副词使用，相当于？',
+                options: ['manchmal (偶尔)', 'ständig / immer (总是，不断的)', 'selten (罕见)', 'nie (从不)'],
+                answer: 1,
+                detail: 'dauernd 可作形容词/副词，表示“持续不断的，经常的”，近义词为 ständig / ununterbrochen。'
+            },
+            {
+                id: 20,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Decke, -n',
+                question: '名词 "die Decke" 在不同语境下可表示多种含义，以下哪项不属于其含义？',
+                options: ['天花板 (Zimmerdecke)', '毛毯 (Wolldecke)', '桌布 (Tischdecke)', '门锁 / 钥匙'],
+                answer: 3,
+                detail: 'die Decke, -n 可指天花板、毯子或桌布。不包含“门锁”之意。'
+            },
+            {
+                id: 21,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'dekorieren',
+                question: '动词 "dekorieren" (装饰/布置) 的过去分词 (Partizip II) 形式是？',
+                options: ['gedekoriert', 'dekoriert', 'dekorierte', 'dekorieret'],
+                answer: 1,
+                detail: '以 -ieren 结尾的外来语动词，过去分词前不加 ge-，故为 dekorieren -> dekoriert (hat dekoriert)。'
+            },
+            {
+                id: 22,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'denken',
+                question: '动词 "denken" 表示“考虑到/惦记着某人或某事”时，应搭配哪个介词？',
+                options: ['denken über + Dat.', 'denken an + Akk.', 'denken von + Dat.', 'denken mit + Dat.'],
+                answer: 1,
+                detail: 'denken an + Akk. 表示“想到，惦记着”；若表示“对……有某种看法”，则用 denken über + Akk.。'
+            },
+            {
+                id: 23,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Gedanke, -n',
+                question: '名词 "der Gedanke" (想法) 属于阳性弱变化名词 (N-Deklination)，其单数第二格 (Genitiv) 形式是？',
+                options: ['des Gedanken', 'des Gedankens', 'des Gedankes', 'des Gedankenen'],
+                answer: 1,
+                detail: 'der Gedanke 属于少数单数第二格加 -ns 的阳性弱变化名词：des Gedankens, dem Gedanken, den Gedanken.'
+            },
+            {
+                id: 24,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'das Denkmal, "-er',
+                question: '名词 "das Denkmal" 的正确含义及复数形式是？',
+                options: [
+                    '记忆，Pl. die Denkmale',
+                    '纪念碑 / 纪念物，Pl. die Denkmäler',
+                    '思考方式，Pl. die Denkmäler',
+                    '思考过程，Pl. die Denkmale'
+                ],
+                answer: 1,
+                detail: 'das Denkmal, "-er 意为“纪念碑，纪念物”。复数带变音符号：die Denkmäler。'
+            },
+            {
+                id: 25,
+                type: 'Konjunktion',
+                badgeClass: 'bg-violet-50 text-violet-700 border-violet-200',
+                word: 'denn',
+                question: '关于并列连词 "denn" (因为) 的语法规则，下列表达正确的是？',
+                options: [
+                    'denn 引导从句，变位动词必须放在句末',
+                    'denn 占句子第1位，动词紧跟其后',
+                    'denn 是并列连词，不占句子语序位置（0位），主语+动词紧随其后',
+                    'denn 只能放在句末'
+                ],
+                answer: 2,
+                detail: 'denn 是并列连词（ADUSO 之一），占用 0 位，后接正序主谓结构。如：..., denn er ist krank.'
+            },
+            {
+                id: 26,
+                type: 'Pronomen',
+                badgeClass: 'bg-purple-50 text-purple-700 border-purple-200',
+                word: 'derselbe, dieselbe, dasselbe',
+                question: '指示代词 "derselbe" 表示“同一个”，关于其变词尾规则，前半部分 der- 和后半部分 -selbe 分别如何变格？',
+                options: [
+                    'der- 按定冠词变，-selbe 按形容词弱变化变',
+                    '前后两部分都按形容词强变化变',
+                    'der- 保持不变，-selbe 按名词变',
+                    '两者均保持不变'
+                ],
+                answer: 0,
+                detail: 'derselbe 变化规则：前半部分 (der/die/das) 按定冠词变格，后半部分 (-selbe) 按形容词弱变化变格（如 des derselben）。'
+            },
+            {
+                id: 27,
+                type: 'Adverb',
+                badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
+                word: 'deshalb',
+                question: '因果代副词 "deshalb" (因此) 位于句首时，句子的语序为？',
+                options: [
+                    'Deshalb ich fahre nach Hause.',
+                    'Deshalb fahre ich nach Hause.',
+                    'Deshalb nach Hause fahre ich.',
+                    'Deshalb ich nach Hause fahre.'
+                ],
+                answer: 1,
+                detail: 'deshalb 是占第1位的副词，变位动词紧跟在第2位，即：Deshalb + Verb + Subjekt...'
+            },
+            {
+                id: 28,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'das Dessert, -s',
+                question: '名词 "das Dessert" (甜点) 来源于法语，在德语中它的德语本土同义词是？',
+                options: ['die Vorspeise', 'die Hauptspeise', 'die Nachspeise', 'das Getränk'],
+                answer: 2,
+                detail: 'das Dessert, -s 的德语同义词是 die Nachspeise (餐后甜点)。'
+            },
+            {
+                id: 29,
+                type: 'Adverb',
+                badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
+                word: 'deswegen',
+                question: '副词 "deswegen" (因此/为此) 的近义词是？',
+                options: ['trotzdem', 'deshalb / darum', 'obwohl', 'weil'],
+                answer: 1,
+                detail: 'deswegen, deshalb, darum 三者同义，均表示“因此，所以”，引导结果。'
+            },
+            {
+                id: 30,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'das Detail, -s',
+                question: '短语 "im Detail" 或 "in allen Details" 的中文含义是？',
+                options: ['概括地', '详细地 / 在所有细节上', '大致地', '极其简单地'],
+                answer: 1,
+                detail: 'das Detail, -s (细节)。im Detail 表示“详细地，深入细节地”。'
+            },
+            {
+                id: 31,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'deutlich',
+                question: '“Bitte sprechen Sie etwas deutlicher!” 中 "deutlich" 的意思是？',
+                options: ['大声地', '清晰地 / 明确地', '缓慢地', '有礼貌地'],
+                answer: 1,
+                detail: 'deutlich 意为“清楚的，清晰的，明确的”。deutlicher sprechen = 说话更清楚一些。'
+            },
+            {
+                id: 32,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Diät',
+                question: '表达“节食 / 节食减肥”的正确动词搭配是？',
+                options: ['eine Diät machen', 'eine Diät kaufen', 'eine Diät bringen', 'eine Diät dekorieren'],
+                answer: 0,
+                detail: 'die Diät (节食，特种饮食)。固定搭配：eine Diät machen / auf Diät sein (在节食中)。'
+            },
+            {
+                id: 33,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Dialekt, -e',
+                question: '名词 "der Dialekt" 的正确中文释义是？',
+                options: ['标准语 (Hochdeutsch)', '方言 / 地方话', '对话', '语法规则'],
+                answer: 1,
+                detail: 'der Dialekt, -e (方言)。例：Bayerischer Dialekt (巴伐利亚方言)。'
+            },
+            {
+                id: 34,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Dialog, -e',
+                question: '名词 "der Dialog" (对话) 的反义词（指单人独白）是？',
+                options: ['der Monolog', 'die Diskussion', 'das Gespräch', 'die Ankunft'],
+                answer: 0,
+                detail: 'der Dialog (双人/多人对话) vs. der Monolog (独白)。'
+            },
+            {
+                id: 35,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'dicht',
+                question: '形容词 "dicht" 在描述森林或水管时，分别可表示什么意思？',
+                options: [
+                    '宽广的 / 干净的',
+                    '浓密的，密集的 / 不漏水的，密封的',
+                    '稀疏的 / 破损的',
+                    '高大的 / 坚硬的'
+                ],
+                answer: 1,
+                detail: 'dicht 可指“稠密的，密集的”（ein dichter Wald），也可指容器/屋顶“密封不漏水的”（Das Dach ist dicht）。'
+            },
+            {
+                id: 36,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'dick',
+                question: '形容词 "dick" 的反义词（指身材瘦或物体薄）是？',
+                options: ['dünn', 'groß', 'schwer', 'lang'],
+                answer: 0,
+                detail: 'dick (厚的，胖的) 的反义词是 dünn (薄的，瘦的) 或 schlank (苗条的)。'
+            },
+            {
+                id: 37,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Dieb, -e',
+                question: '名词 "der Dieb" (小偷) 的阴性形式（女小偷）及复数是？',
+                options: ['die Dieberin, -nen', 'die Diebin, -nen', 'die Dieben, -n', 'die Dieber, -s'],
+                answer: 1,
+                detail: 'der Dieb, -e -> 阴性形式为 die Diebin, -nen。'
+            },
+            {
+                id: 38,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'dienen',
+                question: '动词 "dienen" 表示“充当 / 用于……”时，常搭配什么介词？',
+                options: [
+                    'dienen für + Akk.',
+                    'dienen als + Nom. / zu + Dat.',
+                    'dienen von + Dat.',
+                    'dienen an + Akk.'
+                ],
+                answer: 1,
+                detail: 'dienen + Dat. (服务于某人)；dienen als... (充当...)；dienen zu... (用于...)。例：Das dient als Beispiel.'
+            },
+            {
+                id: 39,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Dienst',
+                question: '短语 "Dienst haben" 在工作场景中意思是？',
+                options: ['放假休息', '值班 / 当班', '辞职', '加薪'],
+                answer: 1,
+                detail: 'der Dienst (职务，服务，值班)。Dienst haben = 在值班/当班。'
+            },
+            {
+                id: 40,
+                type: 'Pronomen',
+                badgeClass: 'bg-purple-50 text-purple-700 border-purple-200',
+                word: 'dies-',
+                question: '指示代词 "dies-" (这个) 的变格词尾规律与下列哪种词完全一致？',
+                options: [
+                    '不定冠词 (ein/eine)',
+                    '定冠词 (der/die/das)',
+                    '人称代词 (ich/du)',
+                    '物主代词 (mein/dein)'
+                ],
+                answer: 1,
+                detail: 'dies- (dieser, diese, dieses) 的词尾变化规则与定冠词 (der, die, das) 完全一致。'
+            },
+            {
+                id: 41,
+                type: 'Adverb',
+                badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
+                word: 'diesmal',
+                question: '时间副词 "diesmal" 的正确中文含义是？',
+                options: ['上一次', '这一次 / 这回', '下一次', '有时候'],
+                answer: 1,
+                detail: 'diesmal (这一次，这回)。近义词：dieses Mal。'
+            },
+            {
+                id: 42,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'digital',
+                question: '形容词 "digital" (数字化的) 的反义词（指非数字/模拟的）是？',
+                options: ['analog', 'manuell', 'papierlos', 'elektronisch'],
+                answer: 0,
+                detail: 'digital (数字的) 的反义词是 analog (模拟的，非数字化的)。'
+            },
+            {
+                id: 43,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'das Ding, -e',
+                question: '名词 "das Ding" (事物/东西) 常用复数形式表达“最重要的事物”，其复数是？',
+                options: ['die Dinger', 'die Dinge', 'die Dingen', 'die Dinges'],
+                answer: 1,
+                detail: 'das Ding 的标准复数是 die Dinge (指事物、事情)；die Dinger 则带有感叹或小巧感情色彩。'
+            },
+            {
+                id: 44,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'das Diplom, -e',
+                question: '名词 "das Diplom" 在高等教育语境中通常指？',
+                options: ['高中毕业证', '大学毕业文凭 / 硕士学位证书', '发票收据', '驾驶执照'],
+                answer: 1,
+                detail: 'das Diplom, -e (大学毕业文凭，学位证书)。'
+            },
+            {
+                id: 45,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'direkt',
+                question: '句子 "Gibt es einen direkten Flug nach Frankfurt?" 中 "direkt" 的意思是？',
+                options: ['便宜的', '直达的 / 直接的', '中转的', '预订的'],
+                answer: 1,
+                detail: 'direkt 意为“直接的，直达的”。ein direkter Flug = 直飞航班。'
+            },
+            {
+                id: 46,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Direktor, -en / die Direktorin, -nen',
+                question: '阳性名词 "der Direktor" (校长/经理) 变为复数时，其重读音节和词尾变化是？',
+                options: [
+                    'die Direktoren (重音转移至 o)',
+                    'die Direktöre',
+                    'die Direktore',
+                    'die Direktorne'
+                ],
+                answer: 0,
+                detail: "der Direkt'or 的复数是 die Direkt'oren，重音移至 o 上，词尾加 -en。"
+            },
+            {
+                id: 47,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Diskothek, -en / Disko, -s',
+                question: '名词 "die Diskothek" 的常用口语缩写及复数形式是？',
+                options: ['das Disko, -en', 'die Disko, -s', 'der Disko, -e', 'die Diskon, -s'],
+                answer: 1,
+                detail: 'die Diskothek 的口语简称为 die Disko, 复数加 -s (die Diskos)。'
+            },
+            {
+                id: 48,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'diskutieren',
+                question: '动词 "diskutieren" (讨论) 表示“与某人讨论某事”时的正确介词搭配是？',
+                options: [
+                    'diskutieren mit + Dat. über + Akk.',
+                    'diskutieren für + Akk. an + Dat.',
+                    'diskutieren von + Dat. auf + Akk.',
+                    'diskutieren um + Akk. bei + Dat.'
+                ],
+                answer: 0,
+                detail: 'diskutieren mit jemandem (Dat.) über ein Thema (Akk.) 表示“与某人就某话题进行讨论”。'
+            },
+            {
+                id: 49,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Diskussion, -en',
+                question: '短语 "eine Diskussion führen" 中动词 "führen" 的语法功能是？',
+                options: [
+                    '表示“引导”，无具体意义',
+                    '与名词构成固定动词短语 (Funktionsverbgefüge)，相当于 diskutieren',
+                    '表示“带领”，指指挥大家',
+                    '表示“驾驶”，指控制会议方向'
+                ],
+                answer: 1,
+                detail: 'eine Diskussion führen 是典型的德语名词动词短语（Funktionsverbgefüge），意为“展开/进行讨论”。'
+            },
+            {
+                id: 50,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Distanz, -en',
+                question: '名词 "die Distanz" 的德语近义词是？',
+                options: ['der Abstand', 'die Richtung', 'die Abfahrt', 'die Dauer'],
+                answer: 0,
+                detail: 'die Distanz, -en (距离，间隔) 的常用德语近义词是 der Abstand, "-e。'
+            },
+            {
+                id: 51,
+                type: 'Partikel',
+                badgeClass: 'bg-zinc-100 text-zinc-700 border-zinc-200',
+                word: 'doch',
+                question: '当有人用否定句问你 “Kommst du nicht mit?”，如果你要肯定回答“不，我要去！”，正确的回答是？',
+                options: ['Ja!', 'Nein!', 'Doch!', 'Danke!'],
+                answer: 2,
+                detail: '针对否定提问（含 nicht / kein）作出肯定反驳回答时，必须使用 "Doch!"。'
+            },
+            {
+                id: 52,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Doktor, -en / die Doktorin, -nen',
+                question: '在德语日常生活中，除了指博士头衔外，"der Doktor" 在口语中还常用来称呼？',
+                options: ['教师 (der Lehrer)', '医生 (der Arzt)', '律师 (der Anwalt)', '工程师 (der Ingenieur)'],
+                answer: 1,
+                detail: 'der Doktor (复数 die Doktoren) 口语中常直接借指“医生” (der Arzt)。'
+            },
+            {
+                id: 53,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'das Dokument, -e',
+                question: '名词 "das Dokument" (文件/文档) 对应的派生动词（用文件记录/证明）是？',
+                options: ['dokumentieren', 'dokumenter', 'dokumentisch', 'dokumentiert'],
+                answer: 0,
+                detail: 'das Dokument 对应的动词形式是 dokumentieren (记载，用文件证明)。'
+            },
+            {
+                id: 54,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'donnern',
+                question: '无人称动词 "donnern" (打雷) 描述天气时，正确的主语与完成时形式是？',
+                options: ['Es hat gedonnert.', 'Er ist gedonnert.', 'Sie hat gedonnert.', 'Es ist gedonnert.'],
+                answer: 0,
+                detail: 'donnern 表示打雷，天气动词用无人称代词 Es 作主语，完成时助动词用 haben：Es hat gedonnert.'
+            },
+            {
+                id: 55,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Donner, -',
+                question: '名词 "der Donner" (雷声) 的复数形式以及常与其成对出现的现象“闪电”分别是？',
+                options: [
+                    'die Donner, - / der Blitz',
+                    'die Dönner / das Wetter',
+                    'die Donnern / der Regen',
+                    'die Donnere / der Wind'
+                ],
+                answer: 0,
+                detail: 'der Donner 单复数同形 (die Donner)。其搭配词“闪电”是 der Blitz, -e (常用俗语：Donner und Blitz)。'
+            },
+            {
+                id: 56,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'doppelt',
+                question: '“Das kostet jetzt das doppelte Geld.” 中 "doppelt" 的意思是？',
+                options: ['半价的', '双倍的 / 两倍的', '三倍的', '免费的'],
+                answer: 1,
+                detail: 'doppelt (双倍的，两倍的)。如：doppelt so viel (两倍那么多)。'
+            },
+            {
+                id: 57,
+                type: 'Präfix',
+                badgeClass: 'bg-zinc-100 text-zinc-700 border-zinc-200',
+                word: 'Doppel-',
+                question: '前缀 "Doppel-" 构词能力强，下列复合词与其释义对应错误的是？',
+                options: [
+                    'das Doppelzimmer (双人间)',
+                    'der Doppelpunkt (冒号 :)',
+                    'der Doppelname (双姓)',
+                    'die Doppelstunde (半小时课程)'
+                ],
+                answer: 3,
+                detail: 'die Doppelstunde 指“两节连上课（通常为 90 分钟）”，而非半小时。'
+            },
+            {
+                id: 58,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'das Dorf, "-er',
+                question: '名词 "das Dorf" 的复数形式是哪一个？',
+                options: ['die Dörfer', 'die Dorfe', 'die Dörfern', 'die Dorfen'],
+                answer: 0,
+                detail: 'das Dorf (村庄) 的复数形式加变音符号及 -er：die Dörfer。'
+            },
+            {
+                id: 59,
+                type: 'Adverb',
+                badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
+                word: 'dort',
+                question: '地点副词 "dort" (那里) 与方向副词 "dorthin" (往那里) 的语法区别在于？',
+                options: [
+                    'dort 回答 Wo? (静态位置)，dorthin 回答 Wohin? (动态方向)',
+                    'dort 表示动态方向，dorthin 表示静态位置',
+                    '两者用法完全相反',
+                    'dort 只能用于从句末尾'
+                ],
+                answer: 0,
+                detail: 'dort 回答 Wo? (静态：Er wohnt dort.)；dorthin 回答 Wohin? (动态方向：Er fährt dorthin.)。'
+            },
+            {
+                id: 60,
+                type: 'Adverb',
+                badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
+                word: 'dorthin',
+                question: '句子 “Wie komme ich dorthin?” 中 "dorthin" 表达的意思是？',
+                options: ['从那里来', '到那里去 / 往那边', '在那个地方', '在那里停下'],
+                answer: 1,
+                detail: 'dorthin 由 dort + hin 构成，hin 表示离开说话人向外的方向，意为“前往那里”。'
+            },
+            {
+                id: 61,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Dose, -n',
+                question: '名词 "die Dose" (罐头/金属罐) 在奥地利和瑞士德语中常写作/称为？',
+                options: ['die Büchse', 'das Glas', 'die Flasche', 'der Becher'],
+                answer: 0,
+                detail: 'die Dose, -n (罐头/易拉罐)。在德语区南部及瑞士/奥地利，常写作或口语称为 die Büchse。'
+            },
+            {
+                id: 62,
+                type: 'Adverb',
+                badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
+                word: 'draußen',
+                question: '副词 "draußen" (在外面/在室外) 的反义词是？',
+                options: ['drinnen', 'dort', 'oben', 'unten'],
+                answer: 0,
+                detail: 'draußen (在室外/外面) 的反义词是 drinnen (在室内/里面)。'
+            },
+            {
+                id: 63,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Dreck',
+                question: '名词 "der Dreck" 的中文含义及对应派生形容词是？',
+                options: [
+                    '污垢 / 泥水 / 脏物；dreckig',
+                    '整洁 / 卫生；dreckisch',
+                    '灰尘 / 干燥；drecklich',
+                    '雨水 / 湿润；drecklos'
+                ],
+                answer: 0,
+                detail: 'der Dreck (阳性，不可数) 意为“污垢，泥巴，脏物”。派生形容词为 dreckig (脏的)。'
+            }
+        ];
+
+        // Native Audio Synthesizer
+        let audioCtx = null;
+        function getAudioContext() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
+
+        function playSound(isCorrect) {
+            try {
+                const ctx = getAudioContext();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                const now = ctx.currentTime;
+                if (isCorrect) {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(523.25, now); // C5
+                    osc.frequency.setValueAtTime(659.25, now + 0.08); // E5
+                    gain.gain.setValueAtTime(0.12, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+                    osc.start(now);
+                    osc.stop(now + 0.3);
+                } else {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(220, now);
+                    osc.frequency.exponentialRampToValueAtTime(140, now + 0.2);
+                    gain.gain.setValueAtTime(0.1, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+                    osc.start(now);
+                    osc.stop(now + 0.2);
+                }
+            } catch (e) {
+                console.error("Audio error:", e);
+            }
+        }
+
+        // Fisher-Yates Shuffle
+        function shuffleArray(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        // App State
+        let vocabularyData = [];
+        let currentIndex = 0;
+        let userAnswers = [];
+        let showExplanation = false;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            resetPractice();
+        });
+
+        function resetPractice() {
+            vocabularyData = shuffleArray(rawVocabularyData);
+            currentIndex = 0;
+            userAnswers = new Array(vocabularyData.length).fill(null);
+            showExplanation = false;
+            document.getElementById('quiz-container').classList.remove('hidden');
+            document.getElementById('bottom-nav').classList.remove('hidden');
+            document.getElementById('result-container').classList.add('hidden');
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const currentData = vocabularyData[currentIndex];
+            
+            // Render Badges and Titles
+            document.getElementById('word-badge').className = `px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase border ${currentData.badgeClass}`;
+            document.getElementById('word-badge').textContent = currentData.type;
+            document.getElementById('question-index-tag').textContent = `Q${currentIndex + 1}`;
+            document.getElementById('target-word').textContent = currentData.word;
+            document.getElementById('question-prompt').textContent = currentData.question;
+
+            // Progress Bar
+            const progressPercent = Math.round(((currentIndex + 1) / vocabularyData.length) * 100);
+            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+            document.getElementById('progress-text').textContent = `进度：${currentIndex + 1} / ${vocabularyData.length}`;
+            document.getElementById('progress-percent').textContent = `${progressPercent}%`;
+
+            // Options
+            const optionsGrid = document.getElementById('options-grid');
+            optionsGrid.innerHTML = '';
+            const selectedAnswer = userAnswers[currentIndex];
+            const isAnswered = selectedAnswer !== null;
+
+            currentData.options.forEach((optText, optIndex) => {
+                const btn = document.createElement('button');
+                btn.className = getOptionStyle(optIndex, selectedAnswer, currentData.answer);
+                btn.innerHTML = `
+                    <div class="flex items-center justify-between w-full">
+                        <span class="flex items-center gap-3.5">
+                            <span class="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold border transition-all ${getOptionMarkerStyle(optIndex, selectedAnswer, currentData.answer)}">
+                                ${String.fromCharCode(65 + optIndex)}
+                            </span>
+                            <span class="font-medium">${optText}</span>
+                        </span>
+                        ${getOptionIcon(optIndex, selectedAnswer, currentData.answer)}
+                    </div>
+                `;
+                btn.onclick = () => selectOption(optIndex);
+                optionsGrid.appendChild(btn);
+            });
+
+            // Explanation
+            const explainCard = document.getElementById('explanation-card');
+            const explainText = document.getElementById('explanation-text');
+            explainText.textContent = currentData.detail;
+            if (showExplanation || isAnswered) {
+                explainCard.classList.remove('hidden');
+            } else {
+                explainCard.classList.add('hidden');
+            }
+
+            // Controls
+            document.getElementById('btn-prev').disabled = currentIndex === 0;
+            const btnNext = document.getElementById('btn-next');
+            if (currentIndex === vocabularyData.length - 1) {
+                btnNext.textContent = '完成特训';
+                btnNext.className = 'px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-teal-700 hover:bg-teal-800 text-white shadow-md transition-all';
+            } else {
+                btnNext.textContent = '下一题';
+                btnNext.className = 'px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-md transition-all';
+            }
+        }
+
+        function getOptionStyle(index, selected, correct) {
+            const base = "w-full text-left p-4 sm:p-4.5 rounded-2xl border text-sm sm:text-base transition-all duration-200 flex items-center justify-between ";
+            if (selected === null) {
+                return base + "border-slate-200/80 bg-white hover:border-slate-400 hover:shadow-md text-slate-800";
+            }
+            if (index === correct) {
+                return base + "border-emerald-300 bg-emerald-50/90 text-emerald-900 font-semibold shadow-sm";
+            }
+            if (index === selected && selected !== correct) {
+                return base + "border-rose-300 bg-rose-50/90 text-rose-900 font-semibold shadow-sm";
+            }
+            return base + "border-slate-100 bg-slate-50/50 text-slate-400 opacity-50";
+        }
+
+        function getOptionMarkerStyle(index, selected, correct) {
+            if (selected === null) {
+                return "border-slate-200 text-slate-500 bg-slate-50";
+            }
+            if (index === correct) {
+                return "border-emerald-500 text-white bg-emerald-600 shadow-sm";
+            }
+            if (index === selected && selected !== correct) {
+                return "border-rose-500 text-white bg-rose-500 shadow-sm";
+            }
+            return "border-slate-200 text-slate-300 bg-slate-100";
+        }
+
+        function getOptionIcon(index, selected, correct) {
+            if (selected === null) return '';
+            if (index === correct) {
+                return `<svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>`;
+            }
+            if (index === selected && selected !== correct) {
+                return `<svg class="w-5 h-5 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>`;
+            }
+            return '';
+        }
+
+        function selectOption(index) {
+            if (userAnswers[currentIndex] === null) {
+                const isCorrect = index === vocabularyData[currentIndex].answer;
+                playSound(isCorrect);
+            }
+            userAnswers[currentIndex] = index;
+            showExplanation = true;
+            renderQuestion();
+        }
+
+        function toggleExplanation() {
+            showExplanation = !showExplanation;
+            const explainCard = document.getElementById('explanation-card');
+            if (showExplanation) {
+                explainCard.classList.remove('hidden');
+            } else {
+                explainCard.classList.add('hidden');
+            }
+        }
+
+        function nextQuestion() {
+            if (currentIndex < vocabularyData.length - 1) {
+                currentIndex++;
+                showExplanation = false;
+                renderQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                showExplanation = false;
+                renderQuestion();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quiz-container').classList.add('hidden');
+            document.getElementById('bottom-nav').classList.add('hidden');
+            document.getElementById('result-container').classList.remove('hidden');
+
+            let mistakeCount = 0;
+            const mistakesList = document.getElementById('mistakes-list');
+            mistakesList.innerHTML = '';
+
+            userAnswers.forEach((ans, idx) => {
+                const item = vocabularyData[idx];
+                if (ans !== item.answer) {
+                    mistakeCount++;
+                    const mistakeDiv = document.createElement('div');
+                    mistakeDiv.className = 'p-4 bg-slate-50 rounded-2xl border border-slate-200/80 text-xs sm:text-sm';
+                    mistakeDiv.innerHTML = `
+                        <div class="font-german font-bold text-slate-900 text-base mb-1">${item.word}</div>
+                        <div class="text-slate-600 leading-relaxed">${item.detail}</div>
+                    `;
+                    mistakesList.appendChild(mistakeDiv);
+                }
+            });
+
+            document.getElementById('stat-total').textContent = vocabularyData.length;
+            document.getElementById('stat-mistakes').textContent = mistakeCount;
+
+            const mistakesSection = document.getElementById('mistakes-section');
+            if (mistakeCount > 0) {
+                mistakesSection.classList.remove('hidden');
+            } else {
+                mistakesSection.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
