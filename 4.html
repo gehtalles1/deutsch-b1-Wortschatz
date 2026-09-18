@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="h-full bg-slate-50/80">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>德语 B1 核心词汇特训</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Serif+Georgia&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .font-german {
+            font-family: 'Noto Serif Georgia', Georgia, serif;
+        }
+        .custom-glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+    </style>
+</head>
+<body class="h-full text-slate-800 antialiased selection:bg-teal-100 selection:text-teal-900 flex flex-col justify-between bg-gradient-to-br from-slate-50 via-zinc-50 to-teal-50/20">
+    <!-- Header Area -->
+    <header class="sticky top-0 z-30 custom-glass border-b border-slate-200/60 px-4 py-3.5 sm:px-8 shadow-sm">
+        <div class="max-w-3xl mx-auto flex items-center justify-between">
+            <a href="index.html" class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-500 hover:text-slate-900 transition-all py-1.5 px-3 rounded-full hover:bg-slate-100/80">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+                返回主页
+            </a>
+            <div class="text-center">
+                <h1 class="text-xs sm:text-sm font-bold tracking-widest text-slate-400 uppercase">Wortschatz Training</h1>
+                <p class="text-sm sm:text-base font-extrabold text-slate-900 tracking-tight">德语 B1 核心词汇特训</p>
+            </div>
+            <button onclick="resetPractice()" class="text-xs sm:text-sm font-semibold text-slate-500 hover:text-teal-700 transition-all py-1.5 px-3 rounded-full hover:bg-slate-100/80">
+                重新开始
+            </button>
+        </div>
+        <!-- Progress Bar -->
+        <div class="max-w-3xl mx-auto mt-3">
+            <div class="flex justify-between items-center text-xs font-bold text-slate-400 mb-1.5 tracking-wider uppercase">
+                <span id="progress-text">进度：1 / 73</span>
+                <span id="progress-percent">1%</span>
+            </div>
+            <div class="w-full h-1.5 bg-slate-200/70 rounded-full overflow-hidden p-0.5">
+                <div id="progress-bar" class="h-full bg-slate-900 transition-all duration-300 rounded-full" style="width: 1%"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Section -->
+    <main class="flex-1 max-w-3xl w-full mx-auto p-4 sm:p-6 flex flex-col justify-center">
+        <!-- QUIZ CONTAINER -->
+        <div id="quiz-container" class="space-y-6">
+            <!-- Word Header Card -->
+            <div class="bg-white/90 backdrop-blur-sm rounded-3xl p-6 sm:p-9 border border-slate-200/70 shadow-xl shadow-slate-200/50 relative overflow-hidden transition-all">
+                <div class="flex items-center justify-between mb-4">
+                    <span id="word-badge" class="px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase border">
+                        Substantiv
+                    </span>
+                    <span id="question-index-tag" class="text-xs font-bold text-slate-400 tracking-widest uppercase">
+                        Q1
+                    </span>
+                </div>
+                <div class="py-2">
+                    <h2 id="target-word" class="font-german text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-3">
+                        -
+                    </h2>
+                    <p id="question-prompt" class="text-sm sm:text-base font-medium text-slate-600 leading-relaxed">
+                        -
+                    </p>
+                </div>
+            </div>
+
+            <!-- Options Grid -->
+            <div id="options-grid" class="grid grid-cols-1 gap-3.5">
+                <!-- Dynamic options -->
+            </div>
+
+            <!-- Explanation Card -->
+            <div id="explanation-card" class="hidden bg-slate-900 text-slate-100 rounded-2xl p-5 sm:p-6 shadow-lg border border-slate-800 text-sm leading-relaxed space-y-2">
+                <div class="font-semibold text-teal-400 flex items-center gap-2 text-xs sm:text-sm uppercase tracking-wider">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    词汇解析与用法
+                </div>
+                <div id="explanation-text" class="text-slate-300 text-xs sm:text-sm font-normal"></div>
+            </div>
+        </div>
+
+        <!-- RESULT CONTAINER -->
+        <div id="result-container" class="hidden bg-white/90 backdrop-blur-sm rounded-3xl p-8 sm:p-10 border border-slate-200/70 shadow-xl shadow-slate-200/50 text-center space-y-8">
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-900 text-teal-400 shadow-lg shadow-slate-900/10 mb-2">
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <div>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2 tracking-tight">特训完成</h2>
+                <p class="text-sm text-slate-500 font-medium">已完成所有词汇测试，积累词汇量是语言通关的基石</p>
+            </div>
+            <div class="max-w-md mx-auto py-3 px-6 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-around">
+                <div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">本次练习题目</div>
+                    <div id="stat-total" class="text-2xl font-extrabold text-slate-900">73</div>
+                </div>
+                <div class="h-8 w-px bg-slate-200"></div>
+                <div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">重点标注/复习词汇</div>
+                    <div id="stat-mistakes" class="text-2xl font-extrabold text-slate-900">0</div>
+                </div>
+            </div>
+
+            <!-- Incorrect Words Review List -->
+            <div id="mistakes-section" class="text-left hidden space-y-4 pt-2">
+                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                    需重点巩固的词汇
+                </h3>
+                <div id="mistakes-list" class="space-y-2.5 max-h-64 overflow-y-auto pr-1"></div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-6 border-t border-slate-100">
+                <button onclick="resetPractice()" class="w-full sm:w-auto px-8 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm transition-all shadow-md hover:shadow-lg">
+                    再练一次
+                </button>
+                <a href="index.html" class="w-full sm:w-auto px-8 py-3 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 font-bold text-sm transition-all text-center">
+                    返回主页
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Actions Nav -->
+    <footer id="bottom-nav" class="sticky bottom-0 z-30 custom-glass border-t border-slate-200/60 px-4 py-3.5 sm:px-8">
+        <div class="max-w-3xl mx-auto flex items-center justify-between gap-3">
+            <button id="btn-prev" onclick="prevQuestion()" disabled class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 text-slate-600 hover:bg-slate-100 disabled:opacity-30 disabled:cursor-not-allowed transition-all">
+                上一题
+            </button>
+            <button id="btn-toggle-explain" onclick="toggleExplanation()" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 hover:bg-slate-200/80 text-slate-700 transition-all flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                查看释义
+            </button>
+            <button id="btn-next" onclick="nextQuestion()" class="px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-md transition-all">
+                下一题
+            </button>
+        </div>
+    </footer>
+
+    <script>
+        const rawVocabularyData = [
+            // --- Image 1 ---
+            {
+                id: 1,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Ausländer, - / die Ausländerin, -nen',
+                question: '名词 "der Ausländer" 的正确中文释义是？',
+                options: ['外国人', '本地人', '导游', '留学生'],
+                answer: 0,
+                detail: 'der Ausländer, - / die Ausländerin, -nen (外国人)。形容词形式：ausländisch。'
+            },
+            {
+                id: 2,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'ausländisch',
+                question: '形容词 "ausländisch" 的正确含义是？',
+                options: ['国内的', '外国的，来自国外的', '偏远地区的', '传统的'],
+                answer: 1,
+                detail: 'ausländisch (外国的，来自国外的)。反义词：einheimisch, inländisch。'
+            },
+            {
+                id: 3,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'ausmachen',
+                question: '日常句型 “das Licht ausmachen” 中 "ausmachen" 的意思是？',
+                options: ['打开', '关掉，熄灭', '调节', '维修'],
+                answer: 1,
+                detail: 'ausmachen (macht aus, machte aus, hat ausgemacht) - 关掉(电器/灯)；商定；构成。'
+            },
+            {
+                id: 4,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Ausnahme, -n',
+                question: '“Keine Ausnahme!” 句子中的 "die Ausnahme" 意思是？',
+                options: ['例外，特例', '规则', '允许', '解释'],
+                answer: 0,
+                detail: 'die Ausnahme, -n (例外)。常用短语：mit Ausnahme von... (除了……之外)。'
+            },
+            {
+                id: 5,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'ausreichen',
+                question: '动词 "ausreichen" 的正确中文含义是？',
+                options: ['增加', '足够，充分', '缺乏', '放弃'],
+                answer: 1,
+                detail: 'ausreichen (reicht aus, reichte aus, hat ausgereicht) - 足够，够用。'
+            },
+            {
+                id: 6,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'ausreichend',
+                question: '在德国学校计分系统中，"ausreichend" 相当于哪一级成绩？',
+                options: ['优秀 (1分)', '良好 (2分)', '及格 (4分)', '不及格 (5分)'],
+                answer: 2,
+                detail: 'ausreichend (充足的，及格的)。在德国评分体系中为 4 分 (Pass)。'
+            },
+            {
+                id: 7,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'ausrichten',
+                question: '“Kann ich ihm etwas ausrichten?” 句中 "ausrichten" 意思是？',
+                options: ['转告，传话', '赔偿', '取消', '批评'],
+                answer: 0,
+                detail: 'ausrichten (richtet aus, richtete aus, hat ausgerichtet) - 转告(信息)；举办(活动)。'
+            },
+            {
+                id: 8,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: '(sich) ausruhen',
+                question: '反身动词 "sich ausruhen" 表示？',
+                options: ['运动', '休息，歇息', '熬夜', '整理'],
+                answer: 1,
+                detail: 'sich ausruhen (ruht aus, ruhte aus, hat ausgeruht) - 休息。例：Ich muss mich ausruhen.'
+            },
+            {
+                id: 9,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'ausschließen',
+                question: '“Das kann man nicht ausschließen.” 句中 "ausschließen" 表示？',
+                options: ['强调', '排除，不予考虑', '包含', '邀请'],
+                answer: 1,
+                detail: 'ausschließen (schließt aus, schloss aus, hat ausgeschlossen) - 排除，开除。'
+            },
+            {
+                id: 10,
+                type: 'Adverb',
+                badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
+                word: 'ausschließlich',
+                question: '“Diese Zone ist ausschließlich für Fußgänger.” 句中 "ausschließlich" 意思是？',
+                options: ['主要地', '仅仅，专门，唯独', '偶尔', '绝不'],
+                answer: 1,
+                detail: 'ausschließlich (专门地，仅仅；排他地)。近义词：nur, einzig und allein.'
+            },
+            {
+                id: 11,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'aussehen',
+                question: '“Du siehst heute gut aus.” 句中的 "aussehen" 意思是？',
+                options: ['寻找', '看起来，显得', '外出观看', '展示'],
+                answer: 1,
+                detail: 'aussehen (sieht aus, sah aus, hat ausgesehen) - 看起来，外表显得。'
+            },
+            {
+                id: 12,
+                type: 'Adverb',
+                badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
+                word: 'außen',
+                question: '副词 "außen" 的反义词是？',
+                options: ['innen', 'oben', 'unten', 'hinten'],
+                answer: 0,
+                detail: 'außen (在外面，外部)。反义词：innen (在里面)。'
+            },
+            {
+                id: 13,
+                type: 'Präposition',
+                badgeClass: 'bg-violet-50 text-violet-700 border-violet-200',
+                word: 'außerhalb',
+                question: '介词 "außerhalb" 后通常接第几格？表示“在……之外”。',
+                options: ['Nominativ (第一格)', 'Akkusativ (第四格)', 'Dativ (第三格)', 'Genitiv (第二格)'],
+                answer: 3,
+                detail: 'außerhalb + Gen. - 在……之外 (时间或空间)。例：außerhalb der Öffnungszeiten.'
+            },
+            {
+                id: 14,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'äußerlich',
+                question: '药品说明书上 “Nur zur äußerlichen Anwendung” 中 "äußerlich" 意思是？',
+                options: ['口服的', '外用的，外表上的', '频繁的', '紧急的'],
+                answer: 1,
+                detail: 'äußerlich (外在的，表面的，外用的)。反义词：innerlich。'
+            },
+            {
+                id: 15,
+                type: 'Präposition',
+                badgeClass: 'bg-violet-50 text-violet-700 border-violet-200',
+                word: 'außer',
+                question: '“Alle außer ihm sind da.” 句中 "außer" 搭配第几格？',
+                options: ['Genitiv (第二格)', 'Dativ (第三格)', 'Akkusativ (第四格)', 'Nominativ (第一格)'],
+                answer: 1,
+                detail: 'außer + Dat. - 除了……之外。例：außer Betrieb (暂停服务/故障)。'
+            },
+            {
+                id: 16,
+                type: 'Adverb',
+                badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
+                word: 'außerdem',
+                question: '副词 "außerdem" 表示递进，中文释义是？',
+                options: ['但是', '因此', '此外，而且', '尽管如此'],
+                answer: 2,
+                detail: 'außerdem (此外，而且)。近义词：zudem, darüber hinaus.'
+            },
+
+            // --- Image 2 ---
+            {
+                id: 17,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Aussicht, -en',
+                question: '站在山顶看到的美景，可以用哪个名词表达 "die Aussicht"？',
+                options: ['视力', '风景，视野，前景', '观点', '回忆'],
+                answer: 1,
+                detail: 'die Aussicht, -en (风景，展望，前景)。例：eine schöne Aussicht genießen.'
+            },
+            {
+                id: 18,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'aussprechen',
+                question: '动词 "aussprechen" 的主要含义是？',
+                options: ['发音，说出', '倾听', '大声喊叫', '争吵'],
+                answer: 0,
+                detail: 'aussprechen (spricht aus, sprach aus, hat ausgesprochen) - 发音，表达。'
+            },
+            {
+                id: 19,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Aussprache',
+                question: '在语言学习中，"die Aussprache" 指的是？',
+                options: ['语法', '发音，语音', '词汇量', '写作'],
+                answer: 1,
+                detail: 'die Aussprache (发音)。源自动词 aussprechen。'
+            },
+            {
+                id: 20,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'ausstellen',
+                question: '在博物馆展出艺术品或在机构开具证明，使用的动词是？',
+                options: ['ausstellen', 'abstellen', 'einstellen', 'bestellen'],
+                answer: 0,
+                detail: 'ausstellen (stellt aus, stellte aus, hat ausgestellt) - 展出；开具(证件/发票)。'
+            },
+            {
+                id: 21,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Ausstellung, -en',
+                question: '名词 "die Ausstellung" 的中文意思为？',
+                options: ['表演', '展览，展览会', '讲座', '拍卖'],
+                answer: 1,
+                detail: 'die Ausstellung, -en (展览，展览会)。'
+            },
+            {
+                id: 22,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: '(sich etwas) aussuchen',
+                question: '“Du kannst dir ein Geschenk aussuchen.” 句中 "aussuchen" 意思是？',
+                options: ['挑选，选出', '放弃', '包装', '赠送'],
+                answer: 0,
+                detail: 'sich (Dat.) etwas (Akk.) aussuchen - 挑选，挑选出。'
+            },
+            {
+                id: 23,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'auswählen',
+                question: '动词 "auswählen" 的近义词是？',
+                options: ['aussuchen', 'ausführen', 'ausfüllen', 'ausmachen'],
+                answer: 0,
+                detail: 'auswählen (wählt aus, wählte aus, hat ausgewählt) - 选择，挑选。名词：die Auswahl.'
+            },
+            {
+                id: 24,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Auswahl, -en',
+                question: '“Eine große Auswahl an Produkten” 中 "die Auswahl" 意思是？',
+                options: ['价格', '选择，挑选，供选择的品种', '质量', '折扣'],
+                answer: 1,
+                detail: 'die Auswahl, -en (选择，供挑选的范围)。'
+            },
+            {
+                id: 25,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Ausweis, -e',
+                question: '“Zeigen Sie bitte Ihren Ausweis!” 句中的 "der Ausweis" 指的是？',
+                options: ['车票', '证件，身份证', '收据', '名片'],
+                answer: 1,
+                detail: 'der Ausweis, -e (身份证件)。例如：der Personalausweis (身份证)。'
+            },
+            {
+                id: 26,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'ausziehen',
+                question: '表示“脱衣服”与“搬出住房”时，动词 "ausziehen" 完成时助动词分别是？',
+                options: ['均为 hat', '脱衣用 hat，搬出用 ist', '脱衣用 ist，搬出用 hat', '均为 ist'],
+                answer: 1,
+                detail: 'ausziehen: 脱衣服 (hat ausgezogen)；搬出 (ist ausgezogen)。'
+            },
+            {
+                id: 27,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'das Auto, -s',
+                question: '名词 "das Auto" 的正确冠词是哪一个？',
+                options: ['der', 'die', 'das', 'die (Pl.)'],
+                answer: 2,
+                detail: 'das Auto, -s (汽车)。同义词：der Wagen, der Pkw.'
+            },
+            {
+                id: 28,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Autobahn, -en',
+                question: '在德国交通中，"die Autobahn" 指的是？',
+                options: ['高速公路', '国道', '步行街', '铁路线'],
+                answer: 0,
+                detail: 'die Autobahn, -en (高速公路)。'
+            },
+            {
+                id: 29,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Automat, -en',
+                question: '名词 "der Automat" 属于 N-Deklination 弱变化，其复数形式是？',
+                options: ['die Automaten', 'die Automate', 'die Automaten-e', 'die Automats'],
+                answer: 0,
+                detail: 'der Automat, -en (自动售货机/机器)。属于弱变化名词。'
+            },
+            {
+                id: 30,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'automatisch',
+                question: '形容词 "automatisch" 的正确中文释义是？',
+                options: ['自动的', '手动的', '机械的', '智能的'],
+                answer: 0,
+                detail: 'automatisch (自动的)。反义词：manuell (手动的)。'
+            },
+            {
+                id: 31,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Autor, -en / die Autorin, -nen',
+                question: '名词 "der Autor" 表示的职业是？',
+                options: ['画家', '作者，作家', '演员', '导演'],
+                answer: 1,
+                detail: 'der Autor, -en / die Autorin, -nen (作者，作家)。'
+            },
+
+            // --- Image 3 ---
+            {
+                id: 32,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'backen',
+                question: '“Einen Kuchen backen” 句中的 "backen" 完成时是？',
+                options: ['hat gebackt', 'hat gebacken', 'ist gebacken', 'hat gebockt'],
+                answer: 1,
+                detail: 'backen (bäckt/backt, backte, hat gebacken) - 烘焙，烤。'
+            },
+            {
+                id: 33,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Bäckerei, -en',
+                question: '购买新鲜面包去哪里？"die Bäckerei" 意思是？',
+                options: ['肉店', '面包房，烘焙店', '菜市场', '药房'],
+                answer: 1,
+                detail: 'die Bäckerei, -en (面包房)。'
+            },
+            {
+                id: 34,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'baden',
+                question: '动词 "baden" 的意思是？',
+                options: ['淋浴', '洗澡，泡澡，游泳', '洗手', '打扫'],
+                answer: 1,
+                detail: 'baden (badet, badete, hat gebadet) - 泡澡，游泳。'
+            },
+            {
+                id: 35,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'das Bad, "-er',
+                question: '名词 "das Bad" 的复数形式是哪一个？',
+                options: ['die Bäder', 'die Bade', 'die Badern', 'die Baden'],
+                answer: 0,
+                detail: 'das Bad, "-er (浴室，洗澡)。'
+            },
+            {
+                id: 36,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Badewanne, -n',
+                question: '浴室里的 "die Badewanne" 指的是？',
+                options: ['淋浴头', '浴缸', '洗手池', '马桶'],
+                answer: 1,
+                detail: 'die Badewanne, -n (浴缸)。'
+            },
+            {
+                id: 37,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Bahn, -en',
+                question: '名词 "die Bahn" 的主要含义是？',
+                options: ['飞机', '铁路，火车，轨道交通', '轮船', '自行车'],
+                answer: 1,
+                detail: 'die Bahn, -en (铁路，火车)。例：mit der Bahn fahren.'
+            },
+            {
+                id: 38,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'S-Bahn, -en',
+                question: '德国城市交通中，"die S-Bahn" 代表什么？',
+                options: ['城郊快轨 / 城铁', '地下铁', '有轨电车', '长途大巴'],
+                answer: 0,
+                detail: 'die S-Bahn, -en (Stadtschnellbahn - 城市快轨/城铁)。'
+            },
+            {
+                id: 39,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Straßenbahn, -en',
+                question: '名词 "die Straßenbahn" 的正确中文释义是？',
+                options: ['有轨电车', '地下铁', '出租车', '渡轮'],
+                answer: 0,
+                detail: 'die Straßenbahn, -en (有轨电车)。'
+            },
+            {
+                id: 40,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die U-Bahn, -en',
+                question: '名词 "die U-Bahn" 中的 U 代表什么含义？',
+                options: ['Untergrund (地下铁)', 'Universal (通用铁路)', 'Urlaub (旅游专线)', 'Überland (长途线)'],
+                answer: 0,
+                detail: 'die U-Bahn, -en (Untergrundbahn - 地下铁)。'
+            },
+            {
+                id: 41,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Bahnhof, "-e',
+                question: '“Der Hauptbahnhof” 意思是？',
+                options: ['汽车总站', '火车站总站 / 中央火车站', '飞机场', '地铁中转站'],
+                answer: 1,
+                detail: 'der Bahnhof, "-e (火车站)。der Hauptbahnhof (Hbf) - 火车总站。'
+            },
+            {
+                id: 42,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Bahnsteig, -e (CH: Perron)',
+                question: '在火车站候车的位置 "der Bahnsteig" (瑞士称 Perron) 指的是？',
+                options: ['售票处', '站台，月台', '检票口', '候车室'],
+                answer: 1,
+                detail: 'der Bahnsteig, -e (D, A) / der Perron (CH) - 站台，月台。'
+            },
+            {
+                id: 43,
+                type: 'Adverb',
+                badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
+                word: 'bald',
+                question: '常用告别语 “Bis bald!” 中的 "bald" 意思是？',
+                options: ['很久', '不久，很快', '昨天', '永远'],
+                answer: 1,
+                detail: 'bald (不久，很快)。Bis bald! = 一会儿见 / 不久见！'
+            },
+            {
+                id: 44,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Balkon, -e',
+                question: '公寓楼里的 "der Balkon" 意思是？',
+                options: ['阳台', '地下室', '阁楼', '走廊'],
+                answer: 0,
+                detail: 'der Balkon, -e (阳台)。'
+            },
+            {
+                id: 45,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Ball, "-e',
+                question: '名词 "der Ball" 除了表示“球”之外，还可以表示？',
+                options: ['舞会', '竞赛', '奖牌', '球场'],
+                answer: 0,
+                detail: 'der Ball, "-e (球；舞会)。'
+            },
+            {
+                id: 46,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'das Ballett, -e',
+                question: '名词 "das Ballett" 的正确中文释义是？',
+                options: ['歌剧', '芭蕾舞，芭蕾舞剧', '交响乐', '话剧'],
+                answer: 1,
+                detail: 'das Ballett, -e (芭蕾舞)。'
+            },
+            {
+                id: 47,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Banane, -n',
+                question: '水果单词 "die Banane" 的正确冠词与复数是？',
+                options: ['der Banane, -n', 'die Banane, -n', 'das Banane, -s', 'die Banane, -e'],
+                answer: 1,
+                detail: 'die Banane, -n (香蕉)。'
+            },
+            {
+                id: 48,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Bank, "-e',
+                question: '复数形式为 "die Bänke" (die Bank, "-e) 时，其含义是？',
+                options: ['银行', '长椅', '柜台', '办公桌'],
+                answer: 1,
+                detail: 'die Bank, "-e (长椅) vs die Bank, -en (银行)。注意复数形式的不同！'
+            },
+            {
+                id: 49,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Bank, -en',
+                question: '复数形式为 "die Banken" (die Bank, -en) 时，其含义是？',
+                options: ['长椅', '银行', '钱庄', '书桌'],
+                answer: 1,
+                detail: 'die Bank, -en (银行)。例：Geld auf die Bank bringen.'
+            },
+            {
+                id: 50,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Bancomat / Bankomat, -en',
+                question: '在奥地利和瑞士使用 "der Bankomat"，在德国通常被称为？',
+                options: ['der Geldautomat', 'der Fahrkartenautomat', 'der Münzautomat', 'der Kassenautomat'],
+                answer: 0,
+                detail: 'der Bankomat, -en (A, CH) = der Geldautomat (D) (自动取款机 / ATM)。'
+            },
+            {
+                id: 51,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Bankleitzahl, -en',
+                question: '德国银行转账中简称为 BLZ 的 "die Bankleitzahl" 指的是？',
+                options: ['银行账号', '银行代码 / 银行行号', '信用卡号', '密码'],
+                answer: 1,
+                detail: 'die Bankleitzahl, -en (BLZ - 银行代码)。'
+            },
+            {
+                id: 52,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Bankomat-Karte, -n',
+                question: '在奥地利使用的 "Bankomat-Karte" 在德国常被称为？',
+                options: ['die Kreditkarte', 'die EC-Karte / Girocard', 'die Ausweiskarte', 'die Kundenkarte'],
+                answer: 1,
+                detail: 'die Bankomat-Karte, -n (A) = die EC-Karte / Girocard (D) (银行借记卡)。'
+            },
+
+            // --- Image 4 ---
+            {
+                id: 53,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Bar, -s',
+                question: '名词 "die Bar" 的正确中文意思是？',
+                options: ['酒吧', '餐厅', '咖啡馆', '电影院'],
+                answer: 0,
+                detail: 'die Bar, -s (酒吧，酒吧间)。'
+            },
+            {
+                id: 54,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'bar',
+                question: '“bar bezahlen” 句中的 "bar" 意思是？',
+                options: ['刷卡支付', '现金支付', '分期付款', '在线支付'],
+                answer: 1,
+                detail: 'bar (现金的)。bar bezahlen = 付现金。'
+            },
+            {
+                id: 55,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'das Bargeld',
+                question: '名词 "das Bargeld" 的意思是？',
+                options: ['零钱', '现金', '支票', '借款'],
+                answer: 1,
+                detail: 'das Bargeld (现金)。例：Haben Sie Bargeld dabei?'
+            },
+            {
+                id: 56,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Bart, "-e',
+                question: '名词 "der Bart" 的正确中文释义是？',
+                options: ['头发', '胡须，胡子', '眉毛', '腮帮'],
+                answer: 1,
+                detail: 'der Bart, "-e (胡须)。例：einen Bart tragen (留胡子)。'
+            },
+            {
+                id: 57,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Basketball, "-e',
+                question: '名词 "der Basketball" 可以指篮球运动或篮球，其冠词是？',
+                options: ['der', 'die', 'das', 'die (Pl.)'],
+                answer: 0,
+                detail: 'der Basketball, "-e (篮球/篮球运动)。'
+            },
+            {
+                id: 58,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'basteln',
+                question: '动词 "basteln" (做手工) 的过去分词是？',
+                options: ['gebastelt', 'gebasteln', 'gebastelte', 'bastelet'],
+                answer: 0,
+                detail: 'basteln (bastelt, bastelte, hat gebastelt) - 做手工，搞小制作。'
+            },
+            {
+                id: 59,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Batterie, -n',
+                question: '名词 "die Batterie" 的正确中文释义是？',
+                options: ['电池', '充电器', '手电筒', '发电机'],
+                answer: 0,
+                detail: 'die Batterie, -n (电池)。'
+            },
+            {
+                id: 60,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Bauch, "-e',
+                question: '“Bauchschmerzen haben” 中的 "der Bauch" 意思是？',
+                options: ['头', '腹部，肚子', '背部', '胸部'],
+                answer: 1,
+                detail: 'der Bauch, "-e (腹部，肚子)。Bauchschmerzen = 腹痛/肚子痛。'
+            },
+            {
+                id: 61,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'bauen',
+                question: '动词 "bauen" 的意思是？',
+                options: ['破坏', '建造，建筑，制造', '拆除', '租用'],
+                answer: 1,
+                detail: 'bauen (baut, baute, hat gebaut) - 建造，建筑。'
+            },
+            {
+                id: 62,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Bau',
+                question: '名词 "der Bau" 有两个复数形式，分别对应不同词义，它们分别是什么？',
+                options: ['die Bauten / die Baue', 'die Bäume / die Bäuer', 'die Bauten / die Bäuer', 'die Baue / die Bauen'],
+                answer: 0,
+                detail: 'der Bau 的复数形式有两个：die Bauten (指建筑物、建筑工程) 与 die Baue (指动物的巢穴、洞穴)。'
+            },
+            {
+                id: 63,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Baustelle, -n',
+                question: '路边常见标志 "die Baustelle" 意思是？',
+                options: ['停车场', '施工现场，工地', '加油站', '公交站'],
+                answer: 1,
+                detail: 'die Baustelle, -n (施工工地，建筑工地)。'
+            },
+            {
+                id: 64,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Bauer, -n',
+                question: '名词 "der Bauer" 指的是什么职业？',
+                options: ['建筑工人', '农民，农夫', '木匠', '园丁'],
+                answer: 1,
+                detail: 'der Bauer, -n / die Bäuerin, -nen (农民，农夫)。'
+            },
+            {
+                id: 65,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Baum, "-e',
+                question: '名词 "der Baum" 的复数形式是？',
+                options: ['die Bäume', 'die Baume', 'die Bäumer', 'die Baumen'],
+                answer: 0,
+                detail: 'der Baum, "-e (树木)。'
+            },
+            {
+                id: 66,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'beachten',
+                question: '“Bitte beachten Sie die Regeln!” 句中 "beachten" 意思是？',
+                options: ['忽视', '注意，遵守，重视', '改变', '制定'],
+                answer: 1,
+                detail: 'beachten (beachtet, beachtete, hat beachtet) - 注意，遵守。例：Regeln beachten.'
+            },
+            {
+                id: 67,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Beamte, -n / die Beamtin, -nen',
+                question: '名词 "der Beamte" 的含义是？',
+                options: ['自由职业者', '公务员，官员', '公司职员', '个体户'],
+                answer: 1,
+                detail: 'der Beamte, -n / die Beamtin, -nen (公务员)。按形容词词尾变化。'
+            },
+            {
+                id: 68,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'beantragen',
+                question: '“einen Visum beantragen” 中的 "beantragen" 意思是？',
+                options: ['领取消', '申请', '批准', '延期'],
+                answer: 1,
+                detail: 'beantragen (beantragt, beantragte, hat beantragt) - 申请。名词：der Antrag.'
+            },
+            {
+                id: 69,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'beantworten',
+                question: '“eine Frage beantworten” 中 "beantworten" 的接格要求是？',
+                options: ['+ Dat.', '+ Akk.', '+ Gen.', '+ präp.'],
+                answer: 1,
+                detail: 'beantworten + Akk. (回答某事)。对比：antworten auf + Akk.'
+            },
+            {
+                id: 70,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'sich bedanken',
+                question: '“Ich bedanke mich bei Ihnen für die Hilfe.” 表达的是？',
+                options: ['道歉', '感谢', '询问', '拒绝'],
+                answer: 1,
+                detail: 'sich bedanken bei jdm. für etw. - 为某事向某人致谢。'
+            },
+            {
+                id: 71,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Bedarf',
+                question: '名词 "der Bedarf" 的中文含义是？',
+                options: ['供应', '需求，需要', '过剩', '采购'],
+                answer: 1,
+                detail: 'der Bedarf (需求，需要)。例：bei Bedarf (如果有需要的话)。'
+            },
+            {
+                id: 72,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'bedeuten',
+                question: '“Was bedeutet dieses Wort?” 句中 "bedeuten" 意思是？',
+                options: ['拼写', '意思是，意味着', '翻译', '发音'],
+                answer: 1,
+                detail: 'bedeuten (bedeutet, bedeutete, hat bedeutet) - 意思是，意味着。'
+            },
+            {
+                id: 73,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Bedeutung, -en',
+                question: '名词 "die Bedeutung" 的主要中文含义是？',
+                options: ['意思，含义，重要性', '背景', '来源', '构造'],
+                answer: 0,
+                detail: 'die Bedeutung, -en (意思，含义；重要性)。'
+            }
+        ];
+
+        // Native Audio Synthesizer
+        let audioCtx = null;
+
+        function getAudioContext() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
+
+        function playSound(isCorrect) {
+            try {
+                const ctx = getAudioContext();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                
+                const now = ctx.currentTime;
+                if (isCorrect) {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(523.25, now); // C5
+                    osc.frequency.setValueAtTime(659.25, now + 0.08); // E5
+                    gain.gain.setValueAtTime(0.12, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+                    osc.start(now);
+                    osc.stop(now + 0.3);
+                } else {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(220, now);
+                    osc.frequency.exponentialRampToValueAtTime(140, now + 0.2);
+                    gain.gain.setValueAtTime(0.1, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+                    osc.start(now);
+                    osc.stop(now + 0.2);
+                }
+            } catch (e) {
+                console.error("Audio error:", e);
+            }
+        }
+
+        // Fisher-Yates Shuffle
+        function shuffleArray(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        // App State
+        let vocabularyData = [];
+        let currentIndex = 0;
+        let userAnswers = [];
+        let showExplanation = false;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            resetPractice();
+        });
+
+        function resetPractice() {
+            vocabularyData = shuffleArray(rawVocabularyData);
+            currentIndex = 0;
+            userAnswers = new Array(vocabularyData.length).fill(null);
+            showExplanation = false;
+            
+            document.getElementById('quiz-container').classList.remove('hidden');
+            document.getElementById('bottom-nav').classList.remove('hidden');
+            document.getElementById('result-container').classList.add('hidden');
+            
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const currentData = vocabularyData[currentIndex];
+
+            // Render Badges and Titles
+            document.getElementById('word-badge').className = `px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase border ${currentData.badgeClass}`;
+            document.getElementById('word-badge').textContent = currentData.type;
+            document.getElementById('question-index-tag').textContent = `Q${currentIndex + 1}`;
+            document.getElementById('target-word').textContent = currentData.word;
+            document.getElementById('question-prompt').textContent = currentData.question;
+
+            // Progress Bar
+            const progressPercent = Math.round(((currentIndex + 1) / vocabularyData.length) * 100);
+            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+            document.getElementById('progress-text').textContent = `进度：${currentIndex + 1} / ${vocabularyData.length}`;
+            document.getElementById('progress-percent').textContent = `${progressPercent}%`;
+
+            // Options
+            const optionsGrid = document.getElementById('options-grid');
+            optionsGrid.innerHTML = '';
+            
+            const selectedAnswer = userAnswers[currentIndex];
+            const isAnswered = selectedAnswer !== null;
+
+            currentData.options.forEach((optText, optIndex) => {
+                const btn = document.createElement('button');
+                btn.className = getOptionStyle(optIndex, selectedAnswer, currentData.answer);
+                btn.innerHTML = `
+                    <div class="flex items-center justify-between w-full">
+                        <span class="flex items-center gap-3.5">
+                            <span class="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold border transition-all ${getOptionMarkerStyle(optIndex, selectedAnswer, currentData.answer)}">
+                                ${String.fromCharCode(65 + optIndex)}
+                            </span>
+                            <span class="font-medium">${optText}</span>
+                        </span>
+                        ${getOptionIcon(optIndex, selectedAnswer, currentData.answer)}
+                    </div>
+                `;
+                btn.onclick = () => selectOption(optIndex);
+                optionsGrid.appendChild(btn);
+            });
+
+            // Explanation
+            const explainCard = document.getElementById('explanation-card');
+            const explainText = document.getElementById('explanation-text');
+            explainText.textContent = currentData.detail;
+            
+            if (showExplanation || isAnswered) {
+                explainCard.classList.remove('hidden');
+            } else {
+                explainCard.classList.add('hidden');
+            }
+
+            // Controls
+            document.getElementById('btn-prev').disabled = currentIndex === 0;
+            const btnNext = document.getElementById('btn-next');
+            if (currentIndex === vocabularyData.length - 1) {
+                btnNext.textContent = '完成特训';
+                btnNext.className = 'px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-teal-700 hover:bg-teal-800 text-white shadow-md transition-all';
+            } else {
+                btnNext.textContent = '下一题';
+                btnNext.className = 'px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-md transition-all';
+            }
+        }
+
+        function getOptionStyle(index, selected, correct) {
+            const base = "w-full text-left p-4 sm:p-4.5 rounded-2xl border text-sm sm:text-base transition-all duration-200 flex items-center justify-between ";
+            if (selected === null) {
+                return base + "border-slate-200/80 bg-white hover:border-slate-400 hover:shadow-md text-slate-800";
+            }
+            if (index === correct) {
+                return base + "border-emerald-300 bg-emerald-50/90 text-emerald-900 font-semibold shadow-sm";
+            }
+            if (index === selected && selected !== correct) {
+                return base + "border-rose-300 bg-rose-50/90 text-rose-900 font-semibold shadow-sm";
+            }
+            return base + "border-slate-100 bg-slate-50/50 text-slate-400 opacity-50";
+        }
+
+        function getOptionMarkerStyle(index, selected, correct) {
+            if (selected === null) {
+                return "border-slate-200 text-slate-500 bg-slate-50";
+            }
+            if (index === correct) {
+                return "border-emerald-500 text-white bg-emerald-600 shadow-sm";
+            }
+            if (index === selected && selected !== correct) {
+                return "border-rose-500 text-white bg-rose-500 shadow-sm";
+            }
+            return "border-slate-200 text-slate-300 bg-slate-100";
+        }
+
+        function getOptionIcon(index, selected, correct) {
+            if (selected === null) return '';
+            if (index === correct) {
+                return `<svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>`;
+            }
+            if (index === selected && selected !== correct) {
+                return `<svg class="w-5 h-5 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>`;
+            }
+            return '';
+        }
+
+        function selectOption(index) {
+            if (userAnswers[currentIndex] === null) {
+                const isCorrect = index === vocabularyData[currentIndex].answer;
+                playSound(isCorrect);
+            }
+            userAnswers[currentIndex] = index;
+            showExplanation = true;
+            renderQuestion();
+        }
+
+        function toggleExplanation() {
+            showExplanation = !showExplanation;
+            const explainCard = document.getElementById('explanation-card');
+            if (showExplanation) {
+                explainCard.classList.remove('hidden');
+            } else {
+                explainCard.classList.add('hidden');
+            }
+        }
+
+        function nextQuestion() {
+            if (currentIndex < vocabularyData.length - 1) {
+                currentIndex++;
+                showExplanation = false;
+                renderQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                showExplanation = false;
+                renderQuestion();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quiz-container').classList.add('hidden');
+            document.getElementById('bottom-nav').classList.add('hidden');
+            document.getElementById('result-container').classList.remove('hidden');
+
+            let mistakeCount = 0;
+            const mistakesList = document.getElementById('mistakes-list');
+            mistakesList.innerHTML = '';
+
+            userAnswers.forEach((ans, idx) => {
+                const item = vocabularyData[idx];
+                if (ans !== item.answer) {
+                    mistakeCount++;
+                    const mistakeDiv = document.createElement('div');
+                    mistakeDiv.className = 'p-4 bg-slate-50 rounded-2xl border border-slate-200/80 text-xs sm:text-sm';
+                    mistakeDiv.innerHTML = `
+                        <div class="font-german font-bold text-slate-900 text-base mb-1">${item.word}</div>
+                        <div class="text-slate-600 leading-relaxed">${item.detail}</div>
+                    `;
+                    mistakesList.appendChild(mistakeDiv);
+                }
+            });
+
+            document.getElementById('stat-total').textContent = vocabularyData.length;
+            document.getElementById('stat-mistakes').textContent = mistakeCount;
+
+            const mistakesSection = document.getElementById('mistakes-section');
+            if (mistakeCount > 0) {
+                mistakesSection.classList.remove('hidden');
+            } else {
+                mistakesSection.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
