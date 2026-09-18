@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="h-full bg-slate-50/80">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>德语 B1 核心词汇深度特训 - 第二关</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Serif+Georgia&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .font-german {
+            font-family: 'Noto Serif Georgia', Georgia, serif;
+        }
+        .custom-glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+    </style>
+</head>
+<body class="h-full text-slate-800 antialiased selection:bg-teal-100 selection:text-teal-900 flex flex-col justify-between bg-gradient-to-br from-slate-50 via-zinc-50 to-teal-50/20">
+    <!-- Header Area -->
+    <header class="sticky top-0 z-30 custom-glass border-b border-slate-200/60 px-4 py-3.5 sm:px-8 shadow-sm">
+        <div class="max-w-3xl mx-auto flex items-center justify-between">
+            <a href="index.html" class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-500 hover:text-slate-900 transition-all py-1.5 px-3 rounded-full hover:bg-slate-100/80">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+                返回主页
+            </a>
+            <div class="text-center">
+                <h1 class="text-xs sm:text-sm font-bold tracking-widest text-slate-400 uppercase">Wortschatz Training</h1>
+                <p class="text-sm sm:text-base font-extrabold text-slate-900 tracking-tight">德语 B1 核心词汇特训（第二关）</p>
+            </div>
+            <button onclick="resetPractice()" class="text-xs sm:text-sm font-semibold text-slate-500 hover:text-teal-700 transition-all py-1.5 px-3 rounded-full hover:bg-slate-100/80">
+                重新开始
+            </button>
+        </div>
+        <!-- Progress Bar -->
+        <div class="max-w-3xl mx-auto mt-3">
+            <div class="flex justify-between items-center text-xs font-bold text-slate-400 mb-1.5 tracking-wider uppercase">
+                <span id="progress-text">进度：1 / 68</span>
+                <span id="progress-percent">1%</span>
+            </div>
+            <div class="w-full h-1.5 bg-slate-200/70 rounded-full overflow-hidden p-0.5">
+                <div id="progress-bar" class="h-full bg-slate-900 transition-all duration-300 rounded-full" style="width: 1.5%"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Section -->
+    <main class="flex-1 max-w-3xl w-full mx-auto p-4 sm:p-6 flex flex-col justify-center">
+        <!-- QUIZ CONTAINER -->
+        <div id="quiz-container" class="space-y-6">
+            <!-- Word Header Card -->
+            <div class="bg-white/90 backdrop-blur-sm rounded-3xl p-6 sm:p-9 border border-slate-200/70 shadow-xl shadow-slate-200/50 relative overflow-hidden transition-all">
+                <div class="flex items-center justify-between mb-4">
+                    <span id="word-badge" class="px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase border">
+                        Substantiv
+                    </span>
+                    <span id="question-index-tag" class="text-xs font-bold text-slate-400 tracking-widest uppercase">
+                        Q1
+                    </span>
+                </div>
+                <div class="py-2">
+                    <h2 id="target-word" class="font-german text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-3">
+                        der Anbieter, -
+                    </h2>
+                    <p id="question-prompt" class="text-sm sm:text-base font-medium text-slate-600 leading-relaxed">
+                        名词 "Anbieter" 在商业或网络服务中通常指？
+                    </p>
+                </div>
+            </div>
+
+            <!-- Options Grid -->
+            <div id="options-grid" class="grid grid-cols-1 gap-3.5">
+                <!-- Dynamic options -->
+            </div>
+
+            <!-- Explanation Card -->
+            <div id="explanation-card" class="hidden bg-slate-900 text-slate-100 rounded-2xl p-5 sm:p-6 shadow-lg border border-slate-800 text-sm leading-relaxed space-y-2">
+                <div class="font-semibold text-teal-400 flex items-center gap-2 text-xs sm:text-sm uppercase tracking-wider">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    词汇解析与用法
+                </div>
+                <div id="explanation-text" class="text-slate-300 text-xs sm:text-sm font-normal"></div>
+            </div>
+        </div>
+
+        <!-- RESULT CONTAINER -->
+        <div id="result-container" class="hidden bg-white/90 backdrop-blur-sm rounded-3xl p-8 sm:p-10 border border-slate-200/70 shadow-xl shadow-slate-200/50 text-center space-y-8">
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-900 text-teal-400 shadow-lg shadow-slate-900/10 mb-2">
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <div>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2 tracking-tight">第二关特训完成</h2>
+                <p class="text-sm text-slate-500 font-medium">已完成四张词汇图表的所有测试，词汇量稳步提升！</p>
+            </div>
+            <div class="max-w-md mx-auto py-3 px-6 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-around">
+                <div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">本次练习题目</div>
+                    <div id="stat-total" class="text-2xl font-extrabold text-slate-900">68</div>
+                </div>
+                <div class="h-8 w-px bg-slate-200"></div>
+                <div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">重点标注/复习词汇</div>
+                    <div id="stat-mistakes" class="text-2xl font-extrabold text-slate-900">0</div>
+                </div>
+            </div>
+
+            <!-- Incorrect Words Review List -->
+            <div id="mistakes-section" class="text-left hidden space-y-4 pt-2">
+                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                    需重点巩固的词汇
+                </h3>
+                <div id="mistakes-list" class="space-y-2.5 max-h-64 overflow-y-auto pr-1"></div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-6 border-t border-slate-100">
+                <button onclick="resetPractice()" class="w-full sm:w-auto px-8 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm transition-all shadow-md hover:shadow-lg">
+                    再练一次
+                </button>
+                <a href="index.html" class="w-full sm:w-auto px-8 py-3 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 font-bold text-sm transition-all text-center">
+                    返回主页
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Actions Nav -->
+    <footer id="bottom-nav" class="sticky bottom-0 z-30 custom-glass border-t border-slate-200/60 px-4 py-3.5 sm:px-8">
+        <div class="max-w-3xl mx-auto flex items-center justify-between gap-3">
+            <button id="btn-prev" onclick="prevQuestion()" disabled class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 text-slate-600 hover:bg-slate-100 disabled:opacity-30 disabled:cursor-not-allowed transition-all">
+                上一题
+            </button>
+            <button id="btn-toggle-explain" onclick="toggleExplanation()" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 hover:bg-slate-200/80 text-slate-700 transition-all flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                查看释义
+            </button>
+            <button id="btn-next" onclick="nextQuestion()" class="px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-md transition-all">
+                下一题
+            </button>
+        </div>
+    </footer>
+
+    <script>
+        const rawVocabularyData = [
+            // --- Bild 1 ---
+            {
+                id: 1,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Anbieter, -',
+                question: '名词 "Anbieter" 在商业或网络服务语境中通常指？',
+                options: ['消费者，顾客', '供应商，服务商', '中介机构', '监管部门'],
+                answer: 1,
+                detail: 'der Anbieter, - (供应商，服务商，提供者)。常见组合：der Internetanbieter (网络服务商)。'
+            },
+            {
+                id: 2,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'das Angebot, -e',
+                question: '在商务交流或购物中，"das Angebot" 的核心含义是？',
+                options: ['发票，账单', '报价，特价优惠，提供', '退款协议', '采购清单'],
+                answer: 1,
+                detail: 'das Angebot, -e (报价，特价，供给)。常用：ein Sonderangebot (特价商品)。'
+            },
+            {
+                id: 3,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'ander-',
+                question: '限定词/形容词 "ander-" 的正确中文释义是？',
+                options: ['相同的', '其他的，另外的', '唯一的', '类似的'],
+                answer: 1,
+                detail: 'ander- (其他的，另外的)。例：die anderen Leute (其他人)，ein anderes Mal (改天)。'
+            },
+            {
+                id: 4,
+                type: 'Adverb',
+                badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
+                word: 'andererseits',
+                question: '常与 "einerseits" (一方面) 搭配使用的副词 "andererseits" 表示？',
+                options: ['此外', '总而言之', '另一方面', '相反地'],
+                answer: 2,
+                detail: 'andererseits (另一方面)。常用搭配：Einerseits..., andererseits... (一方面……，另一方面……)。'
+            },
+            {
+                id: 5,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'ändern',
+                question: '动词 "ändern, ändert, änderte, hat geändert" 的含义是？',
+                options: ['维持，保留', '改变，修改', '确认，批准', '解释'],
+                answer: 1,
+                detail: 'ändern (改变，更改，修改)。例：seine Meinung ändern (改变主意)。'
+            },
+            {
+                id: 6,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Änderung, -en',
+                question: '名词 "die Änderung" 的中文含义是？',
+                options: ['更改，修改，变化', '增加，扩款', '撤销，作废', '延长'],
+                answer: 0,
+                detail: 'die Änderung, -en (修改，变更)。源自动词 ändern。'
+            },
+            {
+                id: 7,
+                type: 'Adverb',
+                badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
+                word: 'anders',
+                question: '“Das ist ganz anders als gedacht.” 句子中的 "anders" 意思是？',
+                options: ['一样的', '更糟糕的', '不同的，不一样地', '复杂的'],
+                answer: 2,
+                detail: 'anders (不同地，不一样)。例：etwas anders machen (做不一样的处理)。'
+            },
+            {
+                id: 8,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'anerkennen',
+                question: '在学历认证或职场中，"anerkennen" 的意思是？',
+                options: ['拒绝，退回', '承认，官方认定，认可', '质疑，审查', '作废'],
+                answer: 1,
+                detail: 'anerkennen (erkennt an, erkannte an, hat anerkannt) - 承认，认定。例：einen Abschluss anerkennen lassen.'
+            },
+            {
+                id: 9,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'anfangen',
+                question: '动词 "anfangen" (开始) 的现在时第三人称单数形式是？',
+                options: ['anfangt', 'fängt an', 'fing an', 'angefangen hat'],
+                answer: 1,
+                detail: 'anfangen (fängt an, fing an, hat angefangen) - 开始。近义词：beginnen.'
+            },
+            {
+                id: 10,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Anfang, "-e',
+                question: '常用短语 “von Anfang an” 的中文意思是？',
+                options: ['从头开始，从一开始', '直到最后', '有时候', '偶然'],
+                answer: 0,
+                detail: 'der Anfang, "-e (开始，开端)。von Anfang an = 从一开始。'
+            },
+            {
+                id: 11,
+                type: 'Adverb',
+                badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
+                word: 'anfangs',
+                question: '副词 "anfangs" 的中文释义是？',
+                options: ['最后，终究', '起初，开始时', '经常', '立刻'],
+                answer: 1,
+                detail: 'anfangs (起初，一开始)。例：Anfangs war es nicht einfach (起初并不容易)。'
+            },
+            {
+                id: 12,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'angeben',
+                question: '填写表格时，“Adresse angeben” 中的 "angeben" 意思是？',
+                options: ['隐瞒', '给出，说明，注明', '删除', '复印'],
+                answer: 1,
+                detail: 'angeben (gibt an, gab an, hat angegeben) - 注明，说明；(俗语)吹牛。'
+            },
+            {
+                id: 13,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Angabe, -n',
+                question: '名词 "die Angabe" 的主要含义是？',
+                options: ['要求，命令', '陈述，数据，个人信息', '总结', '疑问'],
+                answer: 1,
+                detail: 'die Angabe, -n (说明，数据，资料)。常用复数：persönliche Angaben (个人资料)。'
+            },
+            {
+                id: 14,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Angehörige, -n',
+                question: '名词 "Angehörige" 指的是哪类人群？',
+                options: ['陌生人', '亲属，家属，成员', '邻居', '路人'],
+                answer: 1,
+                detail: 'der Angehörige, -n / die Angehörige, -n (亲属，家属，成员)。按形容词变位。'
+            },
+            {
+                id: 15,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'angenehm',
+                question: '打招呼常用 “Sehr angenehm!”，这里的 "angenehm" 意思是？',
+                options: ['令人愉快的，舒适的', '紧张的', '尴尬的', '无聊的'],
+                answer: 0,
+                detail: 'angenehm (令人愉快的，舒适的)。Sehr angenehm! = 幸会 / 很高兴认识您！'
+            },
+
+            // --- Bild 2 ---
+            {
+                id: 16,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Angst, "-e',
+                question: '表达“对……感到害怕”时，"Angst haben ______ (+ Dat.)" 填哪个介词？',
+                options: ['auf', 'vor', 'mit', 'für'],
+                answer: 1,
+                detail: 'die Angst, "-e (恐惧，害怕)。固定搭配：Angst haben vor + Dat.'
+            },
+            {
+                id: 17,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'ängstlich',
+                question: '形容词 "ängstlich" 的意思是什么？',
+                options: ['胆小的，害怕的，不安的', '勇敢的', '愤怒的', '兴奋的'],
+                answer: 0,
+                detail: 'ängstlich (胆小的，提心吊胆的)。源自名词 die Angst。'
+            },
+            {
+                id: 18,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'anhaben',
+                question: '“Was hast du heute an?” 句中的 "anhaben" 意思是？',
+                options: ['拥有', '穿着，戴着 (状态)', '携带', '买下'],
+                answer: 1,
+                detail: 'anhaben (hat an, hatte an, hat angehabt) - 穿着，戴着 (表示状态)。'
+            },
+            {
+                id: 19,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'anklicken',
+                question: '在电脑或手机操作中，"anklicken" 的意思是？',
+                options: ['双击删除', '点击，单击', '长按', '滑动'],
+                answer: 1,
+                detail: 'anklicken (klickt an, klickte an, hat angeklickt) - 点击。例：Einen Link anklicken.'
+            },
+            {
+                id: 20,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'ankommen',
+                question: '表达“取决于……”时，“es kommt ______ (+ Akk.) an” 填哪个介词？',
+                options: ['auf', 'an', 'in', 'von'],
+                answer: 0,
+                detail: 'ankommen (到达；取决于)。es kommt auf... an (取决于……)。完成时用 sein。'
+            },
+            {
+                id: 21,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Ankunft',
+                question: '在机场或火车站，"die Ankunft" 指的是？',
+                options: ['出发', '到达，抵达', '晚点', '安检'],
+                answer: 1,
+                detail: 'die Ankunft (到达，抵达)。反义词：die Abfahrt / der Abflug。'
+            },
+            {
+                id: 22,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'ankündigen',
+                question: '动词 "ankündigen" 的中文含义是？',
+                options: ['解雇，辞职', '预告，宣布，通知', '隐瞒', '取消'],
+                answer: 1,
+                detail: 'ankündigen (kündigt an, kündigte an, hat angekündigt) - 预告，宣布，事先通知。'
+            },
+            {
+                id: 23,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Anlage, -n',
+                question: '在电子邮件或官方公文中，"die Anlage" 常常指？',
+                options: ['正文', '附件，附页；设备', '签名', '抄送'],
+                answer: 1,
+                detail: 'die Anlage, -n (附件；绿化带；设备)。电子邮件中的附件即为 Anlage。'
+            },
+            {
+                id: 24,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Anleitung, -en',
+                question: '购买新电器时附带的 "Gebrauchsanleitung" 中的 "Anleitung" 指？',
+                options: ['保修卡', '说明书，指南，指导', '发票', '宣传单'],
+                answer: 1,
+                detail: 'die Anleitung, -en (指导，说明书)。例：Bauanleitung (组装说明)。'
+            },
+            {
+                id: 25,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'anmelden',
+                question: '在德国办事常用 "sich anmelden"，其含义是？',
+                options: ['注销户口', '报名，户籍登记，登录', '请假', '付费'],
+                answer: 1,
+                detail: 'anmelden (meldet an, meldete an, hat angemeldet) - 报名，登记，申报。'
+            },
+            {
+                id: 26,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Anmeldung, -en',
+                question: '在诊所或机构入口处的 "Anmeldung" 指的是？',
+                options: ['挂号处 / 前台 / 报名处', '候诊室', '诊室', '急诊通道'],
+                answer: 0,
+                detail: 'die Anmeldung, -en (报名，前台，挂号处)。'
+            },
+            {
+                id: 27,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'annehmen',
+                question: '动词 "annehmen" 的含义不包括下列哪一项？',
+                options: ['接受，收下', '假设，以为', '拒绝', '采纳'],
+                answer: 2,
+                detail: 'annehmen (nimmt an, nahm an, hat angenommen) - 接受，假设。反义词为 ablehnen。'
+            },
+            {
+                id: 28,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Annonce, -n',
+                question: '报纸或网站上的 "die Annonce" 意思是？',
+                options: ['社论', '广告，启事', '新闻报道', '读者来信'],
+                answer: 1,
+                detail: 'die Annonce, -n (广告，启事)。近义词：die Anzeige。'
+            },
+            {
+                id: 29,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Anrede, -n',
+                question: '写信开头如 “Sehr geehrte Damen und Herren” 属于信件的？',
+                options: ['落款', '称呼 (Anrede)', '正文', '附言'],
+                answer: 1,
+                detail: 'die Anrede, -n (称呼，尊称)。'
+            },
+            {
+                id: 30,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'anrufen',
+                question: '“Ich rufe dich morgen an.” 句中 "anrufen" 支配第几格？',
+                options: ['Dativ (第三格)', 'Akkusativ (第四格)', 'Genitiv (第二格)', 'Nominativ (第一格)'],
+                answer: 1,
+                detail: 'anrufen + Akkusativ (给……打电话)。例：jemanden (Akk.) anrufen.'
+            },
+            {
+                id: 31,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Anruf, -e',
+                question: '名词 "der Anruf" 的意思是？',
+                options: ['来信', '电话，通电话', '提醒', '呼唤'],
+                answer: 1,
+                detail: 'der Anruf, -e (电话，通电话)。例：Einen Anruf bekommen (收到电话)。'
+            },
+            {
+                id: 32,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Anrufbeantworter, -',
+                question: '名词 "der Anrufbeantworter" 指的是？',
+                options: ['电话接线员', '电话应答机 / 电话留言箱', '电话簿', '手机配件'],
+                answer: 1,
+                detail: 'der Anrufbeantworter, - (电话自动应答机，自动留言机)。'
+            },
+            {
+                id: 33,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Ansage, -n',
+                question: '车站或机场听到的 "die Ansage" 指的是？',
+                options: ['商业广告', '广播通知，口头播报', '背景音乐', '私下谈话'],
+                answer: 1,
+                detail: 'die Ansage, -n (广播通知，口头播报)。例：Achten Sie auf die Ansage!'
+
+            },
+
+            // --- Bild 3 ---
+            {
+                id: 34,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'anschaffen',
+                question: '动词 "anschaffen" 的常见含义是？',
+                options: ['丢弃', '购置，购买(大件/设备)', '出租', '修理'],
+                answer: 1,
+                detail: 'anschaffen (schafft an, schaffte an, hat angeschafft) - 购置，购买。'
+            },
+            {
+                id: 35,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'anschließen',
+                question: '“Den Fernseher anschließen” 中的 "anschließen" 意思是？',
+                options: ['拔掉电源', '连接，接通', '关闭', '锁上'],
+                answer: 1,
+                detail: 'anschließen (schließt an, schloss an, hat angeschlossen) - 连接，接通。'
+            },
+            {
+                id: 36,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Anschluss, "-e',
+                question: '在交通换乘或网络设备中，"der Anschluss" 指？',
+                options: ['换乘班次，连接，接口/线路', '终点站', '列车延误', '退票处'],
+                answer: 0,
+                detail: 'der Anschluss, "-e (连接，接口；衔接班次)。例：Den Anschluss verpassen (错过换乘)。'
+            },
+            {
+                id: 37,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'anschnallen',
+                question: '乘车或乘飞机时，提示 “Bitte anschnallen!” 意思是？',
+                options: ['请保持安静', '请系好安全带', '请关掉手机', '请收好行李'],
+                answer: 1,
+                detail: 'anschnallen / sich anschnallen (系上安全带)。'
+            },
+            {
+                id: 38,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'ansehen',
+                question: '“Ich sehe mir den Film an.” 句中的 "ansehen" 意思是？',
+                options: ['注视，观看，审视', '听说', '寻找', '忽略'],
+                answer: 0,
+                detail: 'ansehen (sieht an, sah an, hat angesehen) - 观看，注视。'
+            },
+            {
+                id: 39,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'ansprechen',
+                question: '“Jemanden auf der Straße ansprechen” 中 "ansprechen" 意思是？',
+                options: ['与某人争吵', '向某人搭话/打招呼/提议', '批评某人', '告别'],
+                answer: 1,
+                detail: 'ansprechen (spricht an, sprach an, hat angesprochen) - 搭话，向……说话；提议。'
+            },
+            {
+                id: 40,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Anspruch, "-e',
+                question: '“Anspruch auf Kindergeld haben” 中 "der Anspruch" 意思是？',
+                options: ['义务', '权利，要求，资格', '申请表', '限制'],
+                answer: 1,
+                detail: 'der Anspruch, "-e (权利，要求，资格)。例：Anspruch auf etwas haben (有权享有……)。'
+            },
+            {
+                id: 41,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'anstellen',
+                question: '“sich an der Kasse anstellen” 中的 "sich anstellen" 意思是？',
+                options: ['结账', '排队', '退货', '挑选商品'],
+                answer: 1,
+                detail: 'anstellen (开机器/雇佣)；sich anstellen (排队)。例：In der Schlange anstellen.'
+            },
+            {
+                id: 42,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Angestellte, -n',
+                question: '名词 "Angestellte" 的中文含义是？',
+                options: ['雇主，老板', '职员，雇员', '自由职业者', '求职者'],
+                answer: 1,
+                detail: 'der/die Angestellte, -n (职员，雇员)。按形容词变位。'
+            },
+            {
+                id: 43,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'sich anstrengen',
+                question: '动词短语 "sich anstrengen" 的含义是？',
+                options: ['放松休养', '努力，尽力，费劲', '抱怨', '偷懒'],
+                answer: 1,
+                detail: 'sich anstrengen (strengte sich an, hat sich angestrengt) - 努力，尽力。'
+            },
+            {
+                id: 44,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'anstrengend',
+                question: '“Ein anstrengender Arbeitstag” 中 "anstrengend" 的意思是？',
+                options: ['轻松的', '费力的，累人的，辛苦的', '有趣味味的', '充实的'],
+                answer: 1,
+                detail: 'anstrengend (费力的，令人疲惫的)。例：Die Arbeit ist sehr anstrengend.'
+            },
+            {
+                id: 45,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Antrag, "-e',
+                question: '“Einen Antrag auf Visum stellen” 中 "der Antrag" 指？',
+                options: ['答复', '申请，书面申请', '通知', '拒绝信'],
+                answer: 1,
+                detail: 'der Antrag, "-e (申请，书面申请)。固定搭配：einen Antrag stellen (提出申请)。'
+            },
+            {
+                id: 46,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'anwenden',
+                question: '“Theorie in der Praxis anwenden” 中的 "anwenden" 意思是？',
+                options: ['检验', '应用，使用，运用', '摒弃', '总结'],
+                answer: 1,
+                detail: 'anwenden (wendet an, wandte an, hat angewandt/angewendet) - 应用，运用。'
+            },
+            {
+                id: 47,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'anwesend',
+                question: '形容词 "anwesend" 的反义词是？',
+                options: ['abwesend', 'unwesend', 'inwesend', 'misswesend'],
+                answer: 0,
+                detail: 'anwesend (在场的，出席的)。反义词为 abwesend (缺席的)。'
+            },
+            {
+                id: 48,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'antworten',
+                question: '动词 "antworten" (回答某人) 时，人称用第几格？',
+                options: ['Nominativ (第一格)', 'Genitiv (第二格)', 'Dativ (第三格)', 'Akkusativ (第四格)'],
+                answer: 2,
+                detail: 'antworten + Dativ (回答某人)。例：Er antwortet dem Lehrer.'
+            },
+            {
+                id: 49,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Antwort, -en',
+                question: '名词 "die Antwort" 经常与哪种介词结构搭配？',
+                options: ['Antwort auf + Akk.', 'Antwort mit + Dat.', 'Antwort zu + Dat.', 'Antwort für + Akk.'],
+                answer: 0,
+                detail: 'die Antwort, -en (回答，答复)。例：eine Antwort auf die Frage (对问题的回答)。'
+
+            },
+
+            // --- Bild 4 ---
+            {
+                id: 50,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Anwalt, "-e',
+                question: '职业名称 "der Anwalt / die Anwältin" 的意思是？',
+                options: ['法官', '律师', '警察', '会计师'],
+                answer: 1,
+                detail: 'der Anwalt, "-e / die Anwältin, -nen (律师)。同义词：Rechtsanwalt / Rechtsanwältin.'
+            },
+            {
+                id: 51,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'anzeigen',
+                question: '向警方 “jemanden bei der Polizei anzeigen” 意思是？',
+                options: ['求助', '举报，控告，报警', '寻找', '释放'],
+                answer: 1,
+                detail: 'anzeigen (zeigt an, zeigte an, hat angezeigt) - 显示；举报，报案。'
+            },
+            {
+                id: 52,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Anzeige, -n',
+                question: '名词 "die Anzeige" 除了可以表示广告外，还可以指？',
+                options: ['罚单', '控告，报案，举报', '逮捕令', '证词'],
+                answer: 1,
+                detail: 'die Anzeige, -n (广告，启事；报案，控告)。例：Anzeige erstatten (向警方报案)。'
+            },
+            {
+                id: 53,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: '(sich) anziehen',
+                question: '“Ich ziehe mir einen Mantel an.” 中的 "anziehen" 意思是？',
+                options: ['脱下', '穿上(衣服)', '挂起', '熨烫'],
+                answer: 1,
+                detail: '(sich) anziehen (zieht an, zog an, hat angezogen) - 穿衣。反义词：ausziehen (脱衣)。'
+            },
+            {
+                id: 54,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Anzug, "-e',
+                question: '男士在正式场合穿的 "der Anzug" 意思是？',
+                options: ['休爽外套', '西装，套装', '运动服', '衬衫'],
+                answer: 1,
+                detail: 'der Anzug, "-e (男士西装，成套服装)。'
+            },
+            {
+                id: 55,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'das Apartment, -s',
+                question: '名词 "das Apartment" 的中文意思通常指？',
+                options: ['别墅', '单人公寓，套房', '学生宿舍楼', '酒店大堂'],
+                answer: 1,
+                detail: 'das Apartment, -s (小型公寓套房)。'
+            },
+            {
+                id: 56,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Apfel, "-',
+                question: '名词 "der Apfel" (苹果) 的正确复数形式是？',
+                options: ['die Äpfel', 'die Apfeln', 'die Apfele', 'die Äpfele'],
+                answer: 0,
+                detail: 'der Apfel, "- (苹果)。复数变音为 die Äpfel。'
+            },
+            {
+                id: 57,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Apotheke, -n',
+                question: '在德国购买处方药品应该去哪里？',
+                options: ['der Supermarkt', 'die Drogerie', 'die Apotheke', 'das Kaufhaus'],
+                answer: 2,
+                detail: 'die Apotheke, -n (药房，药店)。在德国药品专属于 Apotheke 销售。'
+            },
+            {
+                id: 58,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Apparat, -e',
+                question: '接电话时常听到的 “Wer ist am Apparat?” 中的 "Apparat" 指？',
+                options: ['仪器，设备，电话机', '录音笔', '电脑', '电视'],
+                answer: 0,
+                detail: 'der Apparat, -e (仪器，装置，电话机)。Wer ist am Apparat? = 请问您是哪位 (电话中)？'
+            },
+            {
+                id: 59,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Appetit',
+                question: '用餐前德语常祝愿 “Guten Appetit!”，意思是？',
+                options: ['旅途愉快', '祝你胃口好 / 用餐愉快', '干杯', '好运'],
+                answer: 1,
+                detail: 'der Appetit (食欲，胃口)。Guten Appetit! = 祝您胃口好/用餐愉快！'
+            },
+            {
+                id: 60,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Aprikose, -n',
+                question: '水果 "die Aprikose" (杏子) 在奥地利德语 (A) 中被称为？',
+                options: ['die Marille', 'die Pflaume', 'die Kirsche', 'die Birne'],
+                answer: 0,
+                detail: 'die Aprikose, -n (D, CH) / die Marille, -n (A) - 杏子。'
+            },
+            {
+                id: 61,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'arbeiten',
+                question: '动词 "arbeiten" (工作) 的完成时 (Perfekt) 形式是？',
+                options: ['hat gearbeitet', 'ist gearbeitet', 'hat gearbeit', 'ist gearbeit'],
+                answer: 0,
+                detail: 'arbeiten (arbeitet, arbeitete, hat gearbeitet) - 工作。'
+            },
+            {
+                id: 62,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Arbeit, -en',
+                question: '名词 "die Arbeit" 的中文含义是？',
+                options: ['假期', '工作，劳动，活儿', '工资', '面试'],
+                answer: 1,
+                detail: 'die Arbeit, -en (工作，职业)。例：bei der Arbeit sein (在工作中)。'
+            },
+            {
+                id: 63,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Arbeiter, -',
+                question: '名词 "der Arbeiter, - / die Arbeiterin, -nen" 指的是？',
+                options: ['管理者', '工人，体力劳动者', '顾客', '研究员'],
+                answer: 1,
+                detail: 'der Arbeiter, - / die Arbeiterin, -nen (工人，劳动者)。'
+            },
+            {
+                id: 64,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Arbeitserlaubnis',
+                question: '外国人在德国工作需要的 "die Arbeitserlaubnis" 意思是？',
+                options: ['工作合同', '工作许可/工作签证', '健康证明', '毕业证书'],
+                answer: 1,
+                detail: 'die Arbeitserlaubnis (工作许可证)。由政府相关部门签发。'
+            },
+            {
+                id: 65,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'arbeitslos',
+                question: '形容词 "arbeitslos" 的中文释义是？',
+                options: ['勤奋的', '失业的，无业的', '忙碌的', '退休的'],
+                answer: 1,
+                detail: 'arbeitslos (失业的)。例：arbeitslos sein (处于失业状态)。'
+            },
+            {
+                id: 66,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Arbeitslosigkeit',
+                question: '名词 "die Arbeitslosigkeit" 表示什么？',
+                options: ['就业率', '失业，失业状态', '工作效率', '职业规划'],
+                answer: 1,
+                detail: 'die Arbeitslosigkeit (失业，失业状态)。源自形容词 arbeitslos。'
+            },
+            {
+                id: 67,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Arbeitsplatz, "-e',
+                question: '名词 "der Arbeitsplatz" 的正确复数形式是？',
+                options: ['die Arbeitsplätze', 'die Arbeitsplatze', 'die Arbeitsplätzen', 'die Arbeitsplatzen'],
+                answer: 0,
+                detail: 'der Arbeitsplatz, "-e (工作岗位，工作地点)。复数形式为 die Arbeitsplätze。'
+            },
+            {
+                id: 68,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Arbeitsstelle, -n',
+                question: '“eine neue Arbeitsstelle suchen” 句中的 "die Arbeitsstelle" 意思是？',
+                options: ['工作岗位，职位', '休假地点', '办公室家具', '培训项目'],
+                answer: 0,
+                detail: 'die Arbeitsstelle, -n (工作岗位，职位)。与 Arbeitsplatz 近义。'
+            }
+        ];
+
+        // Native Audio Synthesizer
+        let audioCtx = null;
+        function getAudioContext() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
+
+        function playSound(isCorrect) {
+            try {
+                const ctx = getAudioContext();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                const now = ctx.currentTime;
+                
+                if (isCorrect) {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(523.25, now); // C5
+                    osc.frequency.setValueAtTime(659.25, now + 0.08); // E5
+                    gain.gain.setValueAtTime(0.12, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+                    osc.start(now);
+                    osc.stop(now + 0.3);
+                } else {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(220, now);
+                    osc.frequency.exponentialRampToValueAtTime(140, now + 0.2);
+                    gain.gain.setValueAtTime(0.1, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+                    osc.start(now);
+                    osc.stop(now + 0.2);
+                }
+            } catch (e) {
+                console.error("Audio error:", e);
+            }
+        }
+
+        // Fisher-Yates Shuffle
+        function shuffleArray(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        // App State
+        let vocabularyData = [];
+        let currentIndex = 0;
+        let userAnswers = [];
+        let showExplanation = false;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            resetPractice();
+        });
+
+        function resetPractice() {
+            vocabularyData = shuffleArray(rawVocabularyData);
+            currentIndex = 0;
+            userAnswers = new Array(vocabularyData.length).fill(null);
+            showExplanation = false;
+            
+            document.getElementById('quiz-container').classList.remove('hidden');
+            document.getElementById('bottom-nav').classList.remove('hidden');
+            document.getElementById('result-container').classList.add('hidden');
+            
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const currentData = vocabularyData[currentIndex];
+
+            // Render Badges and Titles
+            document.getElementById('word-badge').className = `px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase border ${currentData.badgeClass}`;
+            document.getElementById('word-badge').textContent = currentData.type;
+            document.getElementById('question-index-tag').textContent = `Q${currentIndex + 1}`;
+            document.getElementById('target-word').textContent = currentData.word;
+            document.getElementById('question-prompt').textContent = currentData.question;
+
+            // Progress Bar
+            const progressPercent = Math.round(((currentIndex + 1) / vocabularyData.length) * 100);
+            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+            document.getElementById('progress-text').textContent = `进度：${currentIndex + 1} / ${vocabularyData.length}`;
+            document.getElementById('progress-percent').textContent = `${progressPercent}%`;
+
+            // Options
+            const optionsGrid = document.getElementById('options-grid');
+            optionsGrid.innerHTML = '';
+
+            const selectedAnswer = userAnswers[currentIndex];
+            const isAnswered = selectedAnswer !== null;
+
+            currentData.options.forEach((optText, optIndex) => {
+                const btn = document.createElement('button');
+                btn.className = getOptionStyle(optIndex, selectedAnswer, currentData.answer);
+                btn.innerHTML = `
+                    <div class="flex items-center justify-between w-full">
+                        <span class="flex items-center gap-3.5">
+                            <span class="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold border transition-all ${getOptionMarkerStyle(optIndex, selectedAnswer, currentData.answer)}">
+                                ${String.fromCharCode(65 + optIndex)}
+                            </span>
+                            <span class="font-medium">${optText}</span>
+                        </span>
+                        ${getOptionIcon(optIndex, selectedAnswer, currentData.answer)}
+                    </div>
+                `;
+                btn.onclick = () => selectOption(optIndex);
+                optionsGrid.appendChild(btn);
+            });
+
+            // Explanation
+            const explainCard = document.getElementById('explanation-card');
+            const explainText = document.getElementById('explanation-text');
+            explainText.textContent = currentData.detail;
+
+            if (showExplanation || isAnswered) {
+                explainCard.classList.remove('hidden');
+            } else {
+                explainCard.classList.add('hidden');
+            }
+
+            // Controls
+            document.getElementById('btn-prev').disabled = currentIndex === 0;
+            const btnNext = document.getElementById('btn-next');
+            if (currentIndex === vocabularyData.length - 1) {
+                btnNext.textContent = '完成特训';
+                btnNext.className = 'px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-teal-700 hover:bg-teal-800 text-white shadow-md transition-all';
+            } else {
+                btnNext.textContent = '下一题';
+                btnNext.className = 'px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-md transition-all';
+            }
+        }
+
+        function getOptionStyle(index, selected, correct) {
+            const base = "w-full text-left p-4 sm:p-4.5 rounded-2xl border text-sm sm:text-base transition-all duration-200 flex items-center justify-between ";
+            if (selected === null) {
+                return base + "border-slate-200/80 bg-white hover:border-slate-400 hover:shadow-md text-slate-800";
+            }
+            if (index === correct) {
+                return base + "border-emerald-300 bg-emerald-50/90 text-emerald-900 font-semibold shadow-sm";
+            }
+            if (index === selected && selected !== correct) {
+                return base + "border-rose-300 bg-rose-50/90 text-rose-900 font-semibold shadow-sm";
+            }
+            return base + "border-slate-100 bg-slate-50/50 text-slate-400 opacity-50";
+        }
+
+        function getOptionMarkerStyle(index, selected, correct) {
+            if (selected === null) {
+                return "border-slate-200 text-slate-500 bg-slate-50";
+            }
+            if (index === correct) {
+                return "border-emerald-500 text-white bg-emerald-600 shadow-sm";
+            }
+            if (index === selected && selected !== correct) {
+                return "border-rose-500 text-white bg-rose-500 shadow-sm";
+            }
+            return "border-slate-200 text-slate-300 bg-slate-100";
+        }
+
+        function getOptionIcon(index, selected, correct) {
+            if (selected === null) return '';
+            if (index === correct) {
+                return `<svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>`;
+            }
+            if (index === selected && selected !== correct) {
+                return `<svg class="w-5 h-5 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>`;
+            }
+            return '';
+        }
+
+        function selectOption(index) {
+            if (userAnswers[currentIndex] === null) {
+                const isCorrect = index === vocabularyData[currentIndex].answer;
+                playSound(isCorrect);
+            }
+            userAnswers[currentIndex] = index;
+            showExplanation = true;
+            renderQuestion();
+        }
+
+        function toggleExplanation() {
+            showExplanation = !showExplanation;
+            const explainCard = document.getElementById('explanation-card');
+            if (showExplanation) {
+                explainCard.classList.remove('hidden');
+            } else {
+                explainCard.classList.add('hidden');
+            }
+        }
+
+        function nextQuestion() {
+            if (currentIndex < vocabularyData.length - 1) {
+                currentIndex++;
+                showExplanation = false;
+                renderQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                showExplanation = false;
+                renderQuestion();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quiz-container').classList.add('hidden');
+            document.getElementById('bottom-nav').classList.add('hidden');
+            document.getElementById('result-container').classList.remove('hidden');
+
+            let mistakeCount = 0;
+            const mistakesList = document.getElementById('mistakes-list');
+            mistakesList.innerHTML = '';
+
+            userAnswers.forEach((ans, idx) => {
+                const item = vocabularyData[idx];
+                if (ans !== item.answer) {
+                    mistakeCount++;
+                    const mistakeDiv = document.createElement('div');
+                    mistakeDiv.className = 'p-4 bg-slate-50 rounded-2xl border border-slate-200/80 text-xs sm:text-sm';
+                    mistakeDiv.innerHTML = `
+                        <div class="font-german font-bold text-slate-900 text-base mb-1">${item.word}</div>
+                        <div class="text-slate-600 leading-relaxed">${item.detail}</div>
+                    `;
+                    mistakesList.appendChild(mistakeDiv);
+                }
+            });
+
+            document.getElementById('stat-total').textContent = vocabularyData.length;
+            document.getElementById('stat-mistakes').textContent = mistakeCount;
+
+            const mistakesSection = document.getElementById('mistakes-section');
+            if (mistakeCount > 0) {
+                mistakesSection.classList.remove('hidden');
+            } else {
+                mistakesSection.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
