@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="h-full bg-slate-50/80">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>德语B1核心词汇特训</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Serif+Georgia&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .font-german {
+            font-family: 'Noto Serif Georgia', Georgia, serif;
+        }
+        .custom-glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+    </style>
+</head>
+<body class="h-full text-slate-800 antialiased selection:bg-teal-100 selection:text-teal-900 flex flex-col justify-between bg-gradient-to-br from-slate-50 via-zinc-50 to-teal-50/20">
+    <!-- Header Area -->
+    <header class="sticky top-0 z-30 custom-glass border-b border-slate-200/60 px-4 py-3.5 sm:px-8 shadow-sm">
+        <div class="max-w-3xl mx-auto flex items-center justify-between">
+            <a href="index.html" class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-500 hover:text-slate-900 transition-all py-1.5 px-3 rounded-full hover:bg-slate-100/80">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+                返回主页
+            </a>
+            <div class="text-center">
+                <h1 class="text-xs sm:text-sm font-bold tracking-widest text-slate-400 uppercase">Wortschatz Training</h1>
+                <p class="text-sm sm:text-base font-extrabold text-slate-900 tracking-tight">德语B1核心词汇特训</p>
+            </div>
+            <button onclick="resetPractice()" class="text-xs sm:text-sm font-semibold text-slate-500 hover:text-teal-700 transition-all py-1.5 px-3 rounded-full hover:bg-slate-100/80">
+                重新开始
+            </button>
+        </div>
+        <!-- Progress Bar -->
+        <div class="max-w-3xl mx-auto mt-3">
+            <div class="flex justify-between items-center text-xs font-bold text-slate-400 mb-1.5 tracking-wider uppercase">
+                <span id="progress-text">进度：1 / 39</span>
+                <span id="progress-percent">3%</span>
+            </div>
+            <div class="w-full h-1.5 bg-slate-200/70 rounded-full overflow-hidden p-0.5">
+                <div id="progress-bar" class="h-full bg-slate-900 transition-all duration-300 rounded-full" style="width: 3%"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Section -->
+    <main class="flex-1 max-w-3xl w-full mx-auto p-4 sm:p-6 flex flex-col justify-center">
+        <!-- QUIZ CONTAINER -->
+        <div id="quiz-container" class="space-y-6">
+            <!-- Word Header Card -->
+            <div class="bg-white/90 backdrop-blur-sm rounded-3xl p-6 sm:p-9 border border-slate-200/70 shadow-xl shadow-slate-200/50 relative overflow-hidden transition-all">
+                <div class="flex items-center justify-between mb-4">
+                    <span id="word-badge" class="px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase border">
+                        Verb
+                    </span>
+                    <span id="question-index-tag" class="text-xs font-bold text-slate-400 tracking-widest uppercase">
+                        Q1
+                    </span>
+                </div>
+                <div class="py-2">
+                    <h2 id="target-word" class="font-german text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-3">
+                        entstehen
+                    </h2>
+                    <p id="question-prompt" class="text-sm sm:text-base font-medium text-slate-600 leading-relaxed">
+                        动词 "entstehen" (产生，形成) 的完成时 (Perfekt) 形式是哪一个？（注意助动词）
+                    </p>
+                </div>
+            </div>
+
+            <!-- Options Grid -->
+            <div id="options-grid" class="grid grid-cols-1 gap-3.5">
+                <!-- Dynamic options -->
+            </div>
+
+            <!-- Explanation Card -->
+            <div id="explanation-card" class="hidden bg-slate-900 text-slate-100 rounded-2xl p-5 sm:p-6 shadow-lg border border-slate-800 text-sm leading-relaxed space-y-2">
+                <div class="font-semibold text-teal-400 flex items-center gap-2 text-xs sm:text-sm uppercase tracking-wider">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    词汇解析与语法特点
+                </div>
+                <div id="explanation-text" class="text-slate-300 text-xs sm:text-sm font-normal"></div>
+            </div>
+        </div>
+
+        <!-- RESULT CONTAINER -->
+        <div id="result-container" class="hidden bg-white/90 backdrop-blur-sm rounded-3xl p-8 sm:p-10 border border-slate-200/70 shadow-xl shadow-slate-200/50 text-center space-y-8">
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-900 text-teal-400 shadow-lg shadow-slate-900/10 mb-2">
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <div>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2 tracking-tight">特训完成</h2>
+                <p class="text-sm text-slate-500 font-medium">恭喜！你已掌握德语B1核心高频词汇的精髓</p>
+            </div>
+            <div class="max-w-md mx-auto py-3 px-6 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-around">
+                <div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">本次练习题目</div>
+                    <div id="stat-total" class="text-2xl font-extrabold text-slate-900">39</div>
+                </div>
+                <div class="h-8 w-px bg-slate-200"></div>
+                <div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">重点标注/错题巩固</div>
+                    <div id="stat-mistakes" class="text-2xl font-extrabold text-slate-900">0</div>
+                </div>
+            </div>
+            <!-- Incorrect Words Review List -->
+            <div id="mistakes-section" class="text-left hidden space-y-4 pt-2">
+                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                    需重点巩固的词汇
+                </h3>
+                <div id="mistakes-list" class="space-y-2.5 max-h-64 overflow-y-auto pr-1"></div>
+            </div>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-6 border-t border-slate-100">
+                <button onclick="resetPractice()" class="w-full sm:w-auto px-8 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm transition-all shadow-md hover:shadow-lg">
+                    再练一次
+                </button>
+                <a href="index.html" class="w-full sm:w-auto px-8 py-3 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 font-bold text-sm transition-all text-center">
+                    返回主页
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Actions Nav -->
+    <footer id="bottom-nav" class="sticky bottom-0 z-30 custom-glass border-t border-slate-200/60 px-4 py-3.5 sm:px-8">
+        <div class="max-w-3xl mx-auto flex items-center justify-between gap-3">
+            <button id="btn-prev" onclick="prevQuestion()" disabled class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 text-slate-600 hover:bg-slate-100 disabled:opacity-30 disabled:cursor-not-allowed transition-all">
+                上一题
+            </button>
+            <button id="btn-toggle-explain" onclick="toggleExplanation()" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 hover:bg-slate-200/80 text-slate-700 transition-all flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                查看释义
+            </button>
+            <button id="btn-next" onclick="nextQuestion()" class="px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-md transition-all">
+                下一题
+            </button>
+        </div>
+    </footer>
+
+    <script>
+        const rawVocabularyData = [
+            {
+                id: 1,
+                type: 'Verb Grammatik',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'entstehen, entsteht, entstand, ist entstanden',
+                question: '动词 "entstehen" (产生，形成) 的完成时 (Perfekt) 形式是哪一个？（注意助动词选择）',
+                options: ['hat entstanden', 'ist entstanden', 'hat entsteht', 'ist entsteht'],
+                answer: 1,
+                detail: 'entstehen 表示“产生，从……中得出”，属于状态变化的零起点变化动词，完成时助动词必须用 sein！'
+            },
+            {
+                id: 2,
+                type: 'Wortschatz & Kontext',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'unentschieden / entscheiden / die Entscheidung',
+                question: '在足球比赛中，如果两队最终打成平局 (1:1)，在德语中可以用哪一个词形容比赛结果？',
+                options: ['unentschieden', 'entschlossen', 'erschöpft', 'erfolgreich'],
+                answer: 0,
+                detail: 'unentschieden 表示“未决胜负的，平局的”。动词：entscheiden (决定)，名词：die Entscheidung, -en (决定)。'
+            },
+            {
+                id: 3,
+                type: 'Reflexivverb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'sich entschließen / entschlossen',
+                question: '句子 “Er hat sich endlich ______, nach Deutschland zu ziehen.” 中应填入哪个词？',
+                options: ['entschlossen', 'entschieden', 'erschrocken', 'entwickelt'],
+                answer: 0,
+                detail: 'sich entschließen zu + Dat. (下定决心做某事)，完成时为 hat sich entschlossen。entschlossen 还可作形容词表示“果断的”。'
+            },
+            {
+                id: 4,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'entsorgen, entsorgt, entsorgte, hat entsorgt',
+                question: '在日常与环保话题中，动词 "entsorgen" 的正确含义是？',
+                options: ['照顾，照料', '消除顾虑', '清理，处置(废弃物/垃圾)', '表达歉意'],
+                answer: 2,
+                detail: 'entsorgen (entsorgt, entsorgte, hat entsorgt) 表示“处置，清除(垃圾等)”。名词为 die Entsorgung。'
+            },
+            {
+                id: 5,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'entspannend',
+                question: '句子 “Ein heißes Bad ist sehr ______.” (洗个热澡非常令人放松。) 括号中应填入？',
+                options: ['enttäuschend', 'entspannend', 'erschöpft', 'erforderlich'],
+                answer: 1,
+                detail: 'entspannend (令人放松的)。源动词 entspannen (放松)，反义词为 stressig (令人紧张有压力的)。'
+            },
+            {
+                id: 6,
+                type: 'Verb & Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'enttäuschen / die Enttäuschung, -en',
+                question: '名词 "die Enttäuschung" (失望) 的对应动词 enttäuschen 的正确完成时形式是？',
+                options: ['hat enttäuscht', 'ist enttäuscht', 'hat enttauscht', 'ist enttäuschen'],
+                answer: 0,
+                detail: 'enttäuschen (enttäuscht, enttäuschte, hat enttäuscht) - 使失望。前缀 ent- 不可分，完成时过去分词不加 ge-。'
+            },
+            {
+                id: 7,
+                type: 'Konjunktion',
+                badgeClass: 'bg-violet-50 text-violet-700 border-violet-200',
+                word: 'entweder ... oder',
+                question: '关联连词 "entweder ... oder" 在句中表示什么逻辑关系？',
+                options: ['既……又……', '要么……要么…… (二选一)', '虽然……但是……', '不仅……而且……'],
+                answer: 1,
+                detail: 'entweder ... oder (要么……要么……) 表示选择关系。例：Entweder wir gehen heute, oder wir bleiben zu Hause.'
+            },
+            {
+                id: 8,
+                type: 'Nomen & Verb',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'entwickeln / die Entwicklung, -en',
+                question: '科技与企业语境中的缩写 "Forschung und Entwicklung" (F&E) 意思是？',
+                options: ['调查与报告', '研究与开发 (研发)', '发现与创造', '计划与实施'],
+                answer: 1,
+                detail: 'die Entwicklung, -en (发展，开发，研制)，源自动词 entwickeln ( hat entwickelt)。F&E 代表“研发”。'
+            },
+            {
+                id: 9,
+                type: 'Nomen Variation',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Erde / der Erdapfel, "- / das Erdgeschoss, -e',
+                question: '在奥地利德语 (Österreichisches Deutsch) 中，"der Erdapfel" 指的是什么？',
+                options: ['苹果', '吐司', '土豆 (Kartoffel)', '茄子'],
+                answer: 2,
+                detail: 'der Erdapfel, "- (奥地利德语) = die Kartoffel (土豆)。字面意为“地里的苹果”。同时：das Erdgeschoss (一楼/底层)，die Erde (地球/土壤)。'
+            },
+            {
+                id: 10,
+                type: 'Reflexivverb & Nomen',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'sich ereignen / das Ereignis, -se',
+                question: '名词 "das Ereignis" (重大事件) 的复数形式以及对应动词是哪一组？',
+                options: ['die Ereignisse / sich ereignen', 'die Ereignis / ereignen', 'die Ereignissen / ereignen', 'die Ereignisse / ersetzen'],
+                answer: 0,
+                detail: 'das Ereignis, 复数为 die Ereignisse (以 -nis 结尾的中性名词，复数加 -se)。对应反身动词：sich ereignen (发生)。'
+            },
+            {
+                id: 11,
+                type: 'Verb & Nomen',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'erfahren / die Erfahrung, -en',
+                question: '“Ich habe aus der Zeitung davon ______.” (我从报纸上得知了此事。) 句中应填？',
+                options: ['erfahren', 'erfunden', 'erlaubt', 'erreicht'],
+                answer: 0,
+                detail: 'erfahren (erfährt, erfuhr, hat erfahren) - 获悉，得知；经历。名词：die Erfahrung, -en (经验，经历)。'
+            },
+            {
+                id: 12,
+                type: 'Verb Unterscheidung',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'erfinden / die Erfindung, -en',
+                question: '区分概念："erfinden" 与 "entdecken" 的区别在于，"die Erfindung" 专指？',
+                options: ['发现原本就存在的事物', '发明原本不存在的新事物', '购买工业专利', '制造量产产品'],
+                answer: 1,
+                detail: 'erfinden (erfindet, erfand, hat erfunden) - 发明 (原本不存在的科技或物品)；entdecken - 发现 (原本已存在的东西)。'
+            },
+            {
+                id: 13,
+                type: 'Nomen & Adjektiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Erfolg, -e / erfolgreich',
+                question: '形容词 "erfolgreich" 的含义及对应名词 "der Erfolg" 的复数形式是？',
+                options: ['失败的 / die Erfolge', '成功的 / die Erfolge', '有效的 / die Erfolgen', '努力的 / die Erfolge'],
+                answer: 1,
+                detail: 'erfolgreich (成功的)；der Erfolg, 复数为 die Erfolge (成功，成就)。'
+            },
+            {
+                id: 14,
+                type: 'Adjektiv & Verb',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'erforderlich / erfordern',
+                question: '“Geduld ist für diese Arbeit ______.” (这项工作需要耐心。) 句中 "erforderlich" 相当于？',
+                options: ['wichtig (重要的)', 'notwendig / nötig (必要的，不可或缺的)', 'möglich (可能的)', 'einfach (简单的)'],
+                answer: 1,
+                detail: 'erforderlich (必要的，要求的)。动词形式：erfordern (erfordert, erforderte, hat erfordert) - 需要，要求。'
+            },
+            {
+                id: 15,
+                type: 'Verb Kollokation',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'erfüllen, erfüllt, erfüllte, hat erfüllt',
+                question: '固定搭配 “einen Wunsch ______” (实现愿望) 或 “die Bedingungen ______” (满足条件)，使用哪个动词？',
+                options: ['erreichen', 'erfüllen', 'erhöhen', 'erheben'],
+                answer: 1,
+                detail: 'erfüllen (erfüllt, erfüllte, hat erfüllt) - 实现(愿望)，满足(条件/要求)，履行(义务)。'
+            },
+            {
+                id: 16,
+                type: 'Verb & Nomen',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'ergänzen / das Ergebnis, -se',
+                question: '德语题目要求 “Ergänzen Sie die Lücken!” 这里的 "ergänzen" 意思是？',
+                options: ['解释', '填空，补充完整', '修改', '删除'],
+                answer: 1,
+                detail: 'ergänzen (ergänzt, ergänzte, hat ergänzt) - 补充，填空。补充完后得到 das Ergebnis, -se (结果，答案)。'
+            },
+            {
+                id: 17,
+                type: 'Verb Synonym',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'erhalten, erhält, erhielt, hat erhalten',
+                question: '动词 "erhalten" 在官方或正式书面语中，常用作哪个动词的高级同义词？',
+                options: ['bekommen / empfangen (收到，获得)', 'geben (给予)', 'behalten (保留)', 'kaufen (购买)'],
+                answer: 0,
+                detail: 'erhalten (erhält, erhielt, hat erhalten) - 收到，获得 (比 bekommen 更正式)；也可表示“保持，维护”。'
+            },
+            {
+                id: 18,
+                type: 'Verb & Nomen',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'erhöhen / die Erhöhung, -en',
+                question: '新闻报道中 “eine Erhöhung der Preise” 的意思是？',
+                options: ['价格打折', '价格上涨 / 提高', '价格保持不变', '价格取消'],
+                answer: 1,
+                detail: 'die Erhöhung, -en (提高，增加)。动词：erhöhen (erhöht, erhöhte, hat erhöht)。反义词：senken / die Senkung.'
+            },
+            {
+                id: 19,
+                type: 'Reflexivverb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'sich erholen / die Erholung, -en',
+                question: '假期结束后的问候 “Haben Sie sich gut ______?”, 动词 "sich erholen" 的意思是？',
+                options: ['休养，恢复，复原', '玩得开心', '准备就绪', '取得成功'],
+                answer: 0,
+                detail: 'sich erholen (休养，休整，复原)。名词：die Erholung, -en。例：Erholung suchen (寻求休养)。'
+            },
+            {
+                id: 20,
+                type: 'Präpositionalverb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'erinnern / die Erinnerung, -en',
+                question: '语法搭配：表达“我记得这件事”用反身结构 “Ich erinnere mich ______ das.”，括号内填哪个介词？',
+                options: ['an (+ Akk.)', 'auf (+ Akk.)', 'über (+ Akk.)', 'von (+ Dat.)'],
+                answer: 0,
+                detail: 'sich erinnern an + Akk. (回忆起，记得……)。名词：die Erinnerung, -en (回忆，记忆)。'
+            },
+            {
+                id: 21,
+                type: 'Verb & Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'sich erkälten / erkältet / die Erkältung',
+                question: '“Ich bin stark ______.” (我感冒很严重。) 句子中 "erkältet" 的词性及用法的正确分析是？',
+                options: ['动词现在时', '形容词/过去分词作表语', '副词', '介词'],
+                answer: 1,
+                detail: 'erkältet sein (感冒了，作表语)；反身动词：sich erkälten (感冒)；名词：die Erkältung, -en (感冒)。'
+            },
+            {
+                id: 22,
+                type: 'Präpositionalverb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'erkennen, erkennt, erkannte, hat erkannt',
+                question: '语法搭配：“Ich habe ihn ______ seiner Stimme erkannt.” (我凭声音认出了他。) 应填入介词？',
+                options: ['an (+ Dat.)', 'aus (+ Dat.)', 'durch (+ Akk.)', 'mit (+ Dat.)'],
+                answer: 0,
+                detail: 'jemanden an etwas (Dat.) erkennen - 凭/根据……认出某人。例：an den Augen erkennen (凭眼睛认出)。'
+            },
+            {
+                id: 23,
+                type: 'Verb Formen',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'erklären / die Erklärung, -en',
+                question: '动词 "erklären" (解释，说明) 的第三人称单数过去时 (Präteritum) 是？',
+                options: ['erklärt', 'erklärte', 'erhörte', 'erstand'],
+                answer: 1,
+                detail: 'erklären 是规则(弱变化)动词：erklärt, erklärte, hat erklärt。名词：die Erklärung, -en (解释，说明)。'
+            },
+            {
+                id: 24,
+                type: 'Präpositionalverb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'sich erkundigen, erkundigt sich, hat sich erkundigt',
+                question: '在车站询问发车时间：“Ich möchte mich ______ den Abfahrtszeiten erkundigen.” 应填入？',
+                options: ['nach (+ Dat.)', 'für (+ Akk.)', 'über (+ Akk.)', 'um (+ Akk.)'],
+                answer: 0,
+                detail: 'sich erkundigen nach + Dat. - 打听，询问(某事)。例：sich nach dem Weg erkundigen (问路)。'
+            },
+            {
+                id: 25,
+                type: 'Verb & Nomen',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'erlauben / die Erlaubnis',
+                question: '告示牌 “Parken verboten” (禁止停车) 意味着没有得到停车的 ______。',
+                options: ['die Erlaubnis', 'die Ermäßigung', 'die Entschuldigung', 'die Erhöhung'],
+                answer: 0,
+                detail: 'die Erlaubnis (许可，允许)。动词：erlauben (erlaubt, erlaubte, hat erlaubt)。反义词：das Verbot / verbieten.'
+            },
+            {
+                id: 26,
+                type: 'Verb & Nomen',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'erleben / das Erlebnis, -se',
+                question: '名词 "das Erlebnis, -se" 的正确中文释义是？',
+                options: ['经验，履历 (Erfahrung)', '亲身经历，难忘的体验', '客观结果 (Ergebnis)', '突发事件 (Ereignis)'],
+                answer: 1,
+                detail: 'das Erlebnis, -se 指“亲身经历，体验”。动词：erleben (erlebt, erlebte, hat erlebt)。注意区分 Erfahrung (经验)。'
+            },
+            {
+                id: 27,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'erledigen, erledigt, erledigte, hat erledigt',
+                question: '工作与日常中，“Formulare / Aufgaben erledigen” 的正确意思是？',
+                options: ['收集表格/任务', '办妥/完成/处理表格或任务', '放弃任务', '打印表格'],
+                answer: 1,
+                detail: 'erledigen (erledigt, erledigte, hat erledigt) - 处理，完成，办妥。例：Ich habe alles erledigt (我把事情都办好了)。'
+            },
+            {
+                id: 28,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'erleichtert, erleichterte, hat erleichtert',
+                question: '“Das neue System erleichtert die Arbeit.” 句中 "erleichtern" 的词根构成与含义是？',
+                options: ['er- + leicht (轻) -> 使……减轻/变轻松', 'er- + leucht -> 使……光亮', 'er- + leid -> 使……痛苦', 'er- + lang -> 使……变长'],
+                answer: 0,
+                detail: 'erleichtern (使减轻，使减轻负担/轻松)。反义词：erschweren (使加重/变困难)。'
+            },
+            {
+                id: 29,
+                type: 'Nomen',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Ermäßigung, -en',
+                question: '凭学生证购买剧院门票时享受 “eine Ermäßigung”。这里的 "Ermäßigung" 指的是？',
+                options: ['免费招待', '折扣，优惠减价', '优先入场权', '退票许可'],
+                answer: 1,
+                detail: 'die Ermäßigung, -en (优惠，打折，减价)。常见词组：Studentenermäßigung (学生折扣)。'
+            },
+            {
+                id: 30,
+                type: 'Verb & Nomen',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'ernähren / die Ernährung',
+                question: '健康生活话题中，“gesunde Ernährung” 的意思是？',
+                options: ['新鲜蔬菜', '健康的营养/饮食', '体育锻炼', '良好作息'],
+                answer: 1,
+                detail: 'die Ernährung (营养，饮食)。动词：sich/jdn. ernähren (ernährt, ernährte, hat ernährt) - 供养，进食。'
+            },
+            {
+                id: 31,
+                type: 'Adjektiv & Redewendung',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'ernst / ernsthaft',
+                question: '表达“这可不是开玩笑，我是认真的！”德语习惯用语是？',
+                options: ['Das ist mein Ernst!', 'Das ist meine Ernte!', 'Das ist mein Ersatz!', 'Das ist mein Erfolg!'],
+                answer: 0,
+                detail: 'Das ist mein Ernst! (我是认真的！/ 这不是开玩笑！)。ernst / ernsthaft 作形容词表示“严肃的，认真的”。'
+            },
+            {
+                id: 32,
+                type: 'Nomen',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Ernte, -n',
+                question: '农业与季节话题中，"die Ernte, -n" 的正确含义是？',
+                options: ['播种', '庄稼收获，收成', '耕地', '旱灾'],
+                answer: 1,
+                detail: 'die Ernte, -n (收获，收成)。对应动词：ernten (erntet, erntete, hat geerntet) - 收割，收获。'
+            },
+            {
+                id: 33,
+                type: 'Verb & Nomen',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'eröffnen / die Eröffnung, -en',
+                question: '新店开业、展览开幕或开立银行账户，德语中使用哪个动词？',
+                options: ['erfinden', 'eröffnen', 'erreichen', 'erfordern'],
+                answer: 1,
+                detail: 'eröffnen (eröffnet, eröffnete, hat eröffnet) - 开启，开业，开幕，开户。名词：die Eröffnung, -en。'
+            },
+            {
+                id: 34,
+                type: 'Verb Polysemie',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'erreichen, erreicht, erreichte, hat erreicht',
+                question: '“Ich konnte ihn telefonisch nicht ______.” 句中的 "erreichen" 表示？',
+                options: ['理解', '联系到，找得到(某人)', '听清', '叫醒'],
+                answer: 1,
+                detail: 'erreichen 有多重含义：① (电话/书信)联系上某人；② 达到(目标/数量)；③ 赶上(火车/公交)。'
+            },
+            {
+                id: 35,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'erschöpft',
+                question: '连续加班12小时后说 “Ich bin völlig erschöpft.”，"erschöpft" 意思是？',
+                options: ['筋疲力尽的，极为疲惫的', '极为兴奋的', '非常满意的', '极度饥饿的'],
+                answer: 0,
+                detail: 'erschöpft (筋疲力尽的，精疲力竭的)。源自动词 erschöpfen (耗尽)。近义词：völlig ausgemergelt / müde.'
+            },
+            {
+                id: 36,
+                type: 'Verb Grammatik Spezial',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'erschrecken (sich/jdn.)',
+                question: '考点精讲！动词 erschrecken 有两种用法，请选出括号内助动词对应的正确组合：<br>① 不及物“受惊”：er erschrickt, erschrak, [ ? ] erschrocken.<br>② 及物“吓唬某人”：er erschreckt, erschreckte, [ ? ] erschreckt.',
+                options: ['ist / hat', 'hat / ist', 'ist / ist', 'hat / hat'],
+                answer: 0,
+                detail: '不及物强变化表示状态改变：ist erschrocken (受惊吓)；及物弱变化：hat jdn. erschreckt (吓唬某人)。'
+            },
+            {
+                id: 37,
+                type: 'Verb & Nomen',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'ersetzen / der Ersatz',
+                question: '机器坏了需要“替换部件”或“备用件”，德语对应的名词是？',
+                options: ['der Erfolg', 'der Ersatz', 'der Erdapfel', 'der Abschluss'],
+                answer: 1,
+                detail: 'der Ersatz (替代品，备用)；Ersatzteile (备件)。动词：ersetzen durch + Akk. (用……替换)。'
+            },
+            {
+                id: 38,
+                type: 'Adverb Nuance',
+                badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
+                word: 'erst',
+                question: '时间副词 "erst" 与 "schon" 的对比：句子 “Es ist erst 8 Uhr.” 表达的语气是？',
+                options: ['已经 8 点了 (强调太晚了)', '才 8 点钟 (强调比预想的早)', '正好 8 点整', '大约 8 点钟'],
+                answer: 1,
+                detail: 'erst (才，刚刚 - 强调时间尚早或数量很少)；schon (已经 - 强调时间晚或数量多)。'
+            },
+            {
+                id: 39,
+                type: 'Verb & Nomen',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'entschuldigen / die Entschuldigung, -en',
+                question: '常用道歉语 “Entschuldigen Sie bitte!” 中，动词 "entschuldigen" 的语法特征是？',
+                options: ['带前缀 ent-，重音在第一音节', '带不可分前缀 ent-，完成时为 hat entschuldigt', '是可分动词', '过去分词需要加 -ge-'],
+                answer: 1,
+                detail: 'entschuldigen 是带有不可分前缀 ent- 的弱变化动词，完成时过去分词为 entschuldigt (不加 -ge-)。名词为 die Entschuldigung, -en。'
+            }
+        ];
+
+        let audioCtx = null;
+        function getAudioContext() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
+
+        function playSound(isCorrect) {
+            try {
+                const ctx = getAudioContext();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                const now = ctx.currentTime;
+                if (isCorrect) {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(523.25, now);
+                    osc.frequency.setValueAtTime(659.25, now + 0.08);
+                    gain.gain.setValueAtTime(0.12, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+                    osc.start(now);
+                    osc.stop(now + 0.3);
+                } else {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(220, now);
+                    osc.frequency.exponentialRampToValueAtTime(140, now + 0.2);
+                    gain.gain.setValueAtTime(0.1, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+                    osc.start(now);
+                    osc.stop(now + 0.2);
+                }
+            } catch (e) {
+                console.error("Audio error:", e);
+            }
+        }
+
+        function shuffleArray(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        let vocabularyData = [];
+        let currentIndex = 0;
+        let userAnswers = [];
+        let showExplanation = false;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            resetPractice();
+        });
+
+        function resetPractice() {
+            vocabularyData = shuffleArray(rawVocabularyData);
+            currentIndex = 0;
+            userAnswers = new Array(vocabularyData.length).fill(null);
+            showExplanation = false;
+            document.getElementById('quiz-container').classList.remove('hidden');
+            document.getElementById('bottom-nav').classList.remove('hidden');
+            document.getElementById('result-container').classList.add('hidden');
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const currentData = vocabularyData[currentIndex];
+
+            document.getElementById('word-badge').className = `px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase border ${currentData.badgeClass}`;
+            document.getElementById('word-badge').textContent = currentData.type;
+            document.getElementById('question-index-tag').textContent = `Q${currentIndex + 1}`;
+            document.getElementById('target-word').textContent = currentData.word;
+            document.getElementById('question-prompt').innerHTML = currentData.question;
+
+            const progressPercent = Math.round(((currentIndex + 1) / vocabularyData.length) * 100);
+            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+            document.getElementById('progress-text').textContent = `进度：${currentIndex + 1} / ${vocabularyData.length}`;
+            document.getElementById('progress-percent').textContent = `${progressPercent}%`;
+
+            const optionsGrid = document.getElementById('options-grid');
+            optionsGrid.innerHTML = '';
+            const selectedAnswer = userAnswers[currentIndex];
+            const isAnswered = selectedAnswer !== null;
+
+            currentData.options.forEach((optText, optIndex) => {
+                const btn = document.createElement('button');
+                btn.className = getOptionStyle(optIndex, selectedAnswer, currentData.answer);
+                btn.innerHTML = `
+                    <div class="flex items-center justify-between w-full">
+                        <span class="flex items-center gap-3.5">
+                            <span class="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold border transition-all ${getOptionMarkerStyle(optIndex, selectedAnswer, currentData.answer)}">
+                                ${String.fromCharCode(65 + optIndex)}
+                            </span>
+                            <span class="font-medium">${optText}</span>
+                        </span>
+                        ${getOptionIcon(optIndex, selectedAnswer, currentData.answer)}
+                    </div>
+                `;
+                btn.onclick = () => selectOption(optIndex);
+                optionsGrid.appendChild(btn);
+            });
+
+            const explainCard = document.getElementById('explanation-card');
+            const explainText = document.getElementById('explanation-text');
+            explainText.innerHTML = currentData.detail;
+
+            if (showExplanation || isAnswered) {
+                explainCard.classList.remove('hidden');
+            } else {
+                explainCard.classList.add('hidden');
+            }
+
+            document.getElementById('btn-prev').disabled = currentIndex === 0;
+            const btnNext = document.getElementById('btn-next');
+            if (currentIndex === vocabularyData.length - 1) {
+                btnNext.textContent = '完成特训';
+                btnNext.className = 'px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-teal-700 hover:bg-teal-800 text-white shadow-md transition-all';
+            } else {
+                btnNext.textContent = '下一题';
+                btnNext.className = 'px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-md transition-all';
+            }
+        }
+
+        function getOptionStyle(index, selected, correct) {
+            const base = "w-full text-left p-4 sm:p-4.5 rounded-2xl border text-sm sm:text-base transition-all duration-200 flex items-center justify-between ";
+            if (selected === null) {
+                return base + "border-slate-200/80 bg-white hover:border-slate-400 hover:shadow-md text-slate-800";
+            }
+            if (index === correct) {
+                return base + "border-emerald-300 bg-emerald-50/90 text-emerald-900 font-semibold shadow-sm";
+            }
+            if (index === selected && selected !== correct) {
+                return base + "border-rose-300 bg-rose-50/90 text-rose-900 font-semibold shadow-sm";
+            }
+            return base + "border-slate-100 bg-slate-50/50 text-slate-400 opacity-50";
+        }
+
+        function getOptionMarkerStyle(index, selected, correct) {
+            if (selected === null) {
+                return "border-slate-200 text-slate-500 bg-slate-50";
+            }
+            if (index === correct) {
+                return "border-emerald-500 text-white bg-emerald-600 shadow-sm";
+            }
+            if (index === selected && selected !== correct) {
+                return "border-rose-500 text-white bg-rose-500 shadow-sm";
+            }
+            return "border-slate-200 text-slate-300 bg-slate-100";
+        }
+
+        function getOptionIcon(index, selected, correct) {
+            if (selected === null) return '';
+            if (index === correct) {
+                return `<svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>`;
+            }
+            if (index === selected && selected !== correct) {
+                return `<svg class="w-5 h-5 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>`;
+            }
+            return '';
+        }
+
+        function selectOption(index) {
+            if (userAnswers[currentIndex] === null) {
+                const isCorrect = index === vocabularyData[currentIndex].answer;
+                playSound(isCorrect);
+            }
+            userAnswers[currentIndex] = index;
+            showExplanation = true;
+            renderQuestion();
+        }
+
+        function toggleExplanation() {
+            showExplanation = !showExplanation;
+            const explainCard = document.getElementById('explanation-card');
+            if (showExplanation) {
+                explainCard.classList.remove('hidden');
+            } else {
+                explainCard.classList.add('hidden');
+            }
+        }
+
+        function nextQuestion() {
+            if (currentIndex < vocabularyData.length - 1) {
+                currentIndex++;
+                showExplanation = false;
+                renderQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                showExplanation = false;
+                renderQuestion();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quiz-container').classList.add('hidden');
+            document.getElementById('bottom-nav').classList.add('hidden');
+            document.getElementById('result-container').classList.remove('hidden');
+
+            let mistakeCount = 0;
+            const mistakesList = document.getElementById('mistakes-list');
+            mistakesList.innerHTML = '';
+
+            userAnswers.forEach((ans, idx) => {
+                const item = vocabularyData[idx];
+                if (ans !== item.answer) {
+                    mistakeCount++;
+                    const mistakeDiv = document.createElement('div');
+                    mistakeDiv.className = 'p-4 bg-slate-50 rounded-2xl border border-slate-200/80 text-xs sm:text-sm';
+                    mistakeDiv.innerHTML = `
+                        <div class="font-german font-bold text-slate-900 text-base mb-1">${item.word}</div>
+                        <div class="text-slate-600 leading-relaxed">${item.detail}</div>
+                    `;
+                    mistakesList.appendChild(mistakeDiv);
+                }
+            });
+
+            document.getElementById('stat-total').textContent = vocabularyData.length;
+            document.getElementById('stat-mistakes').textContent = mistakeCount;
+
+            const mistakesSection = document.getElementById('mistakes-section');
+            if (mistakeCount > 0) {
+                mistakesSection.classList.remove('hidden');
+            } else {
+                mistakesSection.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
