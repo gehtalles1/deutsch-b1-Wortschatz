@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="h-full bg-slate-50/80">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>德语 B1 核心词汇特训</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Serif+Georgia&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .font-german {
+            font-family: 'Noto Serif Georgia', Georgia, serif;
+        }
+        .custom-glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+    </style>
+</head>
+<body class="h-full text-slate-800 antialiased selection:bg-teal-100 selection:text-teal-900 flex flex-col justify-between bg-gradient-to-br from-slate-50 via-zinc-50 to-teal-50/20">
+    <!-- Header Area -->
+    <header class="sticky top-0 z-30 custom-glass border-b border-slate-200/60 px-4 py-3.5 sm:px-8 shadow-sm">
+        <div class="max-w-3xl mx-auto flex items-center justify-between">
+            <a href="index.html" class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-500 hover:text-slate-900 transition-all py-1.5 px-3 rounded-full hover:bg-slate-100/80">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+                返回主页
+            </a>
+            <div class="text-center">
+                <h1 class="text-xs sm:text-sm font-bold tracking-widest text-slate-400 uppercase">Wortschatz Training</h1>
+                <p class="text-sm sm:text-base font-extrabold text-slate-900 tracking-tight">德语 B1 核心词汇特训</p>
+            </div>
+            <button onclick="resetPractice()" class="text-xs sm:text-sm font-semibold text-slate-500 hover:text-teal-700 transition-all py-1.5 px-3 rounded-full hover:bg-slate-100/80">
+                重新开始
+            </button>
+        </div>
+        <!-- Progress Bar -->
+        <div class="max-w-3xl mx-auto mt-3">
+            <div class="flex justify-between items-center text-xs font-bold text-slate-400 mb-1.5 tracking-wider uppercase">
+                <span id="progress-text">进度：1 / 45</span>
+                <span id="progress-percent">2%</span>
+            </div>
+            <div class="w-full h-1.5 bg-slate-200/70 rounded-full overflow-hidden p-0.5">
+                <div id="progress-bar" class="h-full bg-slate-900 transition-all duration-300 rounded-full" style="width: 2%"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Section -->
+    <main class="flex-1 max-w-3xl w-full mx-auto p-4 sm:p-6 flex flex-col justify-center">
+        <!-- QUIZ CONTAINER -->
+        <div id="quiz-container" class="space-y-6">
+            <!-- Word Header Card -->
+            <div class="bg-white/90 backdrop-blur-sm rounded-3xl p-6 sm:p-9 border border-slate-200/70 shadow-xl shadow-slate-200/50 relative overflow-hidden transition-all">
+                <div class="flex items-center justify-between mb-4">
+                    <span id="word-badge" class="px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase border">
+                        Adjektiv
+                    </span>
+                    <span id="question-index-tag" class="text-xs font-bold text-slate-400 tracking-widest uppercase">
+                        Q1
+                    </span>
+                </div>
+                <div class="py-2">
+                    <h2 id="target-word" class="font-german text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-3">
+                        freiwillig
+                    </h2>
+                    <p id="question-prompt" class="text-sm sm:text-base font-medium text-slate-600 leading-relaxed">
+                        加载中...
+                    </p>
+                </div>
+            </div>
+
+            <!-- Options Grid -->
+            <div id="options-grid" class="grid grid-cols-1 gap-3.5">
+                <!-- Dynamic options -->
+            </div>
+
+            <!-- Explanation Card -->
+            <div id="explanation-card" class="hidden bg-slate-900 text-slate-100 rounded-2xl p-5 sm:p-6 shadow-lg border border-slate-800 text-sm leading-relaxed space-y-2">
+                <div class="font-semibold text-teal-400 flex items-center gap-2 text-xs sm:text-sm uppercase tracking-wider">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    词汇解析与用法
+                </div>
+                <div id="explanation-text" class="text-slate-300 text-xs sm:text-sm font-normal"></div>
+            </div>
+        </div>
+
+        <!-- RESULT CONTAINER -->
+        <div id="result-container" class="hidden bg-white/90 backdrop-blur-sm rounded-3xl p-8 sm:p-10 border border-slate-200/70 shadow-xl shadow-slate-200/50 text-center space-y-8">
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-900 text-teal-400 shadow-lg shadow-slate-900/10 mb-2">
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <div>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2 tracking-tight">特训完成</h2>
+                <p class="text-sm text-slate-500 font-medium">已完成所有词汇测试，积累词汇量是语言通关的基石</p>
+            </div>
+            <div class="max-w-md mx-auto py-3 px-6 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-around">
+                <div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">本次练习题目</div>
+                    <div id="stat-total" class="text-2xl font-extrabold text-slate-900">45</div>
+                </div>
+                <div class="h-8 w-px bg-slate-200"></div>
+                <div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">重点标注/复习词汇</div>
+                    <div id="stat-mistakes" class="text-2xl font-extrabold text-slate-900">0</div>
+                </div>
+            </div>
+
+            <!-- Incorrect Words Review List -->
+            <div id="mistakes-section" class="text-left hidden space-y-4 pt-2">
+                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                    需重点巩固的词汇
+                </h3>
+                <div id="mistakes-list" class="space-y-2.5 max-h-64 overflow-y-auto pr-1"></div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-6 border-t border-slate-100">
+                <button onclick="resetPractice()" class="w-full sm:w-auto px-8 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm transition-all shadow-md hover:shadow-lg">
+                    再练一次
+                </button>
+                <a href="index.html" class="w-full sm:w-auto px-8 py-3 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 font-bold text-sm transition-all text-center">
+                    返回主页
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Actions Nav -->
+    <footer id="bottom-nav" class="sticky bottom-0 z-30 custom-glass border-t border-slate-200/60 px-4 py-3.5 sm:px-8">
+        <div class="max-w-3xl mx-auto flex items-center justify-between gap-3">
+            <button id="btn-prev" onclick="prevQuestion()" disabled class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 text-slate-600 hover:bg-slate-100 disabled:opacity-30 disabled:cursor-not-allowed transition-all">
+                上一题
+            </button>
+            <button id="btn-toggle-explain" onclick="toggleExplanation()" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 hover:bg-slate-200/80 text-slate-700 transition-all flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                查看释义
+            </button>
+            <button id="btn-next" onclick="nextQuestion()" class="px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-md transition-all">
+                下一题
+            </button>
+        </div>
+    </footer>
+
+    <script>
+        const rawVocabularyData = [
+            {
+                id: 1,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'freiwillig',
+                question: '表达“自愿地、出于个人意愿而非强制”时，应选择哪一个词汇？',
+                options: ['freiwillig', 'fremd', 'furchtbar', 'frisch'],
+                answer: 0,
+                detail: 'freiwillig (自愿的，出于自愿的)。例如：ein freiwilliges soziales Jahr (FSJ，志愿社会年)；反义词为 gezwungen / pflichtgemäß。'
+            },
+            {
+                id: 2,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'fremd',
+                question: '句子 "In einem _______ Land fühlt man sich oft zuerst unsicher." 中，表示“陌生的、外来的”词汇是？',
+                options: ['frisch', 'fremd', 'froh', 'freundlich'],
+                answer: 1,
+                detail: 'fremd (陌生的，外来的)。衍生词：die Fremdsprache (外语), der/die Fremde (陌生人)。'
+            },
+            {
+                id: 3,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'fressen',
+                question: '德语中描述“动物吃东西”与“人类吃东西”区分严格，描述动物进食应使用哪个动词？',
+                options: ['essen', 'füttern', 'fressen', 'frühstücken'],
+                answer: 2,
+                detail: 'fressen (frisst, fraß, hat gefressen) 专指动物吃/啃食；essen 指人类吃；füttern 则是人类“喂养/喂食”动物或婴儿。'
+            },
+            {
+                id: 4,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'sich freuen',
+                question: '区分介词搭配：表达“期待未来将要发生的事”与“对现有的事感到高兴”分别用？',
+                options: ['sich freuen über (未来) / auf (现状)', 'sich freuen auf (未来) / über (现状)', 'sich freuen an (未来) / für (现状)', 'sich freuen vor (未来) / mit (现状)'],
+                answer: 1,
+                detail: 'sich freuen auf + Akk. 表示“期待（未发生的事）”；sich freuen über + Akk. 表示“对（已发生/现有的事）感到高兴”。'
+            },
+            {
+                id: 5,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Freundschaft, -en',
+                question: '句子 "Unsere _______ dauert schon über zehn Jahre an." 应填入哪个表示“友谊、友情”的名词？',
+                options: ['die Freude', 'die Freundschaft', 'der Freund', 'die Frist'],
+                answer: 1,
+                detail: 'die Freundschaft, -en (友谊)；die Freude (高兴/喜悦)；freundlich (友好的，形容词)；der Freund, -e (朋友)。'
+            },
+            {
+                id: 6,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Friede / Frieden',
+                question: '名词 "der Friede(n)" (和平) 在属格 (Genitiv) 形式下的正确变格是？',
+                options: ['des Friedes', 'des Friedens', 'des Frieden', 'des Friedenes'],
+                answer: 1,
+                detail: 'der Friede / Frieden 属于弱变化名词衍生类别，单数二格 (Genitiv) 形式为 des Friedens。'
+            },
+            {
+                id: 7,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'frieren',
+                question: '表达“感到发冷、冻得发抖”的动词 "frieren" (frieren, fror, hat gefroren) 在句中："Ich _______ sehr am ganzen Körper."',
+                options: ['friere', 'fresse', 'fürchte', 'führe'],
+                answer: 0,
+                detail: 'frieren (frierst, friert, hat gefroren) 表示“感到冷/结冰”。注意不要与 fliegen (飞) 或 fliehen (逃跑) 混淆。'
+            },
+            {
+                id: 8,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'frisch',
+                question: '表示食物“新鲜的”或空气“清新”的形容词是？',
+                options: ['froh', 'frisch', 'frech', 'flach'],
+                answer: 1,
+                detail: 'frisch (新鲜的，清新的)。常用搭配：frisches Obst (新鲜水果), frische Luft (新鲜空气)。'
+            },
+            {
+                id: 9,
+                type: 'Regional',
+                badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
+                word: 'der Friseur (D, A) vs. Coiffeur (CH)',
+                question: '表达“理发师”时，德国/奥地利通用 "der Friseur"，而在瑞士德语 (CH) 中常用哪一个借词？',
+                options: ['der Barber', 'der Coiffeur', 'der Designer', 'der Stylist'],
+                answer: 1,
+                detail: '瑞士德语 (CH) 中广泛使用法语借词 der Coiffeur / die Coiffeuse 表示理发师；德国 (D) 和奥地利 (A) 常用 der Friseur / die Friseurin。'
+            },
+            {
+                id: 10,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Frisur, -en',
+                question: '句子 "Sie hat sich beim Friseur eine neue _______ machen lassen." 中应填入？',
+                options: ['Frist', 'Frisur', 'Frucht', 'Führung'],
+                answer: 1,
+                detail: 'die Frisur, -en (发型)。做发型常用搭配：eine Frisur machen lassen。'
+            },
+            {
+                id: 11,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Frist, -en',
+                question: '表示法律或合同中规定的“截止期限、履约期限”的名词是？',
+                options: ['die Frist', 'die Frucht', 'die Führung', 'die Gebühr'],
+                answer: 0,
+                detail: 'die Frist, -en (期限，截止日期)。常见搭配：eine Frist einhalten (按期/遵守期限), die Zahlungsfrist (付款期限)。'
+            },
+            {
+                id: 12,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'froh vs. fröhlich',
+                question: '形容词 "froh" 与 "fröhlich" 含义有微妙差异，下列理解最符合规范德语的是？',
+                options: ['froh 侧重于“对特定事感到庆幸/高兴”，fröhlich 侧重于“心情/性格欢快、愉快”', 'froh 只用于天气，fröhlich 只用于动物', '两者完全相同，毫无区别', 'froh 是名词，fröhlich 是动词'],
+                answer: 0,
+                detail: 'froh 多用于特定事情后的“高兴/庆幸”（如：Ich bin froh, dass...）；fröhlich 描述人的愉快性格或欢快氛围（如：ein fröhliches Kind）。'
+            },
+            {
+                id: 13,
+                type: 'Regional',
+                badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
+                word: 'die Frucht / Obst',
+                question: '表示“鲜果/水果”时，德国和奥地利习惯用集合名词 "das Obst"，而在瑞士日常表达中常使用哪个词的复数？',
+                options: ['die Früchte', 'die Fristen', 'die Gebäck', 'die Futter'],
+                answer: 0,
+                detail: 'die Frucht, "-e 在瑞士 (CH) 常直接指代水果 (Obst)；在标准德语中主要表示植物的“果实”或抽象的“成果”。'
+            },
+            {
+                id: 14,
+                type: 'Adverb',
+                badgeClass: 'bg-purple-50 text-purple-700 border-purple-200',
+                word: 'früh vs. früher / früher-',
+                question: '句子 "_______ gab es an dieser Stelle keinen Supermarkt." 中，"früher" 作为副词表示什么意思？',
+                options: ['在清晨', '在将来', '在过去 / 以前', '在隔壁'],
+                answer: 2,
+                detail: 'früher 作为副词意为“以前，过去”；作为形容词定语或比较级意为“更早的 / 以前的 (如: mein früherer Chef)”。'
+            },
+            {
+                id: 15,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'frühstücken',
+                question: '动词 "frühstücken" (吃早餐) 的三态及完成时助动词是？',
+                options: ['frühstückt, frühstückte, ist gefrühstückt', 'frühstückt, frühstückte, hat gefrühstückt', 'frühstückt, fror, hat gefrühstückt', 'frühstückt, fraß, ist gefrühstückt'],
+                answer: 1,
+                detail: 'frühstücken (hat gefrühstückt)。不可分动词，过去分词为 gefrühstückt。名词为 das Frühstück。'
+            },
+            {
+                id: 16,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'fühlen',
+                question: '询问对方“你今天感觉怎么样？”，正确的反身动词表达是？',
+                options: ['Wie führst du dich heute?', 'Wie fühlst du dich heute?', 'Wie fürchtest du dich heute?', 'Wie funktionierst du heute?'],
+                answer: 1,
+                detail: 'sich fühlen (感觉，觉得)。例：Ich fühle mich wohl / gut / schlecht.'
+            },
+            {
+                id: 17,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'führen / die Führung',
+                question: '在博物馆或城市观光中，“由导游带领的参观讲解活动”被称为？',
+                options: ['die Führung', 'die Fütterung', 'die Gebühr', 'die Galerie'],
+                answer: 0,
+                detail: 'die Führung, -en (导览，参观，讲解)；动词 führen (führt, führte, hat geführt) 表示“引导，带领，主持”。'
+            },
+            {
+                id: 18,
+                type: 'Regional',
+                badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
+                word: 'Führerschein vs. Führerausweis',
+                question: '表达“驾驶执照（驾照）”时，瑞士德语 (CH) 使用哪个词？',
+                options: ['der Führerschein', 'der Führerausweis', 'die Führungskarte', 'das Fahrerzertifikat'],
+                answer: 1,
+                detail: '瑞士 (CH) 称驾照为 der Führerausweis；德国 (D) 和奥地利 (A) 称为 der Führerschein。'
+            },
+            {
+                id: 19,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'das Fundbüro, -s',
+                question: '在德国火车站或机场丢失了物品，应该去哪个部门寻找？',
+                options: ['das Fundbüro', 'die Garderobe', 'die Gaststätte', 'das Gasthaus'],
+                answer: 0,
+                detail: 'das Fundbüro, -s (失物招领处)。由 finden (找到) + Büro 组合而成。'
+            },
+            {
+                id: 20,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'funktionieren',
+                question: '表达“机器/设备正常运转”或“计划行之有效”时，动词 "funktionieren" 的完成时形式是？',
+                options: ['hat gefunktioniert', 'ist funktioniert', 'hat funktioniert', 'ist gefunktioniert'],
+                answer: 2,
+                detail: 'funktionieren (hat funktioniert) - 以 -ieren 结尾的外来词动词，过去分词不加 ge- 前缀，助动词用 haben。'
+            },
+            {
+                id: 21,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'furchtbar vs. (sich) fürchten',
+                question: '反身动词 "sich fürchten" (害怕/恐惧) 搭配的固定介词与格是？',
+                options: ['sich fürchten vor + Dativ', 'sich fürchten über + Akkusativ', 'sich fürchten an + Dativ', 'sich fürchten für + Akkusativ'],
+                answer: 0,
+                detail: 'sich fürchten vor + Dat. (害怕...)。例：Er fürchtet sich vor Hunden. 形容词 furchtbar 表示“可怕的，糟糕的”。'
+            },
+            {
+                id: 22,
+                type: 'Ausdruck',
+                badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
+                word: 'der Fuß / der Fußball',
+                question: '表达“徒步/步行去学校”时，介词与名词搭配正确的是？',
+                options: ['mit dem Fuß gehen', 'zu Fuß gehen', 'am Fuß gehen', 'auf Fuß gehen'],
+                answer: 1,
+                detail: 'zu Fuß gehen (徒步，步行)。der Fuß, "-e (脚)；der Fußball, "-e (足球)。'
+            },
+            {
+                id: 23,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Fußgängerzone, -n',
+                question: '城市中心“禁止机动车通行、仅供行人购物和散步的区域”称为？',
+                options: ['die Fußgängerzone', 'der Flur', 'die Gaststätte', 'das Gebirge'],
+                answer: 0,
+                detail: 'die Fußgängerzone, -n (步行街，行人专用区)。der Fußgänger, - (行人)。'
+            },
+            {
+                id: 24,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'füttern',
+                question: '句子 "Die Mutter _______ das kleine Baby mit dem Löffel." 中应填入动词？',
+                options: ['frisst', 'füttert', 'führt', 'fühlt'],
+                answer: 1,
+                detail: 'füttern (füttert, fütterte, hat gefüttert) - 喂养，给...喂食。可用于喂养动物或给婴儿喂饭。'
+            },
+            {
+                id: 25,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Gabel, -n',
+                question: '西餐餐具“刀、叉、勺”中的“叉子”在德语中是？',
+                options: ['das Messer', 'die Gabel', 'der Löffel', 'die Garage'],
+                answer: 1,
+                detail: 'die Gabel, -n (叉子)。常见餐具：das Messer (刀), die Gabel (叉), der Löffel (勺)。'
+            },
+            {
+                id: 26,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Galerie, -n',
+                question: '展示与售卖艺术作品（画作、雕塑等）的场所称为？',
+                options: ['die Galerie', 'die Garderobe', 'die Gaststätte', 'die Gegend'],
+                answer: 0,
+                detail: 'die Galerie, -n (画廊，艺术展览馆)。'
+            },
+            {
+                id: 27,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Gang, "-e',
+                question: '名词 "der Gang" 在德语中除了指建筑内的走廊，在汽车驾驶中指？',
+                options: ['方向盘', '挡位 (如：der erste Gang)', '刹车', '轮胎'],
+                answer: 1,
+                detail: 'der Gang, "-e (走廊，通道；汽车挡位)。例：den Gang einlegen (挂挡)。'
+            },
+            {
+                id: 28,
+                type: 'Adverb',
+                badgeClass: 'bg-purple-50 text-purple-700 border-purple-200',
+                word: 'ganz vs. gar',
+                question: '强调“完全不、一点也不”时，常与否定词 nicht 连用的固定短语是？',
+                options: ['ganz nicht', 'gar nicht', 'sehr nicht', 'völlig nicht'],
+                answer: 1,
+                detail: 'gar nicht (一点也不，完全不)；gar kein (完全没有)。ganz 则常表示“整体的/相当的 (如: ganz gut)”。'
+            },
+            {
+                id: 29,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Garage, -n',
+                question: '住宅旁用于停放汽车的“车库”在德语中是？',
+                options: ['die Garderobe', 'die Garage', 'die Galerie', 'das Gebäude'],
+                answer: 1,
+                detail: 'die Garage, -n (车库)。注意该词发音来源于法语。'
+            },
+            {
+                id: 30,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'garantieren / die Garantie',
+                question: '购买家电时厂家承诺的“质保/保修期”，德语表达是？',
+                options: ['die Garantie', 'die Gebühr', 'die Frist', 'die Geduld'],
+                answer: 0,
+                detail: 'die Garantie, -n (保证，保修)。动词：garantieren (garantiert, hat garantiert)。例：Zwei Jahre Garantie haben.'
+            },
+            {
+                id: 31,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Garderobe, -n',
+                question: '在剧院、音乐厅进入观众席前寄存外套和包包的“衣帽间/寄存处”被称为？',
+                options: ['die Galerie', 'die Garderobe', 'das Fundbüro', 'die Gaststätte'],
+                answer: 1,
+                detail: 'die Garderobe, -n (衣帽间，寄存处；服装)。'
+            },
+            {
+                id: 32,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'das Gas',
+                question: '厨房中除了用电 (Strom) 烧菜外，常常使用的“燃气/天然气”在德语中是？',
+                options: ['das Gas', 'das Gebäck', 'das Gebiet', 'das Gefühl'],
+                answer: 0,
+                detail: 'das Gas, -e (气体，燃气)。常用搭配：Gas geben (踩油门/加速)。'
+            },
+            {
+                id: 33,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Gast, "-e',
+                question: '宾馆里住店的“客人”或饭店里的“顾客”，德语称为？',
+                options: ['der Gast', 'der Gang', 'der Gebür', 'der Geber'],
+                answer: 0,
+                detail: 'der Gast, "-e (客人，宾客)。复数有变音：die Gäste.'
+            },
+            {
+                id: 34,
+                type: 'Regional',
+                badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
+                word: 'das Gasthaus (A) vs. die Gaststätte (D)',
+                question: '表示“小餐馆/客栈”时，德国多用 "die Gaststätte"，而奥地利更习惯使用哪一个词？',
+                options: ['das Gasthaus', 'die Kantine', 'das Fundbüro', 'die Garage'],
+                answer: 0,
+                detail: 'das Gasthaus, "-er 在奥地利 (A) 及德国南部非常常见；德国 (D) 也通用 die Gaststätte, -n。'
+            },
+            {
+                id: 35,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'das Gebäude, -',
+                question: '关于中性名词 "das Gebäude" (建筑物/楼房) 的复数形式，正确的是？',
+                options: ['die Gebäuden', 'die Gebäude', 'die Gebäuder', 'die Gebäudes'],
+                answer: 1,
+                detail: 'das Gebäude, - (建筑物)。单复数同形：ein Gebäude -> zwei Gebäude。'
+            },
+            {
+                id: 36,
+                type: 'Grammatik',
+                badgeClass: 'bg-purple-50 text-purple-700 border-purple-200',
+                word: 'geben',
+                question: '无人称句型 "Es gibt..." (有...) 后接宾语时，宾语必须使用哪一个格？',
+                options: ['Nominativ (第一格)', 'Akkusativ (第四格)', 'Dativ (第三格)', 'Genitiv (第二格)'],
+                answer: 1,
+                detail: 'Es gibt + Akkusativ. 例如：Es gibt einen neuen Supermarkt (阳性第四格)。'
+            },
+            {
+                id: 37,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'das Gebäck',
+                question: '德语中 "das Gebäck" 是指烘焙制成的糕点饼干类食物，关于它的语法特征描述正确的是？',
+                options: ['它是不可数集合名词，通常没有复数形式', '它的复数形式是 die Gebäcke', '它是阳性名词 der Gebäck', '它只能指法式长棍面包'],
+                answer: 0,
+                detail: 'das Gebäck (烘焙食品，糕点点心) 是集合名词 (Sammelbezeichnung)，一般作不可数名词使用。'
+            },
+            {
+                id: 38,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'das Gebiet, -e',
+                question: '表达“自然保护区”或“特定知识领地/领域”时，名词 "Gebiet" 的意思是？',
+                options: ['建筑', '区域 / 领域', '山脉', '建筑物'],
+                answer: 1,
+                detail: 'das Gebiet, -e (区域，领土，领域)。例如：ein Naturschutzgebiet (自然保护区), auf diesem Gebiet (在该领域)。'
+            },
+            {
+                id: 39,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'das Gebirge',
+                question: '词汇辨析：单座山称为 "der Berg"，而“群山/山脉（如阿尔卑斯山脉）”在德语中用哪一个集合名词？',
+                options: ['das Gebiet', 'das Gebirge', 'das Gebäude', 'das Gebäck'],
+                answer: 1,
+                detail: 'das Gebirge, - (山脉，群山)。集合名词，如：das Alpengebirge / ins Gebirge fahren.'
+            },
+            {
+                id: 40,
+                type: 'Grammatik',
+                badgeClass: 'bg-purple-50 text-purple-700 border-purple-200',
+                word: 'geboren werden',
+                question: '表达“我出生于 1998 年”，德语中最规范的被动语态完成时/过去时表达是？',
+                options: ['Ich habe 1998 geboren.', 'Ich bin 1998 geboren worden / wurde 1998 geboren.', 'Ich werde 1998 geboren.', 'Ich war 1998 geboren.'],
+                answer: 1,
+                detail: 'geboren werden 表示“出生”。过去时：wurde geboren；完成时：ist geboren worden (日常口语常省略 worden 简写为 ist geboren)。'
+            },
+            {
+                id: 41,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Gebrauchsanweisung, -en',
+                question: '买回新家电后，阅读说明“如何正确操作使用设备”的手册称为？',
+                options: ['die Gebrauchsanweisung', 'die Gebührenordnung', 'die Garantierechnung', 'die Geburtsurkunde'],
+                answer: 0,
+                detail: 'die Gebrauchsanweisung, -en (使用说明书)。动词 gebrauchen 表示“使用/用得着”。'
+            },
+            {
+                id: 42,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Gebühr, -en',
+                question: '办理护照或使用公共设施时支付的“服务费/手续费/行政费用”在德语中是？',
+                options: ['die Gebühr', 'die Geburt', 'die Geduld', 'die Garantie'],
+                answer: 0,
+                detail: 'die Gebühr, -en (费用，手续费)。例如：Bearbeitungsgebühr (加工作业费)。'
+            },
+            {
+                id: 43,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Geburt, -en',
+                question: '表达“从出生起” (seit der ...) 应使用哪一个名词？',
+                options: ['seit der Geburt', 'seit dem Geburtstag', 'seit dem Gebäude', 'seit der Geduld'],
+                answer: 0,
+                detail: 'die Geburt, -en (出生，分娩)；der Geburtstag, -e (生日)。'
+            },
+            {
+                id: 44,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'das Gedicht, -e',
+                question: '歌德或席勒创作的“诗歌、韵文”作品在德语中被称为？',
+                options: ['das Gedicht', 'die Geschichte', 'das Gesicht', 'das Gericht'],
+                answer: 0,
+                detail: 'das Gedicht, -e (诗歌)。注意不要与 das Gericht (菜肴/法院) 或 das Gesicht (脸) 混淆。'
+            },
+            {
+                id: 45,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Geduld',
+                question: '短语 "Geduld haben" 中，抽象名词 "die Geduld" 的中文意思是？',
+                options: ['勇气', '耐心', '记忆力', '热情'],
+                answer: 1,
+                detail: 'die Geduld (耐心)。形容词为 geduldig (有耐心的)。例：Vielen Dank für Ihre Geduld! (感谢您的耐心！)。'
+            }
+        ];
+
+        // Native Audio Synthesizer
+        let audioCtx = null;
+        function getAudioContext() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
+
+        function playSound(isCorrect) {
+            try {
+                const ctx = getAudioContext();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                const now = ctx.currentTime;
+                if (isCorrect) {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(523.25, now); // C5
+                    osc.frequency.setValueAtTime(659.25, now + 0.08); // E5
+                    gain.gain.setValueAtTime(0.12, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+                    osc.start(now);
+                    osc.stop(now + 0.3);
+                } else {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(220, now);
+                    osc.frequency.exponentialRampToValueAtTime(140, now + 0.2);
+                    gain.gain.setValueAtTime(0.1, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+                    osc.start(now);
+                    osc.stop(now + 0.2);
+                }
+            } catch (e) {
+                console.error("Audio error:", e);
+            }
+        }
+
+        // Fisher-Yates Shuffle
+        function shuffleArray(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        // App State
+        let vocabularyData = [];
+        let currentIndex = 0;
+        let userAnswers = [];
+        let showExplanation = false;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            resetPractice();
+        });
+
+        function resetPractice() {
+            vocabularyData = shuffleArray(rawVocabularyData);
+            currentIndex = 0;
+            userAnswers = new Array(vocabularyData.length).fill(null);
+            showExplanation = false;
+
+            document.getElementById('quiz-container').classList.remove('hidden');
+            document.getElementById('bottom-nav').classList.remove('hidden');
+            document.getElementById('result-container').classList.add('hidden');
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const currentData = vocabularyData[currentIndex];
+
+            // Render Badges and Titles
+            document.getElementById('word-badge').className = `px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase border ${currentData.badgeClass}`;
+            document.getElementById('word-badge').textContent = currentData.type;
+            document.getElementById('question-index-tag').textContent = `Q${currentIndex + 1}`;
+            document.getElementById('target-word').textContent = currentData.word;
+            document.getElementById('question-prompt').textContent = currentData.question;
+
+            // Progress Bar
+            const progressPercent = Math.round(((currentIndex + 1) / vocabularyData.length) * 100);
+            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+            document.getElementById('progress-text').textContent = `进度：${currentIndex + 1} / ${vocabularyData.length}`;
+            document.getElementById('progress-percent').textContent = `${progressPercent}%`;
+
+            // Options
+            const optionsGrid = document.getElementById('options-grid');
+            optionsGrid.innerHTML = '';
+
+            const selectedAnswer = userAnswers[currentIndex];
+            const isAnswered = selectedAnswer !== null;
+
+            currentData.options.forEach((optText, optIndex) => {
+                const btn = document.createElement('button');
+                btn.className = getOptionStyle(optIndex, selectedAnswer, currentData.answer);
+                btn.innerHTML = `
+                    <div class="flex items-center justify-between w-full">
+                        <span class="flex items-center gap-3.5">
+                            <span class="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold border transition-all ${getOptionMarkerStyle(optIndex, selectedAnswer, currentData.answer)}">
+                                ${String.fromCharCode(65 + optIndex)}
+                            </span>
+                            <span class="font-medium">${optText}</span>
+                        </span>
+                        ${getOptionIcon(optIndex, selectedAnswer, currentData.answer)}
+                    </div>
+                `;
+                btn.onclick = () => selectOption(optIndex);
+                optionsGrid.appendChild(btn);
+            });
+
+            // Explanation
+            const explainCard = document.getElementById('explanation-card');
+            const explainText = document.getElementById('explanation-text');
+            explainText.textContent = currentData.detail;
+
+            if (showExplanation || isAnswered) {
+                explainCard.classList.remove('hidden');
+            } else {
+                explainCard.classList.add('hidden');
+            }
+
+            // Controls
+            document.getElementById('btn-prev').disabled = currentIndex === 0;
+            const btnNext = document.getElementById('btn-next');
+            if (currentIndex === vocabularyData.length - 1) {
+                btnNext.textContent = '完成特训';
+                btnNext.className = 'px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-teal-700 hover:bg-teal-800 text-white shadow-md transition-all';
+            } else {
+                btnNext.textContent = '下一题';
+                btnNext.className = 'px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-md transition-all';
+            }
+        }
+
+        function getOptionStyle(index, selected, correct) {
+            const base = "w-full text-left p-4 sm:p-4.5 rounded-2xl border text-sm sm:text-base transition-all duration-200 flex items-center justify-between ";
+            if (selected === null) {
+                return base + "border-slate-200/80 bg-white hover:border-slate-400 hover:shadow-md text-slate-800";
+            }
+            if (index === correct) {
+                return base + "border-emerald-300 bg-emerald-50/90 text-emerald-900 font-semibold shadow-sm";
+            }
+            if (index === selected && selected !== correct) {
+                return base + "border-rose-300 bg-rose-50/90 text-rose-900 font-semibold shadow-sm";
+            }
+            return base + "border-slate-100 bg-slate-50/50 text-slate-400 opacity-50";
+        }
+
+        function getOptionMarkerStyle(index, selected, correct) {
+            if (selected === null) {
+                return "border-slate-200 text-slate-500 bg-slate-50";
+            }
+            if (index === correct) {
+                return "border-emerald-500 text-white bg-emerald-600 shadow-sm";
+            }
+            if (index === selected && selected !== correct) {
+                return "border-rose-500 text-white bg-rose-500 shadow-sm";
+            }
+            return "border-slate-200 text-slate-300 bg-slate-100";
+        }
+
+        function getOptionIcon(index, selected, correct) {
+            if (selected === null) return '';
+            if (index === correct) {
+                return `<svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>`;
+            }
+            if (index === selected && selected !== correct) {
+                return `<svg class="w-5 h-5 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>`;
+            }
+            return '';
+        }
+
+        function selectOption(index) {
+            if (userAnswers[currentIndex] === null) {
+                const isCorrect = index === vocabularyData[currentIndex].answer;
+                playSound(isCorrect);
+            }
+            userAnswers[currentIndex] = index;
+            showExplanation = true;
+            renderQuestion();
+        }
+
+        function toggleExplanation() {
+            showExplanation = !showExplanation;
+            const explainCard = document.getElementById('explanation-card');
+            if (showExplanation) {
+                explainCard.classList.remove('hidden');
+            } else {
+                explainCard.classList.add('hidden');
+            }
+        }
+
+        function nextQuestion() {
+            if (currentIndex < vocabularyData.length - 1) {
+                currentIndex++;
+                showExplanation = false;
+                renderQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                showExplanation = false;
+                renderQuestion();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quiz-container').classList.add('hidden');
+            document.getElementById('bottom-nav').classList.add('hidden');
+            document.getElementById('result-container').classList.remove('hidden');
+
+            let mistakeCount = 0;
+            const mistakesList = document.getElementById('mistakes-list');
+            mistakesList.innerHTML = '';
+
+            userAnswers.forEach((ans, idx) => {
+                const item = vocabularyData[idx];
+                if (ans !== item.answer) {
+                    mistakeCount++;
+                    const mistakeDiv = document.createElement('div');
+                    mistakeDiv.className = 'p-4 bg-slate-50 rounded-2xl border border-slate-200/80 text-xs sm:text-sm';
+                    mistakeDiv.innerHTML = `
+                        <div class="font-german font-bold text-slate-900 text-base mb-1">${item.word}</div>
+                        <div class="text-slate-600 leading-relaxed">${item.detail}</div>
+                    `;
+                    mistakesList.appendChild(mistakeDiv);
+                }
+            });
+
+            document.getElementById('stat-total').textContent = vocabularyData.length;
+            document.getElementById('stat-mistakes').textContent = mistakeCount;
+
+            const mistakesSection = document.getElementById('mistakes-section');
+            if (mistakeCount > 0) {
+                mistakesSection.classList.remove('hidden');
+            } else {
+                mistakesSection.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
