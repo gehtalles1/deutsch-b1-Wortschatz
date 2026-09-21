@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="h-full bg-slate-50/80">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>德语B1核心词汇特训</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Serif+Georgia&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .font-german {
+            font-family: 'Noto Serif Georgia', Georgia, serif;
+        }
+        .custom-glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+    </style>
+</head>
+<body class="h-full text-slate-800 antialiased selection:bg-teal-100 selection:text-teal-900 flex flex-col justify-between bg-gradient-to-br from-slate-50 via-zinc-50 to-teal-50/20">
+    <!-- Header Area -->
+    <header class="sticky top-0 z-30 custom-glass border-b border-slate-200/60 px-4 py-3.5 sm:px-8 shadow-sm">
+        <div class="max-w-3xl mx-auto flex items-center justify-between">
+            <a href="index.html" class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-500 hover:text-slate-900 transition-all py-1.5 px-3 rounded-full hover:bg-slate-100/80">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+                返回主页
+            </a>
+            <div class="text-center">
+                <h1 class="text-xs sm:text-sm font-bold tracking-widest text-slate-400 uppercase">Wortschatz Training</h1>
+                <p class="text-sm sm:text-base font-extrabold text-slate-900 tracking-tight">德语B1核心词汇特训</p>
+            </div>
+            <button onclick="resetPractice()" class="text-xs sm:text-sm font-semibold text-slate-500 hover:text-teal-700 transition-all py-1.5 px-3 rounded-full hover:bg-slate-100/80">
+                重新开始
+            </button>
+        </div>
+        <!-- Progress Bar -->
+        <div class="max-w-3xl mx-auto mt-3">
+            <div class="flex justify-between items-center text-xs font-bold text-slate-400 mb-1.5 tracking-wider uppercase">
+                <span id="progress-text">进度：1 / 24</span>
+                <span id="progress-percent">4%</span>
+            </div>
+            <div class="w-full h-1.5 bg-slate-200/70 rounded-full overflow-hidden p-0.5">
+                <div id="progress-bar" class="h-full bg-slate-900 transition-all duration-300 rounded-full" style="width: 4%"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Section -->
+    <main class="flex-1 max-w-3xl w-full mx-auto p-4 sm:p-6 flex flex-col justify-center">
+        <!-- QUIZ CONTAINER -->
+        <div id="quiz-container" class="space-y-6">
+            <!-- Word Header Card -->
+            <div class="bg-white/90 backdrop-blur-sm rounded-3xl p-6 sm:p-9 border border-slate-200/70 shadow-xl shadow-slate-200/50 relative overflow-hidden transition-all">
+                <div class="flex items-center justify-between mb-4">
+                    <span id="word-badge" class="px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase border">
+                        Verb
+                    </span>
+                    <span id="question-index-tag" class="text-xs font-bold text-slate-400 tracking-widest uppercase">
+                        Q1
+                    </span>
+                </div>
+                <div class="py-2">
+                    <h2 id="target-word" class="font-german text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight mb-3">
+                        erziehen / erstellen / erwarten / erzählen
+                    </h2>
+                    <p id="question-prompt" class="text-sm sm:text-base font-medium text-slate-600 leading-relaxed">
+                        前缀 er- 常表示“通过努力实现某种结果”。下列动词中，表示“抚养、教育”的是哪一个？
+                    </p>
+                </div>
+            </div>
+
+            <!-- Options Grid -->
+            <div id="options-grid" class="grid grid-cols-1 gap-3.5">
+                <!-- Dynamic options -->
+            </div>
+
+            <!-- Explanation Card -->
+            <div id="explanation-card" class="hidden bg-slate-900 text-slate-100 rounded-2xl p-5 sm:p-6 shadow-lg border border-slate-800 text-sm leading-relaxed space-y-2">
+                <div class="font-semibold text-teal-400 flex items-center gap-2 text-xs sm:text-sm uppercase tracking-wider">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    词汇解析与语法特点
+                </div>
+                <div id="explanation-text" class="text-slate-300 text-xs sm:text-sm font-normal"></div>
+            </div>
+        </div>
+
+        <!-- RESULT CONTAINER -->
+        <div id="result-container" class="hidden bg-white/90 backdrop-blur-sm rounded-3xl p-8 sm:p-10 border border-slate-200/70 shadow-xl shadow-slate-200/50 text-center space-y-8">
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-900 text-teal-400 shadow-lg shadow-slate-900/10 mb-2">
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <div>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2 tracking-tight">特训完成</h2>
+                <p class="text-sm text-slate-500 font-medium">恭喜！你已顺利完成本轮德语B1核心词汇专项训练</p>
+            </div>
+            <div class="max-w-md mx-auto py-3 px-6 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-around">
+                <div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">本次练习题目</div>
+                    <div id="stat-total" class="text-2xl font-extrabold text-slate-900">24</div>
+                </div>
+                <div class="h-8 w-px bg-slate-200"></div>
+                <div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">重点标注/错题巩固</div>
+                    <div id="stat-mistakes" class="text-2xl font-extrabold text-slate-900">0</div>
+                </div>
+            </div>
+            <!-- Incorrect Words Review List -->
+            <div id="mistakes-section" class="text-left hidden space-y-4 pt-2">
+                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                    需重点巩固的词汇
+                </h3>
+                <div id="mistakes-list" class="space-y-2.5 max-h-64 overflow-y-auto pr-1"></div>
+            </div>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-6 border-t border-slate-100">
+                <button onclick="resetPractice()" class="w-full sm:w-auto px-8 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm transition-all shadow-md hover:shadow-lg">
+                    再练一次
+                </button>
+                <a href="index.html" class="w-full sm:w-auto px-8 py-3 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 font-bold text-sm transition-all text-center">
+                    返回主页
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Actions Nav -->
+    <footer id="bottom-nav" class="sticky bottom-0 z-30 custom-glass border-t border-slate-200/60 px-4 py-3.5 sm:px-8">
+        <div class="max-w-3xl mx-auto flex items-center justify-between gap-3">
+            <button id="btn-prev" onclick="prevQuestion()" disabled class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 text-slate-600 hover:bg-slate-100 disabled:opacity-30 disabled:cursor-not-allowed transition-all">
+                上一题
+            </button>
+            <button id="btn-toggle-explain" onclick="toggleExplanation()" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 hover:bg-slate-200/80 text-slate-700 transition-all flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                查看释义
+            </button>
+            <button id="btn-next" onclick="nextQuestion()" class="px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-md transition-all">
+                下一题
+            </button>
+        </div>
+    </footer>
+
+    <script>
+        const rawVocabularyData = [
+            {
+                id: 1,
+                type: 'Präfix & Semantik',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'erziehen / erstellen / erwarten / erzählen',
+                question: '前缀 <strong>er-</strong> 常表示“通过努力实现某种结果”。下列动词中，表示“<strong>抚养、教育</strong>”的是哪一个？',
+                options: ['erziehen', 'erwarten', 'erstellen', 'erzählen'],
+                answer: 0,
+                detail: 'erziehen (erzieht, erzog, hat erzogen) 表示“抚养，教育”；erstellen 为“制作/编写”；erwarten 为“期待”；erzählen 为“讲述”。对应名词：die Erziehung, die Erzählung.'
+            },
+            {
+                id: 2,
+                type: 'Substantiviertes Adjektiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Erwachsene, -n / erwachsen',
+                question: '按形容词变化的阳性名词 <strong>der Erwachsene</strong> (成年人)：在“一位成年人” (不定冠词主格 ein ...) 结构中，正确形式是？',
+                options: ['ein Erwachsener', 'ein Erwachsene', 'ein Erwachsenen', 'ein Erwachsenes'],
+                answer: 0,
+                detail: 'erwachsen (成年/成熟的) 按形容词变格。阳性单数一格无定冠词后词尾加 -er，因此为 <strong>ein Erwachsener</strong>。二格/三格通常为 (einem/eines) Erwachsenen。'
+            },
+            {
+                id: 3,
+                type: 'Nomen & Suffix',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Erzählung, -en / die Erziehung',
+                question: '名词后缀 <strong>-ung</strong> 结尾的名词词性均为阴性 (die)。"die Erzählung" 与 "die Erziehung" 的中文含义分别对应？',
+                options: ['故事/短篇小说 ； 抚养/教育', '解释 ； 期待', '报告 ； 准备', '传说 ； 训练'],
+                answer: 0,
+                detail: 'die Erzählung, -en 表示“故事，叙事，短篇小说”；die Erziehung 表示“教育，抚养”。均由动词 (erzählen, erziehen) 去掉词尾加上 -ung 构成。'
+            },
+            {
+                id: 4,
+                type: 'Wortschatz & Grammatik',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'essen / das Essen, - / der Essig',
+                question: '西餐沙拉中常用的沙拉醋 <strong>"der Essig"</strong> 的词性为阳性；而动词 <strong>essen</strong> (吃) 的过去时 (Präteritum) 形式是？',
+                options: ['aß', 'ißt', 'gegessen', 'ass'],
+                answer: 0,
+                detail: 'essen 的不规则变位为：isst, aß, hat gegessen。注意其过去时第一/三人称单数为 aß (在瑞士德语中写作 ass)。der Essig 为沙拉醋，das Essen 为“食物/进餐”。'
+            },
+            {
+                id: 5,
+                type: 'Synonyme & Adverbien',
+                badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
+                word: 'die Etage / Stock / etwa / etwas / eventuell / ewig',
+                question: '在德语区，"die Etage" 常用同义词 <strong>"der Stock"</strong> 表达；而副词 <strong>"eventuell"</strong> 的准确含义是？',
+                options: ['可能 / 也许 (vielleicht)', '最终 / 终于', '大约 / 恰好', '永久地 / 永远'],
+                answer: 0,
+                detail: 'eventuell (可能，也许 = vielleicht)；etwa (大约，可能)；ewig (永恒的，极长久的)；etwas (一些，稍微)。die Etage, -n 与 der Stock, Stockwerke 均表示“楼层”。'
+            },
+            {
+                id: 6,
+                type: 'N-Deklination',
+                badgeClass: 'bg-purple-50 text-purple-700 border-purple-200',
+                word: 'der Experte, -n / die Experten',
+                question: '阳性弱变化名词 (N-Deklination) 考点：与介词 mit (加第三格 Dat.) 搭配时，“与这位专家”应写作？',
+                options: ['mit dem Experten', 'mit dem Experte', 'mit des Experten', 'mit den Experten'],
+                answer: 0,
+                detail: 'der Experte, -n 属于阳性弱变化名词，除了单数第一格为 der Experte 之外，其余所有格（二三四格及复数）词尾均须加上 -n。因此第三格为 mit dem Experten。'
+            },
+            {
+                id: 7,
+                type: 'Wortverbindung',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'der Export, -e / die Fabrik, -en / extra / extrem',
+                question: '工厂 <strong>die Fabrik</strong> 将产品发往国外称为 <strong>der Export</strong>。如果某项服务或要求是“格外/额外”提供的，应使用哪一个词？',
+                options: ['extra', 'extrem', 'eventuell', 'ewig'],
+                answer: 0,
+                detail: 'extra 作副词/形容词表示“额外的，专门的”；extrem 表示“极端的，极其”；die Fabrik, -en (工厂)；der Export, -e (出口，输出)。'
+            },
+            {
+                id: 8,
+                type: 'Plural-Sonderform',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Fachmann / die Fachfrau / die Fachleute',
+                question: '德语复合名词 <strong>der Fachmann</strong> (专业人员/专家) 在表示“专家群体(复数)”时，最常用的标准复数形式是？',
+                options: ['die Fachleute', 'die Fachmänner', 'die Fachfrauen', 'die Fächer'],
+                answer: 0,
+                detail: '以 -mann 结尾的职业/人员名词（如 der Fachmann, der Kaufmann），表示泛指复数时通常用 -leute -> <strong>die Fachleute</strong>。das Fach, "-er 表示“学科/抽屉/专业”。'
+            },
+            {
+                id: 9,
+                type: 'Nomenbildung',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Fähigkeit, -en / fähig',
+                question: '形容词 <strong>fähig</strong> (有能力的) 加上名词后缀 <strong>-keit</strong> 构成抽象名词 <strong>die Fähigkeit</strong>，其意思是？',
+                options: ['能力，技能', '可能性', '熟练度', '资格/证书'],
+                answer: 0,
+                detail: 'die Fähigkeit, -en 表示“能力，本领，技能”。搭配：die Fähigkeit haben, etwas zu tun (有能力做某事)。'
+            },
+            {
+                id: 10,
+                type: 'Verkehrsmittel',
+                badgeClass: 'bg-teal-50 text-teal-700 border-teal-200',
+                word: 'fahren, fährt, fuhr, ist/hat gefahren / die Fähre, -n',
+                question: '动词 <strong>fahren</strong> 表示驾驶或乘车。在河流或海洋间运送人员和车辆的“渡轮 / 摆渡船”在德语中称为？',
+                options: ['die Fähre', 'die Fahrbahn', 'das Fahrzeug', 'der Sessel'],
+                answer: 0,
+                detail: 'die Fähre, -n (摆渡船，渡轮)。die Fahrbahn (车道)；das Fahrzeug (车辆/交通工具)；der Fahrer (司机)。'
+            },
+            {
+                id: 11,
+                type: 'Verkehrswortschatz',
+                badgeClass: 'bg-teal-50 text-teal-700 border-teal-200',
+                word: 'die Fahrbahn, -en / der Fahrer, - / das Fahrzeug, -e',
+                question: '交通规则中，道路上专门供车辆 (das Fahrzeug) 行驶的部分被称为？',
+                options: ['die Fahrbahn', 'der Fahrplan', 'die Fahrkarte', 'das Feld'],
+                answer: 0,
+                detail: 'die Fahrbahn, -en 指“行车道，车道”。der Fahrplan, "-e (时刻表)；die Fahrkarte, -n (车票)；der Fahrer, - (司机)。'
+            },
+            {
+                id: 12,
+                type: 'DACH Regionalismus (CH)',
+                badgeClass: 'bg-rose-50 text-rose-700 border-rose-200',
+                word: 'die Fahrkarte (CH: Billet) / das Fahrrad (CH: Velo)',
+                question: '瑞士德语 (Schweizer Hochdeutsch) 特色：在瑞士购买“火车票”和骑“自行车”时，官方常用的词汇分别是？',
+                options: ['Billet / Velo', 'Fahrkarte / Fahrrad', 'Sessel / Rad', 'Billet / Rad'],
+                answer: 0,
+                detail: '在瑞士，"die Fahrkarte" 常被称为 <strong>das Billet</strong> [bi\'je:]，"das Fahrrad" 常被称为 <strong>das Velo</strong> [ve\'lo:]。在德奥，自行车也常简称为 das Rad。'
+            },
+            {
+                id: 13,
+                type: 'Nomen & Kollokation',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'fair / der Faktor, -en / der Fall, "-e',
+                question: '常用固定搭配 “auf keinen Fall” (无论如何都不) 中的名词 <strong>der Fall</strong>，其复数形式是？',
+                options: ['die Fälle', 'die Fallen', 'die Falles', 'die Fäller'],
+                answer: 0,
+                detail: 'der Fall, 复数为 <strong>die Fälle</strong> (情况，案例)。短语：auf keinen Fall (绝不)；auf jeden Fall (无论如何)。der Faktor, -en (因素)；fair (公平的)。'
+            },
+            {
+                id: 14,
+                type: 'Wortart-Typologie',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'fallen / fällig / falls / falsch',
+                question: '“Die Miete ist am Ersten des Monats ______.” (房租在每月一号到期/应付。) 句中应填入？',
+                options: ['fällig', 'falls', 'falsch', 'gefallen'],
+                answer: 0,
+                detail: 'fällig (到期的，应支付的)；falls (连词：如果/万一)；falsch (错误的)；fallen (fällt, fiel, ist gefallen - 落下/跌倒)。'
+            },
+            {
+                id: 15,
+                type: 'DACH Regionalismus',
+                badgeClass: 'bg-rose-50 text-rose-700 border-rose-200',
+                word: 'die Familie, -n / der Familienstand (CH: Zivilstand)',
+                question: '在德国和奥地利填写行政表格时，婚姻状况一栏常用 <strong>der Familienstand</strong>，而在瑞士则使用？',
+                options: ['der Zivilstand', 'der Personenstand', 'die Fasnacht', 'der Fauteuil'],
+                answer: 0,
+                detail: '瑞士德语中，婚姻/个人状况称为 <strong>der Zivilstand</strong> (对应德国的 Familienstand / Personenstand)。包含 ledig (未婚), verheiratet (已婚) 等。'
+            },
+            {
+                id: 16,
+                type: 'Unregelmäßiges Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'fangen, fängt, fing, hat gefangen / die Fantasie / fantastisch',
+                question: '动词 <strong>fangen</strong> (捕捉/抓) 的第三人称单数现在时 (er/sie/es) 和完成时过去分词分别是？',
+                options: ['fängt / hat gefangen', 'fangt / hat gefangt', 'fängt / ist gefangen', 'fing / hat gefing'],
+                answer: 0,
+                detail: 'fangen 是强变化动词：fängt, fing, hat gefangen (助动词用 haben)。die Fantasie / Phantasie (想象力/幻想)；fantastisch (极好的/奇妙的)。'
+            },
+            {
+                id: 17,
+                type: 'Wortbildung',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'die Farbe, -n / farbig',
+                question: '名词 <strong>die Farbe, -n</strong> (颜色) 加上后缀 -ig 构成的形容词 <strong>farbig</strong> 表示什么意思？',
+                options: ['彩色的，有颜色的', '无色的', '掉色的', '透明的'],
+                answer: 0,
+                detail: 'farbig (彩色的，有颜色的)。反义词为 farblos (无色的)。'
+            },
+            {
+                id: 18,
+                type: 'DACH Regionalismus (A/CH)',
+                badgeClass: 'bg-rose-50 text-rose-700 border-rose-200',
+                word: 'das Faschierte (A) / der Fasching / die Fasnacht (CH)',
+                question: '区域特色词汇：奥地利超市里标注的 <strong>"das Faschierte"</strong> 指的是什么？瑞士人对狂欢节的称呼是？',
+                options: ['肉末 / 绞肉 (Hackfleisch) ； Fasnacht', '烤香肠 ； Karneval', '猪排 ； Fasching', '熏肉 ； Billet'],
+                answer: 0,
+                detail: '在奥地利，肉末/绞肉被称为 das Faschierte (德国/瑞士称 Hackfleisch)。狂欢节在德国南方/奥地利称 der Fasching，德国北方称 Karneval，瑞士称 die Fasnacht。'
+            },
+            {
+                id: 19,
+                type: 'Feste Nomen-Verb-Verbindung',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'fassen, fasst, fasste, hat gefasst',
+                question: '德语高级固定搭配：短语 “einen Entschluss fassen” 的准确意思是？',
+                options: ['做出决定 / 下定决心', '捉拿罪犯', '表达遗憾', '理解概念'],
+                answer: 0,
+                detail: 'fassen 含义丰富：① einen Entschluss/Beschluss fassen (做出决定/决议)；② jdn. fassen (抓获)；③ etw. fassen (理解/包含)。'
+            },
+            {
+                id: 20,
+                type: 'Adjektiv & Verb',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'fast / faul / faulenzen, faulenzt, hat gefaulenzt',
+                question: '形容词 <strong>faul</strong> 既可表示食物“腐烂的”，也可表示人“懒惰的”。由其派生的动词 <strong>faulenzen</strong> 意思是？',
+                options: ['偷懒，懒散度日', '缺失，缺少', '庆祝，欢度', '抓住，理解'],
+                answer: 0,
+                detail: 'faulenzen (faulenzt, faulenzte, hat gefaulenzt) 表示“偷懒，闲散/无所事事”。fast (副词：几乎)；fehlen (缺席/缺少)。'
+            },
+            {
+                id: 21,
+                type: 'DACH Regionalismus & Fremdwort',
+                badgeClass: 'bg-rose-50 text-rose-700 border-rose-200',
+                word: 'der Fauteuil, -s (A, CH) / der Sessel, -',
+                question: '在奥地利和瑞士，来自法语的借词 <strong>"der Fauteuil"</strong> [ftœj] 对应德国标准德语中的哪样家具？',
+                options: ['der Sessel (单人沙发/软椅)', 'das Sofa (长条沙发)', 'der Stuhl (普通椅子)', 'das Bett (床)'],
+                answer: 0,
+                detail: 'der Fauteuil, -s 是奥地利和瑞士德语中常用的法语借词，指 <strong>der Sessel</strong> (单人扶手沙发/软椅)。'
+            },
+            {
+                id: 22,
+                type: 'Verb & Dativ-Objekt',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'fehlen, fehlt, fehlte, hat gefehlt / der Fehler, -',
+                question: '表达情感的常用句 “Du fehlst mir sehr.” 中，句子的语法结构与真实含义是？',
+                options: ['主语是 Du，意为“我很想念你 / 我身边不能没有你”', '主语是 mir，意为“我做错事了”', '主语是 Du，意为“你犯了严重的错误”', '主语是 mir，意为“你缺乏经验”'],
+                answer: 0,
+                detail: 'fehlen 表示“缺少/缺席”。jemandem fehlen 句型中，缺少的人/物做主语，受影响的人用第三格 (mir)。Du fehlst mir = 我很想念你。der Fehler, - (错误)。'
+            },
+            {
+                id: 23,
+                type: 'Komposita & Alltag',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'feiern / die Feier, -n / der Feierabend / der Feiertag, -e',
+                question: '德国工作文化：同事在工作日结束下班时常互道 “Schönen ______!”, 这里的复合词是指？',
+                options: ['Feierabend (下班后的休息时间)', 'Feiertag (法定节假日)', 'Feier (庆祝派对)', 'Fehler (错误)'],
+                answer: 0,
+                detail: 'der Feierabend 指“下班后的空闲/休息时间”。Feierabend machen 意为“收工/下班”。der Feiertag, -e (法定节日)；die Feier, -n (庆祝/派对)；feiern (庆祝)。'
+            },
+            {
+                id: 24,
+                type: 'Polysemie & Digital',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'das Feld, -er',
+                question: '名词 <strong>das Feld, -er</strong> 原意指农田。在填写电子表格或网页时，“Eingabefeld” 指的是？',
+                options: ['输入框 / 填空栏', '提交按钮', '下拉菜单', '背景图层'],
+                answer: 0,
+                detail: 'das Feld, -er 除了指田野/农田外，在数字与表格语境中指“框/栏目”，如：das Eingabefeld (输入框)，das Textfeld (文本框)。'
+            }
+        ];
+
+        let audioCtx = null;
+        function getAudioContext() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
+
+        function playSound(isCorrect) {
+            try {
+                const ctx = getAudioContext();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                const now = ctx.currentTime;
+                if (isCorrect) {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(523.25, now);
+                    osc.frequency.setValueAtTime(659.25, now + 0.08);
+                    gain.gain.setValueAtTime(0.12, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+                    osc.start(now);
+                    osc.stop(now + 0.3);
+                } else {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(220, now);
+                    osc.frequency.exponentialRampToValueAtTime(140, now + 0.2);
+                    gain.gain.setValueAtTime(0.1, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+                    osc.start(now);
+                    osc.stop(now + 0.2);
+                }
+            } catch (e) {
+                console.error("Audio error:", e);
+            }
+        }
+
+        function shuffleArray(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        let vocabularyData = [];
+        let currentIndex = 0;
+        let userAnswers = [];
+        let showExplanation = false;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            resetPractice();
+        });
+
+        function resetPractice() {
+            vocabularyData = shuffleArray(rawVocabularyData);
+            currentIndex = 0;
+            userAnswers = new Array(vocabularyData.length).fill(null);
+            showExplanation = false;
+            document.getElementById('quiz-container').classList.remove('hidden');
+            document.getElementById('bottom-nav').classList.remove('hidden');
+            document.getElementById('result-container').classList.add('hidden');
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const currentData = vocabularyData[currentIndex];
+
+            document.getElementById('word-badge').className = `px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase border ${currentData.badgeClass}`;
+            document.getElementById('word-badge').textContent = currentData.type;
+            document.getElementById('question-index-tag').textContent = `Q${currentIndex + 1}`;
+            document.getElementById('target-word').textContent = currentData.word;
+            document.getElementById('question-prompt').innerHTML = currentData.question;
+
+            const progressPercent = Math.round(((currentIndex + 1) / vocabularyData.length) * 100);
+            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+            document.getElementById('progress-text').textContent = `进度：${currentIndex + 1} / ${vocabularyData.length}`;
+            document.getElementById('progress-percent').textContent = `${progressPercent}%`;
+
+            const optionsGrid = document.getElementById('options-grid');
+            optionsGrid.innerHTML = '';
+            const selectedAnswer = userAnswers[currentIndex];
+            const isAnswered = selectedAnswer !== null;
+
+            currentData.options.forEach((optText, optIndex) => {
+                const btn = document.createElement('button');
+                btn.className = getOptionStyle(optIndex, selectedAnswer, currentData.answer);
+                btn.innerHTML = `
+                    <div class="flex items-center justify-between w-full">
+                        <span class="flex items-center gap-3.5">
+                            <span class="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold border transition-all ${getOptionMarkerStyle(optIndex, selectedAnswer, currentData.answer)}">
+                                ${String.fromCharCode(65 + optIndex)}
+                            </span>
+                            <span class="font-medium">${optText}</span>
+                        </span>
+                        ${getOptionIcon(optIndex, selectedAnswer, currentData.answer)}
+                    </div>
+                `;
+                btn.onclick = () => selectOption(optIndex);
+                optionsGrid.appendChild(btn);
+            });
+
+            const explainCard = document.getElementById('explanation-card');
+            const explainText = document.getElementById('explanation-text');
+            explainText.innerHTML = currentData.detail;
+
+            if (showExplanation || isAnswered) {
+                explainCard.classList.remove('hidden');
+            } else {
+                explainCard.classList.add('hidden');
+            }
+
+            document.getElementById('btn-prev').disabled = currentIndex === 0;
+            const btnNext = document.getElementById('btn-next');
+            if (currentIndex === vocabularyData.length - 1) {
+                btnNext.textContent = '完成特训';
+                btnNext.className = 'px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-teal-700 hover:bg-teal-800 text-white shadow-md transition-all';
+            } else {
+                btnNext.textContent = '下一题';
+                btnNext.className = 'px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-md transition-all';
+            }
+        }
+
+        function getOptionStyle(index, selected, correct) {
+            const base = "w-full text-left p-4 sm:p-4.5 rounded-2xl border text-sm sm:text-base transition-all duration-200 flex items-center justify-between ";
+            if (selected === null) {
+                return base + "border-slate-200/80 bg-white hover:border-slate-400 hover:shadow-md text-slate-800";
+            }
+            if (index === correct) {
+                return base + "border-emerald-300 bg-emerald-50/90 text-emerald-900 font-semibold shadow-sm";
+            }
+            if (index === selected && selected !== correct) {
+                return base + "border-rose-300 bg-rose-50/90 text-rose-900 font-semibold shadow-sm";
+            }
+            return base + "border-slate-100 bg-slate-50/50 text-slate-400 opacity-50";
+        }
+
+        function getOptionMarkerStyle(index, selected, correct) {
+            if (selected === null) {
+                return "border-slate-200 text-slate-500 bg-slate-50";
+            }
+            if (index === correct) {
+                return "border-emerald-500 text-white bg-emerald-600 shadow-sm";
+            }
+            if (index === selected && selected !== correct) {
+                return "border-rose-500 text-white bg-rose-500 shadow-sm";
+            }
+            return "border-slate-200 text-slate-300 bg-slate-100";
+        }
+
+        function getOptionIcon(index, selected, correct) {
+            if (selected === null) return '';
+            if (index === correct) {
+                return `<svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>`;
+            }
+            if (index === selected && selected !== correct) {
+                return `<svg class="w-5 h-5 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>`;
+            }
+            return '';
+        }
+
+        function selectOption(index) {
+            if (userAnswers[currentIndex] === null) {
+                const isCorrect = index === vocabularyData[currentIndex].answer;
+                playSound(isCorrect);
+            }
+            userAnswers[currentIndex] = index;
+            showExplanation = true;
+            renderQuestion();
+        }
+
+        function toggleExplanation() {
+            showExplanation = !showExplanation;
+            const explainCard = document.getElementById('explanation-card');
+            if (showExplanation) {
+                explainCard.classList.remove('hidden');
+            } else {
+                explainCard.classList.add('hidden');
+            }
+        }
+
+        function nextQuestion() {
+            if (currentIndex < vocabularyData.length - 1) {
+                currentIndex++;
+                showExplanation = false;
+                renderQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                showExplanation = false;
+                renderQuestion();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quiz-container').classList.add('hidden');
+            document.getElementById('bottom-nav').classList.add('hidden');
+            document.getElementById('result-container').classList.remove('hidden');
+
+            let mistakeCount = 0;
+            const mistakesList = document.getElementById('mistakes-list');
+            mistakesList.innerHTML = '';
+
+            userAnswers.forEach((ans, idx) => {
+                const item = vocabularyData[idx];
+                if (ans !== item.answer) {
+                    mistakeCount++;
+                    const mistakeDiv = document.createElement('div');
+                    mistakeDiv.className = 'p-4 bg-slate-50 rounded-2xl border border-slate-200/80 text-xs sm:text-sm';
+                    mistakeDiv.innerHTML = `
+                        <div class="font-german font-bold text-slate-900 text-base mb-1">${item.word}</div>
+                        <div class="text-slate-600 leading-relaxed">${item.detail}</div>
+                    `;
+                    mistakesList.appendChild(mistakeDiv);
+                }
+            });
+
+            document.getElementById('stat-total').textContent = vocabularyData.length;
+            document.getElementById('stat-mistakes').textContent = mistakeCount;
+
+            const mistakesSection = document.getElementById('mistakes-section');
+            if (mistakeCount > 0) {
+                mistakesSection.classList.remove('hidden');
+            } else {
+                mistakesSection.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
