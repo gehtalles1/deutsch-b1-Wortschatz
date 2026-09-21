@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="h-full bg-slate-50/80">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>德语 B1 核心词汇特训</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Serif+Georgia&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .font-german {
+            font-family: 'Noto Serif Georgia', Georgia, serif;
+        }
+        .custom-glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+    </style>
+</head>
+<body class="h-full text-slate-800 antialiased selection:bg-teal-100 selection:text-teal-900 flex flex-col justify-between bg-gradient-to-br from-slate-50 via-zinc-50 to-teal-50/20">
+    <!-- Header Area -->
+    <header class="sticky top-0 z-30 custom-glass border-b border-slate-200/60 px-4 py-3.5 sm:px-8 shadow-sm">
+        <div class="max-w-3xl mx-auto flex items-center justify-between">
+            <a href="index.html" class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-500 hover:text-slate-900 transition-all py-1.5 px-3 rounded-full hover:bg-slate-100/80">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+                返回主页
+            </a>
+            <div class="text-center">
+                <h1 class="text-xs sm:text-sm font-bold tracking-widest text-slate-400 uppercase">Wortschatz Training</h1>
+                <p class="text-sm sm:text-base font-extrabold text-slate-900 tracking-tight">德语 B1 核心词汇特训</p>
+            </div>
+            <button onclick="resetPractice()" class="text-xs sm:text-sm font-semibold text-slate-500 hover:text-teal-700 transition-all py-1.5 px-3 rounded-full hover:bg-slate-100/80">
+                重新开始
+            </button>
+        </div>
+        <!-- Progress Bar -->
+        <div class="max-w-3xl mx-auto mt-3">
+            <div class="flex justify-between items-center text-xs font-bold text-slate-400 mb-1.5 tracking-wider uppercase">
+                <span id="progress-text">进度：1 / 66</span>
+                <span id="progress-percent">2%</span>
+            </div>
+            <div class="w-full h-1.5 bg-slate-200/70 rounded-full overflow-hidden p-0.5">
+                <div id="progress-bar" class="h-full bg-slate-900 transition-all duration-300 rounded-full" style="width: 2%"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Section -->
+    <main class="flex-1 max-w-3xl w-full mx-auto p-4 sm:p-6 flex flex-col justify-center">
+        <!-- QUIZ CONTAINER -->
+        <div id="quiz-container" class="space-y-6">
+            <!-- Word Header Card -->
+            <div class="bg-white/90 backdrop-blur-sm rounded-3xl p-6 sm:p-9 border border-slate-200/70 shadow-xl shadow-slate-200/50 relative overflow-hidden transition-all">
+                <div class="flex items-center justify-between mb-4">
+                    <span id="word-badge" class="px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase border">
+                        Verb
+                    </span>
+                    <span id="question-index-tag" class="text-xs font-bold text-slate-400 tracking-widest uppercase">
+                        Q1
+                    </span>
+                </div>
+                <div class="py-2">
+                    <h2 id="target-word" class="font-german text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-3">
+                        beeinflussen
+                    </h2>
+                    <p id="question-prompt" class="text-sm sm:text-base font-medium text-slate-600 leading-relaxed">
+                        加载中...
+                    </p>
+                </div>
+            </div>
+
+            <!-- Options Grid -->
+            <div id="options-grid" class="grid grid-cols-1 gap-3.5">
+                <!-- Dynamic options -->
+            </div>
+
+            <!-- Explanation Card -->
+            <div id="explanation-card" class="hidden bg-slate-900 text-slate-100 rounded-2xl p-5 sm:p-6 shadow-lg border border-slate-800 text-sm leading-relaxed space-y-2">
+                <div class="font-semibold text-teal-400 flex items-center gap-2 text-xs sm:text-sm uppercase tracking-wider">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    词汇解析与用法
+                </div>
+                <div id="explanation-text" class="text-slate-300 text-xs sm:text-sm font-normal"></div>
+            </div>
+        </div>
+
+        <!-- RESULT CONTAINER -->
+        <div id="result-container" class="hidden bg-white/90 backdrop-blur-sm rounded-3xl p-8 sm:p-10 border border-slate-200/70 shadow-xl shadow-slate-200/50 text-center space-y-8">
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-900 text-teal-400 shadow-lg shadow-slate-900/10 mb-2">
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <div>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2 tracking-tight">特训完成</h2>
+                <p class="text-sm text-slate-500 font-medium">已完成所有词汇测试，积累词汇量是语言通关的基石</p>
+            </div>
+            <div class="max-w-md mx-auto py-3 px-6 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-around">
+                <div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">本次练习题目</div>
+                    <div id="stat-total" class="text-2xl font-extrabold text-slate-900">66</div>
+                </div>
+                <div class="h-8 w-px bg-slate-200"></div>
+                <div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">重点标注/复习词汇</div>
+                    <div id="stat-mistakes" class="text-2xl font-extrabold text-slate-900">0</div>
+                </div>
+            </div>
+
+            <!-- Incorrect Words Review List -->
+            <div id="mistakes-section" class="text-left hidden space-y-4 pt-2">
+                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                    需重点巩固的词汇
+                </h3>
+                <div id="mistakes-list" class="space-y-2.5 max-h-64 overflow-y-auto pr-1"></div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-6 border-t border-slate-100">
+                <button onclick="resetPractice()" class="w-full sm:w-auto px-8 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm transition-all shadow-md hover:shadow-lg">
+                    再练一次
+                </button>
+                <a href="index.html" class="w-full sm:w-auto px-8 py-3 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 font-bold text-sm transition-all text-center">
+                    返回主页
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Actions Nav -->
+    <footer id="bottom-nav" class="sticky bottom-0 z-30 custom-glass border-t border-slate-200/60 px-4 py-3.5 sm:px-8">
+        <div class="max-w-3xl mx-auto flex items-center justify-between gap-3">
+            <button id="btn-prev" onclick="prevQuestion()" disabled class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 text-slate-600 hover:bg-slate-100 disabled:opacity-30 disabled:cursor-not-allowed transition-all">
+                上一题
+            </button>
+            <button id="btn-toggle-explain" onclick="toggleExplanation()" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 hover:bg-slate-200/80 text-slate-700 transition-all flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                查看释义
+            </button>
+            <button id="btn-next" onclick="nextQuestion()" class="px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-md transition-all">
+                下一题
+            </button>
+        </div>
+    </footer>
+
+    <script>
+        const rawVocabularyData = [
+            // Image 1
+            {
+                id: 1,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'beeinflussen',
+                question: '动词 "beeinflussen" (影响) 的语法特点是？其过去分词为？',
+                options: [
+                    '可分动词，hat eingeeinflusst',
+                    '不可分动词，hat beeinflusst，直接加第四格宾语 (Akk.)',
+                    '反身动词，sich beeinflussen mit',
+                    '位移动词，ist beeinflusst'
+                ],
+                answer: 1,
+                detail: 'beeinflussen 是不可分动词（前缀 be- 不可分），直接支配第四格宾语 (Akk.)。完成时：hat beeinflusst。例：Das Wetter beeinflusst meine Laune.'
+            },
+            {
+                id: 2,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'einfügen',
+                question: '在电脑软件与文档处理中，快捷键 "Ctrl + V" 对应的德语动词操作通常是？',
+                options: ['einfügen (插入/粘贴)', 'einführen (导入/引入)', 'einrichten (设置)', 'eintragen (登记)'],
+                answer: 0,
+                detail: 'einfügen 意为“插入，粘贴”。是可分动词 (fügt ein, fügte ein, hat eingefügt)。'
+            },
+            {
+                id: 3,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'einführen',
+                question: '动词 "einführen" 作“进口 / 引入”解时，其反义词（出口）是？',
+                options: ['ausführen', 'auspacken', 'einzahlen', 'entlassen'],
+                answer: 0,
+                detail: 'einführen (进口/引入) <-> ausführen (出口/执行)。完成时：hat eingeführt。'
+            },
+            {
+                id: 4,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Einführung, -en',
+                question: '大学课程名称 "Einführung in die Sprachwissenschaft" 中，名词 "Einführung" 之后常搭配哪个介词？',
+                options: ['in + Akk. (对……的导论/入门)', 'für + Akk.', 'über + Akk.', 'zu + Dat.'],
+                answer: 0,
+                detail: 'die Einführung + in (+ Akk.) 表示“对某领域的导论、入门或引入”。'
+            },
+            {
+                id: 5,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Eingang, "-e',
+                question: '公共建筑与商场入口标识为 "Eingang"，其反义词（出口）及复数形式是？',
+                options: ['der Ausgang, "-e', 'die Einfahrt, -en', 'der Eintritt, -e', 'das Ende, -n'],
+                answer: 0,
+                detail: 'der Eingang, "-e (入口) <-> der Ausgang, "-e (出口)。'
+            },
+            {
+                id: 6,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'einheitlich',
+                question: '句子 "In der Schule tragen alle Schüler einheitliche Kleidung." 中 "einheitlich" 的含义是？',
+                options: ['统一的，一致的', '昂贵的', '舒适的', '彩色的'],
+                answer: 0,
+                detail: 'einheitlich 意为“统一的，一致的，划一的”。'
+            },
+            {
+                id: 7,
+                type: 'Pronomen',
+                badgeClass: 'bg-purple-50 text-purple-700 border-purple-200',
+                word: 'einig-',
+                question: '限定词 "einige" (一些，若干) 后面接可数名词复数（无定冠词）时，形容词词尾遵循什么变化？',
+                options: ['强变化 (如: einige neue Bücher)', '弱变化 (如: einige neuen Bücher)', '混合变化', '不发生变格'],
+                answer: 0,
+                detail: 'einige 相当于复数不定冠词，后面的形容词按强变化词尾变格（如 Nominativ/Akkusativ 复数接 -e）。'
+            },
+            {
+                id: 8,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'sich einigen',
+                question: '反身动词 "sich einigen" (达成一致) 表示“与某人就某事达成协议”的正确介词搭配是？',
+                options: [
+                    'sich einigen mit (Dat.) über / auf (Akk.)',
+                    'sich einigen für (Akk.) an (Dat.)',
+                    'sich einigen von (Dat.) in (Akk.)',
+                    'sich einigen gegen (Akk.) zu (Dat.)'
+                ],
+                answer: 0,
+                detail: 'sich einigen mit jemandem (Dat.) über/auf etwas (Akk.)：Wir haben uns auf einen Preis geeinigt.'
+            },
+            {
+                id: 9,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'einkaufen',
+                question: '动词 "einkaufen" (采购/日常购物) 与 "kaufen" (购买) 在用法上的区别是？',
+                options: [
+                    'einkaufen 可作不及物动词表“去买东西/日常采购”；kaufen 侧重具体购买某物 (kaufen + Akk.)',
+                    'einkaufen 助动词用 ist，kaufen 用 hat',
+                    'einkaufen 是不可分动词，kaufen 是可分动词',
+                    '两者完全同义且语法完全相同'
+                ],
+                answer: 0,
+                detail: 'einkaufen 可单独使用（如：Ich gehe einkaufen），表泛指的购物；kaufen 必须跟具体宾语（如：Ich kaufe ein Buch）。'
+            },
+            {
+                id: 10,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Einkauf, "-e',
+                question: '表达“做日常采购/买东西”时，除了用动词 einkaufen，常用的固定动词短语是？',
+                options: ['Einkäufe machen', 'Einkauf nehmen', 'Einkauf geben', 'Einkauf bringen'],
+                answer: 0,
+                detail: 'der Einkauf, "-e。固定表达：Einkäufe machen / erledigen (进行采购)。'
+            },
+            {
+                id: 11,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'das Einkommen, -',
+                question: '名词 "das Einkommen" 表示“个人收入”，在德语中“个人所得税”的正确合成词是？',
+                options: ['die Einkommensteuer', 'das Einkommengeld', 'die Einkommenkosten', 'der Einkommenpreis'],
+                answer: 0,
+                detail: 'das Einkommen, - (收入)。die Einkommensteuer (所得税)。'
+            },
+            {
+                id: 12,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'einladen',
+                question: '动词 "einladen" (邀请) 的第二/第三人称单数变位及介词搭配是？',
+                options: [
+                    'lädt ein / jemanden (Akk.) zu etwas (Dat.) einladen',
+                    'ladet ein / jemandem (Dat.) für etwas (Akk.) einladen',
+                    'lindt ein / jemanden (Akk.) auf etwas (Akk.) einladen',
+                    'laadet ein / jemanden (Akk.) in etwas (Dat.) einladen'
+                ],
+                answer: 0,
+                detail: 'einladen 属于换音动词：du lädst ein, er/sie/es lädt ein；搭配：jemanden (Akk.) zu etwas (Dat.) einladen。'
+            },
+            {
+                id: 13,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Einladung, -en',
+                question: '收到邀请函回复“非常感谢您的邀请！”时，正确的德语表达是？',
+                options: [
+                    'Vielen Dank für die Einladung!',
+                    'Herzlichen Dank zu der Einladung!',
+                    'Vielen Dank an die Einladung!',
+                    'Danke über die Einladung!'
+                ],
+                answer: 0,
+                detail: 'danken / Dank + für (+ Akkusativ)。die Einladung 是阴性名词 (die Einladung)。'
+            },
+            {
+                id: 14,
+                type: 'Adverb',
+                badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
+                word: 'einmal',
+                question: '短语 "auf einmal" 在句子 "Auf einmal fing es an zu regnen." 中的意思是？',
+                options: ['突然，忽然 (plötzlich)', '再一次 (noch einmal)', '曾经 (früher)', '仅此一次 (ein einziges Mal)'],
+                answer: 0,
+                detail: 'auf einmal 相当于 plötzlich，意为“突然，一下子”。'
+            },
+            {
+                id: 15,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'einnehmen',
+                question: '在医学与生活场景中，"Medikamente / Tabletten einnehmen" 的特定含义是？',
+                options: ['服药，吃药', '购买药物', '研发药物', '丢弃药物'],
+                answer: 0,
+                detail: 'einnehmen 专指“服用（药物）”或“收入/占据”。变位：nimmt ein, nahm ein, hat eingenommen。'
+            },
+
+            // Image 2
+            {
+                id: 16,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Einnahme, -n',
+                question: '在财务账目中，复数名词 "die Einnahmen" (收入/进款) 的反义词（支出）是？',
+                options: ['die Ausgaben (Pl.)', 'die Einkäufe (Pl.)', 'die Kosten (Pl.)', 'die Schulden (Pl.)'],
+                answer: 0,
+                detail: 'die Einnahme, -n (收入) <-> die Ausgabe, -n (支出)。商业中常用复数 die Einnahmen und Ausgaben。'
+            },
+            {
+                id: 17,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'einpacken',
+                question: '买完东西后店员问 "Soll ich das Geschenk einpacken?"，动词 "einpacken" 的反义词（拆开包裹）是？',
+                options: ['auspacken', 'einschalten', 'einrichten', 'eintragen'],
+                answer: 0,
+                detail: 'einpacken (打包，装箱) <-> auspacken (打开包裹，拆开)。'
+            },
+            {
+                id: 18,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'einrichten',
+                question: '短语 "eine Wohnung einrichten" 的中文含义是？',
+                options: ['布置/装修/配备家具于住宅', '退租住宅', '打扫住宅', '购买住宅'],
+                answer: 0,
+                detail: 'einrichten 意为“布置，配备（家具等）”。完成时：hat eingerichtet。'
+            },
+            {
+                id: 19,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Einrichtung, -en',
+                question: '名词 "die Einrichtung" 除了指“家具/陈设”外，在社会学/公共管理中还可指？',
+                options: ['公共设施 / 机构 (如: soziale Einrichtung)', '交通违章', '建筑材料', '天气变化'],
+                answer: 0,
+                detail: 'die Einrichtung, -en 既指室内“家具陈设”，也指“机构、公共设施”。'
+            },
+            {
+                id: 20,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'einsam',
+                question: '形容词 "einsam" (孤独寂寞的) 与 "allein" (单独的) 的核心区别是？',
+                options: [
+                    'einsam 强调内心主观 felt 孤独，allein 侧重客观上独自一人',
+                    'einsam 只能作副词，allein 只能作名词',
+                    '两者意思完全相同可无条件替换',
+                    'allein 表示悲伤，einsam 表示快乐'
+                ],
+                answer: 0,
+                detail: 'Man kann allein sein, ohne sich einsam zu fühlen. (人可以独自一人而不感到孤独。)'
+            },
+            {
+                id: 21,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'einschalten',
+                question: '打开电视或电器用动词 "einschalten"，其口语近义词和反义词分别是？',
+                options: ['anmachen / ausschalten', 'ausmachen / anmachen', 'aufmachen / zumachen', 'einpacken / auspacken'],
+                answer: 0,
+                detail: 'einschalten = anmachen (打开电器)；ausschalten = ausmachen (关掉电器)。'
+            },
+            {
+                id: 22,
+                type: 'Präposition',
+                badgeClass: 'bg-rose-50 text-rose-700 border-rose-200',
+                word: 'einschließlich',
+                question: '介词 "einschließlich" (包括……在内) 在标准德语中要求支配第几格？',
+                options: ['第二格 (Genitiv)', '第三格 (Dativ)', '第四格 (Akkusativ)', '第一格 (Nominativ)'],
+                answer: 0,
+                detail: 'einschließlich 支配第二格 (Genitiv)。例如：einschließlich der Nebenkosten (包括附加费在内)。'
+            },
+            {
+                id: 23,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'das Einschreiben, -',
+                question: '在邮局寄送极其重要的官方文件时，建议使用哪种邮寄服务？',
+                options: ['per Einschreiben (寄挂号信)', 'per Fax', 'per E-Mail', 'per Luftpost'],
+                answer: 0,
+                detail: 'das Einschreiben, - 意为“挂号信”。固定搭配：etwas per Einschreiben schicken.'
+            },
+            {
+                id: 24,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'einsetzen',
+                question: '反身动词短语 "sich einsetzen für + Akk." 的中文意思是？',
+                options: ['致力于 / 为……尽力 / 支持', '反对某人', '放弃某事', '沉溺于某事'],
+                answer: 0,
+                detail: 'sich einsetzen für jemanden/etwas 表示“致力于，支持，为……挺身而出”。'
+            },
+            {
+                id: 25,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'einsteigen',
+                question: '搭乘公共交通时，“上车”用 "einsteigen"，其完成时助动词及下车/换乘动词分别是？',
+                options: [
+                    'ist eingestiegen / aussteigen (下车) / umsteigen (换乘)',
+                    'hat eingestiegen / absteigen / zusteigen',
+                    'hat gestiegen / aussteigen / umsteigen',
+                    'ist gestiegen / einsteigen / aussteigen'
+                ],
+                answer: 0,
+                detail: 'einsteigen, aussteigen, umsteigen 属于表示空间位置移动的动词，完成时助动词均用 ist！'
+            },
+            {
+                id: 26,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'einstellen',
+                question: '动词 "einstellen" 含义极其丰富，下列哪项不属于其常见释义？',
+                options: ['出售商品', '调整 / 设置 (如电视频道或机器)', '招聘 / 雇用 (员工)', '中止 / 停止 (工作或生产)'],
+                answer: 0,
+                detail: 'einstellen 常见含义：1. 调整/设置 2. 招聘雇用 3. 中止停止。不含“出售”之意。'
+            },
+            {
+                id: 27,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'eintragen',
+                question: '短语 "sich in die Liste eintragen" 的中文释义是？',
+                options: ['在名单上签名登记 / 报名', '从名单上划掉名字', '丢失名单', '打印名单'],
+                answer: 0,
+                detail: 'eintragen (填入/登记)。sich eintragen 意为“登记报名”。变位：trägt ein, trug ein, hat eingetragen。'
+            },
+            {
+                id: 28,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'eintreten',
+                question: '句子 "Bitte treten Sie ein!" 与 "Der Fall ist eingetreten." 中，"eintreten" 的助动词及含义分别是？',
+                options: [
+                    '助动词用 ist；分别表示“请进（进入）”与“（情况/事件）发生”',
+                    '助动词用 hat；分别表示“踢开”与“退出”',
+                    '助动词用 ist；分别表示“开门”与“结束”',
+                    '助动词用 hat；分别表示“踩踏”与“踏平”'
+                ],
+                answer: 0,
+                detail: 'eintreten (tritt ein, trat ein, ist eingetreten)：1. 进入（房间） 2. （事件）发生。完成时均用 ist。'
+            },
+            {
+                id: 29,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Eintritt',
+                question: '展馆门前告示 "Eintritt frei" 的含义是？',
+                options: ['免费入场 / 免门票', '禁止入场', '门票售罄', '凭票入场'],
+                answer: 0,
+                detail: 'der Eintritt (进入，门票)。Eintritt frei = 免费参观/免门票。'
+            },
+            {
+                id: 30,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'einverstanden',
+                question: '表达“我同意这个提议 / 我没意见”时，正确的搭配是？',
+                options: [
+                    'Ich bin mit dem Vorschlag einverstanden.',
+                    'Ich bin für den Vorschlag einverstanden.',
+                    'Ich habe den Vorschlag einverstanden.',
+                    'Ich stimme mit dem Vorschlag einverstanden.'
+                ],
+                answer: 0,
+                detail: 'mit etwas (Dat.) einverstanden sein 表示“同意某事”。'
+            },
+            {
+                id: 31,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Einwohner, - / die Einwohnerin, -nen',
+                question: '询问“柏林有多少人口/居民？”时，正确的德语提问是？',
+                options: [
+                    'Wie viele Einwohner hat Berlin?',
+                    'Wie viel Einwohner ist in Berlin?',
+                    'Wie groß sind die Einwohner Berlins?',
+                    'Welche Einwohner wohnt in Berlin?'
+                ],
+                answer: 0,
+                detail: 'der Einwohner, - (居民)。阳性单复数同形：die Einwohner。'
+            },
+
+            // Image 3
+            {
+                id: 32,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'einzahlen',
+                question: '在银行存入现金用动词 "einzahlen"，其反义词（取款/提现）是？',
+                options: ['abheben / auszahlen', 'einkaufen', 'einnehmen', 'eintragen'],
+                answer: 0,
+                detail: 'einzahlen (存款) <-> abheben / auszahlen (取款)。完成时：hat eingezahlt。'
+            },
+            {
+                id: 33,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Einzahlung, -en',
+                question: '在银行办理存款业务填写的单据被称为？',
+                options: ['der Einzahlungsschein', 'die Einladungskarte', 'der Einkaufszettel', 'die Empfehlung'],
+                answer: 0,
+                detail: 'die Einzahlung, -en (存款/缴款)。存款凭单为 der Einzahlungsschein。'
+            },
+            {
+                id: 34,
+                type: 'Adverb',
+                badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
+                word: 'einzeln',
+                question: '句子 "Bitte treten Sie einzeln ein!" 中 "einzeln" 作副词使用的含义是？',
+                options: ['逐个地，单独地', '快速地', '集体地', '静悄悄地'],
+                answer: 0,
+                detail: 'einzeln 意为“单独的，个别的，逐一的”。'
+            },
+            {
+                id: 35,
+                type: 'Präfix',
+                badgeClass: 'bg-zinc-100 text-zinc-700 border-zinc-200',
+                word: 'Einzel-',
+                question: '构词前缀 "Einzel-" 表示“单人的/单个的”，下列哪个组合表示“酒店单人房”？',
+                options: ['das Einzelzimmer', 'das Doppelzimmer', 'das Einzelbett', 'die Einzelheit'],
+                answer: 0,
+                detail: 'das Einzelzimmer (单人房) <-> das Doppelzimmer (双人房)。'
+            },
+            {
+                id: 36,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Einzelheit, -en',
+                question: '短语 "in allen Einzelheiten erklären" 中的 "Einzelheit" 相当于哪个近义词？',
+                options: ['das Detail, -s (细节/详解)', 'das Element, -e', 'der Eingang, "-e', 'das Ende, -n'],
+                answer: 0,
+                detail: 'die Einzelheit, -en 意为“细节，详情”。in allen Einzelheiten = im Detail。'
+            },
+            {
+                id: 37,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'einzig-',
+                question: '关于形容词 "einzig" (唯一的)，下列说法正确的是？',
+                options: [
+                    '本身已具备极限含义，不可使用最高级 (einzigst 是常见语法错误！)',
+                    '可以加 -st 变成 unique 的最高级',
+                    '只能作副词，不能加形容词词尾',
+                    '复数形式永远不加词尾'
+                ],
+                answer: 0,
+                detail: 'einzig 表示“唯一的”。在德语中 "das einzigste" 是典型的表达错误，正确应为 "das einzige"。'
+            },
+            {
+                id: 38,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'einziehen',
+                question: '搬入新居用 "einziehen"，搬离旧居与搬家分别用什么动词？完成时助动词是？',
+                options: [
+                    'ausziehen / umziehen；助动词均用 ist',
+                    'ausziehen / umziehen；助动词均用 hat',
+                    'abziehen / beziehen；助动词用 hat',
+                    'einstellen / ausstellen；助动词用 ist'
+                ],
+                answer: 0,
+                detail: 'einziehen (搬入), ausziehen (搬出), umziehen (搬家) 均涉及居住地点变更，完成时全用 ist！'
+            },
+            {
+                id: 39,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'das Eis (D, A) / Glace (CH)',
+                question: '在德国和奥地利，冰淇淋称为 "das Eis"；而在瑞士德语 (CH) 中通常称为？',
+                options: ['das Glace / Glacé', 'der Schnee', 'die Sahne', 'das Müsli'],
+                answer: 0,
+                detail: '瑞士德语德语区 (Schweiz/CH) 常用外来语表达冰淇淋：das Glace / Glacé。'
+            },
+            {
+                id: 40,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Eisenbahn, -en',
+                question: '名词 "die Eisenbahn" 字面意思是“铁路/铁道”，它的日常常用近义词（火车）是？',
+                options: ['die Bahn, -en / der Zug, "-e', 'das Auto, -s', 'der Bus, -se', 'das Schiff, -e'],
+                answer: 0,
+                detail: 'die Eisenbahn, -en (铁路，火车)。常用：die Bahn 或 der Zug。'
+            },
+            {
+                id: 41,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'elegant',
+                question: '形容词 "elegant" (举止/穿着优雅高贵的) 的反义词是？',
+                options: ['unelegant / altmodisch', 'elektrisch', 'einsam', 'einheitlich'],
+                answer: 0,
+                detail: 'elegant (优雅的) <-> unelegant (不优雅的/俗气的)。'
+            },
+            {
+                id: 42,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'elektrisch',
+                question: '形容词 "elektrisch" 与 "elektronisch" 的区别是：下列哪个设备通常修饰为 "elektrisch"？',
+                options: ['eine elektrische Zahnbürste (电动牙刷)', 'ein elektronisches Buch (电子书)', 'ein Computer', 'ein Smartphone'],
+                answer: 0,
+                detail: 'elektrisch 侧重“用电驱动的/强电的”；elektronisch 侧重“电子微处理器的/弱电信息技术的”。'
+            },
+            {
+                id: 43,
+                type: 'Präfix',
+                badgeClass: 'bg-zinc-100 text-zinc-700 border-zinc-200',
+                word: 'Elektro-',
+                question: '前缀 "Elektro-" 用于合成词（如 das Elektroauto），其含义是？',
+                options: ['电动的 / 以电驱动的', '自动的', '跑车', '环保的'],
+                answer: 0,
+                detail: 'Elektro- 表示与电力驱动相关。das Elektroauto = 电动汽车。'
+            },
+            {
+                id: 44,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'elektronisch',
+                question: '现代词汇 "die E-Mail" 的全称是 "elektronische Post"，其中 "elektronisch" 的意思是？',
+                options: ['电子的', '电力的', '快速的', '自动的'],
+                answer: 0,
+                detail: 'elektronisch = 电子的 (electronic)。例如：elektronische Datenverarbeitung (电子数据处理)。'
+            },
+            {
+                id: 45,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Eltern (Pl.)',
+                question: '名词 "die Eltern" (父母双亲) 只有复数形式。若要单指“父母中的一方”，正确的表达是？',
+                options: ['das Elternteil, -e', 'der Eltern', 'die Elter', 'das Elternstück'],
+                answer: 0,
+                detail: 'die Eltern 仅作复数。单数“父母中的一位”德语表达为 das Elternteil, -e。'
+            },
+            {
+                id: 46,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'empfangen',
+                question: '动词 "empfangen" (接收/接待) 的第三人称单数 (er) 现在时及过去分词分别是？',
+                options: [
+                    'er empfängt / hat empfangen',
+                    'er empfangt / hat geempfangen',
+                    'er empfingt / ist empfangen',
+                    'er empfängt / hat geempfängt'
+                ],
+                answer: 0,
+                detail: 'empfangen (er empfängt, empfing, hat empfangen)。前缀 emp- 不可分，过去分词无 -ge-。'
+            },
+            {
+                id: 47,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Empfang, "-e',
+                question: '在酒店大堂或公司入口，"前台 / 接待处" 的德语表达是？',
+                options: ['der Empfang / die Rezeption', 'der Eingang', 'die Auskunft', 'der Service'],
+                answer: 0,
+                detail: 'der Empfang, "-e 意为“接纳，接待；前台/接待处”。'
+            },
+            {
+                id: 48,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Empfänger, -',
+                question: '在邮寄信件时，信封上的 "der Empfänger" 与其反义词（寄件人）分别是？',
+                options: ['收件人 <-> der Absender', '寄件人 <-> der Bote', '邮递员 <-> der Kunde', '收款人 <-> der Zahler'],
+                answer: 0,
+                detail: 'der Empfänger, - (收件人/接收者) <-> der Absender, - (寄件人)。'
+            },
+            {
+                id: 49,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'empfehlen',
+                question: '动词 "empfehlen" (推荐) 的第三人称单数 (er) 现在时及三四格用法是？',
+                options: [
+                    'er empfiehlt / jemandem (Dat.) etwas (Akk.) empfehlen',
+                    'er empfehlt / jemanden (Akk.) etwas (Akk.) empfehlen',
+                    'er empföhlt / jemandem (Dat.) zu etwas (Dat.) empfehlen',
+                    'er empfielt / jemanden (Akk.) für etwas (Akk.) empfehlen'
+                ],
+                answer: 0,
+                detail: 'empfehlen 发生 e -> ie 换音：er empfiehlt, empfahl, hat empfohlen。搭配：jemandem etwas empfehlen。'
+            },
+            {
+                id: 50,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Empfehlung, -en',
+                question: '求职或申请学校时，教授或前雇主开具的“推荐信”德语是？',
+                options: ['das Empfehlungsschreiben, -', 'der Empfehlungsbrief', 'die Empfehlungsnote', 'die Einladung'],
+                answer: 0,
+                detail: 'die Empfehlung, -en (推荐)。推荐信 = das Empfehlungsschreiben.'
+            },
+
+            // Image 4
+            {
+                id: 51,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'enden',
+                question: '句子 "Der Film hat um 22 Uhr geendet." 中，动词 "enden" (结束) 的助动词与过去分词是？',
+                options: ['hat geendet', 'ist geendet', 'hat geendt', 'ist geendt'],
+                answer: 0,
+                detail: 'enden (不及物动词，表示终结)：endet, endete, hat geendet。'
+            },
+            {
+                id: 52,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'das Ende, -n',
+                question: '表达“在月底”或“在五月底”时，正确的无冠词介词表达是？',
+                options: ['Ende des Monats / Ende Mai', 'an dem Ende Mai', 'in das Ende von Mai', 'zu Ende Mai'],
+                answer: 0,
+                detail: 'das Ende (结束/末尾)。固定表达：Ende Mai (五月底)，zu Ende sein (结束)。'
+            },
+            {
+                id: 53,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'endgültig',
+                question: '句子 "Das ist meine endgültige Entscheidung." 中 "endgültig" 的含义是？',
+                options: ['最终的，决定性的 (不可更改的)', '暂时的', '草率的', '可疑的'],
+                answer: 0,
+                detail: 'endgültig 意为“最终的，确定性的，不可更改的”。'
+            },
+            {
+                id: 54,
+                type: 'Adverb',
+                badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
+                word: 'endlich',
+                question: '感叹句 "Endlich haben wir Feierabend!" 中，副词 "endlich" 表达的情感色彩是？',
+                options: ['期盼已久后的“终于/总算”', '对未来的“有限”估计', '最后一次', '极其非常'],
+                answer: 0,
+                detail: 'endlich 意为“终于，总算”（表达长时间等待后的释怀或高兴）。'
+            },
+            {
+                id: 55,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Energie, -n',
+                question: '“可再生能源”在德语中的常用专有名词短语是？',
+                options: ['erneuerbare Energien (Pl.)', 'neue Energien', 'wiederliche Energien', 'frische Energien'],
+                answer: 0,
+                detail: 'die Energie, -n。可再生能源 = erneuerbare Energien。'
+            },
+            {
+                id: 56,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'eng',
+                question: '形容词 "eng" (狭窄的/紧身的) 的反义词（宽敞的/宽松的）是？',
+                options: ['weit / breit', 'dicht', 'lang', 'dick'],
+                answer: 0,
+                detail: 'eng (窄的，紧的) <-> weit (宽的，松的) / breit (宽广的)。'
+            },
+            {
+                id: 57,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Enkel, - / die Enkelin, -nen',
+                question: '名词 "der Enkel" 和 "die Enkelin" 分别指什么亲属关系？',
+                options: ['孙子/外孙 <-> 孙女/外孙女', '侄子 <-> 侄女', '儿子 <-> 女儿', '表兄 <-> 表妹'],
+                answer: 0,
+                detail: 'der Enkel, - (孙子/外孙)；die Enkelin, -nen (孙女/外孙女)。祖父母为 die Großeltern。'
+            },
+            {
+                id: 58,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'entdecken',
+                question: '“哥伦布发现了新大陆”用动词 entdecken。关于该词的形态，下列说法正确的是？',
+                options: [
+                    '前缀 ent- 不可分，过去分词为 entdeckt (hat entdeckt)',
+                    '前缀 ent- 可分，过去分词为 entgedeckt',
+                    '是位移动词，完成时用 ist entdeckt',
+                    '属于反身动词，必须带 sich'
+                ],
+                answer: 0,
+                detail: 'entdecken (发现)：ent- 是不可分前缀。三时态：entdeckt, entdeckte, hat entdeckt。'
+            },
+            {
+                id: 59,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'entfernen',
+                question: '反身动词短语 "sich entfernen von + Dat." 的中文含义是？',
+                options: ['远离 / 离开某地或某人', '靠近某人', '移除某物', '保护某人'],
+                answer: 0,
+                detail: 'entfernen (移走/清除)；sich entfernen von... (远离/离开)。完成时：hat entfernt。'
+            },
+            {
+                id: 60,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Entfernung, -en',
+                question: '句子 "Aus welcher Entfernung kann man das sehen?" 中 "Entfernung" 的近义词是？',
+                options: ['die Distanz, -en (距离)', 'die Richtung, -en', 'die Dauer', 'die Höhe'],
+                answer: 0,
+                detail: 'die Entfernung, -en (距离，遥远)。近义词：die Distanz。'
+            },
+            {
+                id: 61,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'entgegenkommen',
+                question: '动词 "entgegenkommen" 既可指物理上的“迎面走来”，也可在商务/谈判中指？',
+                options: ['妥协 / 做出让步 / 配合', '拒绝合作', '大幅提价', '终止合同'],
+                answer: 0,
+                detail: 'jemandem entgegenkommen 意为“向某人妥协/让步/提供便利”。完成时：ist entgegengekommen。'
+            },
+            {
+                id: 62,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'enthalten',
+                question: '饮料包装上标有 "Enthält Zucker"，动词 "enthalten" 的第三人称单数现在时变位及含义是？',
+                options: [
+                    'enthält (换音 a -> ä) / 包含，含有',
+                    'enthaltet / 缺乏，没有',
+                    'enthielt / 增加，添加',
+                    'enthalte / 隐藏，遮挡'
+                ],
+                answer: 0,
+                detail: 'enthalten (enthält, enthielt, hat enthalten)：包含，含有。前缀 ent- 不可分。'
+            },
+            {
+                id: 63,
+                type: 'Präposition',
+                badgeClass: 'bg-rose-50 text-rose-700 border-rose-200',
+                word: 'entlang',
+                question: '当 "entlang" 作为后置介词放在名词后面时（如: den Fluss entlang gehen），名词用第几格？',
+                options: ['第四格 (Akkusativ)', '第三格 (Dativ)', '第二格 (Genitiv)', '第一格 (Nominativ)'],
+                answer: 0,
+                detail: 'entlang 放在名词后面时支配第四格 (Akkusativ)：den Fluss (Akk.) entlang gehen。'
+            },
+            {
+                id: 64,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'entlassen',
+                question: '动词 "entlassen" (解雇/允许出院) 的变位是 entlässt, entließ, hat entlassen。其名词形式是？',
+                options: ['die Entlassung, -en', 'die Entlasser', 'das Entlassen', 'die Entlassigkeit'],
+                answer: 0,
+                detail: 'entlassen -> die Entlassung, -en (解雇，释放，出院)。'
+            },
+            {
+                id: 65,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Entlassung, -en',
+                question: '句子 "Die Entlassung aus dem Krankenhaus erfolgt morgen." 中 "Entlassung" 的具体含义是？',
+                options: ['出院', '解雇', '入院', '手术'],
+                answer: 0,
+                detail: 'die Entlassung aus dem Krankenhaus 专指“出院”。'
+            },
+            {
+                id: 66,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'entlassen (Zusatz)',
+                question: '公司因经营不善“裁员/解雇员工”，德语正确表达为？',
+                options: ['Mitarbeiter entlassen', 'Mitarbeiter einstellen', 'Mitarbeiter eintragen', 'Mitarbeiter einladen'],
+                answer: 0,
+                detail: 'entlassen (解雇/裁员) <-> einstellen (招聘/雇用)。'
+            }
+        ];
+
+        // Native Audio Synthesizer
+        let audioCtx = null;
+        function getAudioContext() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
+
+        function playSound(isCorrect) {
+            try {
+                const ctx = getAudioContext();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                const now = ctx.currentTime;
+                if (isCorrect) {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(523.25, now); // C5
+                    osc.frequency.setValueAtTime(659.25, now + 0.08); // E5
+                    gain.gain.setValueAtTime(0.12, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+                    osc.start(now);
+                    osc.stop(now + 0.3);
+                } else {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(220, now);
+                    osc.frequency.exponentialRampToValueAtTime(140, now + 0.2);
+                    gain.gain.setValueAtTime(0.1, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+                    osc.start(now);
+                    osc.stop(now + 0.2);
+                }
+            } catch (e) {
+                console.error("Audio error:", e);
+            }
+        }
+
+        // Fisher-Yates Shuffle
+        function shuffleArray(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        // App State
+        let vocabularyData = [];
+        let currentIndex = 0;
+        let userAnswers = [];
+        let showExplanation = false;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            resetPractice();
+        });
+
+        function resetPractice() {
+            vocabularyData = shuffleArray(rawVocabularyData);
+            currentIndex = 0;
+            userAnswers = new Array(vocabularyData.length).fill(null);
+            showExplanation = false;
+            document.getElementById('quiz-container').classList.remove('hidden');
+            document.getElementById('bottom-nav').classList.remove('hidden');
+            document.getElementById('result-container').classList.add('hidden');
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const currentData = vocabularyData[currentIndex];
+            
+            // Render Badges and Titles
+            document.getElementById('word-badge').className = `px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase border ${currentData.badgeClass}`;
+            document.getElementById('word-badge').textContent = currentData.type;
+            document.getElementById('question-index-tag').textContent = `Q${currentIndex + 1}`;
+            document.getElementById('target-word').textContent = currentData.word;
+            document.getElementById('question-prompt').textContent = currentData.question;
+
+            // Progress Bar
+            const progressPercent = Math.round(((currentIndex + 1) / vocabularyData.length) * 100);
+            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+            document.getElementById('progress-text').textContent = `进度：${currentIndex + 1} / ${vocabularyData.length}`;
+            document.getElementById('progress-percent').textContent = `${progressPercent}%`;
+
+            // Options
+            const optionsGrid = document.getElementById('options-grid');
+            optionsGrid.innerHTML = '';
+            const selectedAnswer = userAnswers[currentIndex];
+            const isAnswered = selectedAnswer !== null;
+
+            currentData.options.forEach((optText, optIndex) => {
+                const btn = document.createElement('button');
+                btn.className = getOptionStyle(optIndex, selectedAnswer, currentData.answer);
+                btn.innerHTML = `
+                    <div class="flex items-center justify-between w-full">
+                        <span class="flex items-center gap-3.5">
+                            <span class="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold border transition-all ${getOptionMarkerStyle(optIndex, selectedAnswer, currentData.answer)}">
+                                ${String.fromCharCode(65 + optIndex)}
+                            </span>
+                            <span class="font-medium">${optText}</span>
+                        </span>
+                        ${getOptionIcon(optIndex, selectedAnswer, currentData.answer)}
+                    </div>
+                `;
+                btn.onclick = () => selectOption(optIndex);
+                optionsGrid.appendChild(btn);
+            });
+
+            // Explanation
+            const explainCard = document.getElementById('explanation-card');
+            const explainText = document.getElementById('explanation-text');
+            explainText.textContent = currentData.detail;
+            if (showExplanation || isAnswered) {
+                explainCard.classList.remove('hidden');
+            } else {
+                explainCard.classList.add('hidden');
+            }
+
+            // Controls
+            document.getElementById('btn-prev').disabled = currentIndex === 0;
+            const btnNext = document.getElementById('btn-next');
+            if (currentIndex === vocabularyData.length - 1) {
+                btnNext.textContent = '完成特训';
+                btnNext.className = 'px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-teal-700 hover:bg-teal-800 text-white shadow-md transition-all';
+            } else {
+                btnNext.textContent = '下一题';
+                btnNext.className = 'px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-md transition-all';
+            }
+        }
+
+        function getOptionStyle(index, selected, correct) {
+            const base = "w-full text-left p-4 sm:p-4.5 rounded-2xl border text-sm sm:text-base transition-all duration-200 flex items-center justify-between ";
+            if (selected === null) {
+                return base + "border-slate-200/80 bg-white hover:border-slate-400 hover:shadow-md text-slate-800";
+            }
+            if (index === correct) {
+                return base + "border-emerald-300 bg-emerald-50/90 text-emerald-900 font-semibold shadow-sm";
+            }
+            if (index === selected && selected !== correct) {
+                return base + "border-rose-300 bg-rose-50/90 text-rose-900 font-semibold shadow-sm";
+            }
+            return base + "border-slate-100 bg-slate-50/50 text-slate-400 opacity-50";
+        }
+
+        function getOptionMarkerStyle(index, selected, correct) {
+            if (selected === null) {
+                return "border-slate-200 text-slate-500 bg-slate-50";
+            }
+            if (index === correct) {
+                return "border-emerald-500 text-white bg-emerald-600 shadow-sm";
+            }
+            if (index === selected && selected !== correct) {
+                return "border-rose-500 text-white bg-rose-500 shadow-sm";
+            }
+            return "border-slate-200 text-slate-300 bg-slate-100";
+        }
+
+        function getOptionIcon(index, selected, correct) {
+            if (selected === null) return '';
+            if (index === correct) {
+                return `<svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>`;
+            }
+            if (index === selected && selected !== correct) {
+                return `<svg class="w-5 h-5 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>`;
+            }
+            return '';
+        }
+
+        function selectOption(index) {
+            if (userAnswers[currentIndex] === null) {
+                const isCorrect = index === vocabularyData[currentIndex].answer;
+                playSound(isCorrect);
+            }
+            userAnswers[currentIndex] = index;
+            showExplanation = true;
+            renderQuestion();
+        }
+
+        function toggleExplanation() {
+            showExplanation = !showExplanation;
+            const explainCard = document.getElementById('explanation-card');
+            if (showExplanation) {
+                explainCard.classList.remove('hidden');
+            } else {
+                explainCard.classList.add('hidden');
+            }
+        }
+
+        function nextQuestion() {
+            if (currentIndex < vocabularyData.length - 1) {
+                currentIndex++;
+                showExplanation = false;
+                renderQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                showExplanation = false;
+                renderQuestion();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quiz-container').classList.add('hidden');
+            document.getElementById('bottom-nav').classList.add('hidden');
+            document.getElementById('result-container').classList.remove('hidden');
+
+            let mistakeCount = 0;
+            const mistakesList = document.getElementById('mistakes-list');
+            mistakesList.innerHTML = '';
+
+            userAnswers.forEach((ans, idx) => {
+                const item = vocabularyData[idx];
+                if (ans !== item.answer) {
+                    mistakeCount++;
+                    const mistakeDiv = document.createElement('div');
+                    mistakeDiv.className = 'p-4 bg-slate-50 rounded-2xl border border-slate-200/80 text-xs sm:text-sm';
+                    mistakeDiv.innerHTML = `
+                        <div class="font-german font-bold text-slate-900 text-base mb-1">${item.word}</div>
+                        <div class="text-slate-600 leading-relaxed">${item.detail}</div>
+                    `;
+                    mistakesList.appendChild(mistakeDiv);
+                }
+            });
+
+            document.getElementById('stat-total').textContent = vocabularyData.length;
+            document.getElementById('stat-mistakes').textContent = mistakeCount;
+
+            const mistakesSection = document.getElementById('mistakes-section');
+            if (mistakeCount > 0) {
+                mistakesSection.classList.remove('hidden');
+            } else {
+                mistakesSection.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
