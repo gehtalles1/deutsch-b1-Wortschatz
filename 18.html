@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="h-full bg-slate-50/80">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>德语 B1 核心词汇特训</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Serif+Georgia&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .font-german {
+            font-family: 'Noto Serif Georgia', Georgia, serif;
+        }
+        .custom-glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+    </style>
+</head>
+<body class="h-full text-slate-800 antialiased selection:bg-teal-100 selection:text-teal-900 flex flex-col justify-between bg-gradient-to-br from-slate-50 via-zinc-50 to-teal-50/20">
+    <!-- Header Area -->
+    <header class="sticky top-0 z-30 custom-glass border-b border-slate-200/60 px-4 py-3.5 sm:px-8 shadow-sm">
+        <div class="max-w-3xl mx-auto flex items-center justify-between">
+            <a href="index.html" class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-500 hover:text-slate-900 transition-all py-1.5 px-3 rounded-full hover:bg-slate-100/80">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+                返回主页
+            </a>
+            <div class="text-center">
+                <h1 class="text-xs sm:text-sm font-bold tracking-widest text-slate-400 uppercase">Wortschatz Training</h1>
+                <p class="text-sm sm:text-base font-extrabold text-slate-900 tracking-tight">德语 B1 核心词汇特训</p>
+            </div>
+            <button onclick="resetPractice()" class="text-xs sm:text-sm font-semibold text-slate-500 hover:text-teal-700 transition-all py-1.5 px-3 rounded-full hover:bg-slate-100/80">
+                重新开始
+            </button>
+        </div>
+        <!-- Progress Bar -->
+        <div class="max-w-3xl mx-auto mt-3">
+            <div class="flex justify-between items-center text-xs font-bold text-slate-400 mb-1.5 tracking-wider uppercase">
+                <span id="progress-text">进度：1 / 68</span>
+                <span id="progress-percent">1%</span>
+            </div>
+            <div class="w-full h-1.5 bg-slate-200/70 rounded-full overflow-hidden p-0.5">
+                <div id="progress-bar" class="h-full bg-slate-900 transition-all duration-300 rounded-full" style="width: 1%"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Section -->
+    <main class="flex-1 max-w-3xl w-full mx-auto p-4 sm:p-6 flex flex-col justify-center">
+        <!-- QUIZ CONTAINER -->
+        <div id="quiz-container" class="space-y-6">
+            <!-- Word Header Card -->
+            <div class="bg-white/90 backdrop-blur-sm rounded-3xl p-6 sm:p-9 border border-slate-200/70 shadow-xl shadow-slate-200/50 relative overflow-hidden transition-all">
+                <div class="flex items-center justify-between mb-4">
+                    <span id="word-badge" class="px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase border">
+                        Substantiv
+                    </span>
+                    <span id="question-index-tag" class="text-xs font-bold text-slate-400 tracking-widest uppercase">
+                        Q1
+                    </span>
+                </div>
+                <div class="py-2">
+                    <h2 id="target-word" class="font-german text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-3">
+                        das Hackfleisch
+                    </h2>
+                    <p id="question-prompt" class="text-sm sm:text-base font-medium text-slate-600 leading-relaxed">
+                        在奥地利(Österreich)的德语中，“绞肉/肉馅”通常不称作 Hackfleisch，而是叫作？
+                    </p>
+                </div>
+            </div>
+
+            <!-- Options Grid -->
+            <div id="options-grid" class="grid grid-cols-1 gap-3.5">
+                <!-- Dynamic options -->
+            </div>
+
+            <!-- Explanation Card -->
+            <div id="explanation-card" class="hidden bg-slate-900 text-slate-100 rounded-2xl p-5 sm:p-6 shadow-lg border border-slate-800 text-sm leading-relaxed space-y-2">
+                <div class="font-semibold text-teal-400 flex items-center gap-2 text-xs sm:text-sm uppercase tracking-wider">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    词汇解析与用法
+                </div>
+                <div id="explanation-text" class="text-slate-300 text-xs sm:text-sm font-normal"></div>
+            </div>
+        </div>
+
+        <!-- RESULT CONTAINER -->
+        <div id="result-container" class="hidden bg-white/90 backdrop-blur-sm rounded-3xl p-8 sm:p-10 border border-slate-200/70 shadow-xl shadow-slate-200/50 text-center space-y-8">
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-900 text-teal-400 shadow-lg shadow-slate-900/10 mb-2">
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <div>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2 tracking-tight">特训完成</h2>
+                <p class="text-sm text-slate-500 font-medium">已完成所有词汇测试，巩固词汇细节是提升语言水平的关键！</p>
+            </div>
+
+            <div class="max-w-md mx-auto py-3 px-6 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-around">
+                <div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">本次练习题目</div>
+                    <div id="stat-total" class="text-2xl font-extrabold text-slate-900">68</div>
+                </div>
+                <div class="h-8 w-px bg-slate-200"></div>
+                <div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">重点标注/复习词汇</div>
+                    <div id="stat-mistakes" class="text-2xl font-extrabold text-slate-900">0</div>
+                </div>
+            </div>
+
+            <!-- Incorrect Words Review List -->
+            <div id="mistakes-section" class="text-left hidden space-y-4 pt-2">
+                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                    需重点巩固的词汇
+                </h3>
+                <div id="mistakes-list" class="space-y-2.5 max-h-64 overflow-y-auto pr-1"></div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-6 border-t border-slate-100">
+                <button onclick="resetPractice()" class="w-full sm:w-auto px-8 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm transition-all shadow-md hover:shadow-lg">
+                    再练一次
+                </button>
+                <a href="index.html" class="w-full sm:w-auto px-8 py-3 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 font-bold text-sm transition-all text-center">
+                    返回主页
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Actions Nav -->
+    <footer id="bottom-nav" class="sticky bottom-0 z-30 custom-glass border-t border-slate-200/60 px-4 py-3.5 sm:px-8">
+        <div class="max-w-3xl mx-auto flex items-center justify-between gap-3">
+            <button id="btn-prev" onclick="prevQuestion()" disabled class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 text-slate-600 hover:bg-slate-100 disabled:opacity-30 disabled:cursor-not-allowed transition-all">
+                上一题
+            </button>
+            <button id="btn-toggle-explain" onclick="toggleExplanation()" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 hover:bg-slate-200/80 text-slate-700 transition-all flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                查看释义
+            </button>
+            <button id="btn-next" onclick="nextQuestion()" class="px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-md transition-all">
+                下一题
+            </button>
+        </div>
+    </footer>
+
+    <script>
+        const rawVocabularyData = [
+            {
+                id: 1,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'das Hackfleisch',
+                question: '在奥地利(Österreich)的德语中，“绞肉/绞肉馅”通常不称为 Hackfleisch，而是叫作？',
+                options: ['die Béchamel', 'das Faschierte', 'der Fasching', 'das Geschnetzelte'],
+                answer: 1,
+                detail: 'das Hackfleisch (D, CH) 在奥地利德语(A)中表达为 das Faschierte。'
+            },
+            {
+                id: 2,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Hafen, "-',
+                question: '名词 "der Hafen" (港口) 的正确复数形式是哪一个？',
+                options: ['die Hafene', 'die Häfen', 'die Häfener', 'die Häfens'],
+                answer: 1,
+                detail: 'der Hafen, 复数变音为 die Häfen。如：der Hamburger Hafen (汉堡港)。'
+            },
+            {
+                id: 3,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'hageln',
+                question: '描述“下冰雹”时，主语通常用无人称代词 "es"。其现在完成时表达正确的是？',
+                options: ['Es hat gehagelt.', 'Es ist gehagelt.', 'Es gehagelt hat.', 'Es war gehagelt.'],
+                answer: 0,
+                detail: 'hageln (hagelt, hagelte, hat gehagelt) 表示自然现象，现在完成时助动词使用 haben。'
+            },
+            {
+                id: 4,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'das Hähnchen, -',
+                question: '在瑞士德语(CH)中，“烤鸡/小鸡”对应的常用德语词汇是？',
+                options: ['das Hendl', 'das Poulet', 'das Huhn', 'die Ente'],
+                answer: 1,
+                detail: 'das Hähnchen/Hühnchen (D) -> das Hendl (A) -> das Poulet, -s (CH)。'
+            },
+            {
+                id: 5,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'halb',
+                question: '德语时间表达 “Es ist halb vier.” 在中文里指的是几点？',
+                options: ['4点半', '3点半', '4点15分', '3点15分'],
+                answer: 1,
+                detail: 'halb vier 表示“再过半小时到达四点”，即 3点30分 (3点半)。'
+            },
+            {
+                id: 6,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Halbpension',
+                question: '在预订酒店时，“Halbpension” (半包餐) 通常包含以下哪种餐饮安排？',
+                options: ['仅含早餐', '含早餐和午餐/晚餐其中一顿', '早中晚三餐全包', '含免费下午茶和夜宵'],
+                answer: 1,
+                detail: 'die Halbpension (HP) 指提供早餐和一顿主餐（午餐或晚餐）。全包餐则为 Vollpension。'
+            },
+            {
+                id: 7,
+                type: 'Adverb',
+                badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
+                word: 'halbtags',
+                question: '“Sie arbeitet halbtags.” 句中的 "halbtags" 词性及含义是？',
+                options: ['名词：半天假', '副词：非全日制地/半天工作地', '形容词：极度疲惫的', '介词：在半天以内'],
+                answer: 1,
+                detail: 'halbtags 是副词，意为“半天地，非全日制地”。例：halbtags arbeiten。'
+            },
+            {
+                id: 8,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Hälfte, -n',
+                question: '“Die Hälfte der Studenten ______ die Prüfung bestanden.” 句中空格处谓语动词应填入？',
+                options: ['hat', 'haben', 'bist', 'sein'],
+                answer: 0,
+                detail: 'die Hälfte (一半) 作为主语核心词时，谓语动词通常配合单数第三人称 hat。'
+            },
+            {
+                id: 9,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Halle, -n',
+                question: '表达“室内体育馆”时，德语常用哪个由 "die Halle" 构成的复合词？',
+                options: ['die Sporthalle', 'die Bahnhofshalle', 'die Markthalle', 'die Eingangshalle'],
+                answer: 0,
+                detail: 'die Halle, -n (大厅，展厅，馆)。die Sporthalle 指室内体育馆。'
+            },
+            {
+                id: 10,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'das Hallenbad, "-er',
+                question: '“das Hallenbad” (室内游泳馆) 的对照场所（室外/露天游泳池）是？',
+                options: ['das Freibad', 'das Seebad', 'das Dampfbad', 'das Thermalbad'],
+                answer: 0,
+                detail: 'das Hallenbad (室内游泳馆) <-> das Freibad (室外/露天游泳池)。'
+            },
+            {
+                id: 11,
+                type: 'Partikel',
+                badgeClass: 'bg-zinc-100 text-zinc-700 border-zinc-200',
+                word: 'hallo',
+                question: '德语日常打招呼用语 "Hallo!" 最适合用于哪种社交场景？',
+                options: ['非常正式的商务谈判与对外邮件', '熟人、朋友、同事间的非正式问候', '只能用于晚上向长辈道别', '法庭上的正式致辞'],
+                answer: 1,
+                detail: 'Hallo 为非正式打招呼用语，适用于朋友、同事或平辈之间。正式场合宜用 Guten Tag / Guten Morgen。'
+            },
+            {
+                id: 12,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Hals, "-e',
+                question: '当表达“我喉咙痛/脖子痛”时，德语应说 “Ich habe ______schmerzen.”？',
+                options: ['Kopf', 'Hals', 'Bauch', 'Rücken'],
+                answer: 1,
+                detail: 'der Hals, "-e (脖子，喉咙)。die Halsschmerzen (喉咙痛)。'
+            },
+            {
+                id: 13,
+                type: 'Partikel',
+                badgeClass: 'bg-zinc-100 text-zinc-700 border-zinc-200',
+                word: 'halt',
+                question: '口语语气小品词 "halt" (如 “Das ist halt so.”) 的表达语气接近于？',
+                options: ['绝对禁止，必须取消', '“就是这样/没办法/毕竟” (接受事实或无奈)', '“也许吧/大概不确定”', '“非常紧急”'],
+                answer: 1,
+                detail: 'halt 为口语中极常见的语气小品词 (Abtönungspartikel)，相当于 eben，表示“客观事实就是如此，无可改变”。'
+            },
+            {
+                id: 14,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'haltbar',
+                question: '食品包装上的标语 “Mindestens haltbar bis: siehe Boden” 中，"haltbar" 的意思是？',
+                options: ['易碎的', '可保存的 / 保质的', '打折促销的', '开封即食的'],
+                answer: 1,
+                detail: 'haltbar (耐用的，可保存的，未变质的)。Mindestens haltbar bis... (最佳赏味期/保质期至……)。'
+            },
+            {
+                id: 15,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'halten',
+                question: '“Was hältst du von diesem Vorschlag?” 句中的 "halten von + Dat." 意思是？',
+                options: ['手里拿住某物', '认为/对……看法如何', '停止做某事', '保持物理距离'],
+                answer: 1,
+                detail: 'halten von + Dat. 表示“对……持某种观点/看法”。例如：Was hältst du davon? (你觉得这怎么样？)'
+            },
+            {
+                id: 16,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Halt',
+                question: '在德铁 (DB) 火车广播中，“Nächster Halt: Berlin Hauptbahnhof” 里的 "der Halt" 意思是？',
+                options: ['终点站', '停靠站 / 停车', '换乘通道', '列车晚点'],
+                answer: 1,
+                detail: 'der Halt (停靠，停车点)。Nächster Halt 表示“下一停靠站”。'
+            },
+            {
+                id: 17,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Haltestelle, -n',
+                question: '在公交或电车站“在车站等车 (An der Haltestelle warten)”，介词 "an" 后面接第几格？',
+                options: ['Nominativ (第一格)', 'Akkusativ (第四格)', 'Dativ (第三格)', 'Genitiv (第二格)'],
+                answer: 2,
+                detail: '表示“在……车站”静止地点，双介词 an 接 Dativ (an der Haltestelle)。'
+            },
+            {
+                id: 18,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Hammer, "-',
+                question: '工具名词 "der Hammer" (锤子) 的复数形式是哪一个？',
+                options: ['die Hämmer', 'die Hammere', 'die Hammers', 'die Hammeren'],
+                answer: 0,
+                detail: 'der Hammer, 复数变音为 die Hämmer。口语中 "Das ist der Hammer!" 意为“太棒了/太绝了！”'
+            },
+            {
+                id: 19,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Hand, "-e',
+                question: '“Wir müssen das gemeinsam in die Hände nehmen.” 句中 "die Hand" 的复数形式是？',
+                options: ['die Hände', 'die Handen', 'die Händer', 'die Hands'],
+                answer: 0,
+                detail: 'die Hand, "-e (阴性名词，复数变音加 -e：die Hände)。'
+            },
+            {
+                id: 20,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Handwerker, -',
+                question: '“der Handwerker” (手艺人/水暖工/电工等) 指的是什么职业人群？',
+                options: ['从事手工艺修缮与专业技术的工人', '公司高管/CEO', '大学理论教授', '专职软件程序员'],
+                answer: 0,
+                detail: 'der Handwerker, - / die Handwerkerin, -nen 指各类手工与技术性工人（如木工、水暖工、电工等）。'
+            },
+            {
+                id: 21,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'handeln',
+                question: '固定句型 “Es handelt sich um ein Missverständnis.” 中 "sich handeln um + Akk." 意思是？',
+                options: ['讨价还价', '采取行动', '涉及 / 关于 / 是……', '做生意买卖'],
+                answer: 2,
+                detail: 'sich handeln um + Akk. (涉及，关于，是……)。例如：Worum handelt es sich? (这是关于什么的？)'
+            },
+            {
+                id: 22,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Handel',
+                question: '在经济与商业语境中，"der Handel" 的正确释义是？',
+                options: ['重工业制造', '贸易 / 商业', '农业种植', '金融借贷'],
+                answer: 1,
+                detail: 'der Handel (贸易，商业，交易)。例：internationaler Handel (国际贸易)。'
+            },
+            {
+                id: 23,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Händler, -',
+                question: '“Der Auto______ verkauft gebrauchte Wagen.” 空格处应填入表示“商人/经销商”的正确词根？',
+                options: ['händler', 'werker', 'meister', 'halter'],
+                answer: 0,
+                detail: 'der Händler, - (商人，经销商)。Autohändler = 汽车经销商。'
+            },
+            {
+                id: 24,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'das Handy, -s',
+                question: '德语中表示“手机”的词 "das Handy"，其语法词性及复数形式是？',
+                options: ['der Handy, -e', 'das Handy, -s', 'die Handy, -en', 'das Handy, -er'],
+                answer: 1,
+                detail: 'das Handy, -s (中性名词，外来词复数加 -s)。'
+            },
+            {
+                id: 25,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'hängen',
+                question: '表达“我把画挂到了墙上 (表示位置改变与动作)”时，hängen 的完成时形式是？',
+                options: ['hat gehangen', 'hat gehängt', 'ist gehangen', 'ist gehängt'],
+                answer: 1,
+                detail: 'hängen 作及物动词（表示挂上去的动作）为规则变位：hängte, hat gehängt (+ Akk.)；作不及物动词（表示挂在何处的状态）为不规则变位：hing, hat gehangen (+ Dat.)。'
+            },
+            {
+                id: 26,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'hart',
+                question: '形容词 "hart" (坚硬的/严酷的) 的反义词是？',
+                options: ['weich', 'kurz', 'leicht', 'stark'],
+                answer: 0,
+                detail: 'hart (硬的，严厉的) <-> weich (软的，柔和的)。'
+            },
+            {
+                id: 27,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'hassen',
+                question: '动词 "hassen" (憎恨) 的反义词是？',
+                options: ['lieben', 'hoffen', 'lachen', 'helfen'],
+                answer: 0,
+                detail: 'hassen (hasst, hasste, hat gehasst) - 憎恨，厌恶 <-> lieben (爱)。'
+            },
+            {
+                id: 28,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'hässlich',
+                question: '“Das Gebäude sieht wirklich hässlich aus.” 句中 "hässlich" 的意思是？',
+                options: ['漂亮的', '丑陋的 / 难看的', '宏伟的', '古老的'],
+                answer: 1,
+                detail: 'hässlich (丑陋的，难看的)。反义词：schön (漂亮的)。'
+            },
+            {
+                id: 29,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'häufig',
+                question: '副词/形容词 "häufig" 的含义与下列哪个词最接近？',
+                options: ['oft (经常)', 'selten (罕见)', 'nie (从不)', 'manchmal (有时)'],
+                answer: 0,
+                detail: 'häufig (频繁的，经常的) ≈ oft。反义词：selten (罕见地)。'
+            },
+            {
+                id: 30,
+                type: 'Präfix',
+                badgeClass: 'bg-violet-50 text-violet-700 border-violet-200',
+                word: 'Haupt-',
+                question: '前缀 "Haupt-" 在构词法中通常表达什么含义？',
+                options: ['次要的', '主要的 / 首要的 / 总的', '隐藏的', '过去的'],
+                answer: 1,
+                detail: '前缀 Haupt- 表示“主要的，首要的”。例如：Hauptsache (主要事项), Hauptrolle (主角)。'
+            },
+            {
+                id: 31,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Hauptstadt, "-e',
+                question: '“die Hauptstadt” (首都) 的正确复数形式是哪一个？',
+                options: ['die Hauptstädte', 'die Hauptstadten', 'die Hauptstadte', 'die Hauptstädter'],
+                answer: 0,
+                detail: 'die Hauptstadt, "-e -> die Hauptstädte。例如：Berlin und Wien sind Hauptstädte.'
+            },
+            {
+                id: 32,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Hauptbahnhof, "-e',
+                question: '在德语车票和火车站标识中，"Hauptbahnhof" (中央火车站) 常见的官方缩写是？',
+                options: ['Hbf.', 'Hbfh.', 'HBf.', 'H-Bahnhof'],
+                answer: 0,
+                detail: 'der Hauptbahnhof (中央火车站)，德语标准缩写形式为 Hbf.。'
+            },
+            {
+                id: 33,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'das Haus, "-er',
+                question: '表达“在家里 (静止状态)”应使用固定短语？',
+                options: ['nach Hause', 'zu Hause', 'im Hause', 'aus dem Hause'],
+                answer: 1,
+                detail: 'zu Hause (在家里，静止状态)；nach Hause (回家，表示方向和移动)。'
+            },
+            {
+                id: 34,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Hausaufgabe, -n',
+                question: '“做家庭作业”在德语中最地道的动词搭配是？',
+                options: ['Hausaufgaben machen', 'Hausaufgaben bauen', 'Hausaufgaben spielen', 'Hausaufgaben lernen'],
+                answer: 0,
+                detail: '(die) Hausaufgaben machen (做家庭作业)。'
+            },
+            {
+                id: 35,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Hausfrau / der Hausmann',
+                question: '“der Hausmann” 在现代德语家庭分工中通常指？',
+                options: ['房屋业主/房东', '全职主夫 / 家庭男主夫', '建筑工人', '门卫修理工'],
+                answer: 1,
+                detail: 'die Hausfrau (家庭主妇) / der Hausmann (全职主夫/家庭主夫)。'
+            },
+            {
+                id: 36,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Haushalt, -e',
+                question: '短语 “den Haushalt machen” 的确切含义是？',
+                options: ['做家务 / 管理家庭日常', '买房子', '计算租金开销', '修建房屋'],
+                answer: 0,
+                detail: 'der Haushalt (家政，家务，预算)。den Haushalt machen = 做家务。'
+            },
+            {
+                id: 37,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Hausmeister, -',
+                question: '在瑞士德语(CH)中，“房屋管理员/楼管 (Hausmeister)” 常被称作？',
+                options: ['der Abwart', 'der Hausmeister', 'der Wärter', 'der Kontrolleur'],
+                answer: 0,
+                detail: 'der Hausmeister, - (D, A) 在瑞士德语中称为 der Abwart, -e。'
+            },
+            {
+                id: 38,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Haut',
+                question: '人体器官名词 "die Haut" 的中文含义是？',
+                options: ['头发', '皮肤', '肌肉', '骨骼'],
+                answer: 1,
+                detail: 'die Haut (皮肤)。复数 die Häute。例：empfindliche Haut (敏感皮肤)。'
+            },
+            {
+                id: 39,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'heben',
+                question: '动词 "heben" (举起，抬起) 的过去时 (Präteritum) 和完成时 (Perfekt) 分别是？',
+                options: ['hebt, hat gehebt', 'hob, hat gehoben', 'hieb, hat gehiebt', 'habe, hat gehaben'],
+                answer: 1,
+                detail: 'heben (hebt, hob, hat gehoben) - 举起，提升。'
+            },
+            {
+                id: 40,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'das Heft, -e',
+                question: '在学习用品中，"das Heft" 与 "das Buch" 的主要区别在于 "das Heft" 是？',
+                options: ['精装字典', '练习本 / 笔记本', '故事画册', '报纸'],
+                answer: 1,
+                detail: 'das Heft, -e (练习本，笔记本，小册子)。例如：das Schreibheft (书写本)。'
+            },
+            {
+                id: 41,
+                type: 'Adverb',
+                badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
+                word: 'heim',
+                question: '“Ich gehe nach dem Kurs direkt heim.” 句中方向副词 "heim" 等同于？',
+                options: ['nach Hause (回家)', 'zu Hause (在家里)', 'aus dem Hause (出门)', 'in die Schule (去学校)'],
+                answer: 0,
+                detail: 'heim 作为方向副词，相当于 nach Hause (回家)。如：heimgehen, heimkommen。'
+            },
+            {
+                id: 42,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'das Heim, -e',
+                question: '在“das Altersheim”或“das Kinderheim”中，名词 "das Heim" 的意思是？',
+                options: ['工厂', '家 / 疗养院 / 福利院 / 机构', '地下室', '学校'],
+                answer: 1,
+                detail: 'das Heim, -e (家，住所，疗养院/收容机构)。das Altersheim (养老院)。'
+            },
+            {
+                id: 43,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Heimat',
+                question: '德语词汇 "die Heimat" 蕴含丰富的感情色彩，其核心含义是？',
+                options: ['出差目的地', '故乡 / 家乡 / 祖国', '临时租房', '旅游胜地'],
+                answer: 1,
+                detail: 'die Heimat (故乡，家乡，归属地)。通常没有常用复数形式。'
+            },
+            {
+                id: 44,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'heimlich',
+                question: '“Sie haben heimlich geheiratet.” 句中的 "heimlich" 意思是？',
+                options: ['公开地', '秘密地 / 偷偷地', '隆重地', '匆忙地'],
+                answer: 1,
+                detail: 'heimlich (秘密的，暗中的，偷偷的)。反义词：öffentlich (公开地)。'
+            },
+            {
+                id: 45,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'das Heimweh',
+                question: '短语 “Heimweh haben” 表达的是哪种情感？',
+                options: ['牙痛', '思乡 / 想家', '头晕', '恐惧'],
+                answer: 1,
+                detail: 'das Heimweh (思乡，想家)。例：Ich habe Heimweh. (我想家了。)'
+            },
+            {
+                id: 46,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'heiraten',
+                question: '语法辨析：关于 "heiraten" (结婚) 的句法用法，下列句子正确的是？',
+                options: ['Er hat mit ihr geheiratet.', 'Er hat sie geheiratet.', 'Er ist sie geheiratet.', 'Er heiratet zu ihr.'],
+                answer: 1,
+                detail: 'heiraten 是及物动词，直接接第四格宾语 (jemanden heiraten)。若带 mit 则需用形容词短语 verheiratet sein mit + Dat.。'
+            },
+            {
+                id: 47,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'heiß',
+                question: '表达“我觉得很热”时，正确的德语体验表达是？',
+                options: ['Ich bin heiß.', 'Mir ist heiß.', 'Ich habe heiß.', 'Es ist mir heißer.'],
+                answer: 1,
+                detail: 'Mir ist heiß. (无人称体验，人做第三格)。若说 "Ich bin heiß." 会被理解为“我很热辣/性感”，需注意区别。'
+            },
+            {
+                id: 48,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'heißen',
+                question: '动词 "heißen" 的三式变位 (Präsens, Präteritum, Perfekt) 是？',
+                options: ['heißt, hieß, hat geheißen', 'heißt, heisste, hat geheißt', 'heißt, hiess, ist geheißen', 'heißt, hatte hieß, hat geheißen'],
+                answer: 0,
+                detail: 'heißen (heißt, hieß, hat geheißen) - 名叫，意思是。'
+            },
+            {
+                id: 49,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'heizen',
+                question: '动词 "heizen" (取暖/开暖气) 的现在时单数第三人称 (er/sie/es) 变位是？',
+                options: ['heizt', 'heizet', 'heiszt', 'hiezt'],
+                answer: 0,
+                detail: 'heizen (heizt, heizte, hat geheizt)。由于词干结尾为 -z，第二和第三人称单数均直接加 -t (du heizt, er heizt)。'
+            },
+            {
+                id: 50,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Heizung, -en',
+                question: '“Die Heizung anmachen” 的正确含义是？',
+                options: ['维修暖气', '关闭暖气', '打开暖气', '购买暖气设备'],
+                answer: 2,
+                detail: 'die Heizung, -en (暖气，供暖设备)。die Heizung anmachen/einschalten (打开暖气)。'
+            },
+            {
+                id: 51,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Held, -en',
+                question: '名词 "der Held" (英雄) 属于阳性 N-弱变化名词。其单数第四格形式是？',
+                options: ['den Held', 'den Helden', 'den Heldes', 'den Helder'],
+                answer: 1,
+                detail: 'der Held 属于弱变化阳性名词，除了第一格单数外，其余单复数各格均需加 -en (den Helden, dem Helden)。'
+            },
+            {
+                id: 52,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'helfen',
+                question: '动词 "helfen" (帮助) 要求支配的宾语使用第几格？',
+                options: ['Akkusativ (第四格)', 'Dativ (第三格)', 'Genitiv (第二格)', 'Nominativ (第一格)'],
+                answer: 1,
+                detail: 'helfen + Dativ (jemandem helfen)。例：Kannst du mir helfen?'
+            },
+            {
+                id: 53,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Hilfe',
+                question: '介词短语 “mit Hilfe (+ Gen.)” 的正确含义是？',
+                options: ['在……的帮助下', '放弃帮助', '寻找援助', '提供救助'],
+                answer: 0,
+                detail: 'mit Hilfe (+ Gen.) / mithilfe (+ Gen.) 意为“借助……/在……的帮助下”。'
+            },
+            {
+                id: 54,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'hell',
+                question: '形容词 "hell" (明亮的/浅色的) 的反义词是？',
+                options: ['dunkel', 'kalt', 'schwarz', 'spät'],
+                answer: 0,
+                detail: 'hell (明亮的，浅色的) <-> dunkel (黑暗的，深色的)。如：hellblau (浅蓝) <-> dunkelblau (深蓝)。'
+            },
+            {
+                id: 55,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'das Hemd, -en',
+                question: '中性名词 "das Hemd" (衬衫) 的复数变化词尾是？',
+                options: ['die Hemden', 'die Hemder', 'die Hemde', 'die Hemds'],
+                answer: 0,
+                detail: 'das Hemd, -en (中性名词，复数加 -en：die Hemden)。'
+            },
+            {
+                id: 56,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'das Hendl, -',
+                question: '在奥地利(A)及德国南部巴伐利亚地区，"das Hendl" 指的是哪种美食？',
+                options: ['烤鸡 / 鸡肉', '牛肉丸', '猪脚', '德式香肠'],
+                answer: 0,
+                detail: 'das Hend(e)l, - (A) 在德国标准德语中对应 das Hähnchen/Hühnchen。'
+            },
+            {
+                id: 57,
+                type: 'Präfix',
+                badgeClass: 'bg-violet-50 text-violet-700 border-violet-200',
+                word: 'her / her-',
+                question: '方向前缀 "her-" 与 "hin-" 的核心逻辑区别在于："her-" 表示？',
+                options: ['朝向说话者的方向 (向这边来)', '远离说话者的方向 (去那边)', '向上移动', '向下移动'],
+                answer: 0,
+                detail: 'her- 表示“朝向说话者 (向这边)”，hin- 表示“远离说话者 (向那边)”。如：Komm her! (过来！) / Geh hin! (过去！)'
+            },
+            {
+                id: 58,
+                type: 'Präfix',
+                badgeClass: 'bg-violet-50 text-violet-700 border-violet-200',
+                word: 'heraus-, raus-',
+                question: '口语和日常表达中，可拆分动词前缀 "heraus-" 常被缩读为？',
+                options: ['raus-', 'rein-', 'runter-', 'über-'],
+                answer: 0,
+                detail: 'heraus- -> raus- (出来)；herein- -> rein- (进来)；herunter- -> runter- (下来)。'
+            },
+            {
+                id: 59,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'herausfinden',
+                question: '“Ich muss herausfinden, wann der Zug abfährt.” 句中 "herausfinden" 的意思是？',
+                options: ['查明 / 弄清楚 / 发现', '丢失物品', '迷失方向', '给……指路'],
+                answer: 0,
+                detail: 'herausfinden (findet heraus, fand heraus, hat herausgefunden) - 查明，发现，弄清楚。'
+            },
+            {
+                id: 60,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Herausforderung, -en',
+                question: '在职场与学习中，短语 “eine Herausforderung annehmen” 意思是？',
+                options: ['接受挑战', '拒绝安排', '提出异议', '完成任务'],
+                answer: 0,
+                detail: 'die Herausforderung, -en (挑战)。eine Herausforderung annehmen = 接受挑战。'
+            },
+            {
+                id: 61,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Herd, -e',
+                question: '厨房烹饪设备 "der Herd" 指的是？',
+                options: ['炉灶 / 灶台', '电冰箱', '洗碗机', '微波炉'],
+                answer: 0,
+                detail: 'der Herd, -e (炉灶，灶台)。例如：der Elektroherd (电炉).'
+            },
+            {
+                id: 62,
+                type: 'Präfix',
+                badgeClass: 'bg-violet-50 text-violet-700 border-violet-200',
+                word: 'herein-, rein-',
+                question: '当有人敲门时，房间内的人常回应喊 “Herein!”，意思是？',
+                options: ['请进！', '请稍等！', '请离开！', '请安静！'],
+                answer: 0,
+                detail: 'Herein! / Rein! 意为“请进！” (Come in!)。'
+            },
+            {
+                id: 63,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'die Herkunft',
+                question: '“Woher kommen Sie?” 这道问题询问的是个人的？',
+                options: ['die Herkunft (出身 / 来源地)', 'das Alter (年龄)', 'der Beruf (职业)', 'die Adresse (地址)'],
+                answer: 0,
+                detail: 'die Herkunft (出身，来源，国籍籍贯)。'
+            },
+            {
+                id: 64,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Herr, -en',
+                question: '名词 "der Herr" 属于弱变化。句子 “Ich grüße den ______.” (我向这位先生问好) 中填入？',
+                options: ['Herr', 'Herrn', 'Herres', 'Herrm'],
+                answer: 1,
+                detail: 'der Herr 单数第四格与第三格形式为 den Herrn / dem Herrn，复数形式为 die Herren。'
+            },
+            {
+                id: 65,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'herstellen',
+                question: '“Diese Firma stellt Autos her.” 句中的可拆分动词 "herstellen" 意思是？',
+                options: ['生产 / 制造', '修理', '租借', '销毁'],
+                answer: 0,
+                detail: 'herstellen (stellt her, stellte her, hat hergestellt) - 生产，制造。近义词：produzieren.'
+            },
+            {
+                id: 66,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'der Hersteller, -',
+                question: '名词 "der Hersteller" 的中文含义是？',
+                options: ['消费者', '制造商 / 生产商', '销售员', '运输商'],
+                answer: 1,
+                detail: 'der Hersteller, - (生产商，制造商)。反义词：der Verbraucher / der Konsument (消费者)。'
+            },
+            {
+                id: 67,
+                type: 'Präfix',
+                badgeClass: 'bg-violet-50 text-violet-700 border-violet-200',
+                word: 'herunter-, runter-',
+                question: '动词前缀 "herunter-" (口语: runter-) 表示的方向动态是？',
+                options: ['从上面降/落下来 (朝说话者方向)', '从下面往上升', '从内部往外部', '从外部往内部'],
+                answer: 0,
+                detail: 'herunter- / runter- 表示“从上面降落/移动到下面”。'
+            },
+            {
+                id: 68,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'herunterladen',
+                question: '“eine Datei aus dem Internet herunterladen” 的意思是？',
+                options: ['上传文件', '下载文件', '删除文件', '加密文件'],
+                answer: 1,
+                detail: 'herunterladen (lädt herunter, lud herunter, hat heruntergeladen) - 下载文件。反义词：hochladen (上传)。'
+            }
+        ];
+
+        // Native Audio Synthesizer
+        let audioCtx = null;
+
+        function getAudioContext() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
+
+        function playSound(isCorrect) {
+            try {
+                const ctx = getAudioContext();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+
+                const now = ctx.currentTime;
+                if (isCorrect) {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(523.25, now); // C5
+                    osc.frequency.setValueAtTime(659.25, now + 0.08); // E5
+                    gain.gain.setValueAtTime(0.12, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+                    osc.start(now);
+                    osc.stop(now + 0.3);
+                } else {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(220, now);
+                    osc.frequency.exponentialRampToValueAtTime(140, now + 0.2);
+                    gain.gain.setValueAtTime(0.1, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+                    osc.start(now);
+                    osc.stop(now + 0.2);
+                }
+            } catch (e) {
+                console.error("Audio error:", e);
+            }
+        }
+
+        // Fisher-Yates Shuffle
+        function shuffleArray(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        // App State
+        let vocabularyData = [];
+        let currentIndex = 0;
+        let userAnswers = [];
+        let showExplanation = false;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            resetPractice();
+        });
+
+        function resetPractice() {
+            vocabularyData = shuffleArray(rawVocabularyData);
+            currentIndex = 0;
+            userAnswers = new Array(vocabularyData.length).fill(null);
+            showExplanation = false;
+
+            document.getElementById('quiz-container').classList.remove('hidden');
+            document.getElementById('bottom-nav').classList.remove('hidden');
+            document.getElementById('result-container').classList.add('hidden');
+
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const currentData = vocabularyData[currentIndex];
+
+            // Render Badges and Titles
+            document.getElementById('word-badge').className = `px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase border ${currentData.badgeClass}`;
+            document.getElementById('word-badge').textContent = currentData.type;
+            document.getElementById('question-index-tag').textContent = `Q${currentIndex + 1}`;
+            document.getElementById('target-word').textContent = currentData.word;
+            document.getElementById('question-prompt').textContent = currentData.question;
+
+            // Progress Bar
+            const progressPercent = Math.round(((currentIndex + 1) / vocabularyData.length) * 100);
+            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+            document.getElementById('progress-text').textContent = `进度：${currentIndex + 1} / ${vocabularyData.length}`;
+            document.getElementById('progress-percent').textContent = `${progressPercent}%`;
+
+            // Options
+            const optionsGrid = document.getElementById('options-grid');
+            optionsGrid.innerHTML = '';
+
+            const selectedAnswer = userAnswers[currentIndex];
+            const isAnswered = selectedAnswer !== null;
+
+            currentData.options.forEach((optText, optIndex) => {
+                const btn = document.createElement('button');
+                btn.className = getOptionStyle(optIndex, selectedAnswer, currentData.answer);
+                btn.innerHTML = `
+                    <div class="flex items-center justify-between w-full">
+                        <span class="flex items-center gap-3.5">
+                            <span class="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold border transition-all ${getOptionMarkerStyle(optIndex, selectedAnswer, currentData.answer)}">
+                                ${String.fromCharCode(65 + optIndex)}
+                            </span>
+                            <span class="font-medium">${optText}</span>
+                        </span>
+                        ${getOptionIcon(optIndex, selectedAnswer, currentData.answer)}
+                    </div>
+                `;
+                btn.onclick = () => selectOption(optIndex);
+                optionsGrid.appendChild(btn);
+            });
+
+            // Explanation
+            const explainCard = document.getElementById('explanation-card');
+            const explainText = document.getElementById('explanation-text');
+            explainText.textContent = currentData.detail;
+
+            if (showExplanation || isAnswered) {
+                explainCard.classList.remove('hidden');
+            } else {
+                explainCard.classList.add('hidden');
+            }
+
+            // Controls
+            document.getElementById('btn-prev').disabled = currentIndex === 0;
+            const btnNext = document.getElementById('btn-next');
+            if (currentIndex === vocabularyData.length - 1) {
+                btnNext.textContent = '完成特训';
+                btnNext.className = 'px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-teal-700 hover:bg-teal-800 text-white shadow-md transition-all';
+            } else {
+                btnNext.textContent = '下一题';
+                btnNext.className = 'px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-md transition-all';
+            }
+        }
+
+        function getOptionStyle(index, selected, correct) {
+            const base = "w-full text-left p-4 sm:p-4.5 rounded-2xl border text-sm sm:text-base transition-all duration-200 flex items-center justify-between ";
+            if (selected === null) {
+                return base + "border-slate-200/80 bg-white hover:border-slate-400 hover:shadow-md text-slate-800";
+            }
+            if (index === correct) {
+                return base + "border-emerald-300 bg-emerald-50/90 text-emerald-900 font-semibold shadow-sm";
+            }
+            if (index === selected && selected !== correct) {
+                return base + "border-rose-300 bg-rose-50/90 text-rose-900 font-semibold shadow-sm";
+            }
+            return base + "border-slate-100 bg-slate-50/50 text-slate-400 opacity-50";
+        }
+
+        function getOptionMarkerStyle(index, selected, correct) {
+            if (selected === null) {
+                return "border-slate-200 text-slate-500 bg-slate-50";
+            }
+            if (index === correct) {
+                return "border-emerald-500 text-white bg-emerald-600 shadow-sm";
+            }
+            if (index === selected && selected !== correct) {
+                return "border-rose-500 text-white bg-rose-500 shadow-sm";
+            }
+            return "border-slate-200 text-slate-300 bg-slate-100";
+        }
+
+        function getOptionIcon(index, selected, correct) {
+            if (selected === null) return '';
+            if (index === correct) {
+                return `<svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>`;
+            }
+            if (index === selected && selected !== correct) {
+                return `<svg class="w-5 h-5 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>`;
+            }
+            return '';
+        }
+
+        function selectOption(index) {
+            if (userAnswers[currentIndex] === null) {
+                const isCorrect = index === vocabularyData[currentIndex].answer;
+                playSound(isCorrect);
+            }
+            userAnswers[currentIndex] = index;
+            showExplanation = true;
+            renderQuestion();
+        }
+
+        function toggleExplanation() {
+            showExplanation = !showExplanation;
+            const explainCard = document.getElementById('explanation-card');
+            if (showExplanation) {
+                explainCard.classList.remove('hidden');
+            } else {
+                explainCard.classList.add('hidden');
+            }
+        }
+
+        function nextQuestion() {
+            if (currentIndex < vocabularyData.length - 1) {
+                currentIndex++;
+                showExplanation = false;
+                renderQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                showExplanation = false;
+                renderQuestion();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quiz-container').classList.add('hidden');
+            document.getElementById('bottom-nav').classList.add('hidden');
+            document.getElementById('result-container').classList.remove('hidden');
+
+            let mistakeCount = 0;
+            const mistakesList = document.getElementById('mistakes-list');
+            mistakesList.innerHTML = '';
+
+            userAnswers.forEach((ans, idx) => {
+                const item = vocabularyData[idx];
+                if (ans !== item.answer) {
+                    mistakeCount++;
+                    const mistakeDiv = document.createElement('div');
+                    mistakeDiv.className = 'p-4 bg-slate-50 rounded-2xl border border-slate-200/80 text-xs sm:text-sm';
+                    mistakeDiv.innerHTML = `
+                        <div class="font-german font-bold text-slate-900 text-base mb-1">${item.word}</div>
+                        <div class="text-slate-600 leading-relaxed">${item.detail}</div>
+                    `;
+                    mistakesList.appendChild(mistakeDiv);
+                }
+            });
+
+            document.getElementById('stat-total').textContent = vocabularyData.length;
+            document.getElementById('stat-mistakes').textContent = mistakeCount;
+
+            const mistakesSection = document.getElementById('mistakes-section');
+            if (mistakeCount > 0) {
+                mistakesSection.classList.remove('hidden');
+            } else {
+                mistakesSection.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
