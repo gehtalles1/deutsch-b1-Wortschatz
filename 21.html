@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="h-full bg-slate-50/80">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>德语 B1 核心词汇特训</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Serif+Georgia&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .font-german {
+            font-family: 'Noto Serif Georgia', Georgia, serif;
+        }
+        .custom-glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+    </style>
+</head>
+<body class="h-full text-slate-800 antialiased selection:bg-teal-100 selection:text-teal-900 flex flex-col justify-between bg-gradient-to-br from-slate-50 via-zinc-50 to-teal-50/20">
+    <!-- Header Area -->
+    <header class="sticky top-0 z-30 custom-glass border-b border-slate-200/60 px-4 py-3.5 sm:px-8 shadow-sm">
+        <div class="max-w-3xl mx-auto flex items-center justify-between">
+            <a href="index.html" class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-500 hover:text-slate-900 transition-all py-1.5 px-3 rounded-full hover:bg-slate-100/80">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+                返回主页
+            </a>
+            <div class="text-center">
+                <h1 class="text-xs sm:text-sm font-bold tracking-widest text-slate-400 uppercase">Wortschatz Training</h1>
+                <p class="text-sm sm:text-base font-extrabold text-slate-900 tracking-tight">德语 B1 核心词汇特训</p>
+            </div>
+            <button onclick="resetPractice()" class="text-xs sm:text-sm font-semibold text-slate-500 hover:text-teal-700 transition-all py-1.5 px-3 rounded-full hover:bg-slate-100/80">
+                重新开始
+            </button>
+        </div>
+        <!-- Progress Bar -->
+        <div class="max-w-3xl mx-auto mt-3">
+            <div class="flex justify-between items-center text-xs font-bold text-slate-400 mb-1.5 tracking-wider uppercase">
+                <span id="progress-text">进度：1 / 35</span>
+                <span id="progress-percent">3%</span>
+            </div>
+            <div class="w-full h-1.5 bg-slate-200/70 rounded-full overflow-hidden p-0.5">
+                <div id="progress-bar" class="h-full bg-slate-900 transition-all duration-300 rounded-full" style="width: 3%"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Section -->
+    <main class="flex-1 max-w-3xl w-full mx-auto p-4 sm:p-6 flex flex-col justify-center">
+        <!-- QUIZ CONTAINER -->
+        <div id="quiz-container" class="space-y-6">
+            <!-- Word Header Card -->
+            <div class="bg-white/90 backdrop-blur-sm rounded-3xl p-6 sm:p-9 border border-slate-200/70 shadow-xl shadow-slate-200/50 relative overflow-hidden transition-all">
+                <div class="flex items-center justify-between mb-4">
+                    <span id="word-badge" class="px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase border">
+                        Substantiv
+                    </span>
+                    <span id="question-index-tag" class="text-xs font-bold text-slate-400 tracking-widest uppercase">
+                        Q1
+                    </span>
+                </div>
+                <div class="py-2">
+                    <h2 id="target-word" class="font-german text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-3">
+                        --
+                    </h2>
+                    <p id="question-prompt" class="text-sm sm:text-base font-medium text-slate-600 leading-relaxed">
+                        --
+                    </p>
+                </div>
+            </div>
+
+            <!-- Options Grid -->
+            <div id="options-grid" class="grid grid-cols-1 gap-3.5">
+                <!-- Dynamic options -->
+            </div>
+
+            <!-- Explanation Card -->
+            <div id="explanation-card" class="hidden bg-slate-900 text-slate-100 rounded-2xl p-5 sm:p-6 shadow-lg border border-slate-800 text-sm leading-relaxed space-y-2">
+                <div class="font-semibold text-teal-400 flex items-center gap-2 text-xs sm:text-sm uppercase tracking-wider">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    词汇解析与用法
+                </div>
+                <div id="explanation-text" class="text-slate-300 text-xs sm:text-sm font-normal"></div>
+            </div>
+        </div>
+
+        <!-- RESULT CONTAINER -->
+        <div id="result-container" class="hidden bg-white/90 backdrop-blur-sm rounded-3xl p-8 sm:p-10 border border-slate-200/70 shadow-xl shadow-slate-200/50 text-center space-y-8">
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-900 text-teal-400 shadow-lg shadow-slate-900/10 mb-2">
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <div>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2 tracking-tight">特训完成</h2>
+                <p class="text-sm text-slate-500 font-medium">已完成所有词汇测试，巩固核心词汇是巩固语感的基础</p>
+            </div>
+
+            <div class="max-w-md mx-auto py-3 px-6 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-around">
+                <div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">本次练习题目</div>
+                    <div id="stat-total" class="text-2xl font-extrabold text-slate-900">35</div>
+                </div>
+                <div class="h-8 w-px bg-slate-200"></div>
+                <div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">重点标注/复习词汇</div>
+                    <div id="stat-mistakes" class="text-2xl font-extrabold text-slate-900">0</div>
+                </div>
+            </div>
+
+            <!-- Incorrect Words Review List -->
+            <div id="mistakes-section" class="text-left hidden space-y-4 pt-2">
+                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                    需重点巩固的词汇
+                </h3>
+                <div id="mistakes-list" class="space-y-2.5 max-h-64 overflow-y-auto pr-1"></div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-6 border-t border-slate-100">
+                <button onclick="resetPractice()" class="w-full sm:w-auto px-8 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm transition-all shadow-md hover:shadow-lg">
+                    再练一次
+                </button>
+                <a href="index.html" class="w-full sm:w-auto px-8 py-3 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 font-bold text-sm transition-all text-center">
+                    返回主页
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Actions Nav -->
+    <footer id="bottom-nav" class="sticky bottom-0 z-30 custom-glass border-t border-slate-200/60 px-4 py-3.5 sm:px-8">
+        <div class="max-w-3xl mx-auto flex items-center justify-between gap-3">
+            <button id="btn-prev" onclick="prevQuestion()" disabled class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 text-slate-600 hover:bg-slate-100 disabled:opacity-30 disabled:cursor-not-allowed transition-all">
+                上一题
+            </button>
+            <button id="btn-toggle-explain" onclick="toggleExplanation()" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 hover:bg-slate-200/80 text-slate-700 transition-all flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                查看释义
+            </button>
+            <button id="btn-next" onclick="nextQuestion()" class="px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-md transition-all">
+                下一题
+            </button>
+        </div>
+    </footer>
+
+    <script>
+        const rawVocabularyData = [
+            {
+                id: 1,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'kaputtgehen / kaputtmachen',
+                question: '句子“Mein Handy ist gestern _____” (我的手机昨天坏了) 应填入哪个动词的完成时形式？',
+                options: ['kaputtgegangen', 'kaputtgemacht', 'kaputtgeht', 'kaputtmacht'],
+                answer: 0,
+                detail: 'kaputtgehen 是不及物动词 (助动词用 sein)，表示“（自己）损坏、弄坏”；kaputtmachen 是及物动词 (助动词用 haben)，表示“人为弄坏”。句中主语为手机且助动词是 ist，故选 kaputtgegangen。'
+            },
+            {
+                id: 2,
+                type: 'Regionalismus',
+                badgeClass: 'bg-rose-50 text-rose-700 border-rose-200',
+                word: 'Karneval',
+                question: '德国狂欢节 "Karneval" 在德国南部及奥地利常被称为？',
+                options: ['Fasching', 'Silvester', 'Ostern', 'Pfingsten'],
+                answer: 0,
+                detail: 'der Karneval, -s/-e 在德国南部和奥地利常被称为 Fasching，在瑞士被称为 Fastnacht。'
+            },
+            {
+                id: 3,
+                type: 'Regionalismus',
+                badgeClass: 'bg-rose-50 text-rose-700 border-rose-200',
+                word: 'Karotte',
+                question: '名词 "die Karotte" (胡萝卜) 在标准德语 (D) 中常用的另一个称呼是？',
+                options: ['die Möhre', 'der Kartoffel', 'der Kohl', 'die Zwiebel'],
+                answer: 0,
+                detail: 'die Karotte, -n 在德国北部/中部常被称为 die Möhre；在瑞士常称为 Rüebli。'
+            },
+            {
+                id: 4,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'Karriere / Karte',
+                question: '表达“在职业生涯中取得成功/做事业”时，"Karriere" 常搭配哪个动词？',
+                options: ['Karriere machen', 'Karriere geben', 'Karriere nehmen', 'Karriere bringen'],
+                answer: 0,
+                detail: 'die Karriere, -n (职业生涯/事业)。固定动词搭配为 Karriere machen (事业有成，平步青云)。'
+            },
+            {
+                id: 5,
+                type: 'Komposita',
+                badgeClass: 'bg-purple-50 text-purple-700 border-purple-200',
+                word: 'Chipkarte / Fahrkarte',
+                question: '在瑞士德语 (CH) 中，乘车的“车票” "die Fahrkarte" 常被称为？',
+                options: ['das Billett', 'das Kassenbon', 'das Zertifikat', 'das Visum'],
+                answer: 0,
+                detail: 'die Fahrkarte, -n (车票) 在瑞士德语区常被称为 das Billett [biˈjeː]。'
+            },
+            {
+                id: 6,
+                type: 'Regionalismus',
+                badgeClass: 'bg-rose-50 text-rose-700 border-rose-200',
+                word: 'Kartoffel',
+                question: '名词 "die Kartoffel" (土豆) 在奥地利德语 (A) 中的对应名称是？',
+                options: ['der Erdapfel', 'die Paradieser', 'der Marille', 'der Blaukraut'],
+                answer: 0,
+                detail: 'die Kartoffel, -n 在奥地利被称为 der Erdapfel (复数: Erdäpfel)。'
+            },
+            {
+                id: 7,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'Käse / Kasse / Kassette',
+                question: '“An der _____ bezahlen” (在收银台结账) 中，空格处应填入哪个阴性名词？',
+                options: ['Kasse', 'Kassette', 'Kantine', 'Kabine'],
+                answer: 0,
+                detail: 'die Kasse, -n (收银台，付款处)；die Kassette, -n (磁带)；der Käse (阳性: 奶酪)。'
+            },
+            {
+                id: 8,
+                type: 'Regionalismus',
+                badgeClass: 'bg-rose-50 text-rose-700 border-rose-200',
+                word: 'Kasten / Kiste',
+                question: '名词 "der Kasten" 在瑞士和奥地利常指“衣柜/柜子”，而在标准德语中“柜子”通常用？',
+                options: ['der Schrank', 'die Kiste', 'das Regal', 'die Schublade'],
+                answer: 0,
+                detail: 'der Kasten, "-在德语区南部/奥地利/瑞士常表示“柜子” (相当于 der Schrank)；在德国北部/中部则常指“箱子/木箱” (相当于 die Kiste)。'
+            },
+            {
+                id: 9,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'Katalog / Katastrophe',
+                question: '关于名词 "Katalog" 和 "Katastrophe" 的冠词及复数，正确的是？',
+                options: [
+                    'der Katalog (-e) / die Katastrophe (-n)',
+                    'das Katalog (-en) / der Katastrophe (-s)',
+                    'die Katalog (-e) / das Katastrophe (-n)',
+                    'der Katalog (-en) / die Katastrophe (-e)'
+                ],
+                answer: 0,
+                detail: 'der Katalog, -e (目录)；die Katastrophe, -n (灾难)。'
+            },
+            {
+                id: 10,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'Käufer / Käuferin',
+                question: '表达“买方、顾客”的名词 "der Käufer / die Käuferin"，其反义词 (卖方) 是？',
+                options: ['der Verkäufer / die Verkäuferin', 'der Kunden', 'der Kellner', 'der Koch'],
+                answer: 0,
+                detail: 'der Käufer (买方) <-> der Verkäufer (卖方/售货员)。'
+            },
+            {
+                id: 11,
+                type: 'Adverb / Pronomen',
+                badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
+                word: 'kaum / kein-',
+                question: '“Ich konnte ihn _____ verstehen, weil es zu laut war.” (因为太吵，我几乎听不清他说话) 填入哪个副词？',
+                options: ['kaum', 'kein', 'nicht', 'nie'],
+                answer: 0,
+                detail: 'kaum 是程度副词，意为“几乎不，简直没有”。kein- 是否定冠词/代词。'
+            },
+            {
+                id: 12,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'Keller / Kellner',
+                question: '在餐厅服务员的职业称呼中，"der Kellner" 在瑞士常用哪个词替代？',
+                options: ['Serviceangestellter', 'Ober', 'Koch', 'Kandidat'],
+                answer: 0,
+                detail: 'der Kellner, - (服务员)。在德国/奥地利也叫 Ober，在瑞士常被称为 Serviceangestellter。而 der Keller, - 意为“地下室”。'
+            },
+            {
+                id: 13,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'kennen / kennenlernen',
+                question: '“Wir haben uns im Urlaub _____” (我们在假期中相识) 此时应使用哪个动词？',
+                options: ['kennengelernt', 'gekannt', 'kennen', 'gekennt'],
+                answer: 0,
+                detail: 'kennenlernen (结识，相识) 是可分离动词，过去分词为 kennengelernt；kennen (认识，熟悉) 过去分词为 gekannt。'
+            },
+            {
+                id: 14,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'Kenntnisse',
+                question: '名词 "Kenntnisse" (知识/技能，如 Deutschkenntnisse) 在德语中的使用特点是？',
+                options: ['通常只使用复数形式', '通常只使用单数形式', '冠词是 das', '复数变化为 "-er"'],
+                answer: 0,
+                detail: 'die Kenntnisse (Pl.) 表达某方面的语言或专业知识技能时，习惯上只使用复数形式。'
+            },
+            {
+                id: 15,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'Kennzeichen / Kerze / Kette',
+                question: '“Das Auto hat ein ausländisches _____” (这辆车挂着外地/外国牌照) 应填入？',
+                options: ['Kennzeichen', 'Kerze', 'Kette', 'Kabel'],
+                answer: 0,
+                detail: 'das Kennzeichen, - (车牌/标志)；die Kerze, -n (蜡烛)；die Kette, -n (项链/链条)。'
+            },
+            {
+                id: 16,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'Kind / Kindergarten / Kindheit',
+                question: '关于 "Kind" 的衍生词，表达“童年/幼年时期”的阴性名词是？',
+                options: ['die Kindheit', 'der Kindergarten', 'das Kindlein', 'die Kinderzeit'],
+                answer: 0,
+                detail: 'die Kindheit, -en (童年时期)；der Kindergarten, "- (幼儿园)。'
+            },
+            {
+                id: 17,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'Kino / Kiosk',
+                question: '“Ich kaufe mir am _____ eine Zeitung.” (我在报亭买了一份报纸) 应填入？',
+                options: ['Kiosk', 'Kino', 'Keller', 'Kanal'],
+                answer: 0,
+                detail: 'der Kiosk, -e (报亭/小卖部)；das Kino, -s (电影院)。'
+            },
+            {
+                id: 18,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'Kissen',
+                question: '名词 "das Kissen" (靠垫/枕头) 的复数形式是？',
+                options: ['die Kissen', 'die Kissene', 'die Kisser', 'die Kissenn'],
+                answer: 0,
+                detail: 'das Kissen, - (枕头/靠垫)。单复数同形。'
+            },
+            {
+                id: 19,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'klagen / klären',
+                question: '“Er _____ über Kopfschmerzen.” (他抱怨头痛) 句中的固定搭配介词 über 是哪个动词？',
+                options: ['klagt', 'klärt', 'klappt', 'klebt'],
+                answer: 0,
+                detail: 'klagen über + Akk. (抱怨/诉苦)；klären (澄清，解决)。'
+            },
+            {
+                id: 20,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'klappen',
+                question: '口语常用句 “Alles hat gut geklappt!” 中，“klappen” 的含义是？',
+                options: ['顺利进行 / 成功', '鼓掌', '敲门', '抱怨'],
+                answer: 0,
+                detail: 'klappen (hat geklappt): 顺利，成功，做成。'
+            },
+            {
+                id: 21,
+                type: 'Adjektiv / Substantiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'klar / klasse / Klasse',
+                question: '口语中表达“太棒了！非常出色！”作为感叹赞美时，常使用哪个词？',
+                options: ['Klasse!', 'Klar!', 'Knapp!', 'Klug!'],
+                answer: 0,
+                detail: 'klasse! (口语形容词/感叹词: 棒极了)；die Klasse, -n (班级/等级)；klar (清楚的)。'
+            },
+            {
+                id: 22,
+                type: 'Regionalismus',
+                badgeClass: 'bg-rose-50 text-rose-700 border-rose-200',
+                word: 'Klassenarbeit',
+                question: '德国学校里的“课堂测验/单元考试”叫 "Klassenarbeit"，在奥地利 (A) 常被称为？',
+                options: ['die Schularbeit', 'die Hausaufgabe', 'die Prüfung', 'das Quiz'],
+                answer: 0,
+                detail: 'die Klassenarbeit, -en (D) 在奥地利学校系统中对应称为 die Schularbeit。'
+            },
+            {
+                id: 23,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'Klavier',
+                question: '“钢琴” "das Klavier" 表达“弹钢琴”时的正确固定搭配是？',
+                options: ['Klavier spielen', 'Klavier machen', 'Klavier treiben', 'Klavier hören'],
+                answer: 0,
+                detail: 'das Klavier, -e (钢琴)。演奏乐器统一用 乐器名 + spielen，如 Klavier spielen。'
+            },
+            {
+                id: 24,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'kleben',
+                question: '动词 "kleben" 表达“粘贴/黏贴”，其过去分词与助动词搭配是？',
+                options: ['hat geklebt', 'ist geklebt', 'hat gekleben', 'ist geklennt'],
+                answer: 0,
+                detail: 'kleben (klebt, klebte, hat geklebt)。'
+            },
+            {
+                id: 25,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'Kleid / Kleidung',
+                question: '关于 "das Kleid" 与 "die Kleidung"，下列语义区分准确的是？',
+                options: [
+                    'das Kleid 特指连衣裙（复数-er），die Kleidung 是衣物的总称（集合名词，通常单数）',
+                    'das Kleid 是衣物总称，die Kleidung 特指连衣裙',
+                    '两者均只表示“衬衫”',
+                    'das Kleid 没有复数形式'
+                ],
+                answer: 0,
+                detail: 'das Kleid, -er (连衣裙/礼服)；die Kleidung (服装，衣物，不可数集合名词)。'
+            },
+            {
+                id: 26,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'klettern',
+                question: '动词 "klettern" (攀登/爬) 在完成时中，助动词必须使用哪一个？',
+                options: ['sein', 'haben', 'werden', 'können'],
+                answer: 0,
+                detail: 'klettern 表示位移动作，现在完成时助动词使用 sein：ist geklettert。'
+            },
+            {
+                id: 27,
+                type: 'Verb / Substantiv',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'klicken / Klick',
+                question: '在电脑和网页操作中，"auf den Link _____" (点击链接) 填入哪个动词？',
+                options: ['klicken', 'kleben', 'klingeln', 'klopfen'],
+                answer: 0,
+                detail: 'klicken (hat geklickt: 点击)。常用搭配：auf etwas (Akk.) klicken (点击某物)。'
+            },
+            {
+                id: 28,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'Klima / Klimaanlage',
+                question: '名词 "Klimaanlage" (空调) 的阴性冠词与正确复数形式是？',
+                options: ['die Klimaanlage, -n', 'das Klimaanlage, -s', 'der Klimaanlage, -e', 'die Klimaanlage, -er'],
+                answer: 0,
+                detail: 'das Klima (气候)；die Klimaanlage, -n (空调系统)。'
+            },
+            {
+                id: 29,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                word: 'klingeln / klingen',
+                question: '“Das Telefon _____” (电话响了) 与 “Das Lied _____ schön” (这首歌听起来美妙)，分别填入什么动词？',
+                options: ['klingelt / klingt', 'klingt / klingelt', 'geklungen / geklingelt', 'klingeln / klingen'],
+                answer: 0,
+                detail: 'klingeln (铃响，按门铃: klingelt)；klingen (听起来……: klingt)。'
+            },
+            {
+                id: 30,
+                type: 'Substantiv / Verb',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'Klinik / klopfen',
+                question: '“An die Tür _____” (敲门) 应填入哪个动词？',
+                options: ['klopfen', 'klingen', 'kochen', 'klaren'],
+                answer: 0,
+                detail: 'klopfen (hat geklopft: 敲击，敲门)。固定搭配：an die Tür klopfen。die Klinik, -en (诊所/医院)。'
+            },
+            {
+                id: 31,
+                type: 'Regionalismus',
+                badgeClass: 'bg-rose-50 text-rose-700 border-rose-200',
+                word: 'Kloß / Knödel',
+                question: '德语区特色美食“丸子/团子”，在德国北部/中部常称 "der Kloß"，在南部和奥地利常称？',
+                options: ['der Knödel', 'der Keks', 'der Kuchen', 'die Kartoffel'],
+                answer: 0,
+                detail: 'der Kloß, "-e (D) 与 der Knödel, - (D, A) 均指德语区传统的面粉/土豆团子。'
+            },
+            {
+                id: 32,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                word: 'klug / knapp',
+                question: '“Die Zeit ist _____” (时间紧迫/时间不多了) 句中应填入哪个形容词？',
+                options: ['knapp', 'klug', 'klein', 'klar'],
+                answer: 0,
+                detail: 'knapp (形容词: 紧缺的，勉强的)；klug (形容词: 聪明的)。'
+            },
+            {
+                id: 33,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'Kneipe / Knie / Knochen',
+                question: '关于身体部位名词 "das Knie" (膝盖) 和 "der Knochen" (骨头) 的复数，正确的是？',
+                options: [
+                    'das Knie (复数: -) / der Knochen (复数: -)',
+                    'das Knie (复数: -n) / der Knochen (复数: -e)',
+                    'das Knie (复数: -er) / der Knochen (复数: -en)',
+                    'das Knie (复数: -s) / der Knochen (复数: -ä)'
+                ],
+                answer: 0,
+                detail: 'die Kneipe, -n (小酒馆)；das Knie, - (膝盖，单复数同形)；der Knochen, - (骨头，单复数同形)。'
+            },
+            {
+                id: 34,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'Knopf / Koch / Koffer',
+                question: '名词 "der Knopf" (按钮/扣子) 和 "der Koch" (厨师) 的复数变音形式分别是？',
+                options: ['die Knöpfe / die Köche', 'die Knopfe / die Koche', 'die Knöpfen / die Köchen', 'die Knopfes / die Koches'],
+                answer: 0,
+                detail: 'der Knopf, "-e (复数: die Knöpfe)；der Koch, "-e (复数: die Köche)；der Koffer, - (行李箱，单复数同形)。'
+            },
+            {
+                id: 35,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                word: 'Kollege / Kollegin',
+                question: '阳性弱变化名词 "der Kollege" (同事) 在单数第四格 (Akkusativ) 时的正确形式是？',
+                options: ['den Kollegen', 'den Kollege', 'des Kollegen', 'die Kollegin'],
+                answer: 0,
+                detail: 'der Kollege, -n 属于 N-Deklination 弱变化阳性名词，除单数第一格外均需加 -n。第四格为 den Kollegen。'
+            }
+        ];
+
+        // Native Audio Synthesizer
+        let audioCtx = null;
+
+        function getAudioContext() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
+
+        function playSound(isCorrect) {
+            try {
+                const ctx = getAudioContext();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+
+                const now = ctx.currentTime;
+                if (isCorrect) {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(523.25, now); // C5
+                    osc.frequency.setValueAtTime(659.25, now + 0.08); // E5
+                    gain.gain.setValueAtTime(0.12, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+                    osc.start(now);
+                    osc.stop(now + 0.3);
+                } else {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(220, now);
+                    osc.frequency.exponentialRampToValueAtTime(140, now + 0.2);
+                    gain.gain.setValueAtTime(0.1, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+                    osc.start(now);
+                    osc.stop(now + 0.2);
+                }
+            } catch (e) {
+                console.error("Audio error:", e);
+            }
+        }
+
+        // Fisher-Yates Shuffle
+        function shuffleArray(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        // App State
+        let vocabularyData = [];
+        let currentIndex = 0;
+        let userAnswers = [];
+        let showExplanation = false;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            resetPractice();
+        });
+
+        function resetPractice() {
+            vocabularyData = shuffleArray(rawVocabularyData);
+            currentIndex = 0;
+            userAnswers = new Array(vocabularyData.length).fill(null);
+            showExplanation = false;
+
+            document.getElementById('quiz-container').classList.remove('hidden');
+            document.getElementById('bottom-nav').classList.remove('hidden');
+            document.getElementById('result-container').classList.add('hidden');
+
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const currentData = vocabularyData[currentIndex];
+
+            // Render Badges and Titles
+            document.getElementById('word-badge').className = `px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase border ${currentData.badgeClass}`;
+            document.getElementById('word-badge').textContent = currentData.type;
+            document.getElementById('question-index-tag').textContent = `Q${currentIndex + 1}`;
+            document.getElementById('target-word').textContent = currentData.word;
+            document.getElementById('question-prompt').textContent = currentData.question;
+
+            // Progress Bar
+            const progressPercent = Math.round(((currentIndex + 1) / vocabularyData.length) * 100);
+            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+            document.getElementById('progress-text').textContent = `进度：${currentIndex + 1} / ${vocabularyData.length}`;
+            document.getElementById('progress-percent').textContent = `${progressPercent}%`;
+
+            // Options
+            const optionsGrid = document.getElementById('options-grid');
+            optionsGrid.innerHTML = '';
+
+            const selectedAnswer = userAnswers[currentIndex];
+            const isAnswered = selectedAnswer !== null;
+
+            currentData.options.forEach((optText, optIndex) => {
+                const btn = document.createElement('button');
+                btn.className = getOptionStyle(optIndex, selectedAnswer, currentData.answer);
+                btn.innerHTML = `
+                    <div class="flex items-center justify-between w-full">
+                        <span class="flex items-center gap-3.5">
+                            <span class="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold border transition-all ${getOptionMarkerStyle(optIndex, selectedAnswer, currentData.answer)}">
+                                ${String.fromCharCode(65 + optIndex)}
+                            </span>
+                            <span class="font-medium">${optText}</span>
+                        </span>
+                        ${getOptionIcon(optIndex, selectedAnswer, currentData.answer)}
+                    </div>
+                `;
+                btn.onclick = () => selectOption(optIndex);
+                optionsGrid.appendChild(btn);
+            });
+
+            // Explanation
+            const explainCard = document.getElementById('explanation-card');
+            const explainText = document.getElementById('explanation-text');
+            explainText.textContent = currentData.detail;
+
+            if (showExplanation || isAnswered) {
+                explainCard.classList.remove('hidden');
+            } else {
+                explainCard.classList.add('hidden');
+            }
+
+            // Controls
+            document.getElementById('btn-prev').disabled = currentIndex === 0;
+            const btnNext = document.getElementById('btn-next');
+            if (currentIndex === vocabularyData.length - 1) {
+                btnNext.textContent = '完成特训';
+                btnNext.className = 'px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-teal-700 hover:bg-teal-800 text-white shadow-md transition-all';
+            } else {
+                btnNext.textContent = '下一题';
+                btnNext.className = 'px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-md transition-all';
+            }
+        }
+
+        function getOptionStyle(index, selected, correct) {
+            const base = "w-full text-left p-4 sm:p-4.5 rounded-2xl border text-sm sm:text-base transition-all duration-200 flex items-center justify-between ";
+            if (selected === null) {
+                return base + "border-slate-200/80 bg-white hover:border-slate-400 hover:shadow-md text-slate-800";
+            }
+            if (index === correct) {
+                return base + "border-emerald-300 bg-emerald-50/90 text-emerald-900 font-semibold shadow-sm";
+            }
+            if (index === selected && selected !== correct) {
+                return base + "border-rose-300 bg-rose-50/90 text-rose-900 font-semibold shadow-sm";
+            }
+            return base + "border-slate-100 bg-slate-50/50 text-slate-400 opacity-50";
+        }
+
+        function getOptionMarkerStyle(index, selected, correct) {
+            if (selected === null) {
+                return "border-slate-200 text-slate-500 bg-slate-50";
+            }
+            if (index === correct) {
+                return "border-emerald-500 text-white bg-emerald-600 shadow-sm";
+            }
+            if (index === selected && selected !== correct) {
+                return "border-rose-500 text-white bg-rose-500 shadow-sm";
+            }
+            return "border-slate-200 text-slate-300 bg-slate-100";
+        }
+
+        function getOptionIcon(index, selected, correct) {
+            if (selected === null) return '';
+            if (index === correct) {
+                return `<svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>`;
+            }
+            if (index === selected && selected !== correct) {
+                return `<svg class="w-5 h-5 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>`;
+            }
+            return '';
+        }
+
+        function selectOption(index) {
+            if (userAnswers[currentIndex] === null) {
+                const isCorrect = index === vocabularyData[currentIndex].answer;
+                playSound(isCorrect);
+            }
+            userAnswers[currentIndex] = index;
+            showExplanation = true;
+            renderQuestion();
+        }
+
+        function toggleExplanation() {
+            showExplanation = !showExplanation;
+            const explainCard = document.getElementById('explanation-card');
+            if (showExplanation) {
+                explainCard.classList.remove('hidden');
+            } else {
+                explainCard.classList.add('hidden');
+            }
+        }
+
+        function nextQuestion() {
+            if (currentIndex < vocabularyData.length - 1) {
+                currentIndex++;
+                showExplanation = false;
+                renderQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                showExplanation = false;
+                renderQuestion();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quiz-container').classList.add('hidden');
+            document.getElementById('bottom-nav').classList.add('hidden');
+            document.getElementById('result-container').classList.remove('hidden');
+
+            let mistakeCount = 0;
+            const mistakesList = document.getElementById('mistakes-list');
+            mistakesList.innerHTML = '';
+
+            userAnswers.forEach((ans, idx) => {
+                const item = vocabularyData[idx];
+                if (ans !== item.answer) {
+                    mistakeCount++;
+                    const mistakeDiv = document.createElement('div');
+                    mistakeDiv.className = 'p-4 bg-slate-50 rounded-2xl border border-slate-200/80 text-xs sm:text-sm';
+                    mistakeDiv.innerHTML = `
+                        <div class="font-german font-bold text-slate-900 text-base mb-1">${item.word}</div>
+                        <div class="text-slate-600 leading-relaxed">${item.detail}</div>
+                    `;
+                    mistakesList.appendChild(mistakeDiv);
+                }
+            });
+
+            document.getElementById('stat-total').textContent = vocabularyData.length;
+            document.getElementById('stat-mistakes').textContent = mistakeCount;
+
+            const mistakesSection = document.getElementById('mistakes-section');
+            if (mistakeCount > 0) {
+                mistakesSection.classList.remove('hidden');
+            } else {
+                mistakesSection.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
