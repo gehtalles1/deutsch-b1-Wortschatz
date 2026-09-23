@@ -50,7 +50,6 @@
             </div>
         </div>
     </header>
-
     <!-- Main Section -->
     <main class="flex-1 max-w-3xl w-full mx-auto p-4 sm:p-6 flex flex-col justify-center">
         <!-- QUIZ CONTAINER -->
@@ -74,12 +73,10 @@
                     </p>
                 </div>
             </div>
-
             <!-- Options Grid -->
             <div id="options-grid" class="grid grid-cols-1 gap-3.5">
                 <!-- Dynamic options -->
             </div>
-
             <!-- Explanation Card -->
             <div id="explanation-card" class="hidden bg-slate-900 text-slate-100 rounded-2xl p-5 sm:p-6 shadow-lg border border-slate-800 text-sm leading-relaxed space-y-2">
                 <div class="font-semibold text-teal-400 flex items-center gap-2 text-xs sm:text-sm uppercase tracking-wider">
@@ -89,7 +86,6 @@
                 <div id="explanation-text" class="text-slate-300 text-xs sm:text-sm font-normal"></div>
             </div>
         </div>
-
         <!-- RESULT CONTAINER -->
         <div id="result-container" class="hidden bg-white/90 backdrop-blur-sm rounded-3xl p-8 sm:p-10 border border-slate-200/70 shadow-xl shadow-slate-200/50 text-center space-y-8">
             <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-900 text-teal-400 shadow-lg shadow-slate-900/10 mb-2">
@@ -99,7 +95,6 @@
                 <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2 tracking-tight">特训完成</h2>
                 <p class="text-sm text-slate-500 font-medium">已完成所有词汇测试，巩固词汇细节是提升语言水平的关键！</p>
             </div>
-
             <div class="max-w-md mx-auto py-3 px-6 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-around">
                 <div>
                     <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">本次练习题目</div>
@@ -111,7 +106,6 @@
                     <div id="stat-mistakes" class="text-2xl font-extrabold text-slate-900">0</div>
                 </div>
             </div>
-
             <!-- Incorrect Words Review List -->
             <div id="mistakes-section" class="text-left hidden space-y-4 pt-2">
                 <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
@@ -120,7 +114,6 @@
                 </h3>
                 <div id="mistakes-list" class="space-y-2.5 max-h-64 overflow-y-auto pr-1"></div>
             </div>
-
             <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-6 border-t border-slate-100">
                 <button onclick="resetPractice()" class="w-full sm:w-auto px-8 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm transition-all shadow-md hover:shadow-lg">
                     再练一次
@@ -131,7 +124,6 @@
             </div>
         </div>
     </main>
-
     <!-- Bottom Actions Nav -->
     <footer id="bottom-nav" class="sticky bottom-0 z-30 custom-glass border-t border-slate-200/60 px-4 py-3.5 sm:px-8">
         <div class="max-w-3xl mx-auto flex items-center justify-between gap-3">
@@ -147,7 +139,6 @@
             </button>
         </div>
     </footer>
-
     <script>
         const rawVocabularyData = [
             {
@@ -164,7 +155,7 @@
                 id: 2,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'der Hafen, "-',
+                word: 'der Hafen',
                 question: '名词 "der Hafen" (港口) 的正确复数形式是哪一个？',
                 options: ['die Hafene', 'die Häfen', 'die Häfener', 'die Häfens'],
                 answer: 1,
@@ -176,18 +167,18 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'hageln',
                 question: '描述“下冰雹”时，主语通常用无人称代词 "es"。其现在完成时表达正确的是？',
-                options: ['Es hat gehagelt.', 'Es ist gehagelt.', 'Es gehagelt hat.', 'Es war gehagelt.'],
-                answer: 0,
+                options: ['Es gehagelt hat.', 'Es ist gehagelt.', 'Es hat gehagelt.', 'Es war gehagelt.'],
+                answer: 2,
                 detail: 'hageln (hagelt, hagelte, hat gehagelt) 表示自然现象，现在完成时助动词使用 haben。'
             },
             {
                 id: 4,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'das Hähnchen, -',
+                word: 'das Hähnchen',
                 question: '在瑞士德语(CH)中，“烤鸡/小鸡”对应的常用德语词汇是？',
-                options: ['das Hendl', 'das Poulet', 'das Huhn', 'die Ente'],
-                answer: 1,
+                options: ['das Hendl', 'das Huhn', 'die Ente', 'das Poulet'],
+                answer: 3,
                 detail: 'das Hähnchen/Hühnchen (D) -> das Hendl (A) -> das Poulet, -s (CH)。'
             },
             {
@@ -196,8 +187,8 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'halb',
                 question: '德语时间表达 “Es ist halb vier.” 在中文里指的是几点？',
-                options: ['4点半', '3点半', '4点15分', '3点15分'],
-                answer: 1,
+                options: ['3点半', '4点半', '4点15分', '3点15分'],
+                answer: 0,
                 detail: 'halb vier 表示“再过半小时到达四点”，即 3点30分 (3点半)。'
             },
             {
@@ -206,8 +197,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Halbpension',
                 question: '在预订酒店时，“Halbpension” (半包餐) 通常包含以下哪种餐饮安排？',
-                options: ['仅含早餐', '含早餐和午餐/晚餐其中一顿', '早中晚三餐全包', '含免费下午茶和夜宵'],
-                answer: 1,
+                options: ['仅含早餐', '早中晚三餐全包', '含早餐和午餐/晚餐其中一顿', '含免费下午茶和夜宵'],
+                answer: 2,
                 detail: 'die Halbpension (HP) 指提供早餐和一顿主餐（午餐或晚餐）。全包餐则为 Vollpension。'
             },
             {
@@ -216,38 +207,38 @@
                 badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
                 word: 'halbtags',
                 question: '“Sie arbeitet halbtags.” 句中的 "halbtags" 词性及含义是？',
-                options: ['名词：半天假', '副词：非全日制地/半天工作地', '形容词：极度疲惫的', '介词：在半天以内'],
-                answer: 1,
+                options: ['副词：非全日制地/半天工作地', '名词：半天假', '形容词：极度疲惫的', '介词：在半天以内'],
+                answer: 0,
                 detail: 'halbtags 是副词，意为“半天地，非全日制地”。例：halbtags arbeiten。'
             },
             {
                 id: 8,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'die Hälfte, -n',
+                word: 'die Hälfte',
                 question: '“Die Hälfte der Studenten ______ die Prüfung bestanden.” 句中空格处谓语动词应填入？',
-                options: ['hat', 'haben', 'bist', 'sein'],
-                answer: 0,
+                options: ['haben', 'hat', 'bist', 'sein'],
+                answer: 1,
                 detail: 'die Hälfte (一半) 作为主语核心词时，谓语动词通常配合单数第三人称 hat。'
             },
             {
                 id: 9,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'die Halle, -n',
+                word: 'die Halle',
                 question: '表达“室内体育馆”时，德语常用哪个由 "die Halle" 构成的复合词？',
-                options: ['die Sporthalle', 'die Bahnhofshalle', 'die Markthalle', 'die Eingangshalle'],
-                answer: 0,
+                options: ['die Bahnhofshalle', 'die Markthalle', 'die Sporthalle', 'die Eingangshalle'],
+                answer: 2,
                 detail: 'die Halle, -n (大厅，展厅，馆)。die Sporthalle 指室内体育馆。'
             },
             {
                 id: 10,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'das Hallenbad, "-er',
+                word: 'das Hallenbad',
                 question: '“das Hallenbad” (室内游泳馆) 的对照场所（室外/露天游泳池）是？',
-                options: ['das Freibad', 'das Seebad', 'das Dampfbad', 'das Thermalbad'],
-                answer: 0,
+                options: ['das Seebad', 'das Freibad', 'das Dampfbad', 'das Thermalbad'],
+                answer: 1,
                 detail: 'das Hallenbad (室内游泳馆) <-> das Freibad (室外/露天游泳池)。'
             },
             {
@@ -256,18 +247,18 @@
                 badgeClass: 'bg-zinc-100 text-zinc-700 border-zinc-200',
                 word: 'hallo',
                 question: '德语日常打招呼用语 "Hallo!" 最适合用于哪种社交场景？',
-                options: ['非常正式的商务谈判与对外邮件', '熟人、朋友、同事间的非正式问候', '只能用于晚上向长辈道别', '法庭上的正式致辞'],
-                answer: 1,
+                options: ['非常正式的商务谈判与对外邮件', '只能用于晚上向长辈道别', '法庭上的正式致辞', '熟人、朋友、同事间的非正式问候'],
+                answer: 3,
                 detail: 'Hallo 为非正式打招呼用语，适用于朋友、同事或平辈之间。正式场合宜用 Guten Tag / Guten Morgen。'
             },
             {
                 id: 12,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'der Hals, "-e',
+                word: 'der Hals',
                 question: '当表达“我喉咙痛/脖子痛”时，德语应说 “Ich habe ______schmerzen.”？',
-                options: ['Kopf', 'Hals', 'Bauch', 'Rücken'],
-                answer: 1,
+                options: ['Hals', 'Kopf', 'Bauch', 'Rücken'],
+                answer: 0,
                 detail: 'der Hals, "-e (脖子，喉咙)。die Halsschmerzen (喉咙痛)。'
             },
             {
@@ -276,8 +267,8 @@
                 badgeClass: 'bg-zinc-100 text-zinc-700 border-zinc-200',
                 word: 'halt',
                 question: '口语语气小品词 "halt" (如 “Das ist halt so.”) 的表达语气接近于？',
-                options: ['绝对禁止，必须取消', '“就是这样/没办法/毕竟” (接受事实或无奈)', '“也许吧/大概不确定”', '“非常紧急”'],
-                answer: 1,
+                options: ['绝对禁止，必须取消', '“也许吧/大概不确定”', '“就是这样/没办法/毕竟” (接受事实或无奈)', '“非常紧急”'],
+                answer: 2,
                 detail: 'halt 为口语中极常见的语气小品词 (Abtönungspartikel)，相当于 eben，表示“客观事实就是如此，无可改变”。'
             },
             {
@@ -286,8 +277,8 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'haltbar',
                 question: '食品包装上的标语 “Mindestens haltbar bis: siehe Boden” 中，"haltbar" 的意思是？',
-                options: ['易碎的', '可保存的 / 保质的', '打折促销的', '开封即食的'],
-                answer: 1,
+                options: ['易碎的', '打折促销的', '开封即食的', '可保存的 / 保质的'],
+                answer: 3,
                 detail: 'haltbar (耐用的，可保存的，未变质的)。Mindestens haltbar bis... (最佳赏味期/保质期至……)。'
             },
             {
@@ -296,8 +287,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'halten',
                 question: '“Was hältst du von diesem Vorschlag?” 句中的 "halten von + Dat." 意思是？',
-                options: ['手里拿住某物', '认为/对……看法如何', '停止做某事', '保持物理距离'],
-                answer: 1,
+                options: ['认为/对……看法如何', '手里拿住某物', '停止做某事', '保持物理距离'],
+                answer: 0,
                 detail: 'halten von + Dat. 表示“对……持某种观点/看法”。例如：Was hältst du davon? (你觉得这怎么样？)'
             },
             {
@@ -306,25 +297,25 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'der Halt',
                 question: '在德铁 (DB) 火车广播中，“Nächster Halt: Berlin Hauptbahnhof” 里的 "der Halt" 意思是？',
-                options: ['终点站', '停靠站 / 停车', '换乘通道', '列车晚点'],
-                answer: 1,
+                options: ['终点站', '换乘通道', '停靠站 / 停车', '列车晚点'],
+                answer: 2,
                 detail: 'der Halt (停靠，停车点)。Nächster Halt 表示“下一停靠站”。'
             },
             {
                 id: 17,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'die Haltestelle, -n',
+                word: 'die Haltestelle',
                 question: '在公交或电车站“在车站等车 (An der Haltestelle warten)”，介词 "an" 后面接第几格？',
-                options: ['Nominativ (第一格)', 'Akkusativ (第四格)', 'Dativ (第三格)', 'Genitiv (第二格)'],
-                answer: 2,
+                options: ['Nominativ (第一格)', 'Akkusativ (第四格)', 'Genitiv (第二格)', 'Dativ (第三格)'],
+                answer: 3,
                 detail: '表示“在……车站”静止地点，双介词 an 接 Dativ (an der Haltestelle)。'
             },
             {
                 id: 18,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'der Hammer, "-',
+                word: 'der Hammer',
                 question: '工具名词 "der Hammer" (锤子) 的复数形式是哪一个？',
                 options: ['die Hämmer', 'die Hammere', 'die Hammers', 'die Hammeren'],
                 answer: 0,
@@ -334,20 +325,20 @@
                 id: 19,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'die Hand, "-e',
+                word: 'die Hand',
                 question: '“Wir müssen das gemeinsam in die Hände nehmen.” 句中 "die Hand" 的复数形式是？',
-                options: ['die Hände', 'die Handen', 'die Händer', 'die Hands'],
-                answer: 0,
+                options: ['die Handen', 'die Hände', 'die Händer', 'die Hands'],
+                answer: 1,
                 detail: 'die Hand, "-e (阴性名词，复数变音加 -e：die Hände)。'
             },
             {
                 id: 20,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'der Handwerker, -',
+                word: 'der Handwerker',
                 question: '“der Handwerker” (手艺人/水暖工/电工等) 指的是什么职业人群？',
-                options: ['从事手工艺修缮与专业技术的工人', '公司高管/CEO', '大学理论教授', '专职软件程序员'],
-                answer: 0,
+                options: ['公司高管/CEO', '大学理论教授', '从事手工艺修缮与专业技术的工人', '专职软件程序员'],
+                answer: 2,
                 detail: 'der Handwerker, - / die Handwerkerin, -nen 指各类手工与技术性工人（如木工、水暖工、电工等）。'
             },
             {
@@ -356,8 +347,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'handeln',
                 question: '固定句型 “Es handelt sich um ein Missverständnis.” 中 "sich handeln um + Akk." 意思是？',
-                options: ['讨价还价', '采取行动', '涉及 / 关于 / 是……', '做生意买卖'],
-                answer: 2,
+                options: ['讨价还价', '采取行动', '做生意买卖', '涉及 / 关于 / 是……'],
+                answer: 3,
                 detail: 'sich handeln um + Akk. (涉及，关于，是……)。例如：Worum handelt es sich? (这是关于什么的？)'
             },
             {
@@ -366,28 +357,28 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'der Handel',
                 question: '在经济与商业语境中，"der Handel" 的正确释义是？',
-                options: ['重工业制造', '贸易 / 商业', '农业种植', '金融借贷'],
-                answer: 1,
+                options: ['贸易 / 商业', '重工业制造', '农业种植', '金融借贷'],
+                answer: 0,
                 detail: 'der Handel (贸易，商业，交易)。例：internationaler Handel (国际贸易)。'
             },
             {
                 id: 23,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'der Händler, -',
+                word: 'der Händler',
                 question: '“Der Auto______ verkauft gebrauchte Wagen.” 空格处应填入表示“商人/经销商”的正确词根？',
-                options: ['händler', 'werker', 'meister', 'halter'],
-                answer: 0,
+                options: ['werker', 'händler', 'meister', 'halter'],
+                answer: 1,
                 detail: 'der Händler, - (商人，经销商)。Autohändler = 汽车经销商。'
             },
             {
                 id: 24,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'das Handy, -s',
+                word: 'das Handy',
                 question: '德语中表示“手机”的词 "das Handy"，其语法词性及复数形式是？',
-                options: ['der Handy, -e', 'das Handy, -s', 'die Handy, -en', 'das Handy, -er'],
-                answer: 1,
+                options: ['der Handy, -e', 'die Handy, -en', 'das Handy, -s', 'das Handy, -er'],
+                answer: 2,
                 detail: 'das Handy, -s (中性名词，外来词复数加 -s)。'
             },
             {
@@ -396,8 +387,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'hängen',
                 question: '表达“我把画挂到了墙上 (表示位置改变与动作)”时，hängen 的完成时形式是？',
-                options: ['hat gehangen', 'hat gehängt', 'ist gehangen', 'ist gehängt'],
-                answer: 1,
+                options: ['hat gehangen', 'ist gehangen', 'ist gehängt', 'hat gehängt'],
+                answer: 3,
                 detail: 'hängen 作及物动词（表示挂上去的动作）为规则变位：hängte, hat gehängt (+ Akk.)；作不及物动词（表示挂在何处的状态）为不规则变位：hing, hat gehangen (+ Dat.)。'
             },
             {
@@ -416,8 +407,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'hassen',
                 question: '动词 "hassen" (憎恨) 的反义词是？',
-                options: ['lieben', 'hoffen', 'lachen', 'helfen'],
-                answer: 0,
+                options: ['hoffen', 'lieben', 'lachen', 'helfen'],
+                answer: 1,
                 detail: 'hassen (hasst, hasste, hat gehasst) - 憎恨，厌恶 <-> lieben (爱)。'
             },
             {
@@ -426,8 +417,8 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'hässlich',
                 question: '“Das Gebäude sieht wirklich hässlich aus.” 句中 "hässlich" 的意思是？',
-                options: ['漂亮的', '丑陋的 / 难看的', '宏伟的', '古老的'],
-                answer: 1,
+                options: ['漂亮的', '宏伟的', '丑陋的 / 难看的', '古老的'],
+                answer: 2,
                 detail: 'hässlich (丑陋的，难看的)。反义词：schön (漂亮的)。'
             },
             {
@@ -436,8 +427,8 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'häufig',
                 question: '副词/形容词 "häufig" 的含义与下列哪个词最接近？',
-                options: ['oft (经常)', 'selten (罕见)', 'nie (从不)', 'manchmal (有时)'],
-                answer: 0,
+                options: ['selten (罕见)', 'nie (从不)', 'manchmal (有时)', 'oft (经常)'],
+                answer: 3,
                 detail: 'häufig (频繁的，经常的) ≈ oft。反义词：selten (罕见地)。'
             },
             {
@@ -446,45 +437,45 @@
                 badgeClass: 'bg-violet-50 text-violet-700 border-violet-200',
                 word: 'Haupt-',
                 question: '前缀 "Haupt-" 在构词法中通常表达什么含义？',
-                options: ['次要的', '主要的 / 首要的 / 总的', '隐藏的', '过去的'],
-                answer: 1,
+                options: ['主要的 / 首要的 / 总的', '次要的', '隐藏的', '过去的'],
+                answer: 0,
                 detail: '前缀 Haupt- 表示“主要的，首要的”。例如：Hauptsache (主要事项), Hauptrolle (主角)。'
             },
             {
                 id: 31,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'die Hauptstadt, "-e',
+                word: 'die Hauptstadt',
                 question: '“die Hauptstadt” (首都) 的正确复数形式是哪一个？',
-                options: ['die Hauptstädte', 'die Hauptstadten', 'die Hauptstadte', 'die Hauptstädter'],
-                answer: 0,
+                options: ['die Hauptstadten', 'die Hauptstädte', 'die Hauptstadte', 'die Hauptstädter'],
+                answer: 1,
                 detail: 'die Hauptstadt, "-e -> die Hauptstädte。例如：Berlin und Wien sind Hauptstädte.'
             },
             {
                 id: 32,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'der Hauptbahnhof, "-e',
+                word: 'der Hauptbahnhof',
                 question: '在德语车票和火车站标识中，"Hauptbahnhof" (中央火车站) 常见的官方缩写是？',
-                options: ['Hbf.', 'Hbfh.', 'HBf.', 'H-Bahnhof'],
-                answer: 0,
+                options: ['Hbfh.', 'HBf.', 'Hbf.', 'H-Bahnhof'],
+                answer: 2,
                 detail: 'der Hauptbahnhof (中央火车站)，德语标准缩写形式为 Hbf.。'
             },
             {
                 id: 33,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'das Haus, "-er',
+                word: 'das Haus',
                 question: '表达“在家里 (静止状态)”应使用固定短语？',
-                options: ['nach Hause', 'zu Hause', 'im Hause', 'aus dem Hause'],
-                answer: 1,
+                options: ['nach Hause', 'im Hause', 'aus dem Hause', 'zu Hause'],
+                answer: 3,
                 detail: 'zu Hause (在家里，静止状态)；nach Hause (回家，表示方向和移动)。'
             },
             {
                 id: 34,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'die Hausaufgabe, -n',
+                word: 'die Hausaufgabe',
                 question: '“做家庭作业”在德语中最地道的动词搭配是？',
                 options: ['Hausaufgaben machen', 'Hausaufgaben bauen', 'Hausaufgaben spielen', 'Hausaufgaben lernen'],
                 answer: 0,
@@ -504,20 +495,20 @@
                 id: 36,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'der Haushalt, -e',
+                word: 'der Haushalt',
                 question: '短语 “den Haushalt machen” 的确切含义是？',
-                options: ['做家务 / 管理家庭日常', '买房子', '计算租金开销', '修建房屋'],
-                answer: 0,
+                options: ['买房子', '计算租金开销', '做家务 / 管理家庭日常', '修建房屋'],
+                answer: 2,
                 detail: 'der Haushalt (家政，家务，预算)。den Haushalt machen = 做家务。'
             },
             {
                 id: 37,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'der Hausmeister, -',
+                word: 'der Hausmeister',
                 question: '在瑞士德语(CH)中，“房屋管理员/楼管 (Hausmeister)” 常被称作？',
-                options: ['der Abwart', 'der Hausmeister', 'der Wärter', 'der Kontrolleur'],
-                answer: 0,
+                options: ['der Hausmeister', 'der Wärter', 'der Kontrolleur', 'der Abwart'],
+                answer: 3,
                 detail: 'der Hausmeister, - (D, A) 在瑞士德语中称为 der Abwart, -e。'
             },
             {
@@ -526,8 +517,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Haut',
                 question: '人体器官名词 "die Haut" 的中文含义是？',
-                options: ['头发', '皮肤', '肌肉', '骨骼'],
-                answer: 1,
+                options: ['皮肤', '头发', '肌肉', '骨骼'],
+                answer: 0,
                 detail: 'die Haut (皮肤)。复数 die Häute。例：empfindliche Haut (敏感皮肤)。'
             },
             {
@@ -544,10 +535,10 @@
                 id: 40,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'das Heft, -e',
+                word: 'das Heft',
                 question: '在学习用品中，"das Heft" 与 "das Buch" 的主要区别在于 "das Heft" 是？',
-                options: ['精装字典', '练习本 / 笔记本', '故事画册', '报纸'],
-                answer: 1,
+                options: ['精装字典', '故事画册', '练习本 / 笔记本', '报纸'],
+                answer: 2,
                 detail: 'das Heft, -e (练习本，笔记本，小册子)。例如：das Schreibheft (书写本)。'
             },
             {
@@ -556,18 +547,18 @@
                 badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
                 word: 'heim',
                 question: '“Ich gehe nach dem Kurs direkt heim.” 句中方向副词 "heim" 等同于？',
-                options: ['nach Hause (回家)', 'zu Hause (在家里)', 'aus dem Hause (出门)', 'in die Schule (去学校)'],
-                answer: 0,
+                options: ['zu Hause (在家里)', 'aus dem Hause (出门)', 'in die Schule (去学校)', 'nach Hause (回家)'],
+                answer: 3,
                 detail: 'heim 作为方向副词，相当于 nach Hause (回家)。如：heimgehen, heimkommen。'
             },
             {
                 id: 42,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'das Heim, -e',
+                word: 'das Heim',
                 question: '在“das Altersheim”或“das Kinderheim”中，名词 "das Heim" 的意思是？',
-                options: ['工厂', '家 / 疗养院 / 福利院 / 机构', '地下室', '学校'],
-                answer: 1,
+                options: ['家 / 疗养院 / 福利院 / 机构', '工厂', '地下室', '学校'],
+                answer: 0,
                 detail: 'das Heim, -e (家，住所，疗养院/收容机构)。das Altersheim (养老院)。'
             },
             {
@@ -586,8 +577,8 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'heimlich',
                 question: '“Sie haben heimlich geheiratet.” 句中的 "heimlich" 意思是？',
-                options: ['公开地', '秘密地 / 偷偷地', '隆重地', '匆忙地'],
-                answer: 1,
+                options: ['公开地', '隆重地', '秘密地 / 偷偷地', '匆忙地'],
+                answer: 2,
                 detail: 'heimlich (秘密的，暗中的，偷偷的)。反义词：öffentlich (公开地)。'
             },
             {
@@ -596,8 +587,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Heimweh',
                 question: '短语 “Heimweh haben” 表达的是哪种情感？',
-                options: ['牙痛', '思乡 / 想家', '头晕', '恐惧'],
-                answer: 1,
+                options: ['牙痛', '头晕', '恐惧', '思乡 / 想家'],
+                answer: 3,
                 detail: 'das Heimweh (思乡，想家)。例：Ich habe Heimweh. (我想家了。)'
             },
             {
@@ -606,8 +597,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'heiraten',
                 question: '语法辨析：关于 "heiraten" (结婚) 的句法用法，下列句子正确的是？',
-                options: ['Er hat mit ihr geheiratet.', 'Er hat sie geheiratet.', 'Er ist sie geheiratet.', 'Er heiratet zu ihr.'],
-                answer: 1,
+                options: ['Er hat sie geheiratet.', 'Er hat mit ihr geheiratet.', 'Er ist sie geheiratet.', 'Er heiratet zu ihr.'],
+                answer: 0,
                 detail: 'heiraten 是及物动词，直接接第四格宾语 (jemanden heiraten)。若带 mit 则需用形容词短语 verheiratet sein mit + Dat.。'
             },
             {
@@ -626,8 +617,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'heißen',
                 question: '动词 "heißen" 的三式变位 (Präsens, Präteritum, Perfekt) 是？',
-                options: ['heißt, hieß, hat geheißen', 'heißt, heisste, hat geheißt', 'heißt, hiess, ist geheißen', 'heißt, hatte hieß, hat geheißen'],
-                answer: 0,
+                options: ['heißt, heisste, hat geheißt', 'heißt, hiess, ist geheißen', 'heißt, hieß, hat geheißen', 'heißt, hatte hieß, hat geheißen'],
+                answer: 2,
                 detail: 'heißen (heißt, hieß, hat geheißen) - 名叫，意思是。'
             },
             {
@@ -636,25 +627,25 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'heizen',
                 question: '动词 "heizen" (取暖/开暖气) 的现在时单数第三人称 (er/sie/es) 变位是？',
-                options: ['heizt', 'heizet', 'heiszt', 'hiezt'],
-                answer: 0,
+                options: ['heizet', 'heiszt', 'hiezt', 'heizt'],
+                answer: 3,
                 detail: 'heizen (heizt, heizte, hat geheizt)。由于词干结尾为 -z，第二和第三人称单数均直接加 -t (du heizt, er heizt)。'
             },
             {
                 id: 50,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'die Heizung, -en',
+                word: 'die Heizung',
                 question: '“Die Heizung anmachen” 的正确含义是？',
-                options: ['维修暖气', '关闭暖气', '打开暖气', '购买暖气设备'],
-                answer: 2,
+                options: ['打开暖气', '维修暖气', '关闭暖气', '购买暖气设备'],
+                answer: 0,
                 detail: 'die Heizung, -en (暖气，供暖设备)。die Heizung anmachen/einschalten (打开暖气)。'
             },
             {
                 id: 51,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'der Held, -en',
+                word: 'der Held',
                 question: '名词 "der Held" (英雄) 属于阳性 N-弱变化名词。其单数第四格形式是？',
                 options: ['den Held', 'den Helden', 'den Heldes', 'den Helder'],
                 answer: 1,
@@ -666,8 +657,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'helfen',
                 question: '动词 "helfen" (帮助) 要求支配的宾语使用第几格？',
-                options: ['Akkusativ (第四格)', 'Dativ (第三格)', 'Genitiv (第二格)', 'Nominativ (第一格)'],
-                answer: 1,
+                options: ['Akkusativ (第四格)', 'Genitiv (第二格)', 'Dativ (第三格)', 'Nominativ (第一格)'],
+                answer: 2,
                 detail: 'helfen + Dativ (jemandem helfen)。例：Kannst du mir helfen?'
             },
             {
@@ -676,8 +667,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Hilfe',
                 question: '介词短语 “mit Hilfe (+ Gen.)” 的正确含义是？',
-                options: ['在……的帮助下', '放弃帮助', '寻找援助', '提供救助'],
-                answer: 0,
+                options: ['放弃帮助', '寻找援助', '提供救助', '在……的帮助下'],
+                answer: 3,
                 detail: 'mit Hilfe (+ Gen.) / mithilfe (+ Gen.) 意为“借助……/在……的帮助下”。'
             },
             {
@@ -694,20 +685,20 @@
                 id: 55,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'das Hemd, -en',
+                word: 'das Hemd',
                 question: '中性名词 "das Hemd" (衬衫) 的复数变化词尾是？',
-                options: ['die Hemden', 'die Hemder', 'die Hemde', 'die Hemds'],
-                answer: 0,
+                options: ['die Hemder', 'die Hemden', 'die Hemde', 'die Hemds'],
+                answer: 1,
                 detail: 'das Hemd, -en (中性名词，复数加 -en：die Hemden)。'
             },
             {
                 id: 56,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'das Hendl, -',
+                word: 'das Hendl',
                 question: '在奥地利(A)及德国南部巴伐利亚地区，"das Hendl" 指的是哪种美食？',
-                options: ['烤鸡 / 鸡肉', '牛肉丸', '猪脚', '德式香肠'],
-                answer: 0,
+                options: ['牛肉丸', '猪脚', '烤鸡 / 鸡肉', '德式香肠'],
+                answer: 2,
                 detail: 'das Hend(e)l, - (A) 在德国标准德语中对应 das Hähnchen/Hühnchen。'
             },
             {
@@ -716,8 +707,8 @@
                 badgeClass: 'bg-violet-50 text-violet-700 border-violet-200',
                 word: 'her / her-',
                 question: '方向前缀 "her-" 与 "hin-" 的核心逻辑区别在于："her-" 表示？',
-                options: ['朝向说话者的方向 (向这边来)', '远离说话者的方向 (去那边)', '向上移动', '向下移动'],
-                answer: 0,
+                options: ['远离说话者的方向 (去那边)', '向上移动', '向下移动', '朝向说话者的方向 (向这边来)'],
+                answer: 3,
                 detail: 'her- 表示“朝向说话者 (向这边)”，hin- 表示“远离说话者 (向那边)”。如：Komm her! (过来！) / Geh hin! (过去！)'
             },
             {
@@ -736,28 +727,28 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'herausfinden',
                 question: '“Ich muss herausfinden, wann der Zug abfährt.” 句中 "herausfinden" 的意思是？',
-                options: ['查明 / 弄清楚 / 发现', '丢失物品', '迷失方向', '给……指路'],
-                answer: 0,
+                options: ['丢失物品', '查明 / 弄清楚 / 发现', '迷失方向', '给……指路'],
+                answer: 1,
                 detail: 'herausfinden (findet heraus, fand heraus, hat herausgefunden) - 查明，发现，弄清楚。'
             },
             {
                 id: 60,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'die Herausforderung, -en',
+                word: 'die Herausforderung',
                 question: '在职场与学习中，短语 “eine Herausforderung annehmen” 意思是？',
-                options: ['接受挑战', '拒绝安排', '提出异议', '完成任务'],
-                answer: 0,
+                options: ['拒绝安排', '提出异议', '接受挑战', '完成任务'],
+                answer: 2,
                 detail: 'die Herausforderung, -en (挑战)。eine Herausforderung annehmen = 接受挑战。'
             },
             {
                 id: 61,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'der Herd, -e',
+                word: 'der Herd',
                 question: '厨房烹饪设备 "der Herd" 指的是？',
-                options: ['炉灶 / 灶台', '电冰箱', '洗碗机', '微波炉'],
-                answer: 0,
+                options: ['电冰箱', '洗碗机', '微波炉', '炉灶 / 灶台'],
+                answer: 3,
                 detail: 'der Herd, -e (炉灶，灶台)。例如：der Elektroherd (电炉).'
             },
             {
@@ -776,18 +767,18 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Herkunft',
                 question: '“Woher kommen Sie?” 这道问题询问的是个人的？',
-                options: ['die Herkunft (出身 / 来源地)', 'das Alter (年龄)', 'der Beruf (职业)', 'die Adresse (地址)'],
-                answer: 0,
+                options: ['das Alter (年龄)', 'die Herkunft (出身 / 来源地)', 'der Beruf (职业)', 'die Adresse (地址)'],
+                answer: 1,
                 detail: 'die Herkunft (出身，来源，国籍籍贯)。'
             },
             {
                 id: 64,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'der Herr, -en',
+                word: 'der Herr',
                 question: '名词 "der Herr" 属于弱变化。句子 “Ich grüße den ______.” (我向这位先生问好) 中填入？',
-                options: ['Herr', 'Herrn', 'Herres', 'Herrm'],
-                answer: 1,
+                options: ['Herr', 'Herres', 'Herrn', 'Herrm'],
+                answer: 2,
                 detail: 'der Herr 单数第四格与第三格形式为 den Herrn / dem Herrn，复数形式为 die Herren。'
             },
             {
@@ -796,18 +787,18 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'herstellen',
                 question: '“Diese Firma stellt Autos her.” 句中的可拆分动词 "herstellen" 意思是？',
-                options: ['生产 / 制造', '修理', '租借', '销毁'],
-                answer: 0,
+                options: ['修理', '租借', '销毁', '生产 / 制造'],
+                answer: 3,
                 detail: 'herstellen (stellt her, stellte her, hat hergestellt) - 生产，制造。近义词：produzieren.'
             },
             {
                 id: 66,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'der Hersteller, -',
+                word: 'der Hersteller',
                 question: '名词 "der Hersteller" 的中文含义是？',
-                options: ['消费者', '制造商 / 生产商', '销售员', '运输商'],
-                answer: 1,
+                options: ['制造商 / 生产商', '消费者', '销售员', '运输商'],
+                answer: 0,
                 detail: 'der Hersteller, - (生产商，制造商)。反义词：der Verbraucher / der Konsument (消费者)。'
             },
             {
@@ -816,8 +807,8 @@
                 badgeClass: 'bg-violet-50 text-violet-700 border-violet-200',
                 word: 'herunter-, runter-',
                 question: '动词前缀 "herunter-" (口语: runter-) 表示的方向动态是？',
-                options: ['从上面降/落下来 (朝说话者方向)', '从下面往上升', '从内部往外部', '从外部往内部'],
-                answer: 0,
+                options: ['从下面往上升', '从上面降/落下来 (朝说话者方向)', '从内部往外部', '从外部往内部'],
+                answer: 1,
                 detail: 'herunter- / runter- 表示“从上面降落/移动到下面”。'
             },
             {
@@ -826,15 +817,14 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'herunterladen',
                 question: '“eine Datei aus dem Internet herunterladen” 的意思是？',
-                options: ['上传文件', '下载文件', '删除文件', '加密文件'],
-                answer: 1,
+                options: ['上传文件', '删除文件', '下载文件', '加密文件'],
+                answer: 2,
                 detail: 'herunterladen (lädt herunter, lud herunter, hat heruntergeladen) - 下载文件。反义词：hochladen (上传)。'
             }
         ];
 
         // Native Audio Synthesizer
         let audioCtx = null;
-
         function getAudioContext() {
             if (!audioCtx) {
                 audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -852,8 +842,8 @@
                 const gain = ctx.createGain();
                 osc.connect(gain);
                 gain.connect(ctx.destination);
-
                 const now = ctx.currentTime;
+
                 if (isCorrect) {
                     osc.type = 'sine';
                     osc.frequency.setValueAtTime(523.25, now); // C5
@@ -963,6 +953,7 @@
 
             // Controls
             document.getElementById('btn-prev').disabled = currentIndex === 0;
+
             const btnNext = document.getElementById('btn-next');
             if (currentIndex === vocabularyData.length - 1) {
                 btnNext.textContent = '完成特训';
