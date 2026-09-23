@@ -67,10 +67,10 @@
                 </div>
                 <div class="py-2">
                     <h2 id="target-word" class="font-german text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-3">
-                        der Boden, "-
+                        Boden
                     </h2>
                     <p id="question-prompt" class="text-sm sm:text-base font-medium text-slate-600 leading-relaxed">
-                        名词 "der Boden" (地面/地板) 的复数形式是哪一个？
+                        名词 "Boden" 的正确复数形式是哪一个？
                     </p>
                 </div>
             </div>
@@ -110,7 +110,7 @@
                     <div id="stat-mistakes" class="text-2xl font-extrabold text-slate-900">0</div>
                 </div>
             </div>
-
+            
             <!-- Incorrect Words Review List -->
             <div id="mistakes-section" class="text-left hidden space-y-4 pt-2">
                 <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
@@ -154,50 +154,50 @@
                 id: 1,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'der Boden, "-',
-                question: '名词 "der Boden" (地面/地板) 的复数形式是哪一个？',
-                options: ['die Bodene', 'die Böden', 'die Böder', 'die Boden'],
-                answer: 1,
+                word: 'Boden',
+                question: '名词 "Boden" (地面/地板) 的正确复数形式是哪一个？',
+                options: ['die Bodene', 'die Böder', 'die Böden', 'die Boden'],
+                answer: 2, // C
                 detail: 'der Boden, "- -> 复数为 die Böden (地板，地面)。注意元音发生了变音 o -> ö。'
             },
             {
                 id: 2,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'der Bogen, -/"-',
-                question: '名词 "der Bogen" (弓/拱门/表格) 的复数变化特点是什么？',
-                options: ['只能加 -e', '单复数同形或变音 (die Bogen / die Bögen)', '必须词尾加 -en', '变为 die Bögner'],
-                answer: 1,
+                word: 'Bogen',
+                question: '名词 "Bogen" (弓/拱门/表格) 的复数变化特点是什么？',
+                options: ['只能加 -e', '必须词尾加 -en', '变为 die Bögner', '单复数同形或变音'],
+                answer: 3, // D
                 detail: 'der Bogen (弓，拱形，单子/表格)。其复数形式在规范德语中既可写 die Bogen 亦可写 die Bögen。'
             },
             {
                 id: 3,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'die Bohne, -n',
-                question: '常用复合词 “Kaffeebohnen” (咖啡豆) 中的基础词 "die Bohne" 意思是？',
-                options: ['豆，豆角', '骨头', '波浪', '带子'],
-                answer: 0,
+                word: 'Bohne',
+                question: '常用复合词 “Kaffeebohnen” 中的基础词 "Bohne" 意思是？',
+                options: ['波浪', '带子', '骨头', '豆，豆角'],
+                answer: 3, // D
                 detail: 'die Bohne, -n (豆，豆类)。例如：grüne Bohnen (四季豆)，die Kaffeebohne (咖啡豆)。'
             },
             {
                 id: 4,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'das Boot, -e',
+                word: 'Boot',
                 question: '名词 "Boot" (小船/艇) 的正确语法冠词是？',
-                options: ['der Boot', 'die Boot', 'das Boot', 'die (Pl.) Boot'],
-                answer: 2,
+                options: ['der', 'die', 'das', 'den'],
+                answer: 2, // C
                 detail: 'das Boot, -e (中性名词，小船，艇)。注意不要受英语发音及语法影响。'
             },
             {
                 id: 5,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'die Botschaft, -en',
-                question: '名词 "die Botschaft" 除了表示“重要讯息”外，在外交政治语境中还指？',
-                options: ['市政厅', '大使馆', '领事馆', '海关'],
-                answer: 1,
+                word: 'Botschaft',
+                question: '名词 "Botschaft" 除了表示“重要讯息”外，在外交政治语境中还指？',
+                options: ['市政厅', '海关', '领事馆', '大使馆'],
+                answer: 3, // D
                 detail: 'die Botschaft, -en (大使馆；信息/讯息)。衍生词：der Botschafter (大使)。'
             },
             {
@@ -206,8 +206,8 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'böse',
                 question: '形容词 "böse" 在常用句 “Sei mir nicht böse!” 中表达什么含义？',
-                options: ['生气的 / 邪恶的', '可爱的 / 温柔的', '忙碌的 / 充实的', '害羞的 / 内向的'],
-                answer: 0,
+                options: ['可爱的', '生气的 / 邪恶的', '忙碌的', '害羞的'],
+                answer: 1, // B
                 detail: 'böse (生气的，恶意的，坏的)。“Sei mir nicht böse!” 意为“别生我的气！”'
             },
             {
@@ -216,18 +216,18 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'braten',
                 question: '强变化动词 "braten" (煎/烤) 的第三人称单数 (er/sie/es) 和过去分词分别是？',
-                options: ['bratet / gebratet', 'brät / gebraten', 'briet / gebrochen', 'brätt / gebrannt'],
-                answer: 1,
+                options: ['bratet / gebratet', 'briet / gebrochen', 'brätt / gebrannt', 'brät / gebraten'],
+                answer: 3, // D
                 detail: 'braten (brät, briet, hat gebraten) - 煎，烤。注意现在时单数发生变音 a -> ä。'
             },
             {
                 id: 8,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'der Braten, -',
-                question: '由动词 braten 派生出的名词 "der Braten" 意思是？',
-                options: ['烤肉，煎肉', '面包炉', '平底锅', '围裙'],
-                answer: 0,
+                word: 'Braten',
+                question: '由动词 braten 派生出的名词 "Braten" 意思是？',
+                options: ['平底锅', '烤肉，煎肉', '面包炉', '围裙'],
+                answer: 1, // B
                 detail: 'der Braten, - (烤肉，煎肉)。单复数同形。例：Schweinebraten (烤猪肉)。'
             },
             {
@@ -236,8 +236,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'brauchen',
                 question: '动词 "brauchen" (需要) 在德语中的基本句法结构是？',
-                options: ['接第三格宾语 (+ Dat.)', '直接接第四格宾语 (+ Akk.)', '必须与介词 von 搭配', '只能作为情态动词使用'],
-                answer: 1,
+                options: ['接第三格宾语 (+ Dat.)', '必须与介词 von 搭配', '直接接第四格宾语 (+ Akk.)', '只能作为情态动词使用'],
+                answer: 2, // C
                 detail: 'brauchen + Akk. (需要某物)。若表示“不必做某事”，常接带 zu 的不定式：brauchen ... nicht zu tun.'
             },
             {
@@ -246,8 +246,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'brechen',
                 question: '动词 "brechen" (打破/折断) 的过去时 (Präteritum) 和完成时 (Perfekt) 是？',
-                options: ['brechte / hat gebrecht', 'brach / hat gebrochen', 'brannte / hat gebrannt', 'brachte / hat gebracht'],
-                answer: 1,
+                options: ['brechte / hat gebrecht', 'brannte / hat gebrannt', 'brach / hat gebrochen', 'brachte / hat gebracht'],
+                answer: 2, // C
                 detail: 'brechen (bricht, brach, hat gebrochen) - 打碎，折断，打破。'
             },
             {
@@ -256,18 +256,18 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'breit',
                 question: '形容词 "breit" 的正确中文含义是？',
-                options: ['高的', '窄的', '宽的，广阔的', '深邃的'],
-                answer: 2,
+                options: ['高的', '窄的', '深邃的', '宽的，广阔的'],
+                answer: 3, // D
                 detail: 'breit (宽的，宽广的)。反义词：schmal / eng (窄的)。'
             },
             {
                 id: 12,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'die Breite, -n',
-                question: '由形容词 breit 派生出的抽象名词 "die Breite" 意思是？',
-                options: ['宽度', '高度', '长度', '深度'],
-                answer: 0,
+                word: 'Breite',
+                question: '由形容词 breit 派生出的抽象名词 "Breite" 意思是？',
+                options: ['高度', '宽度', '长度', '深度'],
+                answer: 1, // B
                 detail: 'die Breite, -n (宽度；纬度)。例如：Länge und Breite (长与宽)。'
             },
             {
@@ -276,18 +276,18 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'bremsen',
                 question: '驾驶或骑行时，动词 "bremsen" 的意思是？',
-                options: ['加速', '刹车，减速制动', '换挡', '超车'],
-                answer: 1,
+                options: ['加速', '换挡', '刹车，减速制动', '超车'],
+                answer: 2, // C
                 detail: 'bremsen (bremst, bremste, hat gebremst) - 刹车，制动。'
             },
             {
                 id: 14,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'die Bremse, -n',
-                question: '名词 "die Bremse" 在交通工具中指的是什么部件？',
-                options: ['方向盘', '油门', '刹车 / 制动器', '安全带'],
-                answer: 2,
+                word: 'Bremse',
+                question: '名词 "Bremse" 在交通工具中指的是什么部件？',
+                options: ['方向盘', '油门', '安全带', '刹车 / 制动器'],
+                answer: 3, // D
                 detail: 'die Bremse, -n (刹车，制动器)。例如：die Handbremse (手刹)。'
             },
             {
@@ -296,8 +296,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'brennen',
                 question: '混合变化动词 "brennen" (燃烧/着火) 的过去时 (Präteritum) 形式是？',
-                options: ['brennte', 'brannte', 'brach', 'briet'],
-                answer: 1,
+                options: ['brennte', 'brach', 'briet', 'brannte'],
+                answer: 3, // D
                 detail: 'brennen (brennt, brannte, hat gebrannt) - 燃烧，着火。属混合变化动词 (元音变为 a，词尾带规则 -te)。'
             },
 
@@ -306,70 +306,70 @@
                 id: 16,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'der Brief, -e',
-                question: '名词 "der Brief" (信件) 的复数形式是？',
-                options: ['die Briefe', 'die Briefen', 'die Briefer', 'die Briefes'],
-                answer: 0,
+                word: 'Brief',
+                question: '名词 "Brief" (信件) 的正确冠词与复数形式是？',
+                options: ['die / Briefen', 'der / Briefe', 'das / Briefer', 'der / Briefes'],
+                answer: 1, // B
                 detail: 'der Brief, -e (信件)。复数为 die Briefe。'
             },
             {
                 id: 17,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'der Briefkasten, "-',
-                question: '复合名词 "der Briefkasten" (信箱) 的复数形式是？',
-                options: ['die Briefkasten', 'die Briefkästen', 'die Briefkastener', 'die Briefkästner'],
-                answer: 1,
+                word: 'Briefkasten',
+                question: '复合名词 "Briefkasten" (信箱) 的复数形式是？',
+                options: ['die Briefkasten', 'die Briefkastener', 'die Briefkästen', 'die Briefkästner'],
+                answer: 2, // C
                 detail: 'der Briefkasten, "- (信箱)。复数发生变音：die Briefkästen。'
             },
             {
                 id: 18,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'die Briefmarke, -n',
-                question: '贴在信封上用于付费的 "die Briefmarke" 意思是？',
-                options: ['邮票', '明信片', '火漆印章', '快递单'],
-                answer: 0,
+                word: 'Briefmarke',
+                question: '贴在信封上用于付费的 "Briefmarke" 意思是？',
+                options: ['明信片', '火漆印章', '快递单', '邮票'],
+                answer: 3, // D
                 detail: 'die Briefmarke, -n (邮票)。'
             },
             {
                 id: 19,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'der Briefträger, -',
-                question: '表达“邮递员”时，在瑞士德语 (CH) 中经常使用的口语对应词汇是？',
-                options: ['der Briefträger', 'der Pöstler', 'der Bote', 'der Kurier'],
-                answer: 1,
+                word: 'Briefträger',
+                question: '表达“邮递员”时，在瑞士德语中常用的对应词汇是？',
+                options: ['der Pöstler', 'der Briefträger', 'der Bote', 'der Kurier'],
+                answer: 0, // A
                 detail: 'der Briefträger, - / die Briefträgerin, -nen (邮递员)。在瑞士(CH)常被称作 der Pöstler。'
             },
             {
                 id: 20,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'der Briefumschlag, "-e',
-                question: '“信封”标准德语为 "der Briefumschlag"，在奥地利(A)和瑞士(CH)常分别写作？',
-                options: ['das Kuvert (A) / das Couvert (CH)', 'die Brieftasche (A) / das Portemonnaie (CH)', 'die Dose (A) / die Büchse (CH)', 'die Semmel (A) / das Brötli (CH)'],
-                answer: 0,
+                word: 'Briefumschlag',
+                question: '“信封”在标准德语为 Briefumschlag，在奥地利(A)和瑞士(CH)常分别写作？',
+                options: ['die Brieftasche / das Portemonnaie', 'die Dose / die Büchse', 'das Kuvert / das Couvert', 'die Semmel / das Brötli'],
+                answer: 2, // C
                 detail: 'der Briefumschlag, "-e (信封)。在奥地利常拼作 Kuvert，在瑞士常拼作 Couvert。'
             },
             {
                 id: 21,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'die Brieftasche, -n',
-                question: '“钱包”在德国/瑞士常用 Portemonnaie，在奥地利(A)更常用的表达是？',
-                options: ['die Geldbörse', 'das Köfferchen', 'die Handtasche', 'der Beutel'],
-                answer: 0,
+                word: 'Brieftasche',
+                question: '“钱包”在德国/瑞士常用 Portemonnaie，在奥地利更常用的表达是？',
+                options: ['das Köfferchen', 'die Handtasche', 'der Beutel', 'die Geldbörse'],
+                answer: 3, // D
                 detail: 'die Brieftasche, -n (钱包，皮夹)。德国/瑞士常用 Portemonnaie/Portmonee，奥地利常用 Geldbörse。'
             },
             {
                 id: 22,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'die Brille, -n',
-                question: '德语单词 "die Brille" 的正确中文释义是？',
-                options: ['水壶', '眼镜', '手套', '镜子'],
-                answer: 1,
+                word: 'Brille',
+                question: '德语单词 "Brille" 的正确语法冠词与中文释义是？',
+                options: ['das / 水壶', 'der / 手套', 'die / 镜子', 'die / 眼镜'],
+                answer: 3, // D
                 detail: 'die Brille, -n (眼镜)。常用搭配：eine Brille tragen (戴眼镜)。'
             },
             {
@@ -378,108 +378,108 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'bringen',
                 question: '动词 "bringen" (带来/送去) 的过去时和过去分词分别是？',
-                options: ['bringte / hat gebringt', 'brachte / hat gebracht', 'brannte / hat gebrannt', 'brach / hat gebrochen'],
-                answer: 1,
+                options: ['bringte / hat gebringt', 'brannte / hat gebrannt', 'brachte / hat gebracht', 'brach / hat gebrochen'],
+                answer: 2, // C
                 detail: 'bringen (bringt, brachte, hat gebracht) - 带来，送达。属于混合变化动词。'
             },
             {
                 id: 24,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'die Broschüre, -n',
-                question: '宣传或介绍信息用的 "die Broschüre" 意思是？',
-                options: ['小册子，宣传册', '精装书', '报纸', '杂货清单'],
-                answer: 0,
+                word: 'Broschüre',
+                question: '宣传或介绍信息用的 "Broschüre" 意思是？',
+                options: ['精装书', '小册子，宣传册', '报纸', '杂货清单'],
+                answer: 1, // B
                 detail: 'die Broschüre, -n (小册子，信息手册)。'
             },
             {
                 id: 25,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'das Brot, -e',
-                question: '德语主食 "das Brot" 的冠词及复数形式是？',
-                options: ['der Brot, -e', 'die Brot, -en', 'das Brot, -e', 'das Brot, "-er'],
-                answer: 2,
+                word: 'Brot',
+                question: '德语主食 "Brot" (面包) 的冠词及复数形式是？',
+                options: ['der Brot, -e', 'die Brot, -en', 'das Brot, "-er', 'das Brot, -e'],
+                answer: 3, // D
                 detail: 'das Brot, -e (中性名词，面包)。'
             },
             {
                 id: 26,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'das Brötchen, -',
-                question: '在德国称作 "das Brötchen" 的小面包，在奥地利(A)和瑞士(CH)分别被称作？',
-                options: ['die Semmel (A) / das Brötli (CH)', 'das Baguette (A) / die Brezel (CH)', 'das Brot (A) / die Stange (CH)', 'die Dose (A) / die Büchse (CH)'],
-                answer: 0,
+                word: 'Brötchen',
+                question: '在德国称作 "Brötchen" 的小面包，在奥地利(A)和瑞士(CH)分别被称作？',
+                options: ['das Baguette / die Brezel', 'das Brot / die Stange', 'die Semmel / das Brötli', 'die Dose / die Büchse'],
+                answer: 2, // C
                 detail: 'das Brötchen, - (小面包)。奥地利称作 Semmel，瑞士称作 Brötli。'
             },
             {
                 id: 27,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'das Brötli, -',
-                question: '单词 "das Brötli" 带有德语小化词后缀 -li，属于哪个德语国家的方言特色？',
-                options: ['德国 (D)', '奥地利 (A)', '瑞士 (CH)', '卢森堡 (L)'],
-                answer: 2,
+                word: 'Brötli',
+                question: '单词 "Brötli" 带有德语小化词后缀 -li，属于哪个德语国家的方言特色？',
+                options: ['德国 (D)', '奥地利 (A)', '卢森堡 (L)', '瑞士 (CH)'],
+                answer: 3, // D
                 detail: 'das Brötli (小面包)。后缀 -li 是瑞士德语 (Schweizerdeutsch) 最典型的小化词标志。'
             },
             {
                 id: 28,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'die Brücke, -n',
-                question: '跨越河流的建筑结构 "die Brücke" 意思是？',
-                options: ['桥，桥梁', '隧道', '码头', '大坝'],
-                answer: 0,
+                word: 'Brücke',
+                question: '跨越河流的建筑结构 "Brücke" 意思是？',
+                options: ['隧道', '桥，桥梁', '码头', '大坝'],
+                answer: 1, // B
                 detail: 'die Brücke, -n (桥，桥梁)。'
             },
             {
                 id: 29,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'der Bruder, "-',
-                question: '名词 "der Bruder" (兄弟) 的复数形式是哪一个？',
-                options: ['die Brudere', 'die Brüder', 'die Brüdern', 'die Bruders'],
-                answer: 1,
+                word: 'Bruder',
+                question: '名词 "Bruder" (兄弟) 的正确复数形式是哪一个？',
+                options: ['die Brudere', 'die Brüdern', 'die Brüder', 'die Bruders'],
+                answer: 2, // C
                 detail: 'der Bruder, "- -> 复数为 die Brüder (兄弟们)。发生变音 u -> ü。'
             },
             {
                 id: 30,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'die Brust',
-                question: '人体解剖部位名称 "die Brust" 指的是？',
-                options: ['头部', '胸部，胸腔', '手臂', '腿部'],
-                answer: 1,
+                word: 'Brust',
+                question: '人体解剖部位名称 "Brust" 指的是？',
+                options: ['头部', '手臂', '腿部', '胸部，胸腔'],
+                answer: 3, // D
                 detail: 'die Brust (胸部，胸膛)。例：Brustschmerzen (胸痛)。'
             },
             {
                 id: 31,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'der Bub, -en',
-                question: '在奥地利(A)和瑞士(CH)常用 "der Bub" 表示什么？(对应标准德语 der Junge)',
-                options: ['男孩，少年', '老人', '叔叔', '朋友'],
-                answer: 0,
+                word: 'Bub',
+                question: '在奥地利和瑞士常用 "Bub" 表示什么含义？（对应标准德语 der Junge）',
+                options: ['老人', '叔叔', '朋友', '男孩，少年'],
+                answer: 3, // D
                 detail: 'der Bub, -en (A, CH) = der Junge (D) (男孩)。属弱变化名词 (复数 die Buben)。'
             },
             {
                 id: 32,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'das Buch, "-er',
-                question: '名词 "das Buch" (书) 的复数形式是哪一个？',
+                word: 'Buch',
+                question: '名词 "Buch" (书) 的正确复数形式是哪一个？',
                 options: ['die Buche', 'die Bücher', 'die Büchen', 'die Buchs'],
-                answer: 1,
+                answer: 1, // B
                 detail: 'das Buch, "-er -> 复数 die Bücher。变音 u -> ü 并加 -er。'
             },
             {
                 id: 33,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'die Buchhandlung, -en',
-                question: '复合名词 "die Buchhandlung" 的正确释义是？',
-                options: ['图书馆', '书店', '出版社', '印刷厂'],
-                answer: 1,
+                word: 'Buchhandlung',
+                question: '复合名词 "Buchhandlung" 的正确释义是？',
+                options: ['图书馆', '出版社', '书店', '印刷厂'],
+                answer: 2, // C
                 detail: 'die Buchhandlung, -en (书店)。由 Buch (书) + Handlung (商店/营业) 构成。'
             },
             {
@@ -488,8 +488,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'buchen',
                 question: '“在网上预订机票或酒店”在德语中常用的动词是？',
-                options: ['buchen', 'brechen', 'bringen', 'brennen'],
-                answer: 0,
+                options: ['brechen', 'bringen', 'brennen', 'buchen'],
+                answer: 3, // D
                 detail: 'buchen (bucht, buchte, hat gebucht) - 预订，订购。近义词：reservieren。'
             },
 
@@ -498,30 +498,30 @@
                 id: 35,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'die Büchse, -n',
-                question: '“罐头”在德国/瑞士常称 "die Büchse"，在奥地利(A)更常用的同义词是？',
+                word: 'Büchse',
+                question: '“罐头/金属盒”在德国和瑞士常称作 Büchse，在奥地利更常用的同义词是？',
                 options: ['die Dose', 'das Glas', 'die Schachtel', 'die Flasche'],
-                answer: 0,
+                answer: 0, // A
                 detail: 'die Büchse, -n (D, CH) -> die Dose (A) (罐头，金属盒)。'
             },
             {
                 id: 36,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'das Buffet, -s',
-                question: '外来词 "das Buffet" 的正确中文释义是？',
+                word: 'Buffet',
+                question: '外来词 "Buffet" 的正确中文释义是？',
                 options: ['酒吧', '自助餐，冷餐台', '西餐厅', '咖啡厅'],
-                answer: 1,
+                answer: 1, // B
                 detail: 'das Buffet, -s (自助餐，冷餐台)。源自法语，词尾 t 通常不发音 [byˈfeː]。'
             },
             {
                 id: 37,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'die Bühne, -n',
-                question: '剧院或音乐会中演员表演的 "die Bühne" 指的是？',
+                word: 'Bühne',
+                question: '剧院或音乐会中演员表演的 "Bühne" 指的是？',
                 options: ['后台', '观众席', '舞台', '售票处'],
-                answer: 2,
+                answer: 2, // C
                 detail: 'die Bühne, -n (舞台)。例如：auf der Bühne stehen (站在舞台上)。'
             },
             {
@@ -530,118 +530,118 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'bunt',
                 question: '形容词 "bunt" 的正确意思为？',
-                options: ['黑白的', '单调的', '五彩缤纷的，彩色的', '透明的'],
-                answer: 2,
+                options: ['黑白的', '单调的', '透明的', '五彩缤纷的，彩色的'],
+                answer: 3, // D
                 detail: 'bunt (彩色的，五颜六色的)。例：bunte Blumen (色彩斑斓的花朵)。'
             },
             {
                 id: 39,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'die Burg, -en',
-                question: '德语中 "die Burg" 和 "das Schloss" 均表示城堡，但 "Burg" 更侧重指？',
+                word: 'Burg',
+                question: '德语中 Burg 和 Schloss 均表示城堡，但 Burg 更侧重指？',
                 options: ['中世纪要塞型城堡 (具防御功能)', '现代豪华别墅', '皇家修养宫殿', '玻璃温室'],
-                answer: 0,
+                answer: 0, // A
                 detail: 'die Burg, -en (城堡，要塞，具防御性质的古堡)。'
             },
             {
                 id: 40,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'der Bürger, -',
+                word: 'Bürger',
                 question: '表达“公民，市民”时，其阳性和阴性形式分别是？',
-                options: ['der Bürger / die Bürgerin', 'der Burg / die Bürgin', 'der Bürge / die Bürgen', 'der Bürgermann / die Bürgerfrau'],
-                answer: 0,
+                options: ['der Burg / die Bürgin', 'der Bürger / die Bürgerin', 'der Bürge / die Bürgen', 'der Bürgermann / die Bürgerfrau'],
+                answer: 1, // B
                 detail: 'der Bürger, - / die Bürgerin, -nen (公民，市民)。例：Staatsbürger (国籍公民)。'
             },
             {
                 id: 41,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'das Büro, -s',
-                question: '外来词 "das Büro" (办公室) 的复数形式是哪一个？',
-                options: ['die Büros', 'die Büroe', 'die Büroen', 'die Büren'],
-                answer: 0,
+                word: 'Büro',
+                question: '外来词 "Büro" (办公室) 的冠词与复数形式是哪一个？',
+                options: ['die / Büroe', 'der / Büroen', 'das / Büros', 'das / Büren'],
+                answer: 2, // C
                 detail: 'das Büro, -s (办公室)。源自法语 bureau，复数直接加 -s。'
             },
             {
                 id: 42,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'die Bürste, -n',
-                question: '生活工具名称 "die Bürste" 的意思是？',
-                options: ['梳子', '刷子', '抹布', '海绵'],
-                answer: 1,
+                word: 'Bürste',
+                question: '生活工具名称 "Bürste" 的意思是？',
+                options: ['梳子', '抹布', '海绵', '刷子'],
+                answer: 3, // D
                 detail: 'die Bürste, -n (刷子)。动词形式：bürsten (刷)。'
             },
             {
                 id: 43,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'die Zahnbürste, -n',
-                question: '个人卫生用品 "die Zahnbürste" 意思是？',
-                options: ['梳子', '牙刷', '毛巾', '牙签'],
-                answer: 1,
+                word: 'Zahnbürste',
+                question: '个人卫生用品 "Zahnbürste" 意思是？',
+                options: ['牙刷', '梳子', '毛巾', '牙签'],
+                answer: 0, // A
                 detail: 'die Zahnbürste, -n (牙刷)。由 Zahn (牙齿) + Bürste (刷子) 组合而成。'
             },
             {
                 id: 44,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'der Bus, -se',
-                question: '单词 "der Bus" (公共汽车) 的复数形式拼写是？',
-                options: ['die Buse', 'die Busse', 'die Bussen', 'die Busee'],
-                answer: 1,
+                word: 'Bus',
+                question: '单词 "Bus" (公共汽车) 的正确冠词与复数形式拼写是？',
+                options: ['das / Buse', 'der / Busse', 'die / Bussen', 'der / Busee'],
+                answer: 1, // B
                 detail: 'der Bus, -se (公共汽车)。复数双写 s：die Busse。'
             },
             {
                 id: 45,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'die Butter',
+                word: 'Butter',
                 question: '涂抹面包用的 "Butter" (黄油) 在标准德语中的语法性别是？',
-                options: ['der Butter', 'die Butter', 'das Butter', '复数名词无单数'],
-                answer: 1,
+                options: ['der', 'das', 'die', '复数名词无单数'],
+                answer: 2, // C
                 detail: 'die Butter (阴性名词，无复数)。注意在某些南部方言中偶有 der Butter，但标准德语一律为 die Butter。'
             },
             {
                 id: 46,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'das Café, -s',
-                question: '“咖啡馆” "das Café" 与“咖啡” "der Kaffee" 在拼写和冠词上的区别是？',
-                options: ['Café 词尾带重音符号且为中性 (das Café)', '两字拼写与冠词完全相同', 'Café 是阳性 (der Café)', 'Kaffee 是中性 (das Kaffee)'],
-                answer: 0,
+                word: 'Café',
+                question: '“咖啡馆” "Café" 与“咖啡” "Kaffee" 在拼写和冠词上的区别是？',
+                options: ['两字拼写与冠词完全相同', 'Café 是阳性 (der Café)', 'Kaffee 是中性 (das Kaffee)', 'Café 词尾带重音符号且为中性 (das Café)'],
+                answer: 3, // D
                 detail: 'das Café, -s (咖啡馆，中性) vs. der Kaffee (咖啡饮料，阳性)。注意拼写与冠词区分。'
             },
             {
                 id: 47,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'die Cafeteria, -s',
-                question: '大学或公司里的 "die Cafeteria" 指的是？',
-                options: ['高级西餐厅', '自助餐厅 / 咖啡简餐厅', '食品加工厂', '图书馆阅览室'],
-                answer: 1,
+                word: 'Cafeteria',
+                question: '大学或公司里的 "Cafeteria" 指的是？',
+                options: ['自助餐厅 / 咖啡简餐厅', '高级西餐厅', '食品加工厂', '图书馆阅览室'],
+                answer: 0, // A
                 detail: 'die Cafeteria, -s (自助餐厅，简餐厅)。'
             },
             {
                 id: 48,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'die Chance, -n',
-                question: '名词 "die Chance" (机会) 发音源于法语，其复数形式是？',
-                options: ['die Chancen', 'die Chances', 'die Chancener', 'die Chance'],
-                answer: 0,
+                word: 'Chance',
+                question: '名词 "Chance" (机会) 发音源于法语，其复数形式是？',
+                options: ['die Chances', 'die Chancen', 'die Chancener', 'die Chance'],
+                answer: 1, // B
                 detail: 'die Chance, -n [ˈʃɑ̃ːsə] (机会)。复数直接加 -n (die Chancen)。'
             },
             {
                 id: 49,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'der Chef, -s',
-                question: '职场名词 "der Chef" / "die Chefin" 的正确释义是？',
-                options: ['厨师', '老板 / 上司 / 领导', '普通职员', '顾客'],
-                answer: 1,
+                word: 'Chef',
+                question: '职场名词 "Chef" / "Chefin" 的正确释义是？',
+                options: ['厨师', '普通职员', '老板 / 上司 / 领导', '顾客'],
+                answer: 2, // C
                 detail: 'der Chef, -s / die Chefin, -nen (上司，老板)。注意：德语中的“厨师”是 der Koch，不可混淆。'
             },
             {
@@ -650,18 +650,18 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'chic / schick',
                 question: '形容词 "chic" (或拼作 "schick") 常用来形容服装或打扮，意思是？',
-                options: ['时髦的，雅致漂亮的', '破旧的', '昂贵的', '宽松的'],
-                answer: 0,
+                options: ['破旧的', '昂贵的', '宽松的', '时髦的，雅致漂亮的'],
+                answer: 3, // D
                 detail: 'chic / schick (时髦的，漂亮的，雅致的)。例：Ein schickes Kleid (一件时髦的连衣裙)。'
             },
             {
                 id: 51,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'der Coiffeur, -e',
-                question: '在瑞士德语(CH)中常用 "der Coiffeur"，相当于德/奥的哪种职业？',
-                options: ['der Friseur (理发师)', 'der Kellner (服务员)', 'der Arzt (医生)', 'der Schneider (裁缝)'],
-                answer: 0,
+                word: 'Coiffeur',
+                question: '在瑞士德语中常用 "Coiffeur"，相当于德/奥的哪种职业？',
+                options: ['der Kellner (服务员)', 'der Friseur (理发师)', 'der Arzt (医生)', 'der Schneider (裁缝)'],
+                answer: 1, // B
                 detail: 'der Coiffeur, -e / die Coiffeuse, -n (CH) -> der Friseur (D, A) (理发师)。'
             },
 
@@ -670,40 +670,40 @@
                 id: 52,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'die Couch, -s',
-                question: '客厅家具 "die Couch" 的复数形式是？',
-                options: ['die Couchs', 'die Couchen', 'die Coucher', 'die Couches'],
-                answer: 0,
+                word: 'Couch',
+                question: '客厅家具 "Couch" 的正确冠词与复数形式是？',
+                options: ['das / Couchen', 'die / Couchs', 'der / Coucher', 'die / Couches'],
+                answer: 1, // B
                 detail: 'die Couch, -s (沙发)。复数加 -s (die Couchs)，近义词：das Sofa。'
             },
             {
                 id: 53,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'die Creme, -n/-s',
-                question: '护肤或烹饪名词 "die Creme" 的复数形式可以写成？',
-                options: ['die Cremen 或 die Cremes', '只能写 die Cremes', '只能写 die Cremen', '无复数'],
-                answer: 0,
+                word: 'Creme',
+                question: '护肤或烹饪名词 "Creme" 的复数形式可以写成？',
+                options: ['只能写 die Cremes', '只能写 die Cremen', 'die Cremen 或 die Cremes', '无复数'],
+                answer: 2, // C
                 detail: 'die Creme, -n/-s (乳霜，奶油膏)。复数可以使用 -n 或 -s。'
             },
             {
                 id: 54,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'der Cousin, -s',
-                question: '亲属称谓 "der Cousin" 和 "die Cousine" 指的是？',
-                options: ['表/堂兄弟 与 表/堂姐妹', '叔叔 与 阿姨', '侄子 与 侄女', '祖父 与 祖母'],
-                answer: 0,
+                word: 'Cousin',
+                question: '亲属称谓 "Cousin" 和 "Cousine" 指的是？',
+                options: ['叔叔 与 阿姨', '侄子 与 侄女', '祖父 与 祖母', '表/堂兄弟 与 表/堂姐妹'],
+                answer: 3, // D
                 detail: 'der Cousin, -s (堂/表兄弟) / die Cousine, -n (堂/表姐妹)。'
             },
             {
                 id: 55,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'das Couvert, -s',
-                question: '单词 "das Couvert" 在瑞士德语(CH)中指“信封”，在标准德语(D)中对应哪一个词？',
+                word: 'Couvert',
+                question: '单词 "Couvert" 在瑞士德语中指“信封”，在标准德语中对应哪一个词？',
                 options: ['der Briefumschlag', 'die Brieftasche', 'die Briefmarke', 'der Briefkasten'],
-                answer: 0,
+                answer: 0, // A
                 detail: 'das Couvert, -s (CH) -> der Briefumschlag (D) (信封)。奥地利拼作 Kuvert。'
             },
             {
@@ -712,8 +712,8 @@
                 badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
                 word: 'da',
                 question: '副词/连词 "da" 在不同句境下可分别表示什么含义？',
-                options: ['“在彼处/这时” (地点/时间) 或 “由于/因为” (原因)', '仅能表示“但是”', '仅能表示“如果”', '仅能表示“向后”'],
-                answer: 0,
+                options: ['仅能表示“但是”', '“在彼处/这时” (地点/时间) 或 “由于/因为” (原因)', '仅能表示“如果”', '仅能表示“向后”'],
+                answer: 1, // B
                 detail: 'da (副词：在那里，这时；从属连词：因为，由于)。'
             },
             {
@@ -722,18 +722,18 @@
                 badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
                 word: 'dabei',
                 question: '代副词 "dabei" 在口语表达 “Ich bin dabei!” 中表示什么意思？',
-                options: ['我反对！', '算我一个！/ 我也参加！', '我在外面！', '我听不懂！'],
-                answer: 1,
+                options: ['我反对！', '我在外面！', '算我一个！/ 我也参加！', '我听不懂！'],
+                answer: 2, // C
                 detail: 'dabei (在旁，在场；附带)。“Ich bin dabei!” 常用口语表达：“算我一个/我也加入！”'
             },
             {
                 id: 58,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'das Dach, "-er',
-                question: '房屋建筑部分 "das Dach" (屋顶) 的复数形式是？',
-                options: ['die Dache', 'die Dächer', 'die Dächern', 'die Daches'],
-                answer: 1,
+                word: 'Dach',
+                question: '房屋建筑部分 "Dach" (屋顶) 的正确冠词与复数形式是？',
+                options: ['die / Dache', 'der / Dächern', 'das / Daches', 'das / Dächer'],
+                answer: 3, // D
                 detail: 'das Dach, "-er -> 复数 die Dächer (屋顶)。元音发生变音 a -> ä。'
             },
             {
@@ -742,8 +742,8 @@
                 badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
                 word: 'dafür',
                 question: '在辩论或表决中，“Ich bin dafür.” 的意思是？',
-                options: ['我对此表示反对', '我对此表示赞同 / 我支持', '我无所谓', '我持怀疑态度'],
-                answer: 1,
+                options: ['我对此表示赞同 / 我支持', '我对此表示反对', '我无所谓', '我持怀疑态度'],
+                answer: 0, // A
                 detail: 'dafür (为此，赞成)。“Ich bin dafür.” 意为“我赞成/我支持”。反义词：“Ich bin dagegen.”'
             },
             {
@@ -753,7 +753,7 @@
                 word: 'dagegen',
                 question: '与 dafür 相对，“Ich bin dagegen.” 的含义是？',
                 options: ['我赞成', '我反对', '我非常清楚', '我感到满意'],
-                answer: 1,
+                answer: 1, // B
                 detail: 'dagegen (对此，反对；相比之下)。“Ich bin dagegen.” 意为“我反对”。'
             },
             {
@@ -762,8 +762,8 @@
                 badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
                 word: 'daher',
                 question: '副词 "daher" 在逻辑句中常表示什么逻辑关系？',
-                options: ['转折关系 (然而)', '因果关系 (因此，所以 / 从那里来)', '递进关系 (此外)', '让步关系 (尽管)'],
-                answer: 1,
+                options: ['转折关系 (然而)', '递进关系 (此外)', '因果关系 (因此，所以 / 从那里来)', '让步关系 (尽管)'],
+                answer: 2, // C
                 detail: 'daher (因此，所以；从那里来)。例：Es regnet, daher bleibe ich zu Hause.'
             },
             {
@@ -772,8 +772,8 @@
                 badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
                 word: 'dahin',
                 question: '副词 "dahin" 表示的方向动作是？',
-                options: ['往那里去 / 到彼处', '从那里来', '在本地', '向四周'],
-                answer: 0,
+                options: ['从那里来', '在本地', '向四周', '往那里去 / 到彼处'],
+                answer: 3, // D
                 detail: 'dahin (往那里去，到那里)。例如：Gehen wir dahin! (我们去那里吧！)。'
             }
         ];
@@ -795,10 +795,12 @@
                 const ctx = getAudioContext();
                 const osc = ctx.createOscillator();
                 const gain = ctx.createGain();
+                
                 osc.connect(gain);
                 gain.connect(ctx.destination);
+                
                 const now = ctx.currentTime;
-
+                
                 if (isCorrect) {
                     osc.type = 'sine';
                     osc.frequency.setValueAtTime(523.25, now); // C5
@@ -846,16 +848,17 @@
             currentIndex = 0;
             userAnswers = new Array(vocabularyData.length).fill(null);
             showExplanation = false;
-
+            
             document.getElementById('quiz-container').classList.remove('hidden');
             document.getElementById('bottom-nav').classList.remove('hidden');
             document.getElementById('result-container').classList.add('hidden');
+            
             renderQuestion();
         }
 
         function renderQuestion() {
             const currentData = vocabularyData[currentIndex];
-
+            
             // Render Badges and Titles
             document.getElementById('word-badge').className = `px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase border ${currentData.badgeClass}`;
             document.getElementById('word-badge').textContent = currentData.type;
@@ -898,7 +901,7 @@
             const explainCard = document.getElementById('explanation-card');
             const explainText = document.getElementById('explanation-text');
             explainText.textContent = currentData.detail;
-
+            
             if (showExplanation || isAnswered) {
                 explainCard.classList.remove('hidden');
             } else {
