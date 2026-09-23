@@ -50,7 +50,6 @@
             </div>
         </div>
     </header>
-
     <!-- Main Section -->
     <main class="flex-1 max-w-3xl w-full mx-auto p-4 sm:p-6 flex flex-col justify-center">
         <!-- QUIZ CONTAINER -->
@@ -74,12 +73,10 @@
                     </p>
                 </div>
             </div>
-
             <!-- Options Grid -->
             <div id="options-grid" class="grid grid-cols-1 gap-3.5">
                 <!-- Dynamic options -->
             </div>
-
             <!-- Explanation Card -->
             <div id="explanation-card" class="hidden bg-slate-900 text-slate-100 rounded-2xl p-5 sm:p-6 shadow-lg border border-slate-800 text-sm leading-relaxed space-y-2">
                 <div class="font-semibold text-teal-400 flex items-center gap-2 text-xs sm:text-sm uppercase tracking-wider">
@@ -89,7 +86,6 @@
                 <div id="explanation-text" class="text-slate-300 text-xs sm:text-sm font-normal"></div>
             </div>
         </div>
-
         <!-- RESULT CONTAINER -->
         <div id="result-container" class="hidden bg-white/90 backdrop-blur-sm rounded-3xl p-8 sm:p-10 border border-slate-200/70 shadow-xl shadow-slate-200/50 text-center space-y-8">
             <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-900 text-teal-400 shadow-lg shadow-slate-900/10 mb-2">
@@ -110,7 +106,6 @@
                     <div id="stat-mistakes" class="text-2xl font-extrabold text-slate-900">0</div>
                 </div>
             </div>
-
             <!-- Incorrect Words Review List -->
             <div id="mistakes-section" class="text-left hidden space-y-4 pt-2">
                 <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
@@ -119,7 +114,6 @@
                 </h3>
                 <div id="mistakes-list" class="space-y-2.5 max-h-64 overflow-y-auto pr-1"></div>
             </div>
-
             <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-6 border-t border-slate-100">
                 <button onclick="resetPractice()" class="w-full sm:w-auto px-8 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm transition-all shadow-md hover:shadow-lg">
                     再练一次
@@ -130,7 +124,6 @@
             </div>
         </div>
     </main>
-
     <!-- Bottom Actions Nav -->
     <footer id="bottom-nav" class="sticky bottom-0 z-30 custom-glass border-t border-slate-200/60 px-4 py-3.5 sm:px-8">
         <div class="max-w-3xl mx-auto flex items-center justify-between gap-3">
@@ -146,7 +139,6 @@
             </button>
         </div>
     </footer>
-
     <script>
         const rawVocabularyData = [
             {
@@ -185,8 +177,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'feststellen',
                 question: '表达“查明、发现、确定（客观事实、病因、故障）”时，应用哪个动词？',
-                options: ['feststellen', 'festlegen', 'feststehen', 'festsetzen'],
-                answer: 0,
+                options: ['festlegen', 'feststehen', 'festsetzen', 'feststellen'],
+                answer: 3,
                 detail: 'feststellen (stellt fest, stellte fest, hat festgestellt) - 查明，发现，确定。例：Der Arzt stellte eine Infektion fest.'
             },
             {
@@ -215,8 +207,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Förderung, -en',
                 question: '句子 "Die Firma erhält finanzielle _______ vom Staat." 中应填入？',
-                options: ['Forderung', 'Förderung', 'Forschung', 'Fortbildung'],
-                answer: 1,
+                options: ['Forderung', 'Forschung', 'Förderung', 'Fortbildung'],
+                answer: 2,
                 detail: 'die Förderung, -en (资助，扶持，促进)；die Forderung, -en (要求，索赔/债权)。'
             },
             {
@@ -225,8 +217,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'folgen',
                 question: '动词 "folgen" (跟随，接着) 在德语中的接格与完成时助动词是？',
-                options: ['接 Akkusativ，助动词用 haben', '接 Dativ，助动词用 sein', '接 Dativ，助动词用 haben', '接 Akkusativ，助动词用 sein'],
-                answer: 1,
+                options: ['接 Dativ，助动词用 haben', '接 Akkusativ，助动词用 haben', '接 Akkusativ，助动词用 sein', '接 Dativ，助动词用 sein'],
+                answer: 3,
                 detail: 'folgen + Dat. (ist gefolgt) - 跟随某人/遵守规则。例：Bitte folgen Sie mir!'
             },
             {
@@ -245,8 +237,8 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'fließend',
                 question: '描述语言表达“流利地” (如：Deutsch sprechen) 时，使用哪个形容词/副词？',
-                options: ['flach', 'flexibel', 'fließend', 'feucht'],
-                answer: 2,
+                options: ['flach', 'flexibel', 'feucht', 'fließend'],
+                answer: 3,
                 detail: 'fließend (流利的，流畅的)。动词原形为 fließen (流淌)。例：Er spricht fließend Deutsch.'
             },
             {
@@ -265,8 +257,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'der Flur, -e',
                 question: '名词 "der Flur" 在德语中常指房屋内的过道，在瑞士/德国也常用哪个同义词表示？',
-                options: ['die Abteilung', 'der Korridor / Gang', 'das Amt', 'der Ausgang'],
-                answer: 1,
+                options: ['die Abteilung', 'der Ausgang', 'der Korridor / Gang', 'das Amt'],
+                answer: 2,
                 detail: 'der Flur, -e (走廊，过道)。同义词：der Gang, "-e 或 der Korridor, -e。'
             },
             {
@@ -285,8 +277,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Forum, Foren',
                 question: '名词 "das Forum" (论坛，如 Internetforum) 的正确复数形式是？',
-                options: ['die Forums', 'die Foren', 'die Fora', 'die Formulars'],
-                answer: 1,
+                options: ['die Forums', 'die Fora', 'die Foren', 'die Formulars'],
+                answer: 2,
                 detail: 'das Forum, 复数：die Foren。源自拉丁语借词的特殊复数形式。'
             },
             {
@@ -305,8 +297,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'fortsetzen',
                 question: '可分动词 "fortsetzen" 的主要含义是？',
-                options: ['停止，中断', '继续，延续', '放置，摆放', '出发，离开'],
-                answer: 1,
+                options: ['停止，中断', '放置，摆放', '出发，离开', '继续，延续'],
+                answer: 3,
                 detail: 'fortsetzen (setzt fort, setzte fort, hat fortgesetzt) - 继续，延续。名词形式：die Fortsetzung, -en (续集，继续)。'
             },
             {
@@ -335,8 +327,8 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'feucht',
                 question: '形容词 "feucht" (潮湿的) 的最恰当反义词是？',
-                options: ['nass', 'trocken', 'kalt', 'flach'],
-                answer: 1,
+                options: ['nass', 'kalt', 'flach', 'trocken'],
+                answer: 3,
                 detail: 'feucht (微湿的，潮湿的)。反义词：trocken (干燥的)。对比：nass 为“湿透的”。'
             },
             {
@@ -345,8 +337,8 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'fleißig',
                 question: '形容词 "fleißig" (勤奋的) 的反义词是？',
-                options: ['faul', 'frech', 'flexibel', 'frei'],
-                answer: 0,
+                options: ['frech', 'faul', 'flexibel', 'frei'],
+                answer: 1,
                 detail: 'fleißig (勤奋的，努力的)。反义词：faul (懒惰的)。'
             },
             {
@@ -355,8 +347,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'finanzieren',
                 question: '动词 "finanzieren" (资助/提供资金) 的现在完成时 (Perfekt) 正确形式是？',
-                options: ['hat gefinanziert', 'hat finanziert', 'ist finanziert', 'hat finanzieren'],
-                answer: 1,
+                options: ['hat gefinanziert', 'ist finanziert', 'hat finanziert', 'hat finanzieren'],
+                answer: 2,
                 detail: 'finanzieren (finanziert, finanzierte, hat finanziert) - 以 -ieren 结尾的外来词动词，过去分词不加 ge- 前缀。'
             },
             {
@@ -375,8 +367,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Fortbildung, -en',
                 question: '在职业生涯中，"die Fortbildung" 侧重指？',
-                options: ['初次职业培训 (Ausbildung)', '在职进修 / 业务深造', '大学入学资格', '退休养老'],
-                answer: 1,
+                options: ['初次职业培训 (Ausbildung)', '大学入学资格', '退休养老', '在职进修 / 业务深造'],
+                answer: 3,
                 detail: 'die Fortbildung, -en (在职进修，业务提高)。对比：die Ausbildung (基础职业培训)。'
             },
             {
@@ -395,8 +387,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Festplatte, -n',
                 question: '电脑硬件术语 "die Festplatte" 的中文意思是？',
-                options: ['硬盘', '键盘', '显示屏', '主板'],
-                answer: 0,
+                options: ['键盘', '显示屏', '硬盘', '主板'],
+                answer: 2,
                 detail: 'die Festplatte, -n (电脑硬盘)。外部存储可称作 externe Festplatte。'
             },
             {
@@ -405,8 +397,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Flüssigkeit, -en',
                 question: '名词 "die Flüssigkeit" 的正确中文释义是？',
-                options: ['固体', '气体', '液体', '粉末'],
-                answer: 2,
+                options: ['固体', '气体', '粉末', '液体'],
+                answer: 3,
                 detail: 'die Flüssigkeit, -en (液体)。源自形容词 flüssig (液态的，流动的)。'
             },
             {
@@ -435,8 +427,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'festhalten',
                 question: '可分动词 "festhalten" (抓紧/记录/坚持) 的单数第三人称现在时是？',
-                options: ['festhaltet', 'hält fest', 'haltest fest', 'festhält'],
-                answer: 1,
+                options: ['festhaltet', 'haltest fest', 'hält fest', 'festhält'],
+                answer: 2,
                 detail: 'festhalten (hält fest, hielt fest, hat festgehalten) - a 变音为 ä，可分前缀 -fest 后置。'
             },
             {
@@ -445,8 +437,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'festlegen',
                 question: '短语 “Einen Termin festlegen” 中 "festlegen" 的意思是？',
-                options: ['取消预约', '确定 / 约定 (时间/条款)', '推迟预约', '忘记预约'],
-                answer: 1,
+                options: ['取消预约', '推迟预约', '忘记预约', '确定 / 约定 (时间/条款)'],
+                answer: 3,
                 detail: 'festlegen (legt fest, legte fest, hat festgelegt) - 确定，制定，约定。'
             },
             {
@@ -475,8 +467,8 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'flach',
                 question: '形容词 "flach" 用来描述地形或水深时，含义是？',
-                options: ['陡峭的', '平坦的 / 浅的', '狭窄的', '潮湿的'],
-                answer: 1,
+                options: ['平坦的 / 浅的', '陡峭的', '狭窄的', '潮湿的'],
+                answer: 0,
                 detail: 'flach (平坦的，浅的)。如：flaches Land (平原/平坦土地)，flaches Wasser (浅水)。'
             },
             {
@@ -485,8 +477,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'der Fleck, -en',
                 question: '句子 "Ein Fleck auf der Kleidung" 中，"der Fleck" 的含义是？',
-                options: ['破洞', '污渍 / 斑点', '纽扣', '口袋'],
-                answer: 1,
+                options: ['破洞', '纽扣', '污渍 / 斑点', '口袋'],
+                answer: 2,
                 detail: 'der Fleck, -en (污渍，斑点，痕迹)。常用：Flecken entfernen (去除污渍)。'
             },
             {
@@ -494,13 +486,12 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Freiheit',
-                question: '根据德语词尾构词法，以 "-heit" 结尾的名词（如 die Freiheit），其语法性属必然是？',
-                options: ['der (阳性)', 'die (阴性)', 'das (中性)', '复数'],
-                answer: 1,
+                question: '根据德语词尾构词法，以后缀 "-heit" 结尾的名词（如 Freiheit），其定冠词通常是？',
+                options: ['der (阳性)', 'das (中性)', 'die (阴性)', 'dem (三格)'],
+                answer: 2,
                 detail: '以 -heit, -keit, -ung, -schaft, -tät 等后缀结尾的名词 100% 为阴性 (die)。'
             }
         ];
-
         // Native Audio Synthesizer
         let audioCtx = null;
         function getAudioContext() {
@@ -512,7 +503,6 @@
             }
             return audioCtx;
         }
-
         function playSound(isCorrect) {
             try {
                 const ctx = getAudioContext();
@@ -542,7 +532,6 @@
                 console.error("Audio error:", e);
             }
         }
-
         // Fisher-Yates Shuffle
         function shuffleArray(array) {
             const arr = [...array];
@@ -552,52 +541,42 @@
             }
             return arr;
         }
-
         // App State
         let vocabularyData = [];
         let currentIndex = 0;
         let userAnswers = [];
         let showExplanation = false;
-
         document.addEventListener('DOMContentLoaded', () => {
             resetPractice();
         });
-
         function resetPractice() {
             vocabularyData = shuffleArray(rawVocabularyData);
             currentIndex = 0;
             userAnswers = new Array(vocabularyData.length).fill(null);
             showExplanation = false;
-
             document.getElementById('quiz-container').classList.remove('hidden');
             document.getElementById('bottom-nav').classList.remove('hidden');
             document.getElementById('result-container').classList.add('hidden');
             renderQuestion();
         }
-
         function renderQuestion() {
             const currentData = vocabularyData[currentIndex];
-
             // Render Badges and Titles
             document.getElementById('word-badge').className = `px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase border ${currentData.badgeClass}`;
             document.getElementById('word-badge').textContent = currentData.type;
             document.getElementById('question-index-tag').textContent = `Q${currentIndex + 1}`;
             document.getElementById('target-word').textContent = currentData.word;
             document.getElementById('question-prompt').textContent = currentData.question;
-
             // Progress Bar
             const progressPercent = Math.round(((currentIndex + 1) / vocabularyData.length) * 100);
             document.getElementById('progress-bar').style.width = `${progressPercent}%`;
             document.getElementById('progress-text').textContent = `进度：${currentIndex + 1} / ${vocabularyData.length}`;
             document.getElementById('progress-percent').textContent = `${progressPercent}%`;
-
             // Options
             const optionsGrid = document.getElementById('options-grid');
             optionsGrid.innerHTML = '';
-
             const selectedAnswer = userAnswers[currentIndex];
             const isAnswered = selectedAnswer !== null;
-
             currentData.options.forEach((optText, optIndex) => {
                 const btn = document.createElement('button');
                 btn.className = getOptionStyle(optIndex, selectedAnswer, currentData.answer);
@@ -615,18 +594,15 @@
                 btn.onclick = () => selectOption(optIndex);
                 optionsGrid.appendChild(btn);
             });
-
             // Explanation
             const explainCard = document.getElementById('explanation-card');
             const explainText = document.getElementById('explanation-text');
             explainText.textContent = currentData.detail;
-
             if (showExplanation || isAnswered) {
                 explainCard.classList.remove('hidden');
             } else {
                 explainCard.classList.add('hidden');
             }
-
             // Controls
             document.getElementById('btn-prev').disabled = currentIndex === 0;
             const btnNext = document.getElementById('btn-next');
@@ -638,7 +614,6 @@
                 btnNext.className = 'px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-md transition-all';
             }
         }
-
         function getOptionStyle(index, selected, correct) {
             const base = "w-full text-left p-4 sm:p-4.5 rounded-2xl border text-sm sm:text-base transition-all duration-200 flex items-center justify-between ";
             if (selected === null) {
@@ -652,7 +627,6 @@
             }
             return base + "border-slate-100 bg-slate-50/50 text-slate-400 opacity-50";
         }
-
         function getOptionMarkerStyle(index, selected, correct) {
             if (selected === null) {
                 return "border-slate-200 text-slate-500 bg-slate-50";
@@ -665,7 +639,6 @@
             }
             return "border-slate-200 text-slate-300 bg-slate-100";
         }
-
         function getOptionIcon(index, selected, correct) {
             if (selected === null) return '';
             if (index === correct) {
@@ -676,7 +649,6 @@
             }
             return '';
         }
-
         function selectOption(index) {
             if (userAnswers[currentIndex] === null) {
                 const isCorrect = index === vocabularyData[currentIndex].answer;
@@ -686,7 +658,6 @@
             showExplanation = true;
             renderQuestion();
         }
-
         function toggleExplanation() {
             showExplanation = !showExplanation;
             const explainCard = document.getElementById('explanation-card');
@@ -696,7 +667,6 @@
                 explainCard.classList.add('hidden');
             }
         }
-
         function nextQuestion() {
             if (currentIndex < vocabularyData.length - 1) {
                 currentIndex++;
@@ -706,7 +676,6 @@
                 showResults();
             }
         }
-
         function prevQuestion() {
             if (currentIndex > 0) {
                 currentIndex--;
@@ -714,16 +683,13 @@
                 renderQuestion();
             }
         }
-
         function showResults() {
             document.getElementById('quiz-container').classList.add('hidden');
             document.getElementById('bottom-nav').classList.add('hidden');
             document.getElementById('result-container').classList.remove('hidden');
-
             let mistakeCount = 0;
             const mistakesList = document.getElementById('mistakes-list');
             mistakesList.innerHTML = '';
-
             userAnswers.forEach((ans, idx) => {
                 const item = vocabularyData[idx];
                 if (ans !== item.answer) {
@@ -737,10 +703,8 @@
                     mistakesList.appendChild(mistakeDiv);
                 }
             });
-
             document.getElementById('stat-total').textContent = vocabularyData.length;
             document.getElementById('stat-mistakes').textContent = mistakeCount;
-
             const mistakesSection = document.getElementById('mistakes-section');
             if (mistakeCount > 0) {
                 mistakesSection.classList.remove('hidden');
