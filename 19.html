@@ -50,7 +50,6 @@
             </div>
         </div>
     </header>
-
     <!-- Main Section -->
     <main class="flex-1 max-w-3xl w-full mx-auto p-4 sm:p-6 flex flex-col justify-center">
         <!-- QUIZ CONTAINER -->
@@ -74,12 +73,10 @@
                     </p>
                 </div>
             </div>
-
             <!-- Options Grid -->
             <div id="options-grid" class="grid grid-cols-1 gap-3.5">
                 <!-- Dynamic options -->
             </div>
-
             <!-- Explanation Card -->
             <div id="explanation-card" class="hidden bg-slate-900 text-slate-100 rounded-2xl p-5 sm:p-6 shadow-lg border border-slate-800 text-sm leading-relaxed space-y-2">
                 <div class="font-semibold text-teal-400 flex items-center gap-2 text-xs sm:text-sm uppercase tracking-wider">
@@ -89,7 +86,6 @@
                 <div id="explanation-text" class="text-slate-300 text-xs sm:text-sm font-normal"></div>
             </div>
         </div>
-
         <!-- RESULT CONTAINER -->
         <div id="result-container" class="hidden bg-white/90 backdrop-blur-sm rounded-3xl p-8 sm:p-10 border border-slate-200/70 shadow-xl shadow-slate-200/50 text-center space-y-8">
             <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-900 text-teal-400 shadow-lg shadow-slate-900/10 mb-2">
@@ -99,7 +95,6 @@
                 <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2 tracking-tight">特训完成</h2>
                 <p class="text-sm text-slate-500 font-medium">已完成所有词汇测试，巩固核心词汇是巩固语感的基础</p>
             </div>
-
             <div class="max-w-md mx-auto py-3 px-6 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-around">
                 <div>
                     <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">本次练习题目</div>
@@ -111,7 +106,6 @@
                     <div id="stat-mistakes" class="text-2xl font-extrabold text-slate-900">0</div>
                 </div>
             </div>
-
             <!-- Incorrect Words Review List -->
             <div id="mistakes-section" class="text-left hidden space-y-4 pt-2">
                 <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
@@ -120,7 +114,6 @@
                 </h3>
                 <div id="mistakes-list" class="space-y-2.5 max-h-64 overflow-y-auto pr-1"></div>
             </div>
-
             <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-6 border-t border-slate-100">
                 <button onclick="resetPractice()" class="w-full sm:w-auto px-8 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm transition-all shadow-md hover:shadow-lg">
                     再练一次
@@ -131,7 +124,6 @@
             </div>
         </div>
     </main>
-
     <!-- Bottom Actions Nav -->
     <footer id="bottom-nav" class="sticky bottom-0 z-30 custom-glass border-t border-slate-200/60 px-4 py-3.5 sm:px-8">
         <div class="max-w-3xl mx-auto flex items-center justify-between gap-3">
@@ -147,7 +139,6 @@
             </button>
         </div>
     </footer>
-
     <script>
         const rawVocabularyData = [
             {
@@ -155,7 +146,7 @@
                 type: 'Adverb / Präposition',
                 badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
                 word: 'hierher',
-                question: '在表达方向时，“Komm bitte sofort hierher!” 句中的 "hierher" 强调怎样的动态方向？',
+                question: '“Komm bitte sofort hierher!” 句中的 "hierher" 表达怎样的方向？',
                 options: ['向外离开说话者', '朝向说话者所在的位置移动', '向上攀升', '向后退避'],
                 answer: 1,
                 detail: 'hierher 表示“朝这里来”（从远到近，朝向说话者方向移动）。'
@@ -165,9 +156,9 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'Himmel',
-                question: '名词 "Himmel" (天空/天堂) 的正确冠词是哪一个？',
-                options: ['der', 'die', 'das', 'die (Pl.)'],
-                answer: 0,
+                question: '名词 "Himmel" (天空) 的正确冠词及复数形式是？',
+                options: ['die Himmel, -', 'das Himmel, -e', 'der Himmel, -', 'die Himmel, -n'],
+                answer: 2,
                 detail: 'der Himmel, - (天空；天堂)。例如：am Himmel (在天上)。'
             },
             {
@@ -191,8 +182,8 @@
                 badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
                 word: 'hinten',
                 question: '在描述空间位置时，“hinten” 的反义词是哪个？',
-                options: ['oben', 'vorn / vorne', 'unten', 'innen'],
-                answer: 1,
+                options: ['oben', 'unten', 'vorn / vorne', 'innen'],
+                answer: 2,
                 detail: 'hinten (在后面)。反义词为 vorn / vorne (在前面)。'
             },
             {
@@ -201,8 +192,8 @@
                 badgeClass: 'bg-violet-50 text-violet-700 border-violet-200',
                 word: 'hinter',
                 question: '介词 "hinter" 属于静动两格介词，当表示“停在某物后面（静态位置）”时，后接第几格？',
-                options: ['Nominativ (第一格)', 'Akkusativ (第四格)', 'Dativ (第三格)', 'Genitiv (第二格)'],
-                answer: 2,
+                options: ['Nominativ (第一格)', 'Dativ (第三格)', 'Akkusativ (第四格)', 'Genitiv (第二格)'],
+                answer: 1,
                 detail: 'hinter (在……后面)。回答 Wo? (静态位置) 时接 Dativ；回答 Wohin? (动态方向) 时接 Akkusativ。'
             },
             {
@@ -211,8 +202,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'hinterlassen',
                 question: '“eine Nachricht hinterlassen” (留下一条消息) 中，动词 "hinterlassen" 的过去分词是？',
-                options: ['gehinterlassen', 'hintergelassen', 'hinterlassen', 'gehinterließ'],
-                answer: 2,
+                options: ['gehinterlassen', 'hintergelassen', 'gehinterließ', 'hinterlassen'],
+                answer: 3,
                 detail: 'hinterlassen (hinterlässt, hinterließ, hat hinterlassen)。hinter- 在此为不可分离前缀，过去分词不加 ge-。'
             },
             {
@@ -221,8 +212,8 @@
                 badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
                 word: 'hinterher',
                 question: '副词 "hinterher" 在时间或空间语境中最常表示什么含义？',
-                options: ['事先，提前', '事后，在后面跟随', '在旁边', '绝不'],
-                answer: 1,
+                options: ['事先，提前', '在旁边', '事后，在后面跟随', '绝不'],
+                answer: 2,
                 detail: 'hinterher 表示“在……之后，事后”或“在后面跟随”。例如：Gleich hinterher (紧接着之后)。'
             },
             {
@@ -240,9 +231,9 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'Hinweis',
-                question: '名词 "Hinweis" (提示/线索/说明) 的正确冠词和复数形式是？',
-                options: ['das Hinweis, -e', 'der Hinweis, -e', 'die Hinweis, -en', 'der Hinweis, "-e'],
-                answer: 1,
+                question: '名词 "Hinweis" (提示/线索) 的正确冠词和复数形式是？',
+                options: ['das Hinweis, -e', 'die Hinweis, -en', 'der Hinweis, -e', 'der Hinweis, "-e'],
+                answer: 2,
                 detail: 'der Hinweis, -e (提示，建议，线索)。复数不变音，仅加 -e。'
             },
             {
@@ -251,8 +242,8 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'historisch',
                 question: '形容词 "historisch" 的主要中文含义是？',
-                options: ['现代的，时尚的', '历史的，具有历史意义的', '地理的', '文学的'],
-                answer: 1,
+                options: ['现代的，时尚的', '地理的', '文学的', '历史的，具有历史意义的'],
+                answer: 3,
                 detail: 'historisch (历史上的，与历史相关的)。名词形式为 die Geschichte (历史)。'
             },
             {
@@ -270,8 +261,8 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'Hobby',
-                question: '名词 "Hobby" (业余爱好) 的正确复数形式是哪一个？',
-                options: ['die Hobbys', 'die Hobbies', 'die Hobbye', 'die Hobbyen'],
+                question: '名词 "Hobby" (业余爱好) 的正确冠词和复数形式是？',
+                options: ['das Hobby, -s', 'die Hobby, -es', 'der Hobby, -e', 'das Hobby, -en'],
                 answer: 0,
                 detail: 'das Hobby, -s (业余爱好)。外来词，复数直接加 -s。'
             },
@@ -281,8 +272,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'Höhe',
                 question: '“In 2000 Meter Höhe” 句中的名词 "Höhe" 表示什么意思？',
-                options: ['高度，海拔', '深度', '长度', '宽度'],
-                answer: 0,
+                options: ['深度', '高度，海拔', '长度', '宽度'],
+                answer: 1,
                 detail: 'die Höhe, -n (高度，海拔，数量/额度)。对应形容词为 hoch。'
             },
             {
@@ -291,8 +282,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'hochladen',
                 question: '“Fotos ins Internet hochladen” (将照片上传网络)，"hochladen" 的现在时第三人称单数是？',
-                options: ['ladet hoch', 'lädt hoch', 'loadet hoch', 'lüdt hoch'],
-                answer: 1,
+                options: ['ladet hoch', 'loadet hoch', 'lüdt hoch', 'lädt hoch'],
+                answer: 3,
                 detail: 'hochladen (lädt hoch, lud hoch, hat hochgeladen)。强变化动词 laden 在第三人称单数发生 a->ä 变音。'
             },
             {
@@ -300,9 +291,9 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'Hochzeit',
-                question: '名词 "Hochzeit" 的正确冠词及复数形式是？',
-                options: ['die Hochzeit, -en', 'das Hochzeit, -e', 'der Hochzeit, -en', 'die Hochzeit, -s'],
-                answer: 0,
+                question: '名词 "Hochzeit" (婚礼) 的正确冠词及复数形式是？',
+                options: ['das Hochzeit, -e', 'die Hochzeit, -en', 'der Hochzeit, -en', 'die Hochzeit, -s'],
+                answer: 1,
                 detail: 'die Hochzeit, -en (婚礼)。注意词首 hoch 与 Zeit 组合在一起，发音为短音 /ɔ/。'
             },
             {
@@ -312,12 +303,12 @@
                 word: 'Bauernhof',
                 question: '名词 "Bauernhof" (农场) 的正确冠词和复数形式是？',
                 options: [
-                    'der Bauernhof, "-e',
                     'das Bauernhof, -e',
                     'die Bauernhof, -en',
+                    'der Bauernhof, "-e',
                     'der Bauernhof, -s'
                 ],
-                answer: 0,
+                answer: 2,
                 detail: 'der Bauernhof, "-e (农场)。复数形式需要变音为 Bauernhöfe。'
             },
             {
@@ -327,12 +318,12 @@
                 word: 'hoffen',
                 question: '动词 "hoffen" (希望) 搭配介词表达“寄希望于某事”时，正确的固定搭配是？',
                 options: [
-                    'hoffen auf + Akkusativ',
                     'hoffen mit + Dativ',
+                    'hoffen auf + Akkusativ',
                     'hoffen über + Akkusativ',
                     'hoffen an + Dativ'
                 ],
-                answer: 0,
+                answer: 1,
                 detail: 'hoffen auf + Akk. (寄希望于……)。例如：Ich hoffe auf ein gutes Ergebnis. (我希望有一个好结果。)'
             },
             {
@@ -341,8 +332,8 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'höflich',
                 question: '“Sei bitte höflich zu den Gästen!” 句中形容词 "höflich" 的反义词是？',
-                options: ['unhöflich', 'inhöflich', 'misshöflich', 'dishöflich'],
-                answer: 0,
+                options: ['inhöflich', 'unhöflich', 'misshöflich', 'dishöflich'],
+                answer: 1,
                 detail: 'höflich (有礼貌的)。否定前缀加 un- 构成 unhöflich (不礼貌的，粗鲁的)。'
             },
             {
@@ -351,9 +342,9 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'holen',
                 question: '“Ich hole dich vom Bahnhof ab” 或 “Hol bitte etwas Brot!” 句中动词 "holen" 的核心含义是？',
-                options: ['去取，去拿，去接', '送走，遗弃', '买卖，交易', '修理，建造'],
-                answer: 0,
-                detail: 'holen (hohlt, holte, hat geholt): 去取/去拿（物品）或去接（人）。'
+                options: ['送走，遗弃', '买卖，交易', '修理，建造', '去取，去拿，去接'],
+                answer: 3,
+                detail: 'holen (holt, holte, hat geholt): 去取/去拿（物品）或去接（人）。'
             },
             {
                 id: 20,
@@ -361,8 +352,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'Zuhörer',
                 question: '在广播、讲座或音乐会语境中，"der Zuhörer" 明确指的是什么角色？',
-                options: ['听众', '演讲者', '观众', '读者'],
-                answer: 0,
+                options: ['演讲者', '听众', '观众', '读者'],
+                answer: 1,
                 detail: 'der Zuhörer / die Zuhörerin (听众)；对应看比赛/电影的观众称为 der Zuschauer。'
             },
             {
@@ -370,8 +361,8 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'Hose',
-                question: '名词 "die Hose" (裤子) 在德语中的正确复数形式是？',
-                options: ['die Hosen', 'die Höse', 'die Hosenes', 'die Hose'],
+                question: '名词 "Hose" (裤子) 的正确冠词及复数形式是？',
+                options: ['die Hose, -n', 'das Hose, -en', 'der Hose, -e', 'die Hose, -s'],
                 answer: 0,
                 detail: 'die Hose, -n (裤子)。德语中表达“一条裤子”用单数 eine Hose，复数加 -n。'
             },
@@ -381,8 +372,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'Hügel',
                 question: '“Der Weg führt über einen kleinen Hügel.” 句中的名词 "Hügel" 意思是？',
-                options: ['小山，丘陵', '高山，雪山', '深谷，峡谷', '平原，草场'],
-                answer: 0,
+                options: ['高山，雪山', '深谷，峡谷', '小山，丘陵', '平原，草场'],
+                answer: 2,
                 detail: 'der Hügel, - (阳性名词: 小山丘/丘陵)。'
             },
             {
@@ -390,9 +381,9 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'Humor',
-                question: '名词 "Humor" (幽默) 的正确冠词是哪一个？',
-                options: ['der', 'die', 'das', 'die (Pl.)'],
-                answer: 0,
+                question: '名词 "Humor" (幽默) 的正确冠词及复数形式是？',
+                options: ['das Humor, -e', 'die Humor, -en', 'der Humor (仅单数)', 'die Humor, -s'],
+                answer: 2,
                 detail: 'der Humor (阳性名词，通常仅用单数)。例：Er hat viel Humor. (他很有幽默感。)'
             },
             {
@@ -411,23 +402,23 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'husten',
                 question: '“Er hustet seit zwei Tagen stark.” 句中的动词 "husten" 意思是？',
-                options: ['发烧', '咳嗽', '打喷嚏', '呕吐'],
-                answer: 1,
-                detail: 'husten (huštet, hustete, hat gehustet): 咳嗽。对应名词为 der Husten (咳嗽)。'
+                options: ['发烧', '打喷嚏', '咳嗽', '呕吐'],
+                answer: 2,
+                detail: 'husten (hustet, hustete, hat gehustet): 咳嗽。对应名词为 der Husten (咳嗽)。'
             },
             {
                 id: 26,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'Hütte',
-                question: '名词 "die Hütte" 的正确中文释义与复数形式是？',
+                question: '名词 "Hütte" 的正确冠词及复数形式是？',
                 options: [
-                    '小屋，棚屋 / die Hütten',
-                    '帽子 / die Hüte',
-                    '城堡 / die Hütten',
-                    '酒店 / die Hüttens'
+                    'das Hütte, -n',
+                    'die Hütte, -n',
+                    'der Hütte, -e',
+                    'die Hütte, -s'
                 ],
-                answer: 0,
+                answer: 1,
                 detail: 'die Hütte, -n (小屋，山地小屋/棚屋)。注意与 der Hut, "-e (帽子) 区分。'
             },
             {
@@ -436,8 +427,8 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'illegal',
                 question: '“Es ist illegal, hier ohne Erlaubnis zu parken.” 句中 "illegal" 的反义词是？',
-                options: ['legal', 'unlegal', 'alegal', 'dislegal'],
-                answer: 0,
+                options: ['unlegal', 'legal', 'alegal', 'dislegal'],
+                answer: 1,
                 detail: 'illegal (非法的，违法的)。其反义词为 legal (合法的)。'
             },
             {
@@ -445,9 +436,9 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'Imbiss',
-                question: '在德语区国家，"der Imbiss" 常常指的是？',
-                options: ['大酒店', '小吃，快餐 / 快餐小吃摊', '正餐主菜', '自助餐厅'],
-                answer: 1,
+                question: '在德语区国家，名词 "Imbiss" 的正确冠词及含义是？',
+                options: ['das Imbiss (正餐)', 'die Imbiss (自助餐)', 'der Imbiss (快餐/小吃摊)', 'der Imbiss (大饭店)'],
+                answer: 2,
                 detail: 'der Imbiss, -e (小吃，快餐，快餐小吃摊)。'
             },
             {
@@ -468,11 +459,11 @@
                 question: '从属连词 "indem" 在引导方式状语从句时，通常表达什么逻辑含义？',
                 options: [
                     '虽然，尽管',
-                    '通过……方式，在……的同时',
                     '为了，以便',
-                    '如果在……情况下'
+                    '如果在……情况下',
+                    '通过……方式，在……的同时'
                 ],
-                answer: 1,
+                answer: 3,
                 detail: 'indem 引导从句表示“通过做某事的方式/手段”（回答 Wie?）。'
             },
             {
@@ -480,8 +471,8 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'Infektion',
-                question: '名词 "die Infektion" (感染) 的正确复数形式是？',
-                options: ['die Infektionen', 'die Infektion', 'die Infektiones', 'die Infektione'],
+                question: '名词 "Infektion" (感染) 的正确冠词和复数形式是？',
+                options: ['die Infektion, -en', 'das Infektion, -e', 'der Infektion, -es', 'die Infektion, -s'],
                 answer: 0,
                 detail: 'die Infektion, -en (感染/传染)。以 -tion 结尾的德语名词均为阴性且复数加 -en。'
             },
@@ -492,12 +483,12 @@
                 word: 'informieren',
                 question: '反身动词结构 “sich bei jemandem über etwas informieren” 的准确意思是？',
                 options: [
-                    '向某人打听/了解某事',
                     '向某人隐瞒某事',
+                    '向某人打听/了解某事',
                     '与某人讨论某事',
                     '向某人投诉某事'
                 ],
-                answer: 0,
+                answer: 1,
                 detail: 'sich informieren bei Dat. über Akk. (向某人了解/打听某事)。'
             },
             {
@@ -505,9 +496,9 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'Inhalt',
-                question: '名词 "der Inhalt" (内容/目录/容量) 的正确复数形式是？',
-                options: ['die Inhalte', 'die Inhalten', 'die Inhälter', 'die Inhalts'],
-                answer: 0,
+                question: '名词 "Inhalt" (内容) 的正确冠词和复数形式是？',
+                options: ['die Inhalt, -en', 'das Inhalt, -er', 'der Inhalt, -e', 'der Inhalt, -s'],
+                answer: 2,
                 detail: 'der Inhalt, -e (内容)。复数直接加 -e，不变音。'
             },
             {
@@ -516,15 +507,13 @@
                 badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
                 word: 'innerhalb',
                 question: '介词 "innerhalb" 在表示“在……范围/时间之内”时，后接第几格名词？',
-                options: ['Genitiv (第二格)', 'Dativ (第三格)', 'Akkusativ (第四格)', 'Nominativ (第一格)'],
-                answer: 0,
+                options: ['Dativ (第三格)', 'Genitiv (第二格)', 'Akkusativ (第四格)', 'Nominativ (第一格)'],
+                answer: 1,
                 detail: 'innerhalb (在……之内)。作为介词支配 Genitiv (第二格)，例如：innerhalb eines Monats (在一个月之内)。'
             }
         ];
-
         // Native Audio Synthesizer
         let audioCtx = null;
-
         function getAudioContext() {
             if (!audioCtx) {
                 audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -534,7 +523,6 @@
             }
             return audioCtx;
         }
-
         function playSound(isCorrect) {
             try {
                 const ctx = getAudioContext();
@@ -542,7 +530,6 @@
                 const gain = ctx.createGain();
                 osc.connect(gain);
                 gain.connect(ctx.destination);
-
                 const now = ctx.currentTime;
                 if (isCorrect) {
                     osc.type = 'sine';
@@ -565,7 +552,6 @@
                 console.error("Audio error:", e);
             }
         }
-
         // Fisher-Yates Shuffle
         function shuffleArray(array) {
             const arr = [...array];
@@ -575,53 +561,42 @@
             }
             return arr;
         }
-
         // App State
         let vocabularyData = [];
         let currentIndex = 0;
         let userAnswers = [];
         let showExplanation = false;
-
         document.addEventListener('DOMContentLoaded', () => {
             resetPractice();
         });
-
         function resetPractice() {
             vocabularyData = shuffleArray(rawVocabularyData);
             currentIndex = 0;
             userAnswers = new Array(vocabularyData.length).fill(null);
             showExplanation = false;
-
             document.getElementById('quiz-container').classList.remove('hidden');
             document.getElementById('bottom-nav').classList.remove('hidden');
             document.getElementById('result-container').classList.add('hidden');
-
             renderQuestion();
         }
-
         function renderQuestion() {
             const currentData = vocabularyData[currentIndex];
-
             // Render Badges and Titles
             document.getElementById('word-badge').className = `px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase border ${currentData.badgeClass}`;
             document.getElementById('word-badge').textContent = currentData.type;
             document.getElementById('question-index-tag').textContent = `Q${currentIndex + 1}`;
             document.getElementById('target-word').textContent = currentData.word;
             document.getElementById('question-prompt').textContent = currentData.question;
-
             // Progress Bar
             const progressPercent = Math.round(((currentIndex + 1) / vocabularyData.length) * 100);
             document.getElementById('progress-bar').style.width = `${progressPercent}%`;
             document.getElementById('progress-text').textContent = `进度：${currentIndex + 1} / ${vocabularyData.length}`;
             document.getElementById('progress-percent').textContent = `${progressPercent}%`;
-
             // Options
             const optionsGrid = document.getElementById('options-grid');
             optionsGrid.innerHTML = '';
-
             const selectedAnswer = userAnswers[currentIndex];
             const isAnswered = selectedAnswer !== null;
-
             currentData.options.forEach((optText, optIndex) => {
                 const btn = document.createElement('button');
                 btn.className = getOptionStyle(optIndex, selectedAnswer, currentData.answer);
@@ -639,18 +614,15 @@
                 btn.onclick = () => selectOption(optIndex);
                 optionsGrid.appendChild(btn);
             });
-
             // Explanation
             const explainCard = document.getElementById('explanation-card');
             const explainText = document.getElementById('explanation-text');
             explainText.textContent = currentData.detail;
-
             if (showExplanation || isAnswered) {
                 explainCard.classList.remove('hidden');
             } else {
                 explainCard.classList.add('hidden');
             }
-
             // Controls
             document.getElementById('btn-prev').disabled = currentIndex === 0;
             const btnNext = document.getElementById('btn-next');
@@ -662,7 +634,6 @@
                 btnNext.className = 'px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-md transition-all';
             }
         }
-
         function getOptionStyle(index, selected, correct) {
             const base = "w-full text-left p-4 sm:p-4.5 rounded-2xl border text-sm sm:text-base transition-all duration-200 flex items-center justify-between ";
             if (selected === null) {
@@ -676,7 +647,6 @@
             }
             return base + "border-slate-100 bg-slate-50/50 text-slate-400 opacity-50";
         }
-
         function getOptionMarkerStyle(index, selected, correct) {
             if (selected === null) {
                 return "border-slate-200 text-slate-500 bg-slate-50";
@@ -689,7 +659,6 @@
             }
             return "border-slate-200 text-slate-300 bg-slate-100";
         }
-
         function getOptionIcon(index, selected, correct) {
             if (selected === null) return '';
             if (index === correct) {
@@ -700,7 +669,6 @@
             }
             return '';
         }
-
         function selectOption(index) {
             if (userAnswers[currentIndex] === null) {
                 const isCorrect = index === vocabularyData[currentIndex].answer;
@@ -710,7 +678,6 @@
             showExplanation = true;
             renderQuestion();
         }
-
         function toggleExplanation() {
             showExplanation = !showExplanation;
             const explainCard = document.getElementById('explanation-card');
@@ -720,7 +687,6 @@
                 explainCard.classList.add('hidden');
             }
         }
-
         function nextQuestion() {
             if (currentIndex < vocabularyData.length - 1) {
                 currentIndex++;
@@ -730,7 +696,6 @@
                 showResults();
             }
         }
-
         function prevQuestion() {
             if (currentIndex > 0) {
                 currentIndex--;
@@ -738,16 +703,13 @@
                 renderQuestion();
             }
         }
-
         function showResults() {
             document.getElementById('quiz-container').classList.add('hidden');
             document.getElementById('bottom-nav').classList.add('hidden');
             document.getElementById('result-container').classList.remove('hidden');
-
             let mistakeCount = 0;
             const mistakesList = document.getElementById('mistakes-list');
             mistakesList.innerHTML = '';
-
             userAnswers.forEach((ans, idx) => {
                 const item = vocabularyData[idx];
                 if (ans !== item.answer) {
@@ -761,10 +723,8 @@
                     mistakesList.appendChild(mistakeDiv);
                 }
             });
-
             document.getElementById('stat-total').textContent = vocabularyData.length;
             document.getElementById('stat-mistakes').textContent = mistakeCount;
-
             const mistakesSection = document.getElementById('mistakes-section');
             if (mistakeCount > 0) {
                 mistakesSection.classList.remove('hidden');
