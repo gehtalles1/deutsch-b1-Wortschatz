@@ -50,7 +50,6 @@
             </div>
         </div>
     </header>
-
     <!-- Main Section -->
     <main class="flex-1 max-w-3xl w-full mx-auto p-4 sm:p-6 flex flex-col justify-center">
         <!-- QUIZ CONTAINER -->
@@ -74,12 +73,10 @@
                     </p>
                 </div>
             </div>
-
             <!-- Options Grid -->
             <div id="options-grid" class="grid grid-cols-1 gap-3.5">
                 <!-- Dynamic options -->
             </div>
-
             <!-- Explanation Card -->
             <div id="explanation-card" class="hidden bg-slate-900 text-slate-100 rounded-2xl p-5 sm:p-6 shadow-lg border border-slate-800 text-sm leading-relaxed space-y-2">
                 <div class="font-semibold text-teal-400 flex items-center gap-2 text-xs sm:text-sm uppercase tracking-wider">
@@ -89,7 +86,6 @@
                 <div id="explanation-text" class="text-slate-300 text-xs sm:text-sm font-normal"></div>
             </div>
         </div>
-
         <!-- RESULT CONTAINER -->
         <div id="result-container" class="hidden bg-white/90 backdrop-blur-sm rounded-3xl p-8 sm:p-10 border border-slate-200/70 shadow-xl shadow-slate-200/50 text-center space-y-8">
             <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-900 text-teal-400 shadow-lg shadow-slate-900/10 mb-2">
@@ -99,7 +95,6 @@
                 <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2 tracking-tight">特训完成</h2>
                 <p class="text-sm text-slate-500 font-medium">已完成所有词汇测试，巩固核心词汇是巩固语感的基础</p>
             </div>
-
             <div class="max-w-md mx-auto py-3 px-6 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-around">
                 <div>
                     <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">本次练习题目</div>
@@ -111,7 +106,6 @@
                     <div id="stat-mistakes" class="text-2xl font-extrabold text-slate-900">0</div>
                 </div>
             </div>
-
             <!-- Incorrect Words Review List -->
             <div id="mistakes-section" class="text-left hidden space-y-4 pt-2">
                 <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
@@ -120,7 +114,6 @@
                 </h3>
                 <div id="mistakes-list" class="space-y-2.5 max-h-64 overflow-y-auto pr-1"></div>
             </div>
-
             <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-6 border-t border-slate-100">
                 <button onclick="resetPractice()" class="w-full sm:w-auto px-8 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm transition-all shadow-md hover:shadow-lg">
                     再练一次
@@ -131,7 +124,6 @@
             </div>
         </div>
     </main>
-
     <!-- Bottom Actions Nav -->
     <footer id="bottom-nav" class="sticky bottom-0 z-30 custom-glass border-t border-slate-200/60 px-4 py-3.5 sm:px-8">
         <div class="max-w-3xl mx-auto flex items-center justify-between gap-3">
@@ -147,7 +139,6 @@
             </button>
         </div>
     </footer>
-
     <script>
         const rawVocabularyData = [
             {
@@ -156,8 +147,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'Insel',
                 question: '表达“在岛屿上”时，名词 "Insel" 习惯搭配哪个介词及格阶？',
-                options: ['auf der Insel', 'in der Insel', 'an der Insel', 'bei der Insel'],
-                answer: 0,
+                options: ['in der Insel', 'auf der Insel', 'an der Insel', 'bei der Insel'],
+                answer: 1,
                 detail: 'die Insel, -n (岛屿)。表达“在岛上”时固定使用介词 auf + Dativ：auf einer Insel / auf der Insel。'
             },
             {
@@ -166,8 +157,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'Inserat',
                 question: '“ein Inserat in der Zeitung aufgeben” 中，名词 "Inserat" 表示什么含义？',
-                options: ['（报纸上的）广告、启事', '新闻报道', '社论文章', '读者来信'],
-                answer: 0,
+                options: ['新闻报道', '社论文章', '（报纸上的）广告、启事', '读者来信'],
+                answer: 2,
                 detail: 'das Inserat, -e: （报纸或杂志上的）分类广告、启事。常用动词搭配：ein Inserat aufgeben (刊登启事)。'
             },
             {
@@ -176,8 +167,8 @@
                 badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
                 word: 'insgesamt',
                 question: '“Das macht insgesamt 45 Euro.” 句中的副词 "insgesamt" 的正确解释是？',
-                options: ['总共，一共', '平均', '至少', '大约'],
-                answer: 0,
+                options: ['平均', '至少', '大约', '总共，一共'],
+                answer: 3,
                 detail: 'insgesamt: 副词，表示“总共、合计、一共”。'
             },
             {
@@ -202,12 +193,12 @@
                 word: 'integrieren / Integration',
                 question: '“Sich in die Gesellschaft _____” 填入哪个动词最合适？其对应的阴性名词是？',
                 options: [
-                    'integrieren / die Integration',
                     'installieren / die Installation',
+                    'integrieren / die Integration',
                     'interessieren / das Interesse',
                     'informieren / die Information'
                 ],
-                answer: 0,
+                answer: 1,
                 detail: 'sich in Akk. integrieren (融入……)；对应的阴性名词为 die Integration, -en (融入，一体化)。'
             },
             {
@@ -216,8 +207,8 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'intelligent / Intelligenz',
                 question: '形容词 "intelligent" (聪明的) 对应的阴性抽象名词 (智商/智慧) 是哪一个？',
-                options: ['die Intelligenz', 'das Intelligent', 'die Intelligenter', 'die Intelligenzen'],
-                answer: 0,
+                options: ['die Intellektualität', 'das Intelligent', 'die Intelligenz', 'die Intelligenter'],
+                answer: 2,
                 detail: 'intelligent (形容词: 聪明的) -> die Intelligenz (阴性名词，通常用单数: 智力，智慧)。'
             },
             {
@@ -251,8 +242,8 @@
                 badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
                 word: 'inzwischen',
                 question: '时间副词 "inzwischen" 在句中的主要逻辑含义是？',
-                options: ['在此期间 / 如今，现在', '在此之后', '不久前', '绝不'],
-                answer: 0,
+                options: ['在此之后', '在此期间 / 如今，现在', '不久前', '绝不'],
+                answer: 1,
                 detail: 'inzwischen (副词): 在此期间，与此同时；如今。相当于 mittlerweile 或 in der Zwischenzeit。'
             },
             {
@@ -262,12 +253,12 @@
                 word: 'irgend-',
                 question: '前缀 "irgend-" 与不同词类组合可表达“不确定的/随意的”，下列对应含义正确的是？',
                 options: [
-                    'irgendein (某一个) / irgendwann (在某个不确定的时间)',
                     'irgendein (任何地方) / irgendwann (某个人)',
                     'irgendein (总是) / irgendwann (绝不)',
+                    'irgendein (某一个) / irgendwann (在某个不确定的时间)',
                     'irgendein (每当) / irgendwann (某些人)'
                 ],
-                answer: 0,
+                answer: 2,
                 detail: 'irgend- 表示不确定性。irgendein (某一个，随便哪个)；irgendwann (某个时刻，改天)。'
             },
             {
@@ -276,8 +267,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'sich irren',
                 question: '反身动词 “sich irren” 表达“弄错、搞错”，其过去分词与助动词搭配是？',
-                options: ['hat sich geirrt', 'ist sich geirrt', 'hat sich geirren', 'ist geirrt'],
-                answer: 0,
+                options: ['ist sich geirrt', 'hat sich geirren', 'ist geirrt', 'hat sich geirrt'],
+                answer: 3,
                 detail: 'sich irren (irrt sich, irrte sich, hat sich geirrt)。反身动词在完成时中一律使用 haben 作为助动词。'
             },
             {
@@ -297,12 +288,12 @@
                 word: 'je ... desto ...',
                 question: '关于双重比较关联连词结构 “je ... desto ...”，下列语序规则描述正确的是？',
                 options: [
-                    'je 引导从句（动词在句末），desto 引导主句（紧跟比较级与变位动词）',
                     'je 引导主句（动词第二位），desto 引导从句（动词在句末）',
+                    'je 引导从句（动词在句末），desto 引导主句（紧跟比较级与变位动词）',
                     'je 和 desto 后面都必须接原级形容词',
                     'je 和 desto 引导的句子动词都必须放在最后'
                 ],
-                answer: 0,
+                answer: 1,
                 detail: 'je ... desto ... (越……就越……)。je 引导从句，动词置于句末；desto 引导主句，结构为：desto + 比较级 + 动词 + 主语。'
             },
             {
@@ -311,8 +302,8 @@
                 badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
                 word: 'jeder, jedes, jede',
                 question: '不定代词 / 限定词 "jeder / jedes / jede" (每一个) 在单数句中作为主语时，谓语动词应使用？',
-                options: ['第三人称单数', '第三人称复数', '根据后面的名词复数决定', '第二人称单数'],
-                answer: 0,
+                options: ['第三人称复数', '根据后面的名词复数决定', '第三人称单数', '第二人称单数'],
+                answer: 2,
                 detail: 'jeder/jedes/jede 表达“每一个”，在句中作主语时支配第三人称单数谓语动词。例：Jeder weiß das.'
             },
             {
@@ -322,12 +313,12 @@
                 word: 'jederzeit / jedes Mal',
                 question: '关于时间表达 "jederzeit" 与 "jedes Mal"，下列语义解释正确的是？',
                 options: [
-                    'jederzeit 表示“随时”，jedes Mal 表示“每次”',
                     'jederzeit 表示“有时”，jedes Mal 表示“永远”',
                     'jederzeit 表示“最近”，jedes Mal 表示“某一次”',
-                    '两者含义完全一样，可任意互换'
+                    '两者含义完全一样，可任意互换',
+                    'jederzeit 表示“随时”，jedes Mal 表示“每次”'
                 ],
-                answer: 0,
+                answer: 3,
                 detail: 'jederzeit (随时，任何时候)；jedes Mal (每次，每当)。'
             },
             {
@@ -346,8 +337,8 @@
                 badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
                 word: 'jedoch',
                 question: '连词性副词 "jedoch" 在句中主要起到什么转折逻辑作用？',
-                options: ['表示“然而、但是”的轻微转折', '表示“因为”的因果关系', '表示“如果”的条件关系', '表示“以便”的目的关系'],
-                answer: 0,
+                options: ['表示“因为”的因果关系', '表示“然而、但是”的轻微转折', '表示“如果”的条件关系', '表示“以便”的目的关系'],
+                answer: 1,
                 detail: 'jedoch: 副词/连词，意为“然而，但是”，语气比 aber 更书面化。'
             },
             {
@@ -356,8 +347,8 @@
                 badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
                 word: 'jeweils',
                 question: '“Die Kurse dauern jeweils zwei Stunden.” 句中的 "jeweils" 准确含义是？',
-                options: ['各自，每次，各个', '总共', '最多', '大概'],
-                answer: 0,
+                options: ['总共', '最多', '各自，每次，各个', '大概'],
+                answer: 2,
                 detail: 'jeweils (副词): 各自，分别，每次。'
             },
             {
@@ -366,8 +357,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'Journalist',
                 question: '阳性弱变化名词 "der Journalist" 在第四格 (Akkusativ) 单数时的正确形式是？',
-                options: ['den Journalisten', 'den Journalist', 'das Journalisten', 'die Journaliste'],
-                answer: 0,
+                options: ['den Journalist', 'das Journalisten', 'die Journaliste', 'den Journalisten'],
+                answer: 3,
                 detail: 'der Journalist, -en 是 N-Deklination (阳性弱变化名词)，除第一格单数外，所有单复数格均需加 -en。'
             },
             {
@@ -385,9 +376,9 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'Jugendliche',
-                question: '按形容词词尾变化的名词 "der/die Jugendliche" (青少年)，在句中“mit _____” (与青少年们) 后接复数第三格时应写作？',
-                options: ['Jugendlichen', 'Jugendliche', 'Jugendlicher', 'Jugendliches'],
-                answer: 0,
+                question: '按形容词词尾变化的名词 "der/die Jugendliche" (青少年)，在句中“mit _____” 后接复数第三格时应写作？',
+                options: ['Jugendliche', 'Jugendlichen', 'Jugendlicher', 'Jugendliches'],
+                answer: 1,
                 detail: 'Jugendliche 是形容词化的名词，变化遵循形容词词尾规则。mit 为 Dativ 介词，复数第三格词尾为 -n：mit Jugendlichen。'
             },
             {
@@ -396,8 +387,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'Jugendherberge',
                 question: '名词 "Jugendherberge" 在德国旅游住宿中通常指？',
-                options: ['青年旅舍', '豪华酒店', '私人公寓', '露营营地'],
-                answer: 0,
+                options: ['豪华酒店', '私人公寓', '青年旅舍', '露营营地'],
+                answer: 2,
                 detail: 'die Jugendherberge, -n: 青年旅舍，青旅。'
             },
             {
@@ -406,8 +397,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'Junge',
                 question: '阳性弱变化名词 "der Junge" (男孩) 在第三格 (Dativ) 单数时应写为？',
-                options: ['dem Jungen', 'dem Junge', 'dem Jungens', 'des Jungen'],
-                answer: 0,
+                options: ['dem Junge', 'dem Jungens', 'des Jungen', 'dem Jungen'],
+                answer: 3,
                 detail: 'der Junge, -n (N-Deklination 弱变化阳性名词)。单数二三四格均需加 -n，如 dem Jungen。'
             },
             {
@@ -431,8 +422,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'Kaffee / Kaffeehaus',
                 question: '在奥地利（如维也纳），"das Kaffeehaus" 特指什么场所？',
-                options: ['传统咖啡馆', '咖啡豆加工厂', '自助食堂', '面包制作坊'],
-                answer: 0,
+                options: ['咖啡豆加工厂', '传统咖啡馆', '自助食堂', '面包制作坊'],
+                answer: 1,
                 detail: 'der Kaffee (咖啡)；das Kaffeehaus, "-er (A) 是奥地利/德语区对“传统咖啡馆”的专门称呼。'
             },
             {
@@ -440,9 +431,9 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'Kakao / Kanne',
-                question: '“eine Kanne Kakao” (一壶热可可) 中，"Kakao" 和 "Kanne" 的阳阴性冠词分别是？',
-                options: ['der Kakao / die Kanne', 'das Kakao / der Kanne', 'die Kakao / das Kanne', 'der Kakao / das Kanne'],
-                answer: 0,
+                question: '“eine Kanne Kakao” (一壶热可可) 中，这两个名词的阴阳性冠词顺序分别是？',
+                options: ['das / der', 'die / der', 'der / die', 'der / das'],
+                answer: 2,
                 detail: 'der Kakao, -s (阳性: 可可/热巧克力)；die Kanne, -n (阴性: 壶/罐)。'
             },
             {
@@ -451,8 +442,8 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'kalt / Kälte',
                 question: '形容词 "kalt" 对应的阴性抽象名词 "die Kälte" 意思是？',
-                options: ['寒冷，严寒', '凉爽', '潮湿', '冰块'],
-                answer: 0,
+                options: ['凉爽', '潮湿', '冰块', '寒冷，严寒'],
+                answer: 3,
                 detail: 'kalt (寒冷的) -> die Kälte (阴性名词，无复数: 寒冷)。'
             },
             {
@@ -471,8 +462,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'kämpfen / Kampf',
                 question: '动词 "kämpfen" 表达“为……而奋斗/斗争”时，常用固定搭配介词？',
-                options: ['kämpfen für + Akkusativ', 'kämpfen mit + Dativ', 'kämpfen an + Akkusativ', 'kämpfen in + Dativ'],
-                answer: 0,
+                options: ['kämpfen mit + Dativ', 'kämpfen für + Akkusativ', 'kämpfen an + Akkusativ', 'kämpfen in + Dativ'],
+                answer: 1,
                 detail: 'kämpfen (斗争，奋斗)。kämpfen für + Akk. (为……而奋斗)；kämpfen gegen + Akk. (反对……而斗争)。对应阳性名词为 der Kampf, "-e。'
             },
             {
@@ -480,9 +471,9 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'Kanal',
-                question: '名词 "der Kanal" 在电视或网络语境中常表达什么含义？其复数变音形式是？',
-                options: ['频道 / 频道列表 (die Kanäle)', '节目 / (die Kanale)', '信号 / (die Kanälen)', '网络 / (die Kanals)'],
-                answer: 0,
+                question: '名词 "der Kanal" 在电视或网络语境中常表达“频道”，其复数形式是？',
+                options: ['die Kanale', 'die Kanälen', 'die Kanäle', 'die Kanals'],
+                answer: 2,
                 detail: 'der Kanal, "-e: 运河；（电视/网络）频道。复数须变音为 die Kanäle。'
             },
             {
@@ -491,8 +482,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'Kandidat',
                 question: '阳性名词 "der Kandidat" (候选人/考生) 属于哪种变类名词？',
-                options: ['阳性弱变化名词 (N-Deklination)', '普通强变化名词', '阴性名词变化', '不变化名词'],
-                answer: 0,
+                options: ['普通强变化名词', '阴性名词变化', '不变化名词', '阳性弱变化名词 (N-Deklination)'],
+                answer: 3,
                 detail: 'der Kandidat, -en 属于 N-Deklination (阳性弱变化名词)，单数二三四格均为 des/dem/den Kandidaten。'
             },
             {
@@ -506,10 +497,8 @@
                 detail: 'die Kantine, -n: （企业、机关、学校的）食堂、自助餐厅。'
             }
         ];
-
         // Native Audio Synthesizer
         let audioCtx = null;
-
         function getAudioContext() {
             if (!audioCtx) {
                 audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -519,7 +508,6 @@
             }
             return audioCtx;
         }
-
         function playSound(isCorrect) {
             try {
                 const ctx = getAudioContext();
@@ -527,7 +515,6 @@
                 const gain = ctx.createGain();
                 osc.connect(gain);
                 gain.connect(ctx.destination);
-
                 const now = ctx.currentTime;
                 if (isCorrect) {
                     osc.type = 'sine';
@@ -550,7 +537,6 @@
                 console.error("Audio error:", e);
             }
         }
-
         // Fisher-Yates Shuffle
         function shuffleArray(array) {
             const arr = [...array];
@@ -560,53 +546,42 @@
             }
             return arr;
         }
-
         // App State
         let vocabularyData = [];
         let currentIndex = 0;
         let userAnswers = [];
         let showExplanation = false;
-
         document.addEventListener('DOMContentLoaded', () => {
             resetPractice();
         });
-
         function resetPractice() {
             vocabularyData = shuffleArray(rawVocabularyData);
             currentIndex = 0;
             userAnswers = new Array(vocabularyData.length).fill(null);
             showExplanation = false;
-
             document.getElementById('quiz-container').classList.remove('hidden');
             document.getElementById('bottom-nav').classList.remove('hidden');
             document.getElementById('result-container').classList.add('hidden');
-
             renderQuestion();
         }
-
         function renderQuestion() {
             const currentData = vocabularyData[currentIndex];
-
             // Render Badges and Titles
             document.getElementById('word-badge').className = `px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase border ${currentData.badgeClass}`;
             document.getElementById('word-badge').textContent = currentData.type;
             document.getElementById('question-index-tag').textContent = `Q${currentIndex + 1}`;
             document.getElementById('target-word').textContent = currentData.word;
             document.getElementById('question-prompt').textContent = currentData.question;
-
             // Progress Bar
             const progressPercent = Math.round(((currentIndex + 1) / vocabularyData.length) * 100);
             document.getElementById('progress-bar').style.width = `${progressPercent}%`;
             document.getElementById('progress-text').textContent = `进度：${currentIndex + 1} / ${vocabularyData.length}`;
             document.getElementById('progress-percent').textContent = `${progressPercent}%`;
-
             // Options
             const optionsGrid = document.getElementById('options-grid');
             optionsGrid.innerHTML = '';
-
             const selectedAnswer = userAnswers[currentIndex];
             const isAnswered = selectedAnswer !== null;
-
             currentData.options.forEach((optText, optIndex) => {
                 const btn = document.createElement('button');
                 btn.className = getOptionStyle(optIndex, selectedAnswer, currentData.answer);
@@ -624,18 +599,15 @@
                 btn.onclick = () => selectOption(optIndex);
                 optionsGrid.appendChild(btn);
             });
-
             // Explanation
             const explainCard = document.getElementById('explanation-card');
             const explainText = document.getElementById('explanation-text');
             explainText.textContent = currentData.detail;
-
             if (showExplanation || isAnswered) {
                 explainCard.classList.remove('hidden');
             } else {
                 explainCard.classList.add('hidden');
             }
-
             // Controls
             document.getElementById('btn-prev').disabled = currentIndex === 0;
             const btnNext = document.getElementById('btn-next');
@@ -647,7 +619,6 @@
                 btnNext.className = 'px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-md transition-all';
             }
         }
-
         function getOptionStyle(index, selected, correct) {
             const base = "w-full text-left p-4 sm:p-4.5 rounded-2xl border text-sm sm:text-base transition-all duration-200 flex items-center justify-between ";
             if (selected === null) {
@@ -661,7 +632,6 @@
             }
             return base + "border-slate-100 bg-slate-50/50 text-slate-400 opacity-50";
         }
-
         function getOptionMarkerStyle(index, selected, correct) {
             if (selected === null) {
                 return "border-slate-200 text-slate-500 bg-slate-50";
@@ -674,7 +644,6 @@
             }
             return "border-slate-200 text-slate-300 bg-slate-100";
         }
-
         function getOptionIcon(index, selected, correct) {
             if (selected === null) return '';
             if (index === correct) {
@@ -685,7 +654,6 @@
             }
             return '';
         }
-
         function selectOption(index) {
             if (userAnswers[currentIndex] === null) {
                 const isCorrect = index === vocabularyData[currentIndex].answer;
@@ -695,7 +663,6 @@
             showExplanation = true;
             renderQuestion();
         }
-
         function toggleExplanation() {
             showExplanation = !showExplanation;
             const explainCard = document.getElementById('explanation-card');
@@ -705,7 +672,6 @@
                 explainCard.classList.add('hidden');
             }
         }
-
         function nextQuestion() {
             if (currentIndex < vocabularyData.length - 1) {
                 currentIndex++;
@@ -715,7 +681,6 @@
                 showResults();
             }
         }
-
         function prevQuestion() {
             if (currentIndex > 0) {
                 currentIndex--;
@@ -723,16 +688,13 @@
                 renderQuestion();
             }
         }
-
         function showResults() {
             document.getElementById('quiz-container').classList.add('hidden');
             document.getElementById('bottom-nav').classList.add('hidden');
             document.getElementById('result-container').classList.remove('hidden');
-
             let mistakeCount = 0;
             const mistakesList = document.getElementById('mistakes-list');
             mistakesList.innerHTML = '';
-
             userAnswers.forEach((ans, idx) => {
                 const item = vocabularyData[idx];
                 if (ans !== item.answer) {
@@ -746,10 +708,8 @@
                     mistakesList.appendChild(mistakeDiv);
                 }
             });
-
             document.getElementById('stat-total').textContent = vocabularyData.length;
             document.getElementById('stat-mistakes').textContent = mistakeCount;
-
             const mistakesSection = document.getElementById('mistakes-section');
             if (mistakeCount > 0) {
                 mistakesSection.classList.remove('hidden');
