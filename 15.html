@@ -50,7 +50,6 @@
             </div>
         </div>
     </header>
-
     <!-- Main Section -->
     <main class="flex-1 max-w-3xl w-full mx-auto p-4 sm:p-6 flex flex-col justify-center">
         <!-- QUIZ CONTAINER -->
@@ -74,12 +73,10 @@
                     </p>
                 </div>
             </div>
-
             <!-- Options Grid -->
             <div id="options-grid" class="grid grid-cols-1 gap-3.5">
                 <!-- Dynamic options -->
             </div>
-
             <!-- Explanation Card -->
             <div id="explanation-card" class="hidden bg-slate-900 text-slate-100 rounded-2xl p-5 sm:p-6 shadow-lg border border-slate-800 text-sm leading-relaxed space-y-2">
                 <div class="font-semibold text-teal-400 flex items-center gap-2 text-xs sm:text-sm uppercase tracking-wider">
@@ -89,7 +86,6 @@
                 <div id="explanation-text" class="text-slate-300 text-xs sm:text-sm font-normal"></div>
             </div>
         </div>
-
         <!-- RESULT CONTAINER -->
         <div id="result-container" class="hidden bg-white/90 backdrop-blur-sm rounded-3xl p-8 sm:p-10 border border-slate-200/70 shadow-xl shadow-slate-200/50 text-center space-y-8">
             <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-900 text-teal-400 shadow-lg shadow-slate-900/10 mb-2">
@@ -110,7 +106,6 @@
                     <div id="stat-mistakes" class="text-2xl font-extrabold text-slate-900">0</div>
                 </div>
             </div>
-
             <!-- Incorrect Words Review List -->
             <div id="mistakes-section" class="text-left hidden space-y-4 pt-2">
                 <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
@@ -119,7 +114,6 @@
                 </h3>
                 <div id="mistakes-list" class="space-y-2.5 max-h-64 overflow-y-auto pr-1"></div>
             </div>
-
             <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-6 border-t border-slate-100">
                 <button onclick="resetPractice()" class="w-full sm:w-auto px-8 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm transition-all shadow-md hover:shadow-lg">
                     再练一次
@@ -130,7 +124,6 @@
             </div>
         </div>
     </main>
-
     <!-- Bottom Actions Nav -->
     <footer id="bottom-nav" class="sticky bottom-0 z-30 custom-glass border-t border-slate-200/60 px-4 py-3.5 sm:px-8">
         <div class="max-w-3xl mx-auto flex items-center justify-between gap-3">
@@ -146,7 +139,6 @@
             </button>
         </div>
     </footer>
-
     <script>
         const rawVocabularyData = [
             {
@@ -155,8 +147,8 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'freiwillig',
                 question: '表达“出于本人自愿、非强制性的”形容词是哪一个？',
-                options: ['freiwillig', 'fremd', 'furchtbar', 'frisch'],
-                answer: 0,
+                options: ['fremd', 'freiwillig', 'furchtbar', 'frisch'],
+                answer: 1,
                 detail: 'freiwillig (自愿的，出于自愿的)。例如：ein freiwilliger Dienst (志愿服务)；反义词为 gezwungen。'
             },
             {
@@ -165,8 +157,8 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'fremd',
                 question: '在句子 "Er spricht gut Deutsch, aber Akzent und Kultur sind ihm noch etwas _______." 中，表示“生疏的、外来的”词汇是？',
-                options: ['frisch', 'fremd', 'froh', 'freundlich'],
-                answer: 1,
+                options: ['frisch', 'froh', 'fremd', 'freundlich'],
+                answer: 2,
                 detail: 'fremd (陌生的，外来的)。衍生词：die Fremdsprache (外语), der/die Fremde (陌生人)。'
             },
             {
@@ -175,8 +167,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'fressen',
                 question: '德语中动词区分严谨，用于描述“动物吃东西”的动词是？',
-                options: ['essen', 'füttern', 'fressen', 'frühstücken'],
-                answer: 2,
+                options: ['fressen', 'essen', 'füttern', 'frühstücken'],
+                answer: 0,
                 detail: 'fressen (frisst, fraß, hat gefressen) 专指动物进食/啃食；essen 指人类吃；füttern 指人类喂养动物或幼儿。'
             },
             {
@@ -187,11 +179,11 @@
                 question: '关于反身动词 "sich freuen" 的介词搭配，下列表达正确的是？',
                 options: [
                     'sich freuen auf + Akk. 表示“对已发生的事高兴”；sich freuen über + Akk. 表示“期待未来”',
-                    'sich freuen auf + Akk. 表示“期待未发生的事”；sich freuen über + Akk. 表示“对现有的/已发生的事高兴”',
                     '两者均接 Dativ，无时间与语义区别',
-                    'sich freuen 只与 An 搭配，接 Akkusativ'
+                    'sich freuen 只与 An 搭配，接 Akkusativ',
+                    'sich freuen auf + Akk. 表示“期待未发生的事”；sich freuen über + Akk. 表示“对现有的/已发生的事高兴”'
                 ],
-                answer: 1,
+                answer: 3,
                 detail: 'sich freuen auf + Akk. 期待未来（如：auf den Urlaub freuen）；sich freuen über + Akk. 对现有的或已发生的事高兴（如：über das Geschenk freuen）。'
             },
             {
@@ -199,9 +191,9 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Freundschaft, -en',
-                question: '表示抽象概念“友谊、友情”的名词及其复数是？',
-                options: ['der Freund, -e', 'die Freundschaft, -en', 'die Freude, -n', 'die Frist, -en'],
-                answer: 1,
+                question: '表示“友谊、友情”的名词是？',
+                options: ['der Freund', 'die Freude', 'die Freundschaft', 'die Frist'],
+                answer: 2,
                 detail: 'die Freundschaft, -en (友谊)；die Freude (喜悦)；der Freund, -e (朋友)。'
             },
             {
@@ -220,8 +212,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'frieren',
                 question: '动词 "frieren" 表示“感到寒冷”时，其过去时 (Präteritum) 和完成时 (Perfekt) 形式是？',
-                options: ['frierte, hat gefriert', 'fror, hat gefroren', 'fror, ist gefroren', 'fraß, hat gefressen'],
-                answer: 1,
+                options: ['frierte, hat gefriert', 'fror, ist gefroren', 'frieren, hat gefriert', 'fror, hat gefroren'],
+                answer: 3,
                 detail: 'frieren (friert, fror, hat gefroren)。例如：Ich habe am ganzen Körper gefroren (我冻得发抖)。若指液体结冰位置转移/状态改变，则可与 sein 连用 (Das Wasser ist gefroren)。'
             },
             {
@@ -230,8 +222,8 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'frisch',
                 question: '描述“新鲜的水果”或“清新的空气”时，应使用的形容词是？',
-                options: ['froh', 'frisch', 'frech', 'flach'],
-                answer: 1,
+                options: ['frisch', 'froh', 'frech', 'flach'],
+                answer: 0,
                 detail: 'frisch (新鲜的，清新的)。常用搭配：frische Luft, frisches Obst, frisch gebacken.'
             },
             {
@@ -240,8 +232,8 @@
                 badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
                 word: 'der Friseur (D, A) vs. Coiffeur (CH)',
                 question: '表达“理发师”时，德国与奥地利常用 "der Friseur"，而在瑞士 (CH) 日常德语中最常使用的借词是？',
-                options: ['der Barber', 'der Coiffeur', 'der Designer', 'der Stylist'],
-                answer: 1,
+                options: ['der Barber', 'der Designer', 'der Coiffeur', 'der Stylist'],
+                answer: 2,
                 detail: '瑞士德语 (Helvetismus) 中使用法语借词 der Coiffeur (阴性：die Coiffeuse) 表示理发师。'
             },
             {
@@ -250,8 +242,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Frisur, -en',
                 question: '表达“做发型/理发”时，常与 "die Frisur" 搭配的正确动词短语是？',
-                options: ['eine Frisur machen lassen', 'eine Frisur schreiben', 'eine Frisur bauen', 'eine Frisur führen'],
-                answer: 0,
+                options: ['eine Frisur schreiben', 'eine Frisur machen lassen', 'eine Frisur bauen', 'eine Frisur führen'],
+                answer: 1,
                 detail: 'die Frisur, -en (发型)。常用搭配：eine neue Frisur bekommen / machen lassen.'
             },
             {
@@ -260,8 +252,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Frist, -en',
                 question: '表示商务或法律中“截止期限、履约期限”的名词，以及“遵守期限”的动词搭配是？',
-                options: ['die Frist / eine Frist einhalten', 'die Frucht / eine Frucht halten', 'die Führung / eine Führung machen', 'die Gebühr / eine Gebühr zahlen'],
-                answer: 0,
+                options: ['die Frucht / eine Frucht halten', 'die Führung / eine Führung machen', 'die Gebühr / eine Gebühr zahlen', 'die Frist / eine Frist einhalten'],
+                answer: 3,
                 detail: 'die Frist, -en (期限)。常用搭配：eine Frist einhalten (遵守期限) / eine Frist verlängern (延长期限)。'
             },
             {
@@ -271,12 +263,12 @@
                 word: 'froh vs. fröhlich',
                 question: '形容词 "froh" 与 "fröhlich" 均有“高兴”之意，下列使用最精准的是？',
                 options: [
-                    'froh 常用作表语指“对某具体事实感到庆幸/高兴”；fröhlich 侧重指“性格/心情/气氛欢快”',
                     'froh 只能修饰天气；fröhlich 只能修饰建筑物',
+                    'froh 常用作表语指“对某具体事实感到庆幸/高兴”；fröhlich 侧重指“性格/心情/气氛欢快”',
                     '两者用法完全一样，毫无区别',
                     'froh 是副词，fröhlich 是名词'
                 ],
-                answer: 0,
+                answer: 1,
                 detail: 'Ich bin froh, dass du da bist (表语/庆幸)；ein fröhliches Lachen / fröhliche Musik (欢快的声音/音乐)。'
             },
             {
@@ -285,8 +277,8 @@
                 badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
                 word: 'die Frucht / das Obst',
                 question: '表达集合名词“水果”时，德奥多用 "das Obst"；而在瑞士德语中，日常更习惯用哪个名词的复数形式？',
-                options: ['die Früchte', 'die Fristen', 'die Gebäck', 'die Futter'],
-                answer: 0,
+                options: ['die Fristen', 'die Gebäck', 'die Früchte', 'die Futter'],
+                answer: 2,
                 detail: 'die Frucht, "-e 在瑞士 (CH) 常用复数 die Früchte 代替 Obst 指代水果；标准德语中也指植物的“果实”。'
             },
             {
@@ -295,8 +287,8 @@
                 badgeClass: 'bg-purple-50 text-purple-700 border-purple-200',
                 word: 'früh vs. früher / früher-',
                 question: '句子 "_______ gab es an diesem Platz keinen Park." 中，表示“以前、过去”的副词是？',
-                options: ['Frühestens', 'Früh', 'Früher', 'Frühling'],
-                answer: 2,
+                options: ['Früher', 'Frühestens', 'Früh', 'Frühling'],
+                answer: 0,
                 detail: 'früher 作为副词表示“过去，以前”；früh 表示“早”；frühestens 表示“最早在...”。'
             },
             {
@@ -305,8 +297,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'frühstücken',
                 question: '动词 "frühstücken" (吃早餐) 的完成时 (Perfekt) 助动词及过去分词形式是？',
-                options: ['ist gefrühstückt', 'hat gefrühstückt', 'hat frühgestückt', 'ist frühstückt'],
-                answer: 1,
+                options: ['ist gefrühstückt', 'hat frühgestückt', 'ist frühstückt', 'hat gefrühstückt'],
+                answer: 3,
                 detail: 'frühstücken (frühstückt, frühstückte, hat gefrühstückt)。不可分动词，助动词用 haben。'
             },
             {
@@ -315,8 +307,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'sich fühlen',
                 question: '表达“我觉得身体舒服/健康良好”时，正确的反身动词句型是？',
-                options: ['Ich fühle mich wohl.', 'Ich führe mich gut.', 'Ich fürchte mich wohl.', 'Ich füttere mich gut.'],
-                answer: 0,
+                options: ['Ich führe mich gut.', 'Ich fürchte mich wohl.', 'Ich fühle mich wohl.', 'Ich füttere mich gut.'],
+                answer: 2,
                 detail: 'sich fühlen (感觉，觉得)。Ich fühle mich wohl / schlecht. 注意不要与 führen (引导/主持) 混淆。'
             },
             {
@@ -325,8 +317,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Führung, -en',
                 question: '在博物馆、大楼或城市旅游中，“有导游/讲解员带领的参观活动”被称为？',
-                options: ['die Führung', 'die Fütterung', 'die Gebühr', 'die Galerie'],
-                answer: 0,
+                options: ['die Fütterung', 'die Führung', 'die Gebühr', 'die Galerie'],
+                answer: 1,
                 detail: 'die Führung, -en (导览，参观讲解)；源动词 führen (引导，带领)。'
             },
             {
@@ -335,8 +327,8 @@
                 badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
                 word: 'Führerschein vs. Führerausweis',
                 question: '表达“驾驶执照（驾照）”时，瑞士德语 (CH) 专用的规范名称是？',
-                options: ['der Führerschein', 'der Führerausweis', 'die Führungskarte', 'das Fahrzeugpapier'],
-                answer: 1,
+                options: ['der Führerausweis', 'der Führerschein', 'die Führungskarte', 'das Fahrzeugpapier'],
+                answer: 0,
                 detail: '瑞士 (CH) 称驾照为 der Führerausweis；德国 (D) 与奥地利 (A) 称为 der Führerschein。'
             },
             {
@@ -345,8 +337,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Fundbüro, -s',
                 question: '在车站或机场遗失物品后，应前往办理挂失和领取的机构是？',
-                options: ['das Fundbüro', 'die Garderobe', 'die Gaststätte', 'das Gasthaus'],
-                answer: 0,
+                options: ['die Garderobe', 'die Gaststätte', 'das Fundbüro', 'das Gasthaus'],
+                answer: 2,
                 detail: 'das Fundbüro, -s (失物招领处)。由 finden (找到) 的名词干 Fund 与 Büro 构成的复合词。'
             },
             {
@@ -355,8 +347,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'funktionieren',
                 question: '动词 "funktionieren" (运转，奏效) 以 -ieren 结尾，其完成时 (Perfekt) 正确形式是？',
-                options: ['hat gefunktioniert', 'ist funktioniert', 'hat funktioniert', 'ist gefunktioniert'],
-                answer: 2,
+                options: ['hat gefunktioniert', 'ist funktioniert', 'ist gefunktioniert', 'hat funktioniert'],
+                answer: 3,
                 detail: '以 -ieren 结尾的外来词动词，过去分词不加 ge- 前缀 (funktioniert)，完成时助动词用 haben。'
             },
             {
@@ -365,8 +357,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'sich fürchten',
                 question: '反身动词 "sich fürchten" (害怕) 与名词 "die Furcht" 同源，其固定介词搭配是？',
-                options: ['sich fürchten vor + Dativ', 'sich fürchten über + Akkusativ', 'sich fürchten für + Dativ', 'sich fürchten auf + Akkusativ'],
-                answer: 0,
+                options: ['sich fürchten über + Akkusativ', 'sich fürchten vor + Dativ', 'sich fürchten für + Dativ', 'sich fürchten auf + Akkusativ'],
+                answer: 1,
                 detail: 'sich fürchten vor + Dat. (害怕……)。例如：Er fürchtet sich vor Spinnen.'
             },
             {
@@ -375,8 +367,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'der Fuß / zu Fuß',
                 question: '表达“步行/徒步前往目的地”时，固定介词搭配是？',
-                options: ['mit dem Fuß gehen', 'zu Fuß gehen', 'auf dem Fuß gehen', 'per Fuß gehen'],
-                answer: 1,
+                options: ['mit dem Fuß gehen', 'auf dem Fuß gehen', 'per Fuß gehen', 'zu Fuß gehen'],
+                answer: 3,
                 detail: 'zu Fuß gehen (徒步，步行)。der Fuß, "-e (脚)。'
             },
             {
@@ -395,8 +387,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'füttern',
                 question: '给小动物或婴儿“喂食/喂养”使用的动词是？',
-                options: ['fressen', 'füttern', 'führen', 'fühlen'],
-                answer: 1,
+                options: ['fressen', 'führen', 'füttern', 'fühlen'],
+                answer: 2,
                 detail: 'füttern (hat gefüttert) - 给...喂食。区别：fressen 是动物自己吃；essen 是人吃。'
             },
             {
@@ -405,8 +397,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Gabel, -n',
                 question: '西餐基本餐具“刀 (das Messer)、叉、勺 (der Löffel)”中，“叉子”的德语是？',
-                options: ['die Gabel', 'das Glas', 'die Garage', 'der Gang'],
-                answer: 0,
+                options: ['das Glas', 'die Gabel', 'die Garage', 'der Gang'],
+                answer: 1,
                 detail: 'die Gabel, -n (叉子)。'
             },
             {
@@ -415,8 +407,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Galerie, -n',
                 question: '展示与销售艺术作品（画作、雕塑）的场所称为？',
-                options: ['die Galerie', 'die Garderobe', 'die Gaststätte', 'die Gegend'],
-                answer: 0,
+                options: ['die Garderobe', 'die Gaststätte', 'die Gegend', 'die Galerie'],
+                answer: 3,
                 detail: 'die Galerie, -n (画廊，艺术展厅)。'
             },
             {
@@ -425,8 +417,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'der Gang, "-e',
                 question: '名词 "der Gang" 含义丰富，在汽车驾驶和建筑物中分别指代什么？',
-                options: ['轮胎 / 门牌', '挡位 (如：den ersten Gang einlegen) / 走廊通道', '刹车 / 地理位置', '油门 / 屋顶'],
-                answer: 1,
+                options: ['挡位 (如：den ersten Gang einlegen) / 走廊通道', '轮胎 / 门牌', '刹车 / 地理位置', '油门 / 屋顶'],
+                answer: 0,
                 detail: 'der Gang, "-e (建筑物走廊；汽车挡位；步态)。'
             },
             {
@@ -435,8 +427,8 @@
                 badgeClass: 'bg-purple-50 text-purple-700 border-purple-200',
                 word: 'gar nicht / gar kein',
                 question: '强调“完全不、一点也不”时，德语中最正宗的口语固定表达是？',
-                options: ['ganz nicht', 'gar nicht', 'sehr nicht', 'komplett nicht'],
-                answer: 1,
+                options: ['ganz nicht', 'sehr nicht', 'gar nicht', 'komplett nicht'],
+                answer: 2,
                 detail: 'gar nicht (一点也不) / gar kein (完全没有)；ganz 意为“整体的，相当地”。'
             },
             {
@@ -444,9 +436,9 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Garage, -n',
-                question: '用于停放汽车的“车库”在德语中的名词及性别是？',
-                options: ['der Garage', 'die Garage', 'das Garage', 'die Garagung'],
-                answer: 1,
+                question: '用于停放汽车的“车库”在德语中的名词及词性是？',
+                options: ['der Garage', 'das Garage', 'die Garage', 'die Garagung'],
+                answer: 2,
                 detail: 'die Garage, -n (阴性名词，车库)。'
             },
             {
@@ -465,8 +457,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Garderobe, -n',
                 question: '在剧院、音乐厅等场所进入正厅前“寄存大衣外套的衣帽间”称为？',
-                options: ['die Galerie', 'die Garderobe', 'das Fundbüro', 'die Gaststätte'],
-                answer: 1,
+                options: ['die Galerie', 'das Fundbüro', 'die Garderobe', 'die Gaststätte'],
+                answer: 2,
                 detail: 'die Garderobe, -n (衣帽间，外套寄存处；服装)。'
             },
             {
@@ -475,8 +467,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Gas, -e',
                 question: '厨房烹饪或采暖使用的“燃气/气体”对应的名词是？',
-                options: ['das Gas', 'das Gebäck', 'das Gebiet', 'das Gefühl'],
-                answer: 0,
+                options: ['das Gebäck', 'das Gebiet', 'das Gas', 'das Gefühl'],
+                answer: 2,
                 detail: 'das Gas, -e (气体，燃气)。常用俗语：Gas geben (踩油门/加速，加快速度)。'
             },
             {
@@ -484,9 +476,9 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'der Gast, "-e',
-                question: '酒店住客、餐厅顾客或受邀到访的“客人”，复数形式为？',
-                options: ['die Gaste', 'die Gäste', 'die Gasten', 'die Gäster'],
-                answer: 1,
+                question: '名词 "der Gast" (客人) 的复数形式是？',
+                options: ['die Gaste', 'die Gasten', 'die Gäster', 'die Gäste'],
+                answer: 3,
                 detail: 'der Gast, "-e (客人)。变音复数：die Gäste.'
             },
             {
@@ -495,8 +487,8 @@
                 badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
                 word: 'das Gasthaus / die Gaststätte',
                 question: '表示“餐馆、客栈”时，德国习惯使用 "die Gaststätte"，而奥地利 (A) 及德南更普遍使用哪一个中性名词？',
-                options: ['das Gasthaus', 'die Kantine', 'das Fundbüro', 'die Garage'],
-                answer: 0,
+                options: ['die Kantine', 'das Gasthaus', 'das Fundbüro', 'die Garage'],
+                answer: 1,
                 detail: 'das Gasthaus, "-er 在奥地利 (A) 和巴伐利亚广泛使用；德国全国通用 die Gaststätte, -n。'
             },
             {
@@ -505,8 +497,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Gebäude, -',
                 question: '关于中性名词 "das Gebäude" (建筑物) 的复数形式，正确的选项是？',
-                options: ['die Gebäuden', 'die Gebäude', 'die Gebäuder', 'die Gebäudes'],
-                answer: 1,
+                options: ['die Gebäuden', 'die Gebäuder', 'die Gebäude', 'die Gebäudes'],
+                answer: 2,
                 detail: 'das Gebäude, - (建筑物)。单复数同形：ein Gebäude -> zwei Gebäude。'
             },
             {
@@ -526,12 +518,12 @@
                 word: 'das Gebäck',
                 question: '德语中 "das Gebäck" 指代烘焙制作的糕点饼干，关于其语法属性说明正确的是？',
                 options: [
-                    '属于不可数集合名词，一般无复数形式',
                     '复数形式是 die Gebäcke',
                     '是阳性名词 der Gebäck',
+                    '属于不可数集合名词，一般无复数形式',
                     '专指新鲜水果'
                 ],
-                answer: 0,
+                answer: 2,
                 detail: 'das Gebäck (烘焙糕点/饼干) 是集合名词 (Sammelbezeichnung)，无复数形式。'
             },
             {
@@ -540,8 +532,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Gebiet, -e',
                 question: '表达“自然保护区”或学术中的“研究领域”时，德语名词是？',
-                options: ['das Gebäude', 'das Gebiet', 'das Gebirge', 'das Gebäck'],
-                answer: 1,
+                options: ['das Gebäude', 'das Gebirge', 'das Gebäck', 'das Gebiet'],
+                answer: 3,
                 detail: 'das Gebiet, -e (区域，领域)。例如：ein Naturschutzgebiet, auf dem Gebiet der Medizin.'
             },
             {
@@ -550,8 +542,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Gebirge, -',
                 question: '词汇辨析：“单座山”是 der Berg，而“群山/山脉（如阿尔卑斯山）”的集合名词是？',
-                options: ['das Gebiet', 'das Gebirge', 'das Gebäude', 'das Gebäck'],
-                answer: 1,
+                options: ['das Gebirge', 'das Gebiet', 'das Gebäude', 'das Gebäck'],
+                answer: 0,
                 detail: 'das Gebirge, - (山脉，群山)。例如：in die Alpen fahren -> ins Gebirge fahren.'
             },
             {
@@ -560,8 +552,8 @@
                 badgeClass: 'bg-purple-50 text-purple-700 border-purple-200',
                 word: 'geboren werden',
                 question: '表达“我出生于 1998 年”，在德语中最规范的被动语态完成时表达是？',
-                options: ['Ich habe 1998 geboren.', 'Ich bin 1998 geboren worden.', 'Ich werde 1998 geboren.', 'Ich war 1998 geboren.'],
-                answer: 1,
+                options: ['Ich habe 1998 geboren.', 'Ich werde 1998 geboren.', 'Ich bin 1998 geboren worden.', 'Ich war 1998 geboren.'],
+                answer: 2,
                 detail: 'geboren werden 属于被动语态。完成时形式：ist geboren worden (口语中常简略为 ist geboren)。'
             },
             {
@@ -570,8 +562,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Gebrauchsanweisung, -en',
                 question: '购买新电器后，指导用户如何正确安装和使用的“说明书”称为？',
-                options: ['die Gebrauchsanweisung', 'die Garantierechnung', 'die Gebührenordnung', 'die Geburtsurkunde'],
-                answer: 0,
+                options: ['die Garantierechnung', 'die Gebrauchsanweisung', 'die Gebührenordnung', 'die Geburtsurkunde'],
+                answer: 1,
                 detail: 'die Gebrauchsanweisung, -en (使用说明书)。由 gebrauchen (使用) + Anweisung (指南/指示) 构成。'
             },
             {
@@ -590,8 +582,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Geburt, -en',
                 question: '表达“从出生起” (seit der ...) 的正确名词是？',
-                options: ['Geburt', 'Geburtstag', 'Gebäude', 'Geduld'],
-                answer: 0,
+                options: ['Geburtstag', 'Geburt', 'Gebäude', 'Geduld'],
+                answer: 1,
                 detail: 'die Geburt, -en (出生，诞生)；der Geburtstag, -e (生日)。'
             },
             {
@@ -600,8 +592,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Gedicht, -e',
                 question: '歌德或海涅创作的“诗歌”作品，在德语中对应的名词是？',
-                options: ['das Gedicht', 'die Geschichte', 'das Gesicht', 'das Gericht'],
-                answer: 0,
+                options: ['die Geschichte', 'das Gesicht', 'das Gericht', 'das Gedicht'],
+                answer: 3,
                 detail: 'das Gedicht, -e (诗歌)；das Gesicht, -er (脸)；das Gericht, -e (菜肴/法院)；die Geschichte, -n (历史/故事)。'
             },
             {
@@ -610,12 +602,11 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Geduld',
                 question: '表达式 "Geduld haben" 中，抽象名词 "die Geduld" 的含义及相应形容词是？',
-                options: ['勇气 / mutig', '耐心 / geduldig', '记忆力 / klug', '热情 / begeistert'],
-                answer: 1,
+                options: ['勇气 / mutig', '记忆力 / klug', '耐心 / geduldig', '热情 / begeistert'],
+                answer: 2,
                 detail: 'die Geduld (耐心)。形容词：geduldig (有耐心的)。常用：Vielen Dank für Ihre Geduld!'
             }
         ];
-
         // Native Audio Synthesizer
         let audioCtx = null;
         function getAudioContext() {
@@ -627,7 +618,6 @@
             }
             return audioCtx;
         }
-
         function playSound(isCorrect) {
             try {
                 const ctx = getAudioContext();
@@ -657,7 +647,6 @@
                 console.error("Audio error:", e);
             }
         }
-
         // Fisher-Yates Shuffle
         function shuffleArray(array) {
             const arr = [...array];
@@ -667,32 +656,26 @@
             }
             return arr;
         }
-
         // App State
         let vocabularyData = [];
         let currentIndex = 0;
         let userAnswers = [];
         let showExplanation = false;
-
         document.addEventListener('DOMContentLoaded', () => {
             resetPractice();
         });
-
         function resetPractice() {
             vocabularyData = shuffleArray(rawVocabularyData);
             currentIndex = 0;
             userAnswers = new Array(vocabularyData.length).fill(null);
             showExplanation = false;
-
             document.getElementById('quiz-container').classList.remove('hidden');
             document.getElementById('bottom-nav').classList.remove('hidden');
             document.getElementById('result-container').classList.add('hidden');
             renderQuestion();
         }
-
         function renderQuestion() {
             const currentData = vocabularyData[currentIndex];
-
             // Render Badges and Titles
             document.getElementById('word-badge').className = `px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase border ${currentData.badgeClass}`;
             document.getElementById('word-badge').textContent = currentData.type;
@@ -702,7 +685,6 @@
             const selectedAnswer = userAnswers[currentIndex];
             const isAnswered = selectedAnswer !== null;
             const targetWordEl = document.getElementById('target-word');
-
             if (isAnswered || showExplanation) {
                 targetWordEl.textContent = currentData.word;
                 targetWordEl.className = "font-german text-3xl sm:text-4xl font-bold text-teal-700 tracking-tight mb-3 transition-all";
@@ -710,19 +692,15 @@
                 targetWordEl.textContent = "？ ？ ？";
                 targetWordEl.className = "font-german text-3xl sm:text-4xl font-bold text-slate-300 tracking-widest mb-3 transition-all";
             }
-
             document.getElementById('question-prompt').textContent = currentData.question;
-
             // Progress Bar
             const progressPercent = Math.round(((currentIndex + 1) / vocabularyData.length) * 100);
             document.getElementById('progress-bar').style.width = `${progressPercent}%`;
             document.getElementById('progress-text').textContent = `进度：${currentIndex + 1} / ${vocabularyData.length}`;
             document.getElementById('progress-percent').textContent = `${progressPercent}%`;
-
             // Options
             const optionsGrid = document.getElementById('options-grid');
             optionsGrid.innerHTML = '';
-
             currentData.options.forEach((optText, optIndex) => {
                 const btn = document.createElement('button');
                 btn.className = getOptionStyle(optIndex, selectedAnswer, currentData.answer);
@@ -740,18 +718,15 @@
                 btn.onclick = () => selectOption(optIndex);
                 optionsGrid.appendChild(btn);
             });
-
             // Explanation
             const explainCard = document.getElementById('explanation-card');
             const explainText = document.getElementById('explanation-text');
             explainText.textContent = currentData.detail;
-
             if (showExplanation || isAnswered) {
                 explainCard.classList.remove('hidden');
             } else {
                 explainCard.classList.add('hidden');
             }
-
             // Controls
             document.getElementById('btn-prev').disabled = currentIndex === 0;
             const btnNext = document.getElementById('btn-next');
@@ -763,7 +738,6 @@
                 btnNext.className = 'px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-md transition-all';
             }
         }
-
         function getOptionStyle(index, selected, correct) {
             const base = "w-full text-left p-4 sm:p-4.5 rounded-2xl border text-sm sm:text-base transition-all duration-200 flex items-center justify-between ";
             if (selected === null) {
@@ -777,7 +751,6 @@
             }
             return base + "border-slate-100 bg-slate-50/50 text-slate-400 opacity-50";
         }
-
         function getOptionMarkerStyle(index, selected, correct) {
             if (selected === null) {
                 return "border-slate-200 text-slate-500 bg-slate-50";
@@ -790,7 +763,6 @@
             }
             return "border-slate-200 text-slate-300 bg-slate-100";
         }
-
         function getOptionIcon(index, selected, correct) {
             if (selected === null) return '';
             if (index === correct) {
@@ -801,7 +773,6 @@
             }
             return '';
         }
-
         function selectOption(index) {
             if (userAnswers[currentIndex] === null) {
                 const isCorrect = index === vocabularyData[currentIndex].answer;
@@ -811,12 +782,10 @@
             showExplanation = true;
             renderQuestion();
         }
-
         function toggleExplanation() {
             showExplanation = !showExplanation;
             renderQuestion();
         }
-
         function nextQuestion() {
             if (currentIndex < vocabularyData.length - 1) {
                 currentIndex++;
@@ -826,7 +795,6 @@
                 showResults();
             }
         }
-
         function prevQuestion() {
             if (currentIndex > 0) {
                 currentIndex--;
@@ -834,16 +802,13 @@
                 renderQuestion();
             }
         }
-
         function showResults() {
             document.getElementById('quiz-container').classList.add('hidden');
             document.getElementById('bottom-nav').classList.add('hidden');
             document.getElementById('result-container').classList.remove('hidden');
-
             let mistakeCount = 0;
             const mistakesList = document.getElementById('mistakes-list');
             mistakesList.innerHTML = '';
-
             userAnswers.forEach((ans, idx) => {
                 const item = vocabularyData[idx];
                 if (ans !== item.answer) {
@@ -857,10 +822,8 @@
                     mistakesList.appendChild(mistakeDiv);
                 }
             });
-
             document.getElementById('stat-total').textContent = vocabularyData.length;
             document.getElementById('stat-mistakes').textContent = mistakeCount;
-
             const mistakesSection = document.getElementById('mistakes-section');
             if (mistakeCount > 0) {
                 mistakesSection.classList.remove('hidden');
