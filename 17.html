@@ -50,7 +50,6 @@
             </div>
         </div>
     </header>
-
     <!-- Main Section -->
     <main class="flex-1 max-w-3xl w-full mx-auto p-4 sm:p-6 flex flex-col justify-center">
         <!-- QUIZ CONTAINER -->
@@ -70,16 +69,14 @@
                         gelten
                     </h2>
                     <p id="question-prompt" class="text-sm sm:text-base font-medium text-slate-600 leading-relaxed">
-                        “Dieser Ausweis ______ noch bis Ende des Jahres.” 不规则动词 gelten 在单数第三人称 (er/sie/es) 现时态变位是？
+                        “Dieser Ausweis ______ noch bis Ende des Jahres.” 请选择最恰当的填空项：
                     </p>
                 </div>
             </div>
-
             <!-- Options Grid -->
             <div id="options-grid" class="grid grid-cols-1 gap-3.5">
                 <!-- Dynamic options -->
             </div>
-
             <!-- Explanation Card -->
             <div id="explanation-card" class="hidden bg-slate-900 text-slate-100 rounded-2xl p-5 sm:p-6 shadow-lg border border-slate-800 text-sm leading-relaxed space-y-2">
                 <div class="font-semibold text-teal-400 flex items-center gap-2 text-xs sm:text-sm uppercase tracking-wider">
@@ -89,7 +86,6 @@
                 <div id="explanation-text" class="text-slate-300 text-xs sm:text-sm font-normal"></div>
             </div>
         </div>
-
         <!-- RESULT CONTAINER -->
         <div id="result-container" class="hidden bg-white/90 backdrop-blur-sm rounded-3xl p-8 sm:p-10 border border-slate-200/70 shadow-xl shadow-slate-200/50 text-center space-y-8">
             <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-900 text-teal-400 shadow-lg shadow-slate-900/10 mb-2">
@@ -99,7 +95,6 @@
                 <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2 tracking-tight">特训完成</h2>
                 <p class="text-sm text-slate-500 font-medium">已完成所有词汇测试，积累词汇量是语言通关的基石</p>
             </div>
-
             <div class="max-w-md mx-auto py-3 px-6 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-around">
                 <div>
                     <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">本次练习题目</div>
@@ -111,7 +106,6 @@
                     <div id="stat-mistakes" class="text-2xl font-extrabold text-slate-900">0</div>
                 </div>
             </div>
-
             <!-- Incorrect Words Review List -->
             <div id="mistakes-section" class="text-left hidden space-y-4 pt-2">
                 <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
@@ -120,7 +114,6 @@
                 </h3>
                 <div id="mistakes-list" class="space-y-2.5 max-h-64 overflow-y-auto pr-1"></div>
             </div>
-
             <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-6 border-t border-slate-100">
                 <button onclick="resetPractice()" class="w-full sm:w-auto px-8 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm transition-all shadow-md hover:shadow-lg">
                     再练一次
@@ -131,7 +124,6 @@
             </div>
         </div>
     </main>
-
     <!-- Bottom Actions Nav -->
     <footer id="bottom-nav" class="sticky bottom-0 z-30 custom-glass border-t border-slate-200/60 px-4 py-3.5 sm:px-8">
         <div class="max-w-3xl mx-auto flex items-center justify-between gap-3">
@@ -147,7 +139,6 @@
             </button>
         </div>
     </footer>
-
     <script>
         const rawVocabularyData = [
             // --- Bild 5 Words ---
@@ -156,9 +147,9 @@
                 type: 'Verb',
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'gelten',
-                question: '“Dieser Ausweis ______ noch bis Ende des Jahres.” 不规则动词 gelten 在单数第三人称 (er/sie/es) 现时态变位是？',
-                options: ['gilt', 'gelter', 'gelte', 'golt'],
-                answer: 0,
+                question: '“Dieser Ausweis ______ noch bis Ende des Jahres.” 请选择最恰当的填空项：',
+                options: ['gelter', 'gelte', 'gilt', 'golt'],
+                answer: 2,
                 detail: 'gelten (gilt, galt, hat gegolten) 表示“有效，适用”。注意主语为单数第三人称时元音发生 e -> i 的变化。'
             },
             {
@@ -167,8 +158,8 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'gemeinsam',
                 question: '“Wir haben dieses Projekt ______ erarbeitet.” 表达“共同地、一起”的词汇是？',
-                options: ['einsam', 'gemeinsam', 'einzeln', 'selbstständig'],
-                answer: 1,
+                options: ['einsam', 'einzeln', 'gemeinsam', 'selbstständig'],
+                answer: 2,
                 detail: 'gemeinsam 意为“共同的，一起的”；einsam 则表示“孤独的”。'
             },
             {
@@ -176,7 +167,7 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Gemeinschaft',
-                question: '名词 "die Gemeinschaft" 在社会与日常语境中的核心含义是？',
+                question: '词组 "in einer Gemeinschaft leben" 中 "die Gemeinschaft" 的核心含义是？',
                 options: ['共同体，社区，社群', '独立个体', '政府机构', '企业公司'],
                 answer: 0,
                 detail: 'die Gemeinschaft, -en 意为“共同体，集体，社区”。'
@@ -186,9 +177,9 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Gemüse',
-                question: '“Frisches ______ ist gesund.” 关于名词 "das Gemüse" (蔬菜) 的语法特点，正确的是？',
-                options: ['通常作为集合名词使用，无常用复数', '复数形式是 die Gemüse', '冠词是 der', '复数形式是 die Gemüser'],
-                answer: 0,
+                question: '“Frisches ______ ist gesund.” 下列关于 "das Gemüse" 的用法表达正确的是？',
+                options: ['复数形式通常是 die Gemüse', '通常作为集合词使用，无常用复数', '冠词是 der', '复数形式是 die Gemüser'],
+                answer: 1,
                 detail: 'das Gemüse 通常作为不可数集合名词使用。若需表达具体某“种”蔬菜，常用“Gemüsesorte”。'
             },
             {
@@ -196,9 +187,9 @@
                 type: 'Adjektiv',
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'gemütlich',
-                question: '形容词 "gemütlich" 意为“舒适的/温馨的”，其反义词是？',
-                options: ['ungemütlich', 'bequem', 'ruhig', 'freundlich'],
-                answer: 0,
+                question: '“Das Zimmer ist sehr gemütlich.” 句中 "gemütlich" 的反义表达是？',
+                options: ['bequem', 'ruhig', 'freundlich', 'ungemütlich'],
+                answer: 3,
                 detail: 'gemütlich 表示“温馨舒适的”；否定前缀 un- 构成反义词 ungemütlich。'
             },
             {
@@ -207,8 +198,8 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'genau',
                 question: '“Kannst du mir ______ sagen, wann der Zug ankommt?” 副词 "genau" 在此句中的含义是？',
-                options: ['准确地，确切地', '大概地', '肯定地', '迅速地'],
-                answer: 0,
+                options: ['大概地', '准确地，确切地', '肯定地', '迅速地'],
+                answer: 1,
                 detail: 'genau 表示“准确的，确切的”。口语中单独使用 “Genau!” 常表示“完全正确/正是如此”。'
             },
             {
@@ -227,8 +218,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'genehmigen',
                 question: '“Der Chef muss den Urlaubsantrag noch ______.” 动词 "genehmigen" 在工作语境中的意思是？',
-                options: ['批准，核准', '拒绝', '提交', '撤回'],
-                answer: 0,
+                options: ['拒绝', '提交', '批准，核准', '撤回'],
+                answer: 2,
                 detail: 'genehmigen (genehmigt, genehmigte, hat genehmigt) - 批准，准许。名词形式：die Genehmigung (批准/许可证)。'
             },
             {
@@ -236,9 +227,9 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Generation',
-                question: '名词 "die Generation" (世代/一代人) 的复数形式是？',
-                options: ['die Generationen', 'die Generation', 'die Generationer', 'die Generationes'],
-                answer: 0,
+                question: '“Zwei ______ wohnen unter einem Dach.” 请选择最恰当的词形补全句子：',
+                options: ['Generation', 'Generationer', 'Generationes', 'Generationen'],
+                answer: 3,
                 detail: 'die Generation, -en。外来词后缀 -tion 的名词均为阴性 (die)，复数形式统一加 -en。'
             },
             {
@@ -246,8 +237,8 @@
                 type: 'Verb',
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'genießen',
-                question: '“Wir haben das schöne Wetter im Park ______.” 不规则动词 genießen (享受) 的过去分词 (Partizip II) 是？',
-                options: ['hat genossen', 'hat genießt', 'hat gegossen', 'hat genascht'],
+                question: '“Wir haben das schöne Wetter im Park ______.” 请选择正确的动词形式：',
+                options: ['genossen', 'genießt', 'gegossen', 'genascht'],
                 answer: 0,
                 detail: 'genießen (genießt, genoss, hat genossen) - 享受，欣赏。注意与 gießen (hat gegossen, 浇水) 区分开。'
             },
@@ -257,8 +248,8 @@
                 badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
                 word: 'genug',
                 question: '关于 "genug" (足够的) 在句中的用法与位置特点，下列说法正确的是？',
-                options: ['既可置于名词前，也可置于名词后且词尾不发生词形变化', '必须像普通形容词一样加上词尾变化', '只能置于句首', '只能修饰动词'],
-                answer: 0,
+                options: ['必须像普通形容词一样加上词尾变化', '既可置于名词前，也可置于名词后且词尾不发生词形变化', '只能置于句首', '只能修饰动词'],
+                answer: 1,
                 detail: 'genug 为无词尾变化的词：genug Geld = Geld genug (足够的钱)。'
             },
             {
@@ -267,8 +258,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'genügen',
                 question: '“Ein einfaches \'Danke\' ______ mir schon.” 动词 "genügen" (足够/满足) 的同义词是？',
-                options: ['reichen', 'brauchen', 'fehlen', 'passen'],
-                answer: 0,
+                options: ['brauchen', 'fehlen', 'reichen', 'passen'],
+                answer: 2,
                 detail: 'genügen = reichen (足够)。例：Das genügt. / Das reicht. (够了)。'
             },
             {
@@ -276,9 +267,9 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Gepäck',
-                question: '“Wo kann ich mein ______ abgeben?” 关于名词 "das Gepäck" (行李) 的语法特征，正确的是？',
-                options: ['通常为不可数集合名词', '复数形式是 die Gepäcke', '复数形式是 die Gepäcker', '冠词是 der'],
-                answer: 0,
+                question: '“Wo kann ich mein ______ abgeben?” 下列关于 "das Gepäck" 的说法正确的是？',
+                options: ['复数形式是 die Gepäcke', '通常为不可数集合名词', '复数形式是 die Gepäcker', '冠词是 der'],
+                answer: 1,
                 detail: 'das Gepäck (行李) 为不可数名词。指单件行李时常用 das Gepäckstück, -e。'
             },
             {
@@ -287,8 +278,8 @@
                 badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
                 word: 'gerade',
                 question: '“Ich kann jetzt nicht sprechen, ich esse ______.” 时间副词 "gerade" 在此句中的含义是？',
-                options: ['正，正在', '刚才', '笔直地', '偶然'],
-                answer: 0,
+                options: ['刚才', '笔直地', '正，正在', '偶然'],
+                answer: 2,
                 detail: 'gerade 作时间副词表“正在进行” (ich esse gerade)；作形容词时可表示“直的/偶数的”。'
             },
             {
@@ -297,8 +288,8 @@
                 badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
                 word: 'geradeaus',
                 question: '问路与指路常用副词 "geradeaus" 意思是？',
-                options: ['一直向前', '向左转', '向右转', '原路返回'],
-                answer: 0,
+                options: ['向左转', '一直向前', '向右转', '原路返回'],
+                answer: 1,
                 detail: 'Gehen Sie geradeaus! (请一直往前走！)'
             },
             {
@@ -306,9 +297,9 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Gerät',
-                question: '“Elektrische ______ verbrauchen viel Strom.” 名词 "das Gerät" (器具/设备) 的复数形式是？',
-                options: ['die Geräte', 'die Geräter', 'die Geräten', 'die Geräti'],
-                answer: 0,
+                question: '“Elektrische ______ verbrauchen viel Strom.” 请选择正确形式补全句子：',
+                options: ['Geräti', 'Geräter', 'Geräten', 'Geräte'],
+                answer: 3,
                 detail: 'das Gerät, -e (设备，器具)。复数形式为 die Geräte。'
             },
             {
@@ -321,16 +312,15 @@
                 answer: 0,
                 detail: 'gerecht -> die Gerechtigkeit (正义，公正)。反义词：ungerecht.'
             },
-
             // --- Bild 6 Words ---
             {
                 id: 18,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Gericht',
-                question: '名词 "das Gericht" 在德语中具备哪两个完全不同的核心含义？',
-                options: ['菜肴 / 法院', '法律 / 警察局', '餐具 / 医院', '菜单 / 办公室'],
-                answer: 0,
+                question: '“das Gericht” 在德语中可以同时指代哪两组事物？',
+                options: ['法律 / 警察局', '菜肴 / 法院', '餐具 / 医院', '菜单 / 办公室'],
+                answer: 1,
                 detail: 'das Gericht, -e 可以指“一道菜肴”(ein leckeres Gericht)，也可以指法律机构“法院”(vor Gericht gehen)。'
             },
             {
@@ -339,8 +329,8 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'gering',
                 question: '“Das Risiko ist sehr ______.” 形容词 "gering" 表达的含义是？',
-                options: ['微小的，少量的', '巨大的', '危险的', '复杂的'],
-                answer: 0,
+                options: ['巨大的', '危险的', '微小的，少量的', '复杂的'],
+                answer: 2,
                 detail: 'gering 意为“少的，微小的，低的”。如：geringe Chancen (微小的机会)。'
             },
             {
@@ -349,8 +339,8 @@
                 badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
                 word: 'gern / gerne',
                 question: '副词 "gern / gerne" 在句子中修饰动词时，表达什么意图？',
-                options: ['喜欢做某事', '不得不做某事', '正在做某事', '拒绝做某事'],
-                answer: 0,
+                options: ['不得不做某事', '正在做某事', '拒绝做某事', '喜欢做某事'],
+                answer: 3,
                 detail: 'gern/gerne + 动词 表示“喜欢做某事”。比较级为 lieber，最高级为 am liebsten。'
             },
             {
@@ -368,9 +358,9 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Geschäft',
-                question: '“Am Sonntag haben die ______ in Deutschland geschlossen.” 名词 "das Geschäft" 的复数形式是？',
-                options: ['die Geschäfte', 'die Geschäfter', 'die Geschäft', 'die Geschäften'],
-                answer: 0,
+                question: '“Am Sonntag haben die ______ in Deutschland geschlossen.” 请选择正确形式补全句子：',
+                options: ['Geschäfter', 'Geschäfte', 'Geschäft', 'Geschäften'],
+                answer: 1,
                 detail: 'das Geschäft, -e (商店，生意)。复数形式为 die Geschäfte。'
             },
             {
@@ -378,9 +368,9 @@
                 type: 'Verb',
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'geschehen',
-                question: '“Was ist gestern Abend ______?” 动词 geschehen (发生) 的完成时助动词与分词搭配是？',
-                options: ['ist geschehen', 'hat geschehen', 'ist geschieht', 'hat geschieht'],
-                answer: 0,
+                question: '“Was ist gestern Abend ______?” 动词 geschehen (发生) 的完成时正确构成是？',
+                options: ['hat geschehen', 'ist geschieht', 'ist geschehen', 'hat geschieht'],
+                answer: 2,
                 detail: 'geschehen (geschieht, geschah, ist geschehen)。表发生变化的动词完成时搭配助动词 sein。'
             },
             {
@@ -388,9 +378,9 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Geschenk',
-                question: '“Vielen Dank für das schöne ______!” 名词 "das Geschenk" (礼物) 的复数形式是？',
-                options: ['die Geschenke', 'die Geschenker', 'die Geschenken', 'die Geschenk'],
-                answer: 0,
+                question: '“Vielen Dank für die schönen ______!” 请选择正确形式补全句子：',
+                options: ['Geschenker', 'Geschenken', 'Geschenk', 'Geschenke'],
+                answer: 3,
                 detail: 'das Geschenk, -e (礼物)。复数形式为 die Geschenke。'
             },
             {
@@ -398,7 +388,7 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Geschichte',
-                question: '名词 "die Geschichte" 在德语中常涵盖的两个核心含义是？',
+                question: '“die Geschichte” 在德语中常涵盖的两个核心含义是？',
                 options: ['历史 / 故事', '小说 / 新闻', '童话 / 绘本', '传记 / 传说'],
                 answer: 0,
                 detail: 'die Geschichte, -n 既可指“历史学科/历史事件”，也可指“故事”。'
@@ -408,9 +398,9 @@
                 type: 'Adjektiv',
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'geschieden',
-                question: '“Meine Eltern sind seit zwei Jahren ______.” 形容词/状态 "geschieden" 表达的婚姻状态是？',
-                options: ['离异的，已离婚的', '未婚的', '已婚的', '丧偶的'],
-                answer: 0,
+                question: '“Meine Eltern sind seit zwei Jahren ______.” 形容词/状态 "geschieden" 表达的状态是？',
+                options: ['未婚的', '离异的，已离婚的', '已婚的', '丧偶的'],
+                answer: 1,
                 detail: 'geschieden 来自动词 scheiden (hat geschieden)，形容词表示“离婚的/离异的”。'
             },
             {
@@ -418,9 +408,9 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Geschirr',
-                question: '“Nach dem Essen muss man das ______ spülen.” 名词 "das Geschirr" (餐具) 搭配的固定洗涤动词是？',
-                options: ['Geschirr spülen', 'Geschirr kochen', 'Geschirr putzen', 'Geschirr machen'],
-                answer: 0,
+                question: '“Nach dem Essen muss man das ______ spülen.” 句子中的 "spülen" 与 "Geschirr" 结合表示？',
+                options: ['做饭', '清洗餐具 / 洗碗', '整理书桌', '打扫打扫房间'],
+                answer: 1,
                 detail: 'das Geschirr (餐具，不可数)。Geschirr spülen 表示“洗碗/清洗餐具”。'
             },
             {
@@ -428,9 +418,9 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Geschlecht',
-                question: '“Auf dem Formular muss man das ______ (männlich/weiblich) angeben.” 名词 "das Geschlecht" 的复数形式是？',
-                options: ['die Geschlechter', 'die Geschlechte', 'die Geschlechten', 'die Geschlecht'],
-                answer: 0,
+                question: '“Auf dem Formular muss man beide ______ berücksichtigen.” 请选择合适的形式补全：',
+                options: ['Geschlechte', 'Geschlechten', 'Geschlechter', 'Geschlecht'],
+                answer: 2,
                 detail: 'das Geschlecht, -er (性别)。复数形式为 die Geschlechter。'
             },
             {
@@ -439,8 +429,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'der Geschmack',
                 question: '德语俗语 “Über ______ lässt sich nicht streiten.” 中的 "der Geschmack" 意思是？',
-                options: ['品味，口味', '性格', '容貌', '兴趣'],
-                answer: 0,
+                options: ['性格', '容貌', '兴趣', '品味，口味'],
+                answer: 3,
                 detail: 'der Geschmack (品味/口味)。俗语意为“百人百味/人的兴趣品味各有不同”。'
             },
             {
@@ -458,9 +448,9 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Geschwindigkeitsbeschränkung',
-                question: '“Auf dieser Straße gilt eine ______ von 50 km/h.” 复合名词 "die Geschwindigkeitsbeschränkung" 意思是？',
-                options: ['限速，速度限制', '最低车速', '超速罚单', '测速雷达'],
-                answer: 0,
+                question: '“Auf dieser Straße gilt eine ______ von 50 km/h.” 复合词 "die Geschwindigkeitsbeschränkung" 意思是？',
+                options: ['最低车速', '限速，速度限制', '超速罚单', '测速雷达'],
+                answer: 1,
                 detail: 'die Geschwindigkeitsbeschränkung, -en (速度限制/限速)。等于 Tempolimit.'
             },
             {
@@ -468,9 +458,9 @@
                 type: 'Substantiv (Pl.)',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Geschwister',
-                question: '“Hast du ______? - Ja, einen Bruder.” 关于名词 "die Geschwister" 的语法特征，正确的是？',
-                options: ['通常作为复数名词使用，统指兄弟姐妹', '单数形式是 das Geschwister', '阴性单数形式是 die Geschwister', '阳性单数形式是 der Geschwister'],
-                answer: 0,
+                question: '“Hast du ______? - Ja, einen Bruder.” 关于 "die Geschwister" 的特征描述正确的是？',
+                options: ['单数形式是 das Geschwister', '通常作为复数使用，统指兄弟姐妹', '阴性单数形式是 die Geschwister', '阳性单数形式是 der Geschwister'],
+                answer: 1,
                 detail: 'die Geschwister (Pl.) 是复数名词，泛指兄弟姐妹。'
             },
             {
@@ -478,9 +468,9 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Gesellschaft',
-                question: '名词 "die Gesellschaft" (社会/公司) 的复数形式是？',
-                options: ['die Gesellschaften', 'die Gesellschaft', 'die Gesellschafter', 'die Gesellschaftes'],
-                answer: 0,
+                question: '“In unserer ______ gibt es viele Veränderungen.” 句子中的 "Gesellschaften" 为其复数形式，其原形是？',
+                options: ['die Gesellschafter', 'die Gesellschaftes', 'die Gesellschaft', 'die Gesellschaften'],
+                answer: 2,
                 detail: 'die Gesellschaft, -en (社会，协会，有限公司)。复数形式为 die Gesellschaften。'
             },
             {
@@ -488,9 +478,9 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Gesetz',
-                question: '“Alle Bürger müssen sich an das ______ halten.” 名词 "das Gesetz" (法律) 的复数形式是？',
-                options: ['die Gesetze', 'die Gesetzer', 'die Gesetzen', 'die Gesetz'],
-                answer: 0,
+                question: '“Alle Bürger müssen sich an die ______ halten.” 请选择正确形式补全句子：',
+                options: ['Gesetzer', 'Gesetze', 'Gesetzen', 'Gesetz'],
+                answer: 1,
                 detail: 'das Gesetz, -e (法律，法规)。复数形式为 die Gesetze。'
             },
             {
@@ -498,12 +488,11 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Gesicht',
-                question: '“Sie hat ein freundliches ______.” 名词 "das Gesicht" (脸/面孔) 的复数形式是？',
-                options: ['die Gesichter', 'die Gesichte', 'die Gesichtern', 'die Gesichten'],
-                answer: 0,
+                question: '“In der Menge sah ich viele bekannte ______.” 请选择正确形式补全句子：',
+                options: ['Gesichten', 'Gesichte', 'Gesichtern', 'Gesichter'],
+                answer: 3,
                 detail: 'das Gesicht, -er (脸，面孔)。复数形式为 die Gesichter。'
             },
-
             // --- Bild 7 Words ---
             {
                 id: 36,
@@ -520,9 +509,9 @@
                 type: 'Adjektiv',
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'geeignet',
-                question: '“Dieses Buch ist hervorragend ______ für Anfänger.” 形容词 "geeignet" (适合的) 后面固定搭配什么介词？',
-                options: ['für (+ Akk.)', 'zu (+ Dat.)', 'mit (+ Dat.)', 'auf (+ Akk.)'],
-                answer: 0,
+                question: '“Dieses Buch ist hervorragend ______ Anfänger geeignet.” 括号内缺失的固定搭配介词是？',
+                options: ['zu', 'für', 'mit', 'auf'],
+                answer: 1,
                 detail: 'geeignet sein für + Akk. (适合于……)。也可搭配 zu + Dat. (如 geeignet zum Lernen)。'
             },
             {
@@ -530,9 +519,9 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Gefahr',
-                question: '名词 "die Gefahr" (危险) 的复数形式是？',
-                options: ['die Gefahren', 'die Gefähre', 'die Gefahre', 'die Gefahrens'],
-                answer: 0,
+                question: '“In den Bergen lauern viele ______.” 请选择合适的形式补全：',
+                options: ['Gefähre', 'Gefahre', 'Gefahren', 'Gefahrens'],
+                answer: 2,
                 detail: 'die Gefahr, -en (危险)。复数形式为 die Gefahren。'
             },
             {
@@ -541,8 +530,8 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'gefährlich',
                 question: '形容词 "gefährlich" (危险的) 的反义词是哪个单词？',
-                options: ['sicher', 'schwer', 'stark', 'ruhig'],
-                answer: 0,
+                options: ['schwer', 'stark', 'ruhig', 'sicher'],
+                answer: 3,
                 detail: 'gefährlich (危险的) <-> sicher (安全的)。'
             },
             {
@@ -550,7 +539,7 @@
                 type: 'Verb',
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'gefallen',
-                question: '“Das neue Auto ______ mir sehr gut.” 动词 "gefallen" (喜欢/讨人喜欢) 的句法规则是？',
+                question: '“Das neue Auto ______ mir sehr gut.” 动词 "gefallen" 的基本句法规则是？',
                 options: ['物/事作主语，人作第三格 (Dativ)', '人作主语，物作第四格 (Akkusativ)', '必须搭配介词 an', '主语必须是第四格'],
                 answer: 0,
                 detail: 'etwas (Nom.) gefällt jemandem (Dat.)。注意：与 English "like" 结构相反，德语中让人喜欢的事物作主语。'
@@ -561,8 +550,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'sich etwas gefallen lassen',
                 question: '“Das würde ich mir nicht ______ lassen!” 短语 "sich etwas gefallen lassen" 意思是？',
-                options: ['忍受/容忍某事', '喜欢上某事', '让某人感到满意', '放弃某事'],
-                answer: 0,
+                options: ['喜欢上某事', '忍受/容忍某事', '让某人感到满意', '放弃某事'],
+                answer: 1,
                 detail: 'sich (Dat.) etwas gefallen lassen 表示“迁就/忍受/顺从某事”。'
             },
             {
@@ -570,9 +559,9 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Gefängnis',
-                question: '“Der Verbrecher muss für drei Jahre ins ______.” 名词 "das Gefängnis" (监狱) 的复数形式是？',
-                options: ['die Gefängnisse', 'die Gefängnis', 'die Gefängnisser', 'die Gefängnissen'],
-                answer: 0,
+                question: '“In dieser Stadt gibt es zwei ______.” 请选择正确形式补全句子：',
+                options: ['Gefängnis', 'Gefängnisser', 'Gefängnisse', 'Gefängnissen'],
+                answer: 2,
                 detail: 'das Gefängnis, -se (监狱)。以 -nis 结尾的中性名词复数通常双写 s 加 -e。'
             },
             {
@@ -580,9 +569,9 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Gefühl',
-                question: '“Ich habe das ______, dass es regnen wird.” 名词 "das Gefühl" (感觉/情感) 的复数形式是？',
-                options: ['die Gefühle', 'die Gefühler', 'die Gefühlen', 'die Gefühl'],
-                answer: 0,
+                question: '“Er hat seine ______ selten gezeigt.” 请选择正确形式补全句子：',
+                options: ['Gefühler', 'Gefühlen', 'Gefühl', 'Gefühle'],
+                answer: 3,
                 detail: 'das Gefühl, -e (感觉，情感)。复数形式为 die Gefühle。'
             },
             {
@@ -590,8 +579,8 @@
                 type: 'Präposition',
                 badgeClass: 'bg-purple-50 text-purple-700 border-purple-200',
                 word: 'gegen',
-                question: '介词 "gegen" (反对/预防/大约) 后接名词时，必须使用第几格？',
-                options: ['第四格 (Akkusativ)', '第三格 (Dativ)', '第二格 (Genitiv)', '第一格 (Nominativ)'],
+                question: '“Das Medikament hilft gegen ______ Schmerz.” 括号后应选择第四格形式：',
+                options: ['den', 'dem', 'des', 'der'],
                 answer: 0,
                 detail: 'gegen 属于支配第四格 (Akkusativ) 的介词：gegen den Schmerz (针对疼痛)。'
             },
@@ -601,8 +590,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'der Gegner',
                 question: '“Im Finale spielt unsere Mannschaft gegen einen starken ______.” 名词 "der Gegner" 意思是？',
-                options: ['对手，敌手', '队友', '教练', '裁判'],
-                answer: 0,
+                options: ['队友', '对手，敌手', '教练', '裁判'],
+                answer: 1,
                 detail: 'der Gegner, - (对手，敌人)。阴性形式为 die Gegnerin.'
             },
             {
@@ -610,9 +599,9 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Gegend',
-                question: '“Die ______ um den See ist wunderschön.” 名词 "die Gegend" (地区/地方) 的复数形式是？',
-                options: ['die Gegenden', 'die Gegende', 'die Gegender', 'die Gegend'],
-                answer: 0,
+                question: '“In welchen ______ Deutschlands hast du gewohnt?” 请选择合适的形式填空：',
+                options: ['Gegende', 'Gegenden', 'Gegender', 'Gegend'],
+                answer: 1,
                 detail: 'die Gegend, -en (地区，地带)。复数形式为 die Gegenden。'
             },
             {
@@ -621,8 +610,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'der Gegensatz',
                 question: '常用介词短语 “im Gegensatz zu (+ Dat.)” 表达的逻辑含义是？',
-                options: ['与……相比 / 与……相反', '在……的对面', '在……的条件下', '在……的帮助下'],
-                answer: 0,
+                options: ['在……的对面', '在……的条件下', '与……相比 / 与……相反', '在……的帮助下'],
+                answer: 2,
                 detail: 'der Gegensatz, "-e (对比/相反)。im Gegensatz zu ... 意为“与……相比/相反”。'
             },
             {
@@ -630,8 +619,8 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'der Gegenstand',
-                question: '“Bitte lassen Sie keine persönlichen ______ im Zug liegen.” 名词 "der Gegenstand" 的复数形式是？',
-                options: ['die Gegenstände', 'die Gegenstande', 'die Gegenständen', 'die Gegenständer'],
+                question: '“Bitte lassen Sie keine persönlichen ______ im Zug liegen.” 请选择正确形式补全句子：',
+                options: ['Gegenstände', 'Gegenstande', 'Gegenständen', 'Gegenständer'],
                 answer: 0,
                 detail: 'der Gegenstand, "-e (物品，对象)。复数形式为 die Gegenstände。'
             },
@@ -641,20 +630,19 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Gegenteil',
                 question: '句首连接短语 “Im Gegenteil,” 意思是？',
-                options: ['恰恰相反，反之', '总而言之', '首先', '顺便一提'],
-                answer: 0,
+                options: ['总而言之', '恰恰相反，反之', '首先', '顺便一提'],
+                answer: 1,
                 detail: 'das Gegenteil, -e (相反的事物)。Im Gegenteil! = 恰恰相反！'
             },
-
             // --- Bild 8 Words ---
             {
                 id: 50,
                 type: 'Präposition / Adverb',
                 badgeClass: 'bg-purple-50 text-purple-700 border-purple-200',
                 word: 'gegenüber',
-                question: '“Das Hotel liegt direkt ______ dem Bahnhof.” 介词 "gegenüber" (在……对面) 支配的格是？',
-                options: ['第三格 (Dativ)', '第四格 (Akkusativ)', '第二格 (Genitiv)', '第一格 (Nominativ)'],
-                answer: 0,
+                question: '“Das Hotel liegt direkt dem Bahnhof ______.” 介词 "gegenüber" 在句中支配的格是？',
+                options: ['Akkusativ (第四格)', 'Dativ (第三格)', 'Genitiv (第二格)', 'Nominativ (第一格)'],
+                answer: 1,
                 detail: 'gegenüber + Dativ (在……对面)。人称代词作宾语时，gegenüber 习惯放在代词后面 (如 mir gegenüber)。'
             },
             {
@@ -662,9 +650,9 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Gehalt',
-                question: '“Am Ende des Monats bekommt man sein ______.” 名词 "das Gehalt" (薪水/工资) 的复数形式是？',
-                options: ['die Gehälter', 'die Gehalte', 'die Gehältern', 'die Gehalten'],
-                answer: 0,
+                question: '“Die Firma hat die ______ aller Mitarbeiter erhöht.” 请选择正确形式补全句子：',
+                options: ['Gehalte', 'Gehältern', 'Gehalten', 'Gehälter'],
+                answer: 3,
                 detail: 'das Gehalt, "-er (薪水，工资)。复数形式为 die Gehälter。'
             },
             {
@@ -672,9 +660,9 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Geheimnis',
-                question: '“Kannst du ein ______ für dich behalten?” 名词 "das Geheimnis" (秘密) 的复数形式是？',
-                options: ['die Geheimnisse', 'die Geheimnis', 'die Geheimnisser', 'die Geheimnissen'],
-                answer: 0,
+                question: '“Er kann keine ______ für sich behalten.” 请选择正确形式补全句子：',
+                options: ['Geheimnis', 'Geheimnisse', 'Geheimnisser', 'Geheimnissen'],
+                answer: 1,
                 detail: 'das Geheimnis, -se (秘密)。复数形式为 die Geheimnisse。'
             },
             {
@@ -683,8 +671,8 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'geheim',
                 question: '“Diese Information ist streng ______.” 形容词 "geheim" (保密的/秘密的) 对应的派生名词是？',
-                options: ['das Geheimnis', 'die Geheimheit', 'die Geheimung', 'der Geheim'],
-                answer: 0,
+                options: ['die Geheimheit', 'die Geheimung', 'das Geheimnis', 'der Geheim'],
+                answer: 2,
                 detail: 'geheim -> das Geheimnis (秘密)。'
             },
             {
@@ -702,9 +690,9 @@
                 type: 'Verb',
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'gehören',
-                question: '“Das Buch ______ mir.” 动词 "gehören" 表达“属于某人”时，宾语接格要求是？',
-                options: ['jemandem (Dativ) gehören', 'jemanden (Akkusativ) gehören', 'gehören an + Akk.', 'gehören zu + Akk.'],
-                answer: 0,
+                question: '“Das Buch ______ mir.” 动词 "gehören" 表达“属于某人”时，宾语搭配要求是？',
+                options: ['jemanden (Akkusativ) gehören', 'gehören an + Akk.', 'jemandem (Dativ) gehören', 'gehören zu + Akk.'],
+                answer: 2,
                 detail: 'gehören + Dativ (属于某人)；gehören zu + Dativ (属于……的一员/属于某种范畴)。'
             },
             {
@@ -712,9 +700,9 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'der Gehsteig',
-                question: '德语区方言差异：德国和奥地利常说 "der Gehsteig" (人行道)，瑞士德语 (CH) 最常用的对应词汇是？',
-                options: ['das Trottoir', 'die Strasse', 'der Fußweg', 'die Fahrbahn'],
-                answer: 0,
+                question: '德国和奥地利常说 "der Gehsteig" (人行道)，瑞士德语 (CH) 最常用的对应词汇是？',
+                options: ['die Strasse', 'der Fußweg', 'die Fahrbahn', 'das Trottoir'],
+                answer: 3,
                 detail: 'der Gehsteig (D, A) = das Trottoir (CH, 来自法语词)。'
             },
             {
@@ -733,8 +721,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'der Geldautomat',
                 question: '德国称呼自动取款机为 "der Geldautomat"，奥地利 (A) 和瑞士 (CH) 更习惯称呼什么？',
-                options: ['der Bancomat / Bankomat', 'der Geldkasten', 'die Zahlbox', 'der Automatenservice'],
-                answer: 0,
+                options: ['der Geldkasten', 'der Bancomat / Bankomat', 'die Zahlbox', 'der Automatenservice'],
+                answer: 1,
                 detail: 'der Geldautomat, -en (D) -> A, CH: Bancomat / Bankomat.'
             },
             {
@@ -743,8 +731,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Geldbörse',
                 question: '奥地利常用 "die Geldbörse" (钱包)，德国和瑞士最常用的对应外来词称呼是？',
-                options: ['das Portemonnaie / Portmonee', 'die Handtasche', 'der Rucksack', 'die Kasse'],
-                answer: 0,
+                options: ['die Handtasche', 'der Rucksack', 'das Portemonnaie / Portmonee', 'die Kasse'],
+                answer: 2,
                 detail: 'die Geldbörse, -n (A) -> D, CH: das Portemonnaie / Portmonee.'
             },
             {
@@ -752,9 +740,9 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Gelegenheit',
-                question: '“Nutzen Sie die ______, um Deutsch zu sprechen!” 名词 "die Gelegenheit" (机会) 的复数形式是？',
-                options: ['die Gelegenheiten', 'die Gelegenheite', 'die Gelegenheiter', 'die Gelegenheit'],
-                answer: 0,
+                question: '“Es gab viele ______, über das Thema zu sprechen.” 请选择正确形式补全句子：',
+                options: ['Gelegenheite', 'Gelegenheiten', 'Gelegenheiter', 'Gelegenheit'],
+                answer: 1,
                 detail: 'die Gelegenheit, -en (机会，时机)。以 -heit / -keit 结尾的名词均为阴性，复数加 -en。'
             },
             {
@@ -763,12 +751,11 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'gelingen',
                 question: '“Es ist mir ______, die Prüfung zu bestehen.” 不规则无人称动词 gelingen (成功) 的完成时形式是？',
-                options: ['ist gelungen', 'hat gelungen', 'ist gelangt', 'hat gelangt'],
-                answer: 0,
+                options: ['hat gelungen', 'ist gelangt', 'hat gelangt', 'ist gelungen'],
+                answer: 3,
                 detail: 'gelingen (gelingt, gelang, ist gelungen)。句型：etwas gelingt jemandem (Dat.) -> 某人成功做成了某事。'
             }
         ];
-
         // Native Audio Synthesizer
         let audioCtx = null;
         function getAudioContext() {
@@ -780,7 +767,6 @@
             }
             return audioCtx;
         }
-
         function playSound(isCorrect) {
             try {
                 const ctx = getAudioContext();
@@ -789,7 +775,6 @@
                 osc.connect(gain);
                 gain.connect(ctx.destination);
                 const now = ctx.currentTime;
-
                 if (isCorrect) {
                     osc.type = 'sine';
                     osc.frequency.setValueAtTime(523.25, now); // C5
@@ -811,7 +796,6 @@
                 console.error("Audio error:", e);
             }
         }
-
         // Fisher-Yates Shuffle
         function shuffleArray(array) {
             const arr = [...array];
@@ -821,53 +805,42 @@
             }
             return arr;
         }
-
         // App State
         let vocabularyData = [];
         let currentIndex = 0;
         let userAnswers = [];
         let showExplanation = false;
-
         document.addEventListener('DOMContentLoaded', () => {
             resetPractice();
         });
-
         function resetPractice() {
             vocabularyData = shuffleArray(rawVocabularyData);
             currentIndex = 0;
             userAnswers = new Array(vocabularyData.length).fill(null);
             showExplanation = false;
-
             document.getElementById('quiz-container').classList.remove('hidden');
             document.getElementById('bottom-nav').classList.remove('hidden');
             document.getElementById('result-container').classList.add('hidden');
-
             renderQuestion();
         }
-
         function renderQuestion() {
             const currentData = vocabularyData[currentIndex];
-
             // Render Badges and Titles
             document.getElementById('word-badge').className = `px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase border ${currentData.badgeClass}`;
             document.getElementById('word-badge').textContent = currentData.type;
             document.getElementById('question-index-tag').textContent = `Q${currentIndex + 1}`;
             document.getElementById('target-word').textContent = currentData.word;
             document.getElementById('question-prompt').textContent = currentData.question;
-
             // Progress Bar
             const progressPercent = Math.round(((currentIndex + 1) / vocabularyData.length) * 100);
             document.getElementById('progress-bar').style.width = `${progressPercent}%`;
             document.getElementById('progress-text').textContent = `进度：${currentIndex + 1} / ${vocabularyData.length}`;
             document.getElementById('progress-percent').textContent = `${progressPercent}%`;
-
             // Options
             const optionsGrid = document.getElementById('options-grid');
             optionsGrid.innerHTML = '';
-
             const selectedAnswer = userAnswers[currentIndex];
             const isAnswered = selectedAnswer !== null;
-
             currentData.options.forEach((optText, optIndex) => {
                 const btn = document.createElement('button');
                 btn.className = getOptionStyle(optIndex, selectedAnswer, currentData.answer);
@@ -885,18 +858,15 @@
                 btn.onclick = () => selectOption(optIndex);
                 optionsGrid.appendChild(btn);
             });
-
             // Explanation
             const explainCard = document.getElementById('explanation-card');
             const explainText = document.getElementById('explanation-text');
             explainText.textContent = currentData.detail;
-
             if (showExplanation || isAnswered) {
                 explainCard.classList.remove('hidden');
             } else {
                 explainCard.classList.add('hidden');
             }
-
             // Controls
             document.getElementById('btn-prev').disabled = currentIndex === 0;
             const btnNext = document.getElementById('btn-next');
@@ -908,7 +878,6 @@
                 btnNext.className = 'px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-md transition-all';
             }
         }
-
         function getOptionStyle(index, selected, correct) {
             const base = "w-full text-left p-4 sm:p-4.5 rounded-2xl border text-sm sm:text-base transition-all duration-200 flex items-center justify-between ";
             if (selected === null) {
@@ -922,7 +891,6 @@
             }
             return base + "border-slate-100 bg-slate-50/50 text-slate-400 opacity-50";
         }
-
         function getOptionMarkerStyle(index, selected, correct) {
             if (selected === null) {
                 return "border-slate-200 text-slate-500 bg-slate-50";
@@ -935,7 +903,6 @@
             }
             return "border-slate-200 text-slate-300 bg-slate-100";
         }
-
         function getOptionIcon(index, selected, correct) {
             if (selected === null) return '';
             if (index === correct) {
@@ -946,7 +913,6 @@
             }
             return '';
         }
-
         function selectOption(index) {
             if (userAnswers[currentIndex] === null) {
                 const isCorrect = index === vocabularyData[currentIndex].answer;
@@ -956,7 +922,6 @@
             showExplanation = true;
             renderQuestion();
         }
-
         function toggleExplanation() {
             showExplanation = !showExplanation;
             const explainCard = document.getElementById('explanation-card');
@@ -966,7 +931,6 @@
                 explainCard.classList.add('hidden');
             }
         }
-
         function nextQuestion() {
             if (currentIndex < vocabularyData.length - 1) {
                 currentIndex++;
@@ -976,7 +940,6 @@
                 showResults();
             }
         }
-
         function prevQuestion() {
             if (currentIndex > 0) {
                 currentIndex--;
@@ -984,16 +947,13 @@
                 renderQuestion();
             }
         }
-
         function showResults() {
             document.getElementById('quiz-container').classList.add('hidden');
             document.getElementById('bottom-nav').classList.add('hidden');
             document.getElementById('result-container').classList.remove('hidden');
-
             let mistakeCount = 0;
             const mistakesList = document.getElementById('mistakes-list');
             mistakesList.innerHTML = '';
-
             userAnswers.forEach((ans, idx) => {
                 const item = vocabularyData[idx];
                 if (ans !== item.answer) {
@@ -1007,10 +967,8 @@
                     mistakesList.appendChild(mistakeDiv);
                 }
             });
-
             document.getElementById('stat-total').textContent = vocabularyData.length;
             document.getElementById('stat-mistakes').textContent = mistakeCount;
-
             const mistakesSection = document.getElementById('mistakes-section');
             if (mistakeCount > 0) {
                 mistakesSection.classList.remove('hidden');
