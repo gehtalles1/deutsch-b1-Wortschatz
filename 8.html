@@ -50,7 +50,6 @@
             </div>
         </div>
     </header>
-
     <!-- Main Section -->
     <main class="flex-1 max-w-3xl w-full mx-auto p-4 sm:p-6 flex flex-col justify-center">
         <!-- QUIZ CONTAINER -->
@@ -74,12 +73,10 @@
                     </p>
                 </div>
             </div>
-
             <!-- Options Grid -->
             <div id="options-grid" class="grid grid-cols-1 gap-3.5">
                 <!-- Dynamic options -->
             </div>
-
             <!-- Explanation Card -->
             <div id="explanation-card" class="hidden bg-slate-900 text-slate-100 rounded-2xl p-5 sm:p-6 shadow-lg border border-slate-800 text-sm leading-relaxed space-y-2">
                 <div class="font-semibold text-teal-400 flex items-center gap-2 text-xs sm:text-sm uppercase tracking-wider">
@@ -89,7 +86,6 @@
                 <div id="explanation-text" class="text-slate-300 text-xs sm:text-sm font-normal"></div>
             </div>
         </div>
-
         <!-- RESULT CONTAINER -->
         <div id="result-container" class="hidden bg-white/90 backdrop-blur-sm rounded-3xl p-8 sm:p-10 border border-slate-200/70 shadow-xl shadow-slate-200/50 text-center space-y-8">
             <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-900 text-teal-400 shadow-lg shadow-slate-900/10 mb-2">
@@ -110,7 +106,6 @@
                     <div id="stat-mistakes" class="text-2xl font-extrabold text-slate-900">0</div>
                 </div>
             </div>
-
             <!-- Incorrect Words Review List -->
             <div id="mistakes-section" class="text-left hidden space-y-4 pt-2">
                 <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
@@ -119,7 +114,6 @@
                 </h3>
                 <div id="mistakes-list" class="space-y-2.5 max-h-64 overflow-y-auto pr-1"></div>
             </div>
-
             <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-6 border-t border-slate-100">
                 <button onclick="resetPractice()" class="w-full sm:w-auto px-8 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm transition-all shadow-md hover:shadow-lg">
                     再练一次
@@ -130,7 +124,6 @@
             </div>
         </div>
     </main>
-
     <!-- Bottom Actions Nav -->
     <footer id="bottom-nav" class="sticky bottom-0 z-30 custom-glass border-t border-slate-200/60 px-4 py-3.5 sm:px-8">
         <div class="max-w-3xl mx-auto flex items-center justify-between gap-3">
@@ -146,7 +139,6 @@
             </button>
         </div>
     </footer>
-
     <script>
         const rawVocabularyData = [
             {
@@ -157,11 +149,11 @@
                 question: '副词 "damals" 常用于描述过去的特定时期。下列哪个句子中 "damals" 使用最恰当？',
                 options: [
                     'Ich gehe damals oft ins Kino.',
-                    'Damals war ich noch ein Kind und wohnte in Berlin.',
                     'Damals werde ich eine Reise machen.',
+                    'Damals war ich noch ein Kind und wohnte in Berlin.',
                     'Damals bin ich morgen um 8 Uhr frei.'
                 ],
-                answer: 1,
+                answer: 2,
                 detail: 'damals 表示“在当时/那时”，指过去特定的某个时期，谓语动词需使用过去时态（如 Präteritum 或 Perfekt）。'
             },
             {
@@ -171,12 +163,12 @@
                 word: 'die Dame, -n',
                 question: '在正式信件或演讲开头，德语中的“女士们，先生们！”正确表达是？',
                 options: [
-                    'Sehr geehrte Damen und Herren,',
                     'Liebe Frauen und Männer,',
+                    'Sehr geehrte Damen und Herren,',
                     'Guten Tag Damen und Herren,',
                     'Sehr geehrte Mädchen und Jungen,'
                 ],
-                answer: 0,
+                answer: 1,
                 detail: 'die Dame, -n (女士/淑女)。信函正式尊称为 "Sehr geehrte Damen und Herren,"。'
             },
             {
@@ -187,11 +179,11 @@
                 question: '作为从属连词时，"damit" 引导什么从句？且从句中的变位动词放在什么位置？',
                 options: [
                     '引导原因从句，动词紧跟在 damit 后面',
-                    '引导目的从句，变位动词置于从句末尾',
                     '引导让步从句，变位动词置于句首',
-                    '引导时间从句，变位动词置于第二位'
+                    '引导时间从句，变位动词置于第二位',
+                    '引导目的从句，变位动词置于从句末尾'
                 ],
-                answer: 1,
+                answer: 3,
                 detail: 'damit 引导目的从句（主句与从句主语不同时使用），从句动词必须尾置。例：Ich helfe dir, damit du pünktlich fertig wirst.'
             },
             {
@@ -202,11 +194,11 @@
                 question: '叙述副词 "danach" (之后/然后) 位于句首时，主语和变位动词的位置关系是？',
                 options: [
                     'Danach ich gehe nach Hause.',
-                    'Danach gehe ich nach Hause.',
                     'Danach nach Hause gehe ich.',
+                    'Danach gehe ich nach Hause.',
                     'Danach ich werde nach Hause gehen.'
                 ],
-                answer: 1,
+                answer: 2,
                 detail: 'danach 放在句首占第1位，变位动词必须紧跟在第2位，主语后置（Danach + Verb + Subjekt）。'
             },
             {
@@ -215,8 +207,8 @@
                 badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
                 word: 'daneben',
                 question: '句子 "Das Haus ist neu, und daneben steht ein großer Baum." 中 "daneben" 的意思是？',
-                options: ['在对面', '在旁边 / 在其旁', '在上面', '在中间'],
-                answer: 1,
+                options: ['在旁边 / 在其旁', '在对面', '在上面', '在中间'],
+                answer: 0,
                 detail: 'daneben 是代副词（da + neben），表示“在旁、在那个的旁边”。'
             },
             {
@@ -227,11 +219,11 @@
                 question: '动词 "danken" (感谢) 的标准介词与格搭配关系是？',
                 options: [
                     'jemanden (Akk.) danken',
-                    'jemandem (Dat.) für etwas (Akk.) danken',
                     'jemanden (Akk.) mit etwas (Dat.) danken',
+                    'jemandem (Dat.) für etwas (Akk.) danken',
                     'jemandem (Dat.) über etwas (Akk.) danken'
                 ],
-                answer: 1,
+                answer: 2,
                 detail: 'danken 搭配：jemandem (Dat.) für etwas (Akk.) danken（为某事向某人道谢）。例：Ich danke dir für die Hilfe.'
             },
             {
@@ -240,8 +232,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'der Dank',
                 question: '表达“非常感谢！”时，下列哪项使用的是名词 "der Dank" 的正确短语？',
-                options: ['Herzlichen Dank!', 'Vielen Danke!', 'Mit große Dank!', 'Gute Dank!'],
-                answer: 0,
+                options: ['Vielen Danke!', 'Herzlichen Dank!', 'Mit große Dank!', 'Gute Dank!'],
+                answer: 1,
                 detail: 'der Dank (阳性名词)。常见搭配：Herzlichen Dank! 或 Vielen Dank!（注意 danke 为副词/感叹词，不要混淆）。'
             },
             {
@@ -252,11 +244,11 @@
                 question: '形容词 "dankbar" (感激的) 表示“因某事感谢某人”时，正确的介词与格搭配是？',
                 options: [
                     'dankbar auf + Akk.',
-                    'jemandem (Dat.) für etwas (Akk.) dankbar sein',
                     'dankbar mit + Dat.',
-                    'dankbar über + Dat.'
+                    'dankbar über + Dat.',
+                    'jemandem (Dat.) für etwas (Akk.) dankbar sein'
                 ],
-                answer: 1,
+                answer: 3,
                 detail: 'jemandem (Dat.) für etwas (Akk.) dankbar sein（对某人因某事充满感激）。例：Ich bin dir sehr dankbar dafür.'
             },
             {
@@ -265,8 +257,8 @@
                 badgeClass: 'bg-zinc-100 text-zinc-700 border-zinc-200',
                 word: 'danke',
                 question: '当别人问你 “Möchtest du noch einen Kaffee?” 你想客气地拒绝时，最佳回答是？',
-                options: ['Danke, gern!', 'Nein, danke.', 'Bitte sehr!', 'Doch, danke!'],
-                answer: 1,
+                options: ['Nein, danke.', 'Danke, gern!', 'Bitte sehr!', 'Doch, danke!'],
+                answer: 0,
                 detail: '单独回答 "Danke!" 有时会被理解为“好的，谢谢（接受）”；明确表示客气拒绝时应说 "Nein, danke."。'
             },
             {
@@ -277,11 +269,11 @@
                 question: '副词 "dann" (然后/那时) 与连词 "denn" (因为) 在语法上的核心区别是？',
                 options: [
                     'dann 表示原因，denn 表示时间',
-                    'dann 是时间副词表示顺序，denn 是并列连词表示原因',
                     '两者完全同义可互换',
+                    'dann 是时间副词表示顺序，denn 是并列连词表示原因',
                     'dann 只能用于虚拟式，denn 只能用于过去时'
                 ],
-                answer: 1,
+                answer: 2,
                 detail: 'dann 是时间副词（然后，接着）；denn 是并列连词（不占位，表示原因）。'
             },
             {
@@ -292,11 +284,11 @@
                 question: '动词 "darstellen" (扮演/呈现/构成) 属于哪种动词类型及三时态变位？',
                 options: [
                     '不可分动词 (gedarstellt)',
-                    '可分动词 (stellt dar, stellte dar, hat dargestellt)',
                     '反身动词 (sich darstellen)',
+                    '可分动词 (stellt dar, stellte dar, hat dargestellt)',
                     '情态动词 (mag darstellen)'
                 ],
-                answer: 1,
+                answer: 2,
                 detail: 'darstellen 是可分动词，前缀 dar- 可分离。变位：stellt dar, stellte dar, hat dargestellt。'
             },
             {
@@ -305,8 +297,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Darstellung, -en',
                 question: '名词 "die Darstellung" 的主要含义不包括下列哪一项？',
-                options: ['描绘，展示', '表演，扮演', '陈述，阐述', '折扣，降价'],
-                answer: 3,
+                options: ['描绘，展示', '表演，扮演', '折扣，降价', '陈述，阐述'],
+                answer: 2,
                 detail: 'die Darstellung, -en 意为：表现、描绘、阐述、表演。不含“折扣”之意。'
             },
             {
@@ -317,11 +309,11 @@
                 question: '关于从属连词 "dass" 引导的宾语从句，下列语序正确的是？',
                 options: [
                     'Ich weiß, dass du kommst heute.',
-                    'Ich weiß, dass heute du kommst.',
                     'Ich weiß, dass du heute kommst.',
+                    'Ich weiß, dass heute du kommst.',
                     'Ich weiß, dass kommst du heute.'
                 ],
-                answer: 2,
+                answer: 1,
                 detail: 'dass 引导宾语从句时，变位动词必须置于从句的最末尾（"dass du heute kommst"）。'
             },
             {
@@ -331,12 +323,12 @@
                 word: 'die Datei, -en',
                 question: '在计算机操作中，“保存文件”和“删除文件”用德语表达正确的是？',
                 options: [
-                    'eine Datei speichern / löschen',
                     'eine Datei machen / suchen',
+                    'eine Datei speichern / löschen',
                     'eine Datei schreiben / lesen',
                     'eine Datei öffnen / abgeben'
                 ],
-                answer: 0,
+                answer: 1,
                 detail: 'die Datei, -en (电子文件/数据文档)。保存文件为 Datei speichern，删除文件为 Datei löschen。'
             },
             {
@@ -344,8 +336,13 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Datum, die Daten',
-                question: '名词 "das Datum" 指“日期”时，其正确的复数形式是？',
-                options: ['die Datums', 'die Daten', 'die Datümer', 'die Datume'],
+                question: '填写表格时看到 "Welches Datum haben wir heute?"，此处 "Datum" 的表达含义与复数是？',
+                options: [
+                    '数据/资料，Pl. die Dateien',
+                    '日期，Pl. die Daten',
+                    '数字，Pl. die Datümer',
+                    '期限，Pl. die Datume'
+                ],
                 answer: 1,
                 detail: 'das Datum (日期) 的复数是 die Daten。注意：die Daten 也可单独作复数名词表示“数据/信息”。'
             },
@@ -356,12 +353,12 @@
                 word: 'die Daten (Plural)',
                 question: '在信息技术与网络安全中，“保护个人数据”的正确德语表达是？',
                 options: [
-                    'persönliche Daten schützen',
                     'persönliche Daten dauern',
                     'persönliche Daten danken',
-                    'persönliche Daten absagen'
+                    'persönliche Daten absagen',
+                    'persönliche Daten schützen'
                 ],
-                answer: 0,
+                answer: 3,
                 detail: 'die Daten (仅复数) 意为“数据，资料”。例如：Datenschutz (数据保护)，persönliche Daten schützen (保护个人数据)。'
             },
             {
@@ -370,8 +367,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'dauern',
                 question: '问句 “Wie lange dauert die Fahrt?” 中，动词 "dauern" 表达的意思是？',
-                options: ['行驶，驾驶', '持续，需要……时间', '等待，搁置', '延期，推迟'],
-                answer: 1,
+                options: ['行驶，驾驶', '等待，搁置', '持续，需要……时间', '延期，推迟'],
+                answer: 2,
                 detail: 'dauern 表示“持续，花……时间”。常见疑问句：Wie lange dauert ...? (这需要多久？)'
             },
             {
@@ -380,8 +377,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Dauer',
                 question: '介词短语 "auf die Dauer" 的中文含义是？',
-                options: ['在短时间内', '长此以往，长久看来', '在特定时间', '按小时计算'],
-                answer: 1,
+                options: ['在短时间内', '在特定时间', '长此以往，长久看来', '按小时计算'],
+                answer: 2,
                 detail: 'die Dauer (持续时间)。短语 auf die Dauer 意为“长期来看，久而久之”。'
             },
             {
@@ -390,8 +387,8 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'dauernd',
                 question: '句子 "Er beschwert sich dauernd über den Lärm." 中 "dauernd" 作副词使用，相当于？',
-                options: ['manchmal (偶尔)', 'ständig / immer (总是，不断的)', 'selten (罕见)', 'nie (从不)'],
-                answer: 1,
+                options: ['manchmal (偶尔)', 'selten (罕见)', 'nie (从不)', 'ständig / immer (总是，不断的)'],
+                answer: 3,
                 detail: 'dauernd 可作形容词/副词，表示“持续不断的，经常的”，近义词为 ständig / ununterbrochen。'
             },
             {
@@ -400,8 +397,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Decke, -n',
                 question: '名词 "die Decke" 在不同语境下可表示多种含义，以下哪项不属于其含义？',
-                options: ['天花板 (Zimmerdecke)', '毛毯 (Wolldecke)', '桌布 (Tischdecke)', '门锁 / 钥匙'],
-                answer: 3,
+                options: ['门锁 / 钥匙', '天花板 (Zimmerdecke)', '毛毯 (Wolldecke)', '桌布 (Tischdecke)'],
+                answer: 0,
                 detail: 'die Decke, -n 可指天花板、毯子或桌布。不包含“门锁”之意。'
             },
             {
@@ -410,8 +407,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'dekorieren',
                 question: '动词 "dekorieren" (装饰/布置) 的过去分词 (Partizip II) 形式是？',
-                options: ['gedekoriert', 'dekoriert', 'dekorierte', 'dekorieret'],
-                answer: 1,
+                options: ['gedekoriert', 'dekorierte', 'dekoriert', 'dekorieret'],
+                answer: 2,
                 detail: '以 -ieren 结尾的外来语动词，过去分词前不加 ge-，故为 dekorieren -> dekoriert (hat dekoriert)。'
             },
             {
@@ -420,8 +417,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'denken',
                 question: '动词 "denken" 表示“考虑到/惦记着某人或某事”时，应搭配哪个介词？',
-                options: ['denken über + Dat.', 'denken an + Akk.', 'denken von + Dat.', 'denken mit + Dat.'],
-                answer: 1,
+                options: ['denken an + Akk.', 'denken über + Dat.', 'denken von + Dat.', 'denken mit + Dat.'],
+                answer: 0,
                 detail: 'denken an + Akk. 表示“想到，惦记着”；若表示“对……有某种看法”，则用 denken über + Akk.。'
             },
             {
@@ -429,9 +426,9 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'der Gedanke, -n',
-                question: '名词 "der Gedanke" (想法) 属于阳性弱变化名词 (N-Deklination)，其单数第二格 (Genitiv) 形式是？',
-                options: ['des Gedanken', 'des Gedankens', 'des Gedankes', 'des Gedankenen'],
-                answer: 1,
+                question: '句子 "Der Ursprung dieses ______ (des Gedanken/Gedankens) ist unklar." 中，名词 "Gedanke" 的单数第二格正确拼写是？',
+                options: ['des Gedanken', 'des Gedankes', 'des Gedankens', 'des Gedankenen'],
+                answer: 2,
                 detail: 'der Gedanke 属于少数单数第二格加 -ns 的阳性弱变化名词：des Gedankens, dem Gedanken, den Gedanken.'
             },
             {
@@ -442,11 +439,11 @@
                 question: '名词 "das Denkmal" 的正确含义及复数形式是？',
                 options: [
                     '记忆，Pl. die Denkmale',
-                    '纪念碑 / 纪念物，Pl. die Denkmäler',
                     '思考方式，Pl. die Denkmäler',
-                    '思考过程，Pl. die Denkmale'
+                    '思考过程，Pl. die Denkmale',
+                    '纪念碑 / 纪念物，Pl. die Denkmäler'
                 ],
-                answer: 1,
+                answer: 3,
                 detail: 'das Denkmal, "-er 意为“纪念碑，纪念物”。复数带变音符号：die Denkmäler。'
             },
             {
@@ -457,11 +454,11 @@
                 question: '关于并列连词 "denn" (因为) 的语法规则，下列表达正确的是？',
                 options: [
                     'denn 引导从句，变位动词必须放在句末',
-                    'denn 占句子第1位，动词紧跟其后',
                     'denn 是并列连词，不占句子语序位置（0位），主语+动词紧随其后',
+                    'denn 占句子第1位，动词紧跟其后',
                     'denn 只能放在句末'
                 ],
-                answer: 2,
+                answer: 1,
                 detail: 'denn 是并列连词（ADUSO 之一），占用 0 位，后接正序主谓结构。如：..., denn er ist krank.'
             },
             {
@@ -487,11 +484,11 @@
                 question: '因果代副词 "deshalb" (因此) 位于句首时，句子的语序为？',
                 options: [
                     'Deshalb ich fahre nach Hause.',
-                    'Deshalb fahre ich nach Hause.',
                     'Deshalb nach Hause fahre ich.',
-                    'Deshalb ich nach Hause fahre.'
+                    'Deshalb ich nach Hause fahre.',
+                    'Deshalb fahre ich nach Hause.'
                 ],
-                answer: 1,
+                answer: 3,
                 detail: 'deshalb 是占第1位的副词，变位动词紧跟在第2位，即：Deshalb + Verb + Subjekt...'
             },
             {
@@ -500,8 +497,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Dessert, -s',
                 question: '名词 "das Dessert" (甜点) 来源于法语，在德语中它的德语本土同义词是？',
-                options: ['die Vorspeise', 'die Hauptspeise', 'die Nachspeise', 'das Getränk'],
-                answer: 2,
+                options: ['die Vorspeise', 'die Nachspeise', 'die Hauptspeise', 'das Getränk'],
+                answer: 1,
                 detail: 'das Dessert, -s 的德语同义词是 die Nachspeise (餐后甜点)。'
             },
             {
@@ -510,8 +507,8 @@
                 badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
                 word: 'deswegen',
                 question: '副词 "deswegen" (因此/为此) 的近义词是？',
-                options: ['trotzdem', 'deshalb / darum', 'obwohl', 'weil'],
-                answer: 1,
+                options: ['trotzdem', 'obwohl', 'deshalb / darum', 'weil'],
+                answer: 2,
                 detail: 'deswegen, deshalb, darum 三者同义，均表示“因此，所以”，引导结果。'
             },
             {
@@ -520,8 +517,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Detail, -s',
                 question: '短语 "im Detail" 或 "in allen Details" 的中文含义是？',
-                options: ['概括地', '详细地 / 在所有细节上', '大致地', '极其简单地'],
-                answer: 1,
+                options: ['概括地', '大致地', '详细地 / 在所有细节上', '极其简单地'],
+                answer: 2,
                 detail: 'das Detail, -s (细节)。im Detail 表示“详细地，深入细节地”。'
             },
             {
@@ -530,8 +527,8 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'deutlich',
                 question: '“Bitte sprechen Sie etwas deutlicher!” 中 "deutlich" 的意思是？',
-                options: ['大声地', '清晰地 / 明确地', '缓慢地', '有礼貌地'],
-                answer: 1,
+                options: ['大声地', '缓慢地', '有礼貌地', '清晰地 / 明确地'],
+                answer: 3,
                 detail: 'deutlich 意为“清楚的，清晰的，明确的”。deutlicher sprechen = 说话更清楚一些。'
             },
             {
@@ -550,8 +547,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'der Dialekt, -e',
                 question: '名词 "der Dialekt" 的正确中文释义是？',
-                options: ['标准语 (Hochdeutsch)', '方言 / 地方话', '对话', '语法规则'],
-                answer: 1,
+                options: ['标准语 (Hochdeutsch)', '对话', '语法规则', '方言 / 地方话'],
+                answer: 3,
                 detail: 'der Dialekt, -e (方言)。例：Bayerischer Dialekt (巴伐利亚方言)。'
             },
             {
@@ -560,8 +557,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'der Dialog, -e',
                 question: '名词 "der Dialog" (对话) 的反义词（指单人独白）是？',
-                options: ['der Monolog', 'die Diskussion', 'das Gespräch', 'die Ankunft'],
-                answer: 0,
+                options: ['die Diskussion', 'der Monolog', 'das Gespräch', 'die Ankunft'],
+                answer: 1,
                 detail: 'der Dialog (双人/多人对话) vs. der Monolog (独白)。'
             },
             {
@@ -572,11 +569,11 @@
                 question: '形容词 "dicht" 在描述森林或水管时，分别可表示什么意思？',
                 options: [
                     '宽广的 / 干净的',
-                    '浓密的，密集的 / 不漏水的，密封的',
                     '稀疏的 / 破损的',
+                    '浓密的，密集的 / 不漏水的，密封的',
                     '高大的 / 坚硬的'
                 ],
-                answer: 1,
+                answer: 2,
                 detail: 'dicht 可指“稠密的，密集的”（ein dichter Wald），也可指容器/屋顶“密封不漏水的”（Das Dach ist dicht）。'
             },
             {
@@ -585,8 +582,8 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'dick',
                 question: '形容词 "dick" 的反义词（指身材瘦或物体薄）是？',
-                options: ['dünn', 'groß', 'schwer', 'lang'],
-                answer: 0,
+                options: ['groß', 'dünn', 'schwer', 'lang'],
+                answer: 1,
                 detail: 'dick (厚的，胖的) 的反义词是 dünn (薄的，瘦的) 或 schlank (苗条的)。'
             },
             {
@@ -594,9 +591,9 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'der Dieb, -e',
-                question: '名词 "der Dieb" (小偷) 的阴性形式（女小偷）及复数是？',
-                options: ['die Dieberin, -nen', 'die Diebin, -nen', 'die Dieben, -n', 'die Dieber, -s'],
-                answer: 1,
+                question: '指代“女性小偷”时，正确的德语名词及其复数形式是？',
+                options: ['die Dieberin, -nen', 'die Dieben, -n', 'die Dieber, -s', 'die Diebin, -nen'],
+                answer: 3,
                 detail: 'der Dieb, -e -> 阴性形式为 die Diebin, -nen。'
             },
             {
@@ -607,11 +604,11 @@
                 question: '动词 "dienen" 表示“充当 / 用于……”时，常搭配什么介词？',
                 options: [
                     'dienen für + Akk.',
-                    'dienen als + Nom. / zu + Dat.',
                     'dienen von + Dat.',
+                    'dienen als + Nom. / zu + Dat.',
                     'dienen an + Akk.'
                 ],
-                answer: 1,
+                answer: 2,
                 detail: 'dienen + Dat. (服务于某人)；dienen als... (充当...)；dienen zu... (用于...)。例：Das dient als Beispiel.'
             },
             {
@@ -620,8 +617,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'der Dienst',
                 question: '短语 "Dienst haben" 在工作场景中意思是？',
-                options: ['放假休息', '值班 / 当班', '辞职', '加薪'],
-                answer: 1,
+                options: ['值班 / 当班', '放假休息', '辞职', '加薪'],
+                answer: 0,
                 detail: 'der Dienst (职务，服务，值班)。Dienst haben = 在值班/当班。'
             },
             {
@@ -632,11 +629,11 @@
                 question: '指示代词 "dies-" (这个) 的变格词尾规律与下列哪种词完全一致？',
                 options: [
                     '不定冠词 (ein/eine)',
-                    '定冠词 (der/die/das)',
                     '人称代词 (ich/du)',
+                    '定冠词 (der/die/das)',
                     '物主代词 (mein/dein)'
                 ],
-                answer: 1,
+                answer: 2,
                 detail: 'dies- (dieser, diese, dieses) 的词尾变化规则与定冠词 (der, die, das) 完全一致。'
             },
             {
@@ -645,8 +642,8 @@
                 badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
                 word: 'diesmal',
                 question: '时间副词 "diesmal" 的正确中文含义是？',
-                options: ['上一次', '这一次 / 这回', '下一次', '有时候'],
-                answer: 1,
+                options: ['上一次', '下一次', '有时候', '这一次 / 这回'],
+                answer: 3,
                 detail: 'diesmal (这一次，这回)。近义词：dieses Mal。'
             },
             {
@@ -655,8 +652,8 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'digital',
                 question: '形容词 "digital" (数字化的) 的反义词（指非数字/模拟的）是？',
-                options: ['analog', 'manuell', 'papierlos', 'elektronisch'],
-                answer: 0,
+                options: ['manuell', 'analog', 'papierlos', 'elektronisch'],
+                answer: 1,
                 detail: 'digital (数字的) 的反义词是 analog (模拟的，非数字化的)。'
             },
             {
@@ -665,8 +662,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Ding, -e',
                 question: '名词 "das Ding" (事物/东西) 常用复数形式表达“最重要的事物”，其复数是？',
-                options: ['die Dinger', 'die Dinge', 'die Dingen', 'die Dinges'],
-                answer: 1,
+                options: ['die Dinge', 'die Dinger', 'die Dingen', 'die Dinges'],
+                answer: 0,
                 detail: 'das Ding 的标准复数是 die Dinge (指事物、事情)；die Dinger 则带有感叹或小巧感情色彩。'
             },
             {
@@ -675,8 +672,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Diplom, -e',
                 question: '名词 "das Diplom" 在高等教育语境中通常指？',
-                options: ['高中毕业证', '大学毕业文凭 / 硕士学位证书', '发票收据', '驾驶执照'],
-                answer: 1,
+                options: ['高中毕业证', '发票收据', '大学毕业文凭 / 硕士学位证书', '驾驶执照'],
+                answer: 2,
                 detail: 'das Diplom, -e (大学毕业文凭，学位证书)。'
             },
             {
@@ -685,8 +682,8 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'direkt',
                 question: '句子 "Gibt es einen direkten Flug nach Frankfurt?" 中 "direkt" 的意思是？',
-                options: ['便宜的', '直达的 / 直接的', '中转的', '预订的'],
-                answer: 1,
+                options: ['便宜的', '中转的', '直达的 / 直接的', '预订的'],
+                answer: 2,
                 detail: 'direkt 意为“直接的，直达的”。ein direkter Flug = 直飞航班。'
             },
             {
@@ -694,14 +691,14 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'der Direktor, -en / die Direktorin, -nen',
-                question: '阳性名词 "der Direktor" (校长/经理) 变为复数时，其重读音节和词尾变化是？',
+                question: '句子 "Die ______ der Schulen trafen sich zu einer Konferenz." 中，"der Direktor" 的复数形式是？',
                 options: [
-                    'die Direktoren (重音转移至 o)',
-                    'die Direktöre',
-                    'die Direktore',
-                    'die Direktorne'
+                    'Direktöre',
+                    'Direktoren',
+                    'Direktore',
+                    'Direktorne'
                 ],
-                answer: 0,
+                answer: 1,
                 detail: "der Direkt'or 的复数是 die Direkt'oren，重音移至 o 上，词尾加 -en。"
             },
             {
@@ -710,8 +707,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Diskothek, -en / Disko, -s',
                 question: '名词 "die Diskothek" 的常用口语缩写及复数形式是？',
-                options: ['das Disko, -en', 'die Disko, -s', 'der Disko, -e', 'die Diskon, -s'],
-                answer: 1,
+                options: ['das Disko, -en', 'der Disko, -e', 'die Diskon, -s', 'die Disko, -s'],
+                answer: 3,
                 detail: 'die Diskothek 的口语简称为 die Disko, 复数加 -s (die Diskos)。'
             },
             {
@@ -721,12 +718,12 @@
                 word: 'diskutieren',
                 question: '动词 "diskutieren" (讨论) 表示“与某人讨论某事”时的正确介词搭配是？',
                 options: [
-                    'diskutieren mit + Dat. über + Akk.',
                     'diskutieren für + Akk. an + Dat.',
+                    'diskutieren mit + Dat. über + Akk.',
                     'diskutieren von + Dat. auf + Akk.',
                     'diskutieren um + Akk. bei + Dat.'
                 ],
-                answer: 0,
+                answer: 1,
                 detail: 'diskutieren mit jemandem (Dat.) über ein Thema (Akk.) 表示“与某人就某话题进行讨论”。'
             },
             {
@@ -736,12 +733,12 @@
                 word: 'die Diskussion, -en',
                 question: '短语 "eine Diskussion führen" 中动词 "führen" 的语法功能是？',
                 options: [
-                    '表示“引导”，无具体意义',
                     '与名词构成固定动词短语 (Funktionsverbgefüge)，相当于 diskutieren',
+                    '表示“引导”，无具体意义',
                     '表示“带领”，指指挥大家',
                     '表示“驾驶”，指控制会议方向'
                 ],
-                answer: 1,
+                answer: 0,
                 detail: 'eine Diskussion führen 是典型的德语名词动词短语（Funktionsverbgefüge），意为“展开/进行讨论”。'
             },
             {
@@ -750,8 +747,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Distanz, -en',
                 question: '名词 "die Distanz" 的德语近义词是？',
-                options: ['der Abstand', 'die Richtung', 'die Abfahrt', 'die Dauer'],
-                answer: 0,
+                options: ['die Richtung', 'die Abfahrt', 'der Abstand', 'die Dauer'],
+                answer: 2,
                 detail: 'die Distanz, -en (距离，间隔) 的常用德语近义词是 der Abstand, "-e。'
             },
             {
@@ -760,8 +757,8 @@
                 badgeClass: 'bg-zinc-100 text-zinc-700 border-zinc-200',
                 word: 'doch',
                 question: '当有人用否定句问你 “Kommst du nicht mit?”，如果你要肯定回答“不，我要去！”，正确的回答是？',
-                options: ['Ja!', 'Nein!', 'Doch!', 'Danke!'],
-                answer: 2,
+                options: ['Ja!', 'Doch!', 'Nein!', 'Danke!'],
+                answer: 1,
                 detail: '针对否定提问（含 nicht / kein）作出肯定反驳回答时，必须使用 "Doch!"。'
             },
             {
@@ -770,8 +767,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'der Doktor, -en / die Doktorin, -nen',
                 question: '在德语日常生活中，除了指博士头衔外，"der Doktor" 在口语中还常用来称呼？',
-                options: ['教师 (der Lehrer)', '医生 (der Arzt)', '律师 (der Anwalt)', '工程师 (der Ingenieur)'],
-                answer: 1,
+                options: ['教师 (der Lehrer)', '律师 (der Anwalt)', '工程师 (der Ingenieur)', '医生 (der Arzt)'],
+                answer: 3,
                 detail: 'der Doktor (复数 die Doktoren) 口语中常直接借指“医生” (der Arzt)。'
             },
             {
@@ -790,8 +787,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'donnern',
                 question: '无人称动词 "donnern" (打雷) 描述天气时，正确的主语与完成时形式是？',
-                options: ['Es hat gedonnert.', 'Er ist gedonnert.', 'Sie hat gedonnert.', 'Es ist gedonnert.'],
-                answer: 0,
+                options: ['Er ist gedonnert.', 'Es hat gedonnert.', 'Sie hat gedonnert.', 'Es ist gedonnert.'],
+                answer: 1,
                 detail: 'donnern 表示打雷，天气动词用无人称代词 Es 作主语，完成时助动词用 haben：Es hat gedonnert.'
             },
             {
@@ -799,14 +796,14 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'der Donner, -',
-                question: '名词 "der Donner" (雷声) 的复数形式以及常与其成对出现的现象“闪电”分别是？',
+                question: '句子 "Nach dem lauten ______ folgte ein heller Blitz." 中，与“闪电 (Blitz)”相对的“雷声”的名词形式是？',
                 options: [
-                    'die Donner, - / der Blitz',
-                    'die Dönner / das Wetter',
-                    'die Donnern / der Regen',
-                    'die Donnere / der Wind'
+                    'die Dönner',
+                    'die Donnern',
+                    'der Donner',
+                    'der Donnere'
                 ],
-                answer: 0,
+                answer: 2,
                 detail: 'der Donner 单复数同形 (die Donner)。其搭配词“闪电”是 der Blitz, -e (常用俗语：Donner und Blitz)。'
             },
             {
@@ -828,10 +825,10 @@
                 options: [
                     'das Doppelzimmer (双人间)',
                     'der Doppelpunkt (冒号 :)',
-                    'der Doppelname (双姓)',
-                    'die Doppelstunde (半小时课程)'
+                    'die Doppelstunde (半小时课程)',
+                    'der Doppelname (双姓)'
                 ],
-                answer: 3,
+                answer: 2,
                 detail: 'die Doppelstunde 指“两节连上课（通常为 90 分钟）”，而非半小时。'
             },
             {
@@ -840,8 +837,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Dorf, "-er',
                 question: '名词 "das Dorf" 的复数形式是哪一个？',
-                options: ['die Dörfer', 'die Dorfe', 'die Dörfern', 'die Dorfen'],
-                answer: 0,
+                options: ['die Dorfe', 'die Dörfer', 'die Dörfern', 'die Dorfen'],
+                answer: 1,
                 detail: 'das Dorf (村庄) 的复数形式加变音符号及 -er：die Dörfer。'
             },
             {
@@ -851,12 +848,12 @@
                 word: 'dort',
                 question: '地点副词 "dort" (那里) 与方向副词 "dorthin" (往那里) 的语法区别在于？',
                 options: [
-                    'dort 回答 Wo? (静态位置)，dorthin 回答 Wohin? (动态方向)',
                     'dort 表示动态方向，dorthin 表示静态位置',
+                    'dort 回答 Wo? (静态位置)，dorthin 回答 Wohin? (动态方向)',
                     '两者用法完全相反',
                     'dort 只能用于从句末尾'
                 ],
-                answer: 0,
+                answer: 1,
                 detail: 'dort 回答 Wo? (静态：Er wohnt dort.)；dorthin 回答 Wohin? (动态方向：Er fährt dorthin.)。'
             },
             {
@@ -865,8 +862,8 @@
                 badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
                 word: 'dorthin',
                 question: '句子 “Wie komme ich dorthin?” 中 "dorthin" 表达的意思是？',
-                options: ['从那里来', '到那里去 / 往那边', '在那个地方', '在那里停下'],
-                answer: 1,
+                options: ['从那里来', '在那个地方', '到那里去 / 往那边', '在那里停下'],
+                answer: 2,
                 detail: 'dorthin 由 dort + hin 构成，hin 表示离开说话人向外的方向，意为“前往那里”。'
             },
             {
@@ -875,8 +872,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Dose, -n',
                 question: '名词 "die Dose" (罐头/金属罐) 在奥地利和瑞士德语中常写作/称为？',
-                options: ['die Büchse', 'das Glas', 'die Flasche', 'der Becher'],
-                answer: 0,
+                options: ['das Glas', 'die Büchse', 'die Flasche', 'der Becher'],
+                answer: 1,
                 detail: 'die Dose, -n (罐头/易拉罐)。在德语区南部及瑞士/奥地利，常写作或口语称为 die Büchse。'
             },
             {
@@ -885,8 +882,8 @@
                 badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
                 word: 'draußen',
                 question: '副词 "draußen" (在外面/在室外) 的反义词是？',
-                options: ['drinnen', 'dort', 'oben', 'unten'],
-                answer: 0,
+                options: ['dort', 'drinnen', 'oben', 'unten'],
+                answer: 1,
                 detail: 'draußen (在室外/外面) 的反义词是 drinnen (在室内/里面)。'
             },
             {
@@ -948,7 +945,7 @@
             }
         }
 
-        // Fisher-Yates Shuffle
+        // Fisher-Yates Shuffle for questions
         function shuffleArray(array) {
             const arr = [...array];
             for (let i = arr.length - 1; i > 0; i--) {
@@ -956,6 +953,21 @@
                 [arr[i], arr[j]] = [arr[j], arr[i]];
             }
             return arr;
+        }
+
+        // Shuffle Options for each question dynamically while maintaining correct answer index
+        function shuffleQuestionOptions(item) {
+            const optionsWithIndex = item.options.map((opt, idx) => ({
+                text: opt,
+                isCorrect: idx === item.answer
+            }));
+            const shuffledOptions = shuffleArray(optionsWithIndex);
+            const newAnswer = shuffledOptions.findIndex(o => o.isCorrect);
+            return {
+                ...item,
+                options: shuffledOptions.map(o => o.text),
+                answer: newAnswer
+            };
         }
 
         // App State
@@ -969,13 +981,16 @@
         });
 
         function resetPractice() {
-            vocabularyData = shuffleArray(rawVocabularyData);
+            // Shuffle both question order AND option order for each question
+            vocabularyData = shuffleArray(rawVocabularyData).map(shuffleQuestionOptions);
             currentIndex = 0;
             userAnswers = new Array(vocabularyData.length).fill(null);
             showExplanation = false;
+
             document.getElementById('quiz-container').classList.remove('hidden');
             document.getElementById('bottom-nav').classList.remove('hidden');
             document.getElementById('result-container').classList.add('hidden');
+
             renderQuestion();
         }
 
@@ -998,6 +1013,7 @@
             // Options
             const optionsGrid = document.getElementById('options-grid');
             optionsGrid.innerHTML = '';
+
             const selectedAnswer = userAnswers[currentIndex];
             const isAnswered = selectedAnswer !== null;
 
@@ -1023,6 +1039,7 @@
             const explainCard = document.getElementById('explanation-card');
             const explainText = document.getElementById('explanation-text');
             explainText.textContent = currentData.detail;
+
             if (showExplanation || isAnswered) {
                 explainCard.classList.remove('hidden');
             } else {
