@@ -50,7 +50,6 @@
             </div>
         </div>
     </header>
-
     <!-- Main Section -->
     <main class="flex-1 max-w-3xl w-full mx-auto p-4 sm:p-6 flex flex-col justify-center">
         <!-- QUIZ CONTAINER -->
@@ -74,12 +73,10 @@
                     </p>
                 </div>
             </div>
-
             <!-- Options Grid -->
             <div id="options-grid" class="grid grid-cols-1 gap-3.5">
                 <!-- Dynamic options -->
             </div>
-
             <!-- Explanation Card -->
             <div id="explanation-card" class="hidden bg-slate-900 text-slate-100 rounded-2xl p-5 sm:p-6 shadow-lg border border-slate-800 text-sm leading-relaxed space-y-2">
                 <div class="font-semibold text-teal-400 flex items-center gap-2 text-xs sm:text-sm uppercase tracking-wider">
@@ -89,7 +86,6 @@
                 <div id="explanation-text" class="text-slate-300 text-xs sm:text-sm font-normal"></div>
             </div>
         </div>
-
         <!-- RESULT CONTAINER -->
         <div id="result-container" class="hidden bg-white/90 backdrop-blur-sm rounded-3xl p-8 sm:p-10 border border-slate-200/70 shadow-xl shadow-slate-200/50 text-center space-y-8">
             <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-900 text-teal-400 shadow-lg shadow-slate-900/10 mb-2">
@@ -99,7 +95,6 @@
                 <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2 tracking-tight">特训完成</h2>
                 <p class="text-sm text-slate-500 font-medium">已完成所有词汇测试，巩固核心词汇是巩固语感的基础</p>
             </div>
-
             <div class="max-w-md mx-auto py-3 px-6 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-around">
                 <div>
                     <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">本次练习题目</div>
@@ -111,7 +106,6 @@
                     <div id="stat-mistakes" class="text-2xl font-extrabold text-slate-900">0</div>
                 </div>
             </div>
-
             <!-- Incorrect Words Review List -->
             <div id="mistakes-section" class="text-left hidden space-y-4 pt-2">
                 <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
@@ -120,7 +114,6 @@
                 </h3>
                 <div id="mistakes-list" class="space-y-2.5 max-h-64 overflow-y-auto pr-1"></div>
             </div>
-
             <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-6 border-t border-slate-100">
                 <button onclick="resetPractice()" class="w-full sm:w-auto px-8 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm transition-all shadow-md hover:shadow-lg">
                     再练一次
@@ -131,7 +124,6 @@
             </div>
         </div>
     </main>
-
     <!-- Bottom Actions Nav -->
     <footer id="bottom-nav" class="sticky bottom-0 z-30 custom-glass border-t border-slate-200/60 px-4 py-3.5 sm:px-8">
         <div class="max-w-3xl mx-auto flex items-center justify-between gap-3">
@@ -147,7 +139,6 @@
             </button>
         </div>
     </footer>
-
     <script>
         const rawVocabularyData = [
             {
@@ -156,8 +147,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'kaputtgehen vs. kaputtmachen',
                 question: '句子“Mein Handy ist gestern _____” (我的手机昨天坏了) 应填入哪一个过去分词？',
-                options: ['kaputtgegangen', 'kaputtgemacht', 'kaputtgeht', 'kaputtmacht'],
-                answer: 0,
+                options: ['kaputtgemacht', 'kaputtgegangen', 'kaputtgeht', 'kaputtmacht'],
+                answer: 1,
                 detail: 'kaputtgehen 是不及物动词 (助动词用 sein)，表示物自己“坏掉/损坏”；kaputtmachen 是及物动词 (助动词用 haben)，表示“人为弄坏”。句中助动词是 ist，故选 kaputtgegangen。'
             },
             {
@@ -166,8 +157,8 @@
                 badgeClass: 'bg-rose-50 text-rose-700 border-rose-200',
                 word: 'der Karneval',
                 question: '狂欢节 "Karneval" 在德国南部 (D) 及奥地利 (A) 常被称为下列哪个词？',
-                options: ['Fasching', 'Silvester', 'Ostern', 'Pfingsten'],
-                answer: 0,
+                options: ['Silvester', 'Ostern', 'Fasching', 'Pfingsten'],
+                answer: 2,
                 detail: 'der Karneval, -s/-e 在德语南部区和奥地利常被称为 Fasching，瑞士则常称 Fastnacht。'
             },
             {
@@ -176,8 +167,8 @@
                 badgeClass: 'bg-rose-50 text-rose-700 border-rose-200',
                 word: 'die Karotte',
                 question: '名词 "die Karotte" (胡萝卜) 在标准德语 (D) 中常用的另一个称呼是？',
-                options: ['die Möhre', 'die Kartoffel', 'die Zwiebel', 'der Kohl'],
-                answer: 0,
+                options: ['die Kartoffel', 'die Zwiebel', 'der Kohl', 'die Möhre'],
+                answer: 3,
                 detail: 'die Karotte, -n 在德国北部/中部常被称为 die Möhre；在瑞士常被称为 Rüebli。'
             },
             {
@@ -196,8 +187,8 @@
                 badgeClass: 'bg-purple-50 text-purple-700 border-purple-200',
                 word: 'die Fahrkarte',
                 question: '在瑞士德语 (CH) 中，乘车的“车票” "die Fahrkarte" 常被称为？',
-                options: ['das Billett', 'das Zertifikat', 'das Kassenbon', 'das Visum'],
-                answer: 0,
+                options: ['das Zertifikat', 'das Billett', 'das Kassenbon', 'das Visum'],
+                answer: 1,
                 detail: 'die Fahrkarte, -n (车票) 在瑞士德语区常被称为 das Billett [biˈjeː]。'
             },
             {
@@ -206,8 +197,8 @@
                 badgeClass: 'bg-rose-50 text-rose-700 border-rose-200',
                 word: 'die Kartoffel',
                 question: '名词 "die Kartoffel" (土豆) 在奥地利德语 (A) 中的对应表达是？',
-                options: ['der Erdapfel', 'die Paradieser', 'der Marille', 'der Blaukraut'],
-                answer: 0,
+                options: ['die Paradieser', 'der Marille', 'der Erdapfel', 'der Blaukraut'],
+                answer: 2,
                 detail: 'die Kartoffel, -n 在奥地利被称为 der Erdapfel (复数: Erdäpfel)。'
             },
             {
@@ -216,8 +207,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Kasse',
                 question: '“在超市买完东西后，请到_____处结账” (Sie können an der _____ bezahlen)，空格应填？',
-                options: ['Kasse', 'Kassette', 'Karte', 'Kiste'],
-                answer: 0,
+                options: ['Kassette', 'Karte', 'Kiste', 'Kasse'],
+                answer: 3,
                 detail: 'die Kasse, -n 意为“收银台，结账处”。An der Kasse bezahlen (在收银台付款)。'
             },
             {
@@ -237,12 +228,12 @@
                 word: 'der Katalog / die Katastrophe',
                 question: '关于名词 "Katalog" 和 "Katastrophe" 的冠词及复数，正确的是？',
                 options: [
-                    'der Katalog (-e) / die Katastrophe (-n)',
                     'das Katalog (-en) / der Katastrophe (-s)',
+                    'der Katalog (-e) / die Katastrophe (-n)',
                     'die Katalog (-e) / das Katastrophe (-n)',
                     'der Katalog (-en) / die Katastrophe (-e)'
                 ],
-                answer: 0,
+                answer: 1,
                 detail: 'der Katalog, -e (商品目录/手册)；die Katastrophe, -n (灾难)。'
             },
             {
@@ -251,8 +242,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'der Käufer / die Käuferin',
                 question: '表达“买方、买家”的名词 "der Käufer"，其对应反义词 (卖方) 是？',
-                options: ['der Verkäufer', 'der Kunde', 'der Händler', 'der Lieferant'],
-                answer: 0,
+                options: ['der Kunde', 'der Händler', 'der Verkäufer', 'der Lieferant'],
+                answer: 2,
                 detail: 'der Käufer, - (买方/买家) 与 der Verkäufer, - (卖方/售货员) 是一对互补反义词。'
             },
             {
@@ -261,8 +252,8 @@
                 badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
                 word: 'kaum',
                 question: '“Ich konnte ihn _____ verstehen, weil es zu laut war.” (太吵了，我几乎听不清他说话) 填入？',
-                options: ['kaum', 'kein', 'nicht', 'nie'],
-                answer: 0,
+                options: ['kein', 'nicht', 'nie', 'kaum'],
+                answer: 3,
                 detail: 'kaum 是程度副词，意为“几乎不，简直没有”。'
             },
             {
@@ -281,8 +272,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'kennen vs. kennenlernen',
                 question: '“Wir haben uns im Urlaub _____” (我们在假期中认识相识) 此时应使用哪一个过去分词？',
-                options: ['kennengelernt', 'gekannt', 'gekennen', 'kennen'],
-                answer: 0,
+                options: ['gekannt', 'kennengelernt', 'gekennen', 'kennen'],
+                answer: 1,
                 detail: 'kennenlernen (结识，初次认识) 是可分离动词，分词为 kennengelernt；kennen (认识/熟悉状态) 分词为 gekannt。'
             },
             {
@@ -291,8 +282,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Kenntnisse',
                 question: '名词 "Kenntnisse" (技能/知识，如 Deutschkenntnisse) 在德语中的用法特点是？',
-                options: ['通常只使用复数形式', '通常只使用单数形式', '冠词是 das', '复数变化加 "-er"'],
-                answer: 0,
+                options: ['通常只使用单数形式', '冠词是 das', '通常只使用复数形式', '复数变化加 "-er"'],
+                answer: 2,
                 detail: 'die Kenntnisse (Pl.) 表达语言或专业技能知识时，习惯上均以复数形式出现。'
             },
             {
@@ -301,8 +292,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Kennzeichen',
                 question: '“Das Auto hat ein ausländisches _____” (这辆车挂着外国车牌) 应填入哪个中性名词？',
-                options: ['Kennzeichen', 'Zeichen', 'Schild', 'Symbol'],
-                answer: 0,
+                options: ['Zeichen', 'Schild', 'Symbol', 'Kennzeichen'],
+                answer: 3,
                 detail: 'das Kennzeichen, - 专指车辆的“牌照/车牌”或特征标志。'
             },
             {
@@ -321,8 +312,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Kette',
                 question: '表达佩戴在脖子上的“项链”时，德语常用的名词是？',
-                options: ['die Kette', 'der Ring', 'der Gürtel', 'die Brille'],
-                answer: 0,
+                options: ['der Ring', 'die Kette', 'der Gürtel', 'die Brille'],
+                answer: 1,
                 detail: 'die Kette, -n 意为“项链，链条”。'
             },
             {
@@ -331,8 +322,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Kind / die Kindheit',
                 question: '由 "Kind" (孩子) 派生的阴性名词 "die Kindheit" 表达的是什么含义？',
-                options: ['童年 / 幼年时期', '幼儿园', '儿童乐园', '多子家庭'],
-                answer: 0,
+                options: ['幼儿园', '儿童乐园', '童年 / 幼年时期', '多子家庭'],
+                answer: 2,
                 detail: 'das Kind, -er (儿童)；后缀 -heit 构成抽象名词，die Kindheit 意为“童年时期”。'
             },
             {
@@ -341,8 +332,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'der Kiosk',
                 question: '在路边购买报纸、饮料的小卖部/街头报亭，德语称作？',
-                options: ['der Kiosk', 'das Kino', 'die Kasse', 'der Keller'],
-                answer: 0,
+                options: ['das Kino', 'die Kasse', 'der Keller', 'der Kiosk'],
+                answer: 3,
                 detail: 'der Kiosk, -e (街头报亭/小卖部)；das Kino, -s (电影院)。'
             },
             {
@@ -361,8 +352,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'klagen',
                 question: '“Er _____ über Kopfschmerzen.” (他抱怨/诉说头痛) 句中的动词应填入？',
-                options: ['klagt', 'klärt', 'klappt', 'klebt'],
-                answer: 0,
+                options: ['klärt', 'klagt', 'klappt', 'klebt'],
+                answer: 1,
                 detail: 'klagen (hat geklagt) 常用介词搭配为：klagen über + Akk. (抱怨/诉说痛苦)。'
             },
             {
@@ -371,8 +362,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'klappen',
                 question: '口语常用表达 “Alles hat gut geklappt!” 中，“klappen” 的含义是？',
-                options: ['顺利进行 / 成功', '鼓掌', '敲门', '抱怨'],
-                answer: 0,
+                options: ['鼓掌', '敲门', '顺利进行 / 成功', '抱怨'],
+                answer: 2,
                 detail: 'klappen (hat geklappt) 口语中表示“顺利进行，成功”。'
             },
             {
@@ -381,8 +372,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'klären',
                 question: '“Wir müssen diese Frage noch _____.” (我们还需要澄清/弄清楚这个问题) 应填入？',
-                options: ['klären', 'klagen', 'klettern', 'klicken'],
-                answer: 0,
+                options: ['klagen', 'klettern', 'klicken', 'klären'],
+                answer: 3,
                 detail: 'klären (hat geklärt) 意为“澄清，弄清楚，解决（问题）”。'
             },
             {
@@ -401,8 +392,8 @@
                 badgeClass: 'bg-rose-50 text-rose-700 border-rose-200',
                 word: 'die Klassenarbeit',
                 question: '中小学里的“课堂随堂测试/单元考试”，在奥地利 (A) 常被称为？',
-                options: ['die Schularbeit', 'die Hausaufgabe', 'die Übung', 'das Quiz'],
-                answer: 0,
+                options: ['die Hausaufgabe', 'die Schularbeit', 'die Übung', 'das Quiz'],
+                answer: 1,
                 detail: '中小学随堂测试在德国称为 die Klassenarbeit (-en)，在奥地利则称为 die Schularbeit。'
             },
             {
@@ -411,8 +402,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Klavier',
                 question: '名词 "das Klavier" (钢琴) 表达“弹钢琴”时的正确固定搭配是？',
-                options: ['Klavier spielen', 'Klavier machen', 'Klavier üben', 'Klavier hören'],
-                answer: 0,
+                options: ['Klavier machen', 'Klavier üben', 'Klavier spielen', 'Klavier hören'],
+                answer: 2,
                 detail: 'das Klavier, -e (钢琴)。演奏乐器统用 乐器 + spielen。'
             },
             {
@@ -421,8 +412,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'kleben',
                 question: '动词 "kleben" (粘贴) 的过去分词与助动词搭配是？',
-                options: ['hat geklebt', 'ist geklebt', 'hat gekleben', 'ist geklennt'],
-                answer: 0,
+                options: ['ist geklebt', 'hat gekleben', 'ist geklennt', 'hat geklebt'],
+                answer: 3,
                 detail: 'kleben (klebt, klebte, hat geklebt)。'
             },
             {
@@ -446,8 +437,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'klettern',
                 question: '动词 "klettern" (攀爬/爬山) 在现在完成时中，助动词必须使用？',
-                options: ['sein', 'haben', 'werden', 'können'],
-                answer: 0,
+                options: ['haben', 'sein', 'werden', 'können'],
+                answer: 1,
                 detail: 'klettern 表示方向性位移动作，现在完成时助动词用 sein (ist geklettert)。'
             },
             {
@@ -456,8 +447,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'klicken',
                 question: '“Bitte _____ Sie auf diesen Link.” (请点击这个链接) 句中应填入哪个动词？',
-                options: ['klicken', 'kleben', 'klingen', 'klopfen'],
-                answer: 0,
+                options: ['kleben', 'klingen', 'klicken', 'klopfen'],
+                answer: 2,
                 detail: 'klicken (hat geklickt) 表示电脑上的“点击”。常见搭配：auf + Akk. klicken。'
             },
             {
@@ -466,8 +457,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Klimaanlage',
                 question: '名词 "Klimaanlage" (空调) 的冠词与复数形式是？',
-                options: ['die Klimaanlage, -n', 'das Klimaanlage, -s', 'der Klimaanlage, -e', 'die Klimaanlage, -er'],
-                answer: 0,
+                options: ['das Klimaanlage, -s', 'der Klimaanlage, -e', 'die Klimaanlage, -er', 'die Klimaanlage, -n'],
+                answer: 3,
                 detail: 'das Klima (气候)；die Klimaanlage, -n (空调装置)。'
             },
             {
@@ -486,8 +477,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Klingel',
                 question: '安装在门上或自行车上的“门铃/车铃”，德语称为？',
-                options: ['die Klingel', 'die Kette', 'der Knopf', 'die Kiste'],
-                answer: 0,
+                options: ['die Kette', 'die Klingel', 'der Knopf', 'die Kiste'],
+                answer: 1,
                 detail: 'die Klingel, -n (门铃，车铃)。来自动词 klingeln。'
             },
             {
@@ -496,8 +487,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Klinik',
                 question: '名词 "die Klinik" (诊所/专科医院) 的正确复数形式是？',
-                options: ['die Kliniken', 'die Kliniks', 'die Klinike', 'die Kliniker'],
-                answer: 0,
+                options: ['die Kliniks', 'die Klinike', 'die Kliniken', 'die Kliniker'],
+                answer: 2,
                 detail: 'die Klinik, -en (诊所，专科医院)。'
             },
             {
@@ -506,8 +497,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'klopfen',
                 question: '“An die Tür _____” (敲门) 应填入哪个动词？',
-                options: ['klopfen', 'klingen', 'kochen', 'kleben'],
-                answer: 0,
+                options: ['klingen', 'kochen', 'kleben', 'klopfen'],
+                answer: 3,
                 detail: 'klopfen (hat geklopft) 意为“敲击”。固定搭配：an die Tür klopfen (敲门)。'
             },
             {
@@ -526,8 +517,8 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'knapp',
                 question: '“Die Zeit ist _____” (时间紧迫/不够了) 句中应填入哪个形容词？',
-                options: ['knapp', 'klug', 'klein', 'klar'],
-                answer: 0,
+                options: ['klug', 'knapp', 'klein', 'klar'],
+                answer: 1,
                 detail: 'knapp (形容词: 紧缺的，勉强的)；klug (聪明的)。'
             },
             {
@@ -536,8 +527,8 @@
                 badgeClass: 'bg-rose-50 text-rose-700 border-rose-200',
                 word: 'die Kneipe',
                 question: '表达“小酒馆”时，名词 "die Kneipe" 主要属于哪个地区的口语习惯用词？',
-                options: ['(D) 德国常用', '(A) 奥地利专有', '(CH) 瑞士专有', '仅用于诗歌'],
-                answer: 0,
+                options: ['(A) 奥地利专有', '(CH) 瑞士专有', '(D) 德国常用', '仅用于诗歌'],
+                answer: 2,
                 detail: 'die Kneipe, -n 是德国 (D) 十分普遍的小酒馆口语说法。'
             },
             {
@@ -546,8 +537,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Knie / der Knochen',
                 question: '人体解剖名词“膝盖” "das Knie" 的复数形式是？',
-                options: ['die Knie', 'die Knien', 'die Kniese', 'die Knier'],
-                answer: 0,
+                options: ['die Knien', 'die Kniese', 'die Knier', 'die Knie'],
+                answer: 3,
                 detail: 'das Knie, - (膝盖，单复数同形)。而 der Knochen, - 意为“骨头”（也是单复数同形）。'
             },
             {
@@ -566,8 +557,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'kochen / der Koch',
                 question: '动词 "kochen" (做饭) 对应的职业名词“厨师” (阳性 / 阴性) 组合是？',
-                options: ['der Koch / die Köchin', 'der Köcher / die Köcherin', 'der Kocher / die Kocherin', 'der Koche / die Kochin'],
-                answer: 0,
+                options: ['der Köcher / die Köcherin', 'der Koch / die Köchin', 'der Kocher / die Kocherin', 'der Koche / die Kochin'],
+                answer: 1,
                 detail: 'kochen (做饭) -> 男厨师: der Koch, "-e / 女厨师: die Köchin, -nen。'
             },
             {
@@ -576,15 +567,13 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'der Kollege',
                 question: '阳性弱变化名词 "der Kollege" (同事) 在单数第四格 (Akkusativ) 时的正确形式是？',
-                options: ['den Kollegen', 'den Kollege', 'des Kollegen', 'die Kollegin'],
-                answer: 0,
+                options: ['den Kollege', 'des Kollegen', 'den Kollegen', 'die Kollegin'],
+                answer: 2,
                 detail: 'der Kollege, -n 属于 N-Deklination 弱变化阳性名词，单数第四格为 den Kollegen。阴性形式为 die Kollegin, -nen。'
             }
         ];
-
         // Native Audio Synthesizer
         let audioCtx = null;
-
         function getAudioContext() {
             if (!audioCtx) {
                 audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -594,7 +583,6 @@
             }
             return audioCtx;
         }
-
         function playSound(isCorrect) {
             try {
                 const ctx = getAudioContext();
@@ -602,7 +590,6 @@
                 const gain = ctx.createGain();
                 osc.connect(gain);
                 gain.connect(ctx.destination);
-
                 const now = ctx.currentTime;
                 if (isCorrect) {
                     osc.type = 'sine';
@@ -625,7 +612,6 @@
                 console.error("Audio error:", e);
             }
         }
-
         // Fisher-Yates Shuffle
         function shuffleArray(array) {
             const arr = [...array];
@@ -635,53 +621,42 @@
             }
             return arr;
         }
-
         // App State
         let vocabularyData = [];
         let currentIndex = 0;
         let userAnswers = [];
         let showExplanation = false;
-
         document.addEventListener('DOMContentLoaded', () => {
             resetPractice();
         });
-
         function resetPractice() {
             vocabularyData = shuffleArray(rawVocabularyData);
             currentIndex = 0;
             userAnswers = new Array(vocabularyData.length).fill(null);
             showExplanation = false;
-
             document.getElementById('quiz-container').classList.remove('hidden');
             document.getElementById('bottom-nav').classList.remove('hidden');
             document.getElementById('result-container').classList.add('hidden');
-
             renderQuestion();
         }
-
         function renderQuestion() {
             const currentData = vocabularyData[currentIndex];
-
             // Render Badges and Titles
             document.getElementById('word-badge').className = `px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase border ${currentData.badgeClass}`;
             document.getElementById('word-badge').textContent = currentData.type;
             document.getElementById('question-index-tag').textContent = `Q${currentIndex + 1}`;
             document.getElementById('target-word').textContent = currentData.word;
             document.getElementById('question-prompt').textContent = currentData.question;
-
             // Progress Bar
             const progressPercent = Math.round(((currentIndex + 1) / vocabularyData.length) * 100);
             document.getElementById('progress-bar').style.width = `${progressPercent}%`;
             document.getElementById('progress-text').textContent = `进度：${currentIndex + 1} / ${vocabularyData.length}`;
             document.getElementById('progress-percent').textContent = `${progressPercent}%`;
-
             // Options
             const optionsGrid = document.getElementById('options-grid');
             optionsGrid.innerHTML = '';
-
             const selectedAnswer = userAnswers[currentIndex];
             const isAnswered = selectedAnswer !== null;
-
             currentData.options.forEach((optText, optIndex) => {
                 const btn = document.createElement('button');
                 btn.className = getOptionStyle(optIndex, selectedAnswer, currentData.answer);
@@ -699,18 +674,15 @@
                 btn.onclick = () => selectOption(optIndex);
                 optionsGrid.appendChild(btn);
             });
-
             // Explanation
             const explainCard = document.getElementById('explanation-card');
             const explainText = document.getElementById('explanation-text');
             explainText.textContent = currentData.detail;
-
             if (showExplanation || isAnswered) {
                 explainCard.classList.remove('hidden');
             } else {
                 explainCard.classList.add('hidden');
             }
-
             // Controls
             document.getElementById('btn-prev').disabled = currentIndex === 0;
             const btnNext = document.getElementById('btn-next');
@@ -722,7 +694,6 @@
                 btnNext.className = 'px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-md transition-all';
             }
         }
-
         function getOptionStyle(index, selected, correct) {
             const base = "w-full text-left p-4 sm:p-4.5 rounded-2xl border text-sm sm:text-base transition-all duration-200 flex items-center justify-between ";
             if (selected === null) {
@@ -736,7 +707,6 @@
             }
             return base + "border-slate-100 bg-slate-50/50 text-slate-400 opacity-50";
         }
-
         function getOptionMarkerStyle(index, selected, correct) {
             if (selected === null) {
                 return "border-slate-200 text-slate-500 bg-slate-50";
@@ -749,7 +719,6 @@
             }
             return "border-slate-200 text-slate-300 bg-slate-100";
         }
-
         function getOptionIcon(index, selected, correct) {
             if (selected === null) return '';
             if (index === correct) {
@@ -760,7 +729,6 @@
             }
             return '';
         }
-
         function selectOption(index) {
             if (userAnswers[currentIndex] === null) {
                 const isCorrect = index === vocabularyData[currentIndex].answer;
@@ -770,7 +738,6 @@
             showExplanation = true;
             renderQuestion();
         }
-
         function toggleExplanation() {
             showExplanation = !showExplanation;
             const explainCard = document.getElementById('explanation-card');
@@ -780,7 +747,6 @@
                 explainCard.classList.add('hidden');
             }
         }
-
         function nextQuestion() {
             if (currentIndex < vocabularyData.length - 1) {
                 currentIndex++;
@@ -790,7 +756,6 @@
                 showResults();
             }
         }
-
         function prevQuestion() {
             if (currentIndex > 0) {
                 currentIndex--;
@@ -798,16 +763,13 @@
                 renderQuestion();
             }
         }
-
         function showResults() {
             document.getElementById('quiz-container').classList.add('hidden');
             document.getElementById('bottom-nav').classList.add('hidden');
             document.getElementById('result-container').classList.remove('hidden');
-
             let mistakeCount = 0;
             const mistakesList = document.getElementById('mistakes-list');
             mistakesList.innerHTML = '';
-
             userAnswers.forEach((ans, idx) => {
                 const item = vocabularyData[idx];
                 if (ans !== item.answer) {
@@ -821,10 +783,8 @@
                     mistakesList.appendChild(mistakeDiv);
                 }
             });
-
             document.getElementById('stat-total').textContent = vocabularyData.length;
             document.getElementById('stat-mistakes').textContent = mistakeCount;
-
             const mistakesSection = document.getElementById('mistakes-section');
             if (mistakeCount > 0) {
                 mistakesSection.classList.remove('hidden');
