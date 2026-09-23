@@ -50,7 +50,6 @@
             </div>
         </div>
     </header>
-
     <!-- Main Section -->
     <main class="flex-1 max-w-3xl w-full mx-auto p-4 sm:p-6 flex flex-col justify-center">
         <!-- QUIZ CONTAINER -->
@@ -74,12 +73,10 @@
                     </p>
                 </div>
             </div>
-
             <!-- Options Grid -->
             <div id="options-grid" class="grid grid-cols-1 gap-3.5">
                 <!-- Dynamic options -->
             </div>
-
             <!-- Explanation Card -->
             <div id="explanation-card" class="hidden bg-slate-900 text-slate-100 rounded-2xl p-5 sm:p-6 shadow-lg border border-slate-800 text-sm leading-relaxed space-y-2">
                 <div class="font-semibold text-teal-400 flex items-center gap-2 text-xs sm:text-sm uppercase tracking-wider">
@@ -89,7 +86,6 @@
                 <div id="explanation-text" class="text-slate-300 text-xs sm:text-sm font-normal"></div>
             </div>
         </div>
-
         <!-- RESULT CONTAINER -->
         <div id="result-container" class="hidden bg-white/90 backdrop-blur-sm rounded-3xl p-8 sm:p-10 border border-slate-200/70 shadow-xl shadow-slate-200/50 text-center space-y-8">
             <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-900 text-teal-400 shadow-lg shadow-slate-900/10 mb-2">
@@ -110,7 +106,6 @@
                     <div id="stat-mistakes" class="text-2xl font-extrabold text-slate-900">0</div>
                 </div>
             </div>
-
             <!-- Incorrect Words Review List -->
             <div id="mistakes-section" class="text-left hidden space-y-4 pt-2">
                 <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
@@ -119,7 +114,6 @@
                 </h3>
                 <div id="mistakes-list" class="space-y-2.5 max-h-64 overflow-y-auto pr-1"></div>
             </div>
-
             <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-6 border-t border-slate-100">
                 <button onclick="resetPractice()" class="w-full sm:w-auto px-8 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm transition-all shadow-md hover:shadow-lg">
                     再练一次
@@ -130,7 +124,6 @@
             </div>
         </div>
     </main>
-
     <!-- Bottom Actions Nav -->
     <footer id="bottom-nav" class="sticky bottom-0 z-30 custom-glass border-t border-slate-200/60 px-4 py-3.5 sm:px-8">
         <div class="max-w-3xl mx-auto flex items-center justify-between gap-3">
@@ -146,7 +139,6 @@
             </button>
         </div>
     </footer>
-
     <script>
         const rawVocabularyData = [
             // Image 1
@@ -155,14 +147,14 @@
                 type: 'Verb',
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'beeinflussen',
-                question: '动词 "beeinflussen" (影响) 的语法特点是？其过去分词为？',
+                question: '动词 "beeinflussen" (影响) 的语法特点及过去分词形式是？',
                 options: [
-                    '可分动词，hat eingeeinflusst',
                     '不可分动词，hat beeinflusst，直接加第四格宾语 (Akk.)',
+                    '可分动词，hat eingeeinflusst',
                     '反身动词，sich beeinflussen mit',
                     '位移动词，ist beeinflusst'
                 ],
-                answer: 1,
+                answer: 0,
                 detail: 'beeinflussen 是不可分动词（前缀 be- 不可分），直接支配第四格宾语 (Akk.)。完成时：hat beeinflusst。例：Das Wetter beeinflusst meine Laune.'
             },
             {
@@ -180,7 +172,7 @@
                 type: 'Verb',
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'einführen',
-                question: '动词 "einführen" 作“进口 / 引入”解时，其反义词（出口）是？',
+                question: '动词 "einführen" 作“进口 / 引入”解时，其对应的反义词（出口）是？',
                 options: ['ausführen', 'auspacken', 'einzahlen', 'entlassen'],
                 answer: 0,
                 detail: 'einführen (进口/引入) <-> ausführen (出口/执行)。完成时：hat eingeführt。'
@@ -191,7 +183,7 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Einführung, -en',
                 question: '大学课程名称 "Einführung in die Sprachwissenschaft" 中，名词 "Einführung" 之后常搭配哪个介词？',
-                options: ['in + Akk. (对……的导论/入门)', 'für + Akk.', 'über + Akk.', 'zu + Dat.'],
+                options: ['in + Akk.', 'für + Akk.', 'über + Akk.', 'zu + Dat.'],
                 answer: 0,
                 detail: 'die Einführung + in (+ Akk.) 表示“对某领域的导论、入门或引入”。'
             },
@@ -200,7 +192,7 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'der Eingang, "-e',
-                question: '公共建筑与商场入口标识为 "Eingang"，其反义词（出口）及复数形式是？',
+                question: '公共建筑与商场入口标识为 "Eingang"，其对应的反义词（出口）及复数形式是？',
                 options: ['der Ausgang, "-e', 'die Einfahrt, -en', 'der Eintritt, -e', 'das Ende, -n'],
                 answer: 0,
                 detail: 'der Eingang, "-e (入口) <-> der Ausgang, "-e (出口)。'
@@ -245,7 +237,7 @@
                 type: 'Verb',
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'einkaufen',
-                question: '动词 "einkaufen" (采购/日常购物) 与 "kaufen" (购买) 在用法上的区别是？',
+                question: '动词 "einkaufen" (采购/日常购物) 与 "kaufen" (购买) 在用法上的主要区别是？',
                 options: [
                     'einkaufen 可作不及物动词表“去买东西/日常采购”；kaufen 侧重具体购买某物 (kaufen + Akk.)',
                     'einkaufen 助动词用 ist，kaufen 用 hat',
@@ -325,14 +317,13 @@
                 answer: 0,
                 detail: 'einnehmen 专指“服用（药物）”或“收入/占据”。变位：nimmt ein, nahm ein, hat eingenommen。'
             },
-
             // Image 2
             {
                 id: 16,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Einnahme, -n',
-                question: '在财务账目中，复数名词 "die Einnahmen" (收入/进款) 的反义词（支出）是？',
+                question: '在财务账目中，名词 "die Einnahmen" (收入/进款) 的对应反义表达（支出）是？',
                 options: ['die Ausgaben (Pl.)', 'die Einkäufe (Pl.)', 'die Kosten (Pl.)', 'die Schulden (Pl.)'],
                 answer: 0,
                 detail: 'die Einnahme, -n (收入) <-> die Ausgabe, -n (支出)。商业中常用复数 die Einnahmen und Ausgaben。'
@@ -374,7 +365,7 @@
                 word: 'einsam',
                 question: '形容词 "einsam" (孤独寂寞的) 与 "allein" (单独的) 的核心区别是？',
                 options: [
-                    'einsam 强调内心主观 felt 孤独，allein 侧重客观上独自一人',
+                    'einsam 强调内心主观感到孤独，allein 侧重客观上独自一人',
                     'einsam 只能作副词，allein 只能作名词',
                     '两者意思完全相同可无条件替换',
                     'allein 表示悲伤，einsam 表示快乐'
@@ -427,7 +418,7 @@
                 type: 'Verb',
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'einsteigen',
-                question: '搭乘公共交通时，“上车”用 "einsteigen"，其完成时助动词及下车/换乘动词分别是？',
+                question: '搭乘公共交通时，“上车”用 "einsteigen"，其完成时助动词及“下车/换乘”动词分别是？',
                 options: [
                     'ist eingestiegen / aussteigen (下车) / umsteigen (换乘)',
                     'hat eingestiegen / absteigen / zusteigen',
@@ -512,14 +503,13 @@
                 answer: 0,
                 detail: 'der Einwohner, - (居民)。阳性单复数同形：die Einwohner。'
             },
-
             // Image 3
             {
                 id: 32,
                 type: 'Verb',
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'einzahlen',
-                question: '在银行存入现金用动词 "einzahlen"，其反义词（取款/提现）是？',
+                question: '在银行存入现金用动词 "einzahlen"，其对应的反义动词（取款/提现）是？',
                 options: ['abheben / auszahlen', 'einkaufen', 'einnehmen', 'eintragen'],
                 answer: 0,
                 detail: 'einzahlen (存款) <-> abheben / auszahlen (取款)。完成时：hat eingezahlt。'
@@ -629,7 +619,7 @@
                 type: 'Adjektiv',
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'elektrisch',
-                question: '形容词 "elektrisch" 与 "elektronisch" 的区别是：下列哪个设备通常修饰为 "elektrisch"？',
+                question: '形容词 "elektrisch" 与 "elektronisch" 的区别：下列哪个设备通常修饰为 "elektrisch"？',
                 options: ['eine elektrische Zahnbürste (电动牙刷)', 'ein elektronisches Buch (电子书)', 'ein Computer', 'ein Smartphone'],
                 answer: 0,
                 detail: 'elektrisch 侧重“用电驱动的/强电的”；elektronisch 侧重“电子微处理器的/弱电信息技术的”。'
@@ -724,7 +714,6 @@
                 answer: 0,
                 detail: 'die Empfehlung, -en (推荐)。推荐信 = das Empfehlungsschreiben.'
             },
-
             // Image 4
             {
                 id: 51,
@@ -950,6 +939,20 @@
             return arr;
         }
 
+        // Shuffle Options for Each Question to dynamicize ABCD positions
+        function processDataWithShuffledOptions(data) {
+            return data.map(item => {
+                const correctAnswerText = item.options[item.answer];
+                const shuffledOptions = shuffleArray(item.options);
+                const newAnswerIndex = shuffledOptions.indexOf(correctAnswerText);
+                return {
+                    ...item,
+                    options: shuffledOptions,
+                    answer: newAnswerIndex
+                };
+            });
+        }
+
         // App State
         let vocabularyData = [];
         let currentIndex = 0;
@@ -961,10 +964,13 @@
         });
 
         function resetPractice() {
-            vocabularyData = shuffleArray(rawVocabularyData);
+            // First shuffle question sequence, then shuffle ABCD options per question
+            const shuffledQuestions = shuffleArray(rawVocabularyData);
+            vocabularyData = processDataWithShuffledOptions(shuffledQuestions);
             currentIndex = 0;
             userAnswers = new Array(vocabularyData.length).fill(null);
             showExplanation = false;
+
             document.getElementById('quiz-container').classList.remove('hidden');
             document.getElementById('bottom-nav').classList.remove('hidden');
             document.getElementById('result-container').classList.add('hidden');
