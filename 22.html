@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="h-full bg-slate-50/80">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>德语 B1 核心词汇特训</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Serif+Georgia&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .font-german {
+            font-family: 'Noto Serif Georgia', Georgia, serif;
+        }
+        .custom-glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+    </style>
+</head>
+<body class="h-full text-slate-800 antialiased selection:bg-teal-100 selection:text-teal-900 flex flex-col justify-between bg-gradient-to-br from-slate-50 via-zinc-50 to-teal-50/20">
+    <!-- Header Area -->
+    <header class="sticky top-0 z-30 custom-glass border-b border-slate-200/60 px-4 py-3.5 sm:px-8 shadow-sm">
+        <div class="max-w-3xl mx-auto flex items-center justify-between">
+            <a href="index.html" class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-500 hover:text-slate-900 transition-all py-1.5 px-3 rounded-full hover:bg-slate-100/80">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+                返回主页
+            </a>
+            <div class="text-center">
+                <h1 class="text-xs sm:text-sm font-bold tracking-widest text-slate-400 uppercase">Wortschatz Training</h1>
+                <p class="text-sm sm:text-base font-extrabold text-slate-900 tracking-tight">德语 B1 核心词汇特训</p>
+            </div>
+            <button onclick="resetPractice()" class="text-xs sm:text-sm font-semibold text-slate-500 hover:text-teal-700 transition-all py-1.5 px-3 rounded-full hover:bg-slate-100/80">
+                重新开始
+            </button>
+        </div>
+        <!-- Progress Bar -->
+        <div class="max-w-3xl mx-auto mt-3">
+            <div class="flex justify-between items-center text-xs font-bold text-slate-400 mb-1.5 tracking-wider uppercase">
+                <span id="progress-text">进度：1 / 67</span>
+                <span id="progress-percent">1%</span>
+            </div>
+            <div class="w-full h-1.5 bg-slate-200/70 rounded-full overflow-hidden p-0.5">
+                <div id="progress-bar" class="h-full bg-slate-900 transition-all duration-300 rounded-full" style="width: 1%"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Section -->
+    <main class="flex-1 max-w-3xl w-full mx-auto p-4 sm:p-6 flex flex-col justify-center">
+        <!-- QUIZ CONTAINER -->
+        <div id="quiz-container" class="space-y-6">
+            <!-- Word Header Card -->
+            <div class="bg-white/90 backdrop-blur-sm rounded-3xl p-6 sm:p-9 border border-slate-200/70 shadow-xl shadow-slate-200/50 relative overflow-hidden transition-all">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="flex items-center gap-2">
+                        <span id="word-badge" class="px-3 py-0.5 rounded-full text-xs font-bold tracking-wider uppercase border">
+                            Substantiv
+                        </span>
+                        <!-- 缩小版的考察意图提示字 -->
+                        <span id="target-word" class="text-xs font-semibold text-teal-700 bg-teal-50 px-2.5 py-0.5 rounded-md border border-teal-100">
+                            --
+                        </span>
+                    </div>
+                    <span id="question-index-tag" class="text-xs font-bold text-slate-400 tracking-widest uppercase">
+                        Q1
+                    </span>
+                </div>
+                <!-- 放大且清晰的题面文字 -->
+                <div class="py-2">
+                    <p id="question-prompt" class="font-german text-lg sm:text-2xl font-semibold text-slate-800 leading-relaxed sm:leading-relaxed">
+                        --
+                    </p>
+                </div>
+            </div>
+
+            <!-- Options Grid -->
+            <div id="options-grid" class="grid grid-cols-1 gap-3.5">
+                <!-- Dynamic options -->
+            </div>
+
+            <!-- Explanation Card -->
+            <div id="explanation-card" class="hidden bg-slate-900 text-slate-100 rounded-2xl p-5 sm:p-6 shadow-lg border border-slate-800 text-sm leading-relaxed space-y-2">
+                <div class="font-semibold text-teal-400 flex items-center gap-2 text-xs sm:text-sm uppercase tracking-wider">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    词汇解析与答案说明
+                </div>
+                <div id="explanation-text" class="text-slate-300 text-xs sm:text-sm font-normal"></div>
+            </div>
+        </div>
+
+        <!-- RESULT CONTAINER -->
+        <div id="result-container" class="hidden bg-white/90 backdrop-blur-sm rounded-3xl p-8 sm:p-10 border border-slate-200/70 shadow-xl shadow-slate-200/50 text-center space-y-8">
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-900 text-teal-400 shadow-lg shadow-slate-900/10 mb-2">
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <div>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2 tracking-tight">特训完成</h2>
+                <p class="text-sm text-slate-500 font-medium">已完成本关所有核心词汇测试，熟练掌握巩固知识点</p>
+            </div>
+            <div class="max-w-md mx-auto py-3 px-6 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-around">
+                <div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">本次练习题目</div>
+                    <div id="stat-total" class="text-2xl font-extrabold text-slate-900">0</div>
+                </div>
+                <div class="h-8 w-px bg-slate-200"></div>
+                <div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">重点标注/错题巩固</div>
+                    <div id="stat-mistakes" class="text-2xl font-extrabold text-slate-900">0</div>
+                </div>
+            </div>
+            <!-- Incorrect Words Review List -->
+            <div id="mistakes-section" class="text-left hidden space-y-4 pt-2">
+                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                    需重点巩固的词汇
+                </h3>
+                <div id="mistakes-list" class="space-y-2.5 max-h-64 overflow-y-auto pr-1"></div>
+            </div>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-6 border-t border-slate-100">
+                <button onclick="resetPractice()" class="w-full sm:w-auto px-8 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm transition-all shadow-md hover:shadow-lg">
+                    再练一次
+                </button>
+                <a href="index.html" class="w-full sm:w-auto px-8 py-3 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 font-bold text-sm transition-all text-center">
+                    返回主页
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Actions Nav -->
+    <footer id="bottom-nav" class="sticky bottom-0 z-30 custom-glass border-t border-slate-200/60 px-4 py-3.5 sm:px-8">
+        <div class="max-w-3xl mx-auto flex items-center justify-between gap-3">
+            <button id="btn-prev" onclick="prevQuestion()" disabled class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 text-slate-600 hover:bg-slate-100 disabled:opacity-30 disabled:cursor-not-allowed transition-all">
+                上一题
+            </button>
+            <button id="btn-toggle-explain" onclick="toggleExplanation()" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 hover:bg-slate-200/80 text-slate-700 transition-all flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                查看释义
+            </button>
+            <button id="btn-next" onclick="nextQuestion()" class="px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-md transition-all">
+                下一题
+            </button>
+        </div>
+    </footer>
+
+    <script>
+        const rawVocabularyData = [
+            // 图1 词汇 (11个)
+            {
+                id: 1,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【词义辨析】',
+                question: '口语中听到 "Das ist aber ______! Normalerweise passiert so etwas nie." 此时空格处填入哪个词表示“奇怪的、古怪的”？',
+                options: ['komisch', 'lustig', 'komplett', 'freundlich'],
+                correctIndex: 0,
+                detail: 'komisch 有两个主要含义：1. 滑稽搞笑的；2. 奇怪的、不对劲的 (seltsam)。在语境中表达“奇怪的”用 komisch。'
+            },
+            {
+                id: 2,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【介词搭配】',
+                question: '表达“他来自瑞士”时，应该填入哪个动词+介词组合： "Er ______ der Schweiz."',
+                options: ['kommt aus', 'kommt von', 'kommt bei', 'kommt nach'],
+                correctIndex: 0,
+                detail: 'kommen aus + Dat. 表示“来自于某国/某地/某种背景”。来自国家或城市用 aus。'
+            },
+            {
+                id: 3,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【固定搭配】',
+                question: '“我们必须与客户保持沟通”用德语表达： "Wir müssen mit den Kunden ______ stehen."',
+                options: ['in Kommunikation', 'an Kommunikation', 'auf Kommunikation', 'bei Kommunikation'],
+                correctIndex: 0,
+                detail: '固定介词搭配：in Kommunikation stehen mit jemandem (与某人保持沟通/联系)。'
+            },
+            {
+                id: 4,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【近义词替换】',
+                question: '句子 "Die Renovierung ist völlig fertig." 中，可以用哪个形容词替换 "völlig"（完全地）？',
+                options: ['komplett', 'kompliziert', 'kritisch', 'teilweise'],
+                correctIndex: 0,
+                detail: 'komplett 意为“完全的、完整的”，近义词为 völlig / ganz。'
+            },
+            {
+                id: 5,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【反义词辨析】',
+                question: '形容词 "einfach" (简单的) 的反义词是？',
+                options: ['kompliziert', 'komplett', 'komisch', 'kritisch'],
+                correctIndex: 0,
+                detail: 'kompliziert (复杂的，难懂的) 与 einfach / leicht 互为反义词。'
+            },
+            {
+                id: 6,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【动词短语搭配】',
+                question: '表达“双方经过谈判达成了妥协”，德语用哪个动词与 "Kompromiss" 搭配： "Sie haben einen Kompromiss ______."',
+                options: ['geschlossen', 'gemacht', 'geboten', 'gesagt'],
+                correctIndex: 0,
+                detail: '固定动名词搭配：einen Kompromiss schließen / eingehen / finden (达成妥协，做出让步)。'
+            },
+            {
+                id: 7,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "die Konferenz" (会议) 的正确复数形式是？',
+                options: ['die Konferenzen', 'die Konferenze', 'die Konferenz', 'die Konferenzes'],
+                correctIndex: 0,
+                detail: 'die Konferenz, -en (会议)。以 -enz 结尾的阴性名词复数加 -en。'
+            },
+            {
+                id: 8,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【区域德语辨析】',
+                question: '在瑞士德语 (CH) 中，"die Marmelade" (果酱) 常被表达为？',
+                options: ['die Konfitüre', 'die Kommunikation', 'die Kasse', 'die Krise'],
+                correctIndex: 0,
+                detail: 'die Konfitüre (CH) 即德语区通用的 die Marmelade (果酱)。'
+            },
+            {
+                id: 9,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "der Konflikt" (冲突，争执) 变复数时，正确的形式是？',
+                options: ['die Konflikte', 'die Konflikten', 'die Konflikter', 'die Konfliktes'],
+                correctIndex: 0,
+                detail: 'der Konflikt, -e (冲突)。复数形式直接加 -e。'
+            },
+            {
+                id: 10,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词变音与复数】',
+                question: '名词 "der König" (国王) 的复数形式是？',
+                options: ['die Könige', 'die Königer', 'die Königin', 'die Königs'],
+                correctIndex: 0,
+                detail: 'der König, -e (国王)。元音 o 变音为 ö 并加 -e，即 die Könige。'
+            },
+            {
+                id: 11,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【词义辨析】',
+                question: '“在市场上，我们的产品面临极大的竞争/同行压力”，此处“竞争/竞争对手”应使用哪个名词？',
+                options: ['die Konkurrenz', 'die Konferenz', 'die Kontrolle', 'die Korrektur'],
+                correctIndex: 0,
+                detail: 'die Konkurrenz (单数专用词，意为：竞争；竞争对手/同行)。'
+            },
+
+            // 图2 词汇 (19个)
+            {
+                id: 12,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【机构名称辨析】',
+                question: '要办理补办签证或领事认证，你需要前往 ______ (领事馆)？',
+                options: ['das Konsulat', 'die Botschaft', 'das Fundbüro', 'das Reisebüro'],
+                correctIndex: 0,
+                detail: 'das Konsulat, -e (领事馆)。注意与 die Botschaft (大使馆) 区分。'
+            },
+            {
+                id: 13,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【分词变化】',
+                question: '动词 "konsumieren" (消费/消耗) 的完成时 Partizip II 形式是？',
+                options: ['konsumiert', 'gekonsumiert', 'konsumierten', 'gekonsumiere'],
+                correctIndex: 0,
+                detail: '以 -ieren 结尾的动词，其完成时 Partizip II 不加前缀 ge-，为 konsumiert。'
+            },
+            {
+                id: 14,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【性状与词义】',
+                question: '名词 "Konsum" (消费/消耗) 的性属和常见搭配是？',
+                options: ['der Konsum', 'das Konsum', 'die Konsum', 'die Konsume'],
+                correctIndex: 0,
+                detail: 'der Konsum (阳性名词，通常用单数，意为“消费、消耗”)。'
+            },
+            {
+                id: 15,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【介词短语】',
+                question: '“离职后我们仍保持联系”：“Wir bleiben weiterhin ______ Kontakt.”',
+                options: ['in', 'auf', 'an', 'bei'],
+                correctIndex: 0,
+                detail: 'in Kontakt bleiben mit + Dat. (与……保持联系)。'
+            },
+            {
+                id: 16,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "das Konto" (银行账户) 最标准常用的复数形式是？',
+                options: ['die Konten', 'die Kontoen', 'die Kontes', 'die Kontore'],
+                correctIndex: 0,
+                detail: 'das Konto, 复数为 die Konten (口语中偶用 die Kontos，但标准书面语为 Konten)。'
+            },
+            {
+                id: 17,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【日常生活词汇】',
+                question: '在德国，用于发工资、扣房租和日常转账的活期账户被称为？',
+                options: ['das Girokonto', 'das Sparkonto', 'die Kreditkarte', 'die Kaution'],
+                correctIndex: 0,
+                detail: 'das Girokonto (活期/日常转账结算账户)。das Sparkonto 则为储蓄账户。'
+            },
+            {
+                id: 18,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【动词辨析】',
+                question: '“列车员正在车厢里查票”：“Der Schaffner ______ die Fahrkarten.”',
+                options: ['kontrolliert', 'korrigiert', 'kopiert', 'konzentriert'],
+                correctIndex: 0,
+                detail: 'kontrollieren (检查，查验，控制)。查验车票用 kontrollieren。'
+            },
+            {
+                id: 19,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "die Kontrolle" (检查/控制) 的复数形式是？',
+                options: ['die Kontrollen', 'die Kontrolle', 'die Kontroller', 'die Kontrolles'],
+                correctIndex: 0,
+                detail: 'die Kontrolle, -n (检查，控制)。'
+            },
+            {
+                id: 20,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【反身动词固定介词】',
+                question: '“请集中精力听课！” 德语表达为： "Bitte konzentrieren Sie sich ______ den Unterricht!"',
+                options: ['auf (+ Akk.)', 'an (+ Akk.)', 'über (+ Akk.)', 'mit (+ Dat.)'],
+                correctIndex: 0,
+                detail: 'sich konzentrieren auf + Akk. (集中精力/注意力于……)。'
+            },
+            {
+                id: 21,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "das Konzert" (音乐会) 的正确复数形式是？',
+                options: ['die Konzerte', 'die Konzerten', 'die Konzert', 'die Konzerter'],
+                correctIndex: 0,
+                detail: 'das Konzert, -e (音乐会)。'
+            },
+            {
+                id: 22,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【变音与复数】',
+                question: '名词 "der Kopf" (头部) 的正确复数形式是？',
+                options: ['die Köpfe', 'die Kopfe', 'die Köpfer', 'die Köpfen'],
+                correctIndex: 0,
+                detail: 'der Kopf, "-e (头部)。复数变音为 die Köpfe。'
+            },
+            {
+                id: 23,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【动作动词选择】',
+                question: '“请把这份护照复印两份”： "Bitte ______ Sie diesen Pass zweimal."',
+                options: ['kopieren', 'korrigieren', 'kontrollieren', 'konstruieren'],
+                correctIndex: 0,
+                detail: 'kopieren (复印，影印；复制)。'
+            },
+            {
+                id: 24,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "die Kopie" (复印件/副本) 的正确复数形式是？',
+                options: ['die Kopien', 'die Kopie', 'die Kopies', 'die Kopier'],
+                correctIndex: 0,
+                detail: 'die Kopie, -n (复印件，副本)。'
+            },
+            {
+                id: 25,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【办公设备名词】',
+                question: '办公室里用来复印文件的“复印机”，德语称作？',
+                options: ['der Kopierer', 'der Drucker', 'der Scanner', 'der Fernseher'],
+                correctIndex: 0,
+                detail: 'der Kopierer, - (复印机)。注意与 der Drucker (打印机) 区分。'
+            },
+            {
+                id: 26,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "der Körper" (身体/躯干) 的复数形式是？',
+                options: ['die Körper (单复同形)', 'die Körpern', 'die Körpere', 'die Körperer'],
+                correctIndex: 0,
+                detail: 'der Körper, - (身体)。以 -er 结尾的阳性名词，复数通常单复同形 (die Körper)。'
+            },
+            {
+                id: 27,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【词义辨析】',
+                question: '“建筑工人从事的是强体力劳动”，此处“体力的/身体的”填入： "______ Arbeit"',
+                options: ['körperliche', 'geistige', 'kritische', 'komplizierte'],
+                correctIndex: 0,
+                detail: 'körperlich (身体的，体力的)；反义词为 geistig (精神的/脑力的)。'
+            },
+            {
+                id: 28,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【近义词辨析】',
+                question: '形容词 "korrekt" 表达“正确的、合规的”，它的近义词是？',
+                options: ['richtig', 'falsch', 'komisch', 'krank'],
+                correctIndex: 0,
+                detail: 'korrekt 意为“正确的，合适的”，近义词为 richtig / ordnungsgemäß。'
+            },
+            {
+                id: 29,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【同义词替换】',
+                question: '在德国住房中，表示“走廊/过道”的词除了 "der Korridor" 之外，最日常通用的词是？',
+                options: ['der Flur', 'die Küche', 'der Balkon', 'das Bad'],
+                correctIndex: 0,
+                detail: 'der Korridor, -e (走廊，过道)，在日常口语与租房房型中常用 der Flur 或 der Gang。'
+            },
+            {
+                id: 30,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【动词辨析】',
+                question: '“老师正在批改学生的作业和考卷”，动词应选用：',
+                options: ['korrigieren', 'kontrollieren', 'kopieren', 'konzentrieren'],
+                correctIndex: 0,
+                detail: 'korrigieren (批改，订正，纠正)。例：Fehler / Hausaufgaben korrigieren。'
+            },
+
+            // 图3 词汇 (18个)
+            {
+                id: 31,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【句型结构】',
+                question: '动词 "kosten" 表示“价值/花费多少钱”时，句子主语通常是？',
+                options: ['物 (etwas)', '人 (jemand)', '地点 (Ort)', '时间 (Zeit)'],
+                correctIndex: 0,
+                detail: 'kosten 表示“花费多少钱”时，主语通常是物 (etwas kostet ... Euro)。'
+            },
+            {
+                id: 32,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【语法特征】',
+                question: '关于名词 "die Kosten" (费用/开支)，下列说法正确的是？',
+                options: ['它只有复数形式 (Pluralwort)', '它是阳性单数 der Kosten', '它是中性单数 das Kosten', '它是阴性单数 die Kosten'],
+                correctIndex: 0,
+                detail: 'die Kosten 是复数专用名词 (Pluralwort)，没有单数形式。'
+            },
+            {
+                id: 33,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【同义词辨析】',
+                question: '表示“免费的/不收钱的”，除了 "gratis" 之外还可以用哪个形容词？',
+                options: ['kostenlos', 'teuer', 'kräftig', 'kritisch'],
+                correctIndex: 0,
+                detail: 'kostenlos 意为“免费的”，近义词为 gratis / kostenfrei。'
+            },
+            {
+                id: 34,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【区域表达辨析】',
+                question: '在奥地利(A)和瑞士(CH)，"kosten" 常用于表达“品尝食物”，这相当于德国(D)通用德语中的：',
+                options: ['probieren / schmecken', 'kochen / backen', 'kaufen / bezahlen', 'trinken / essen'],
+                correctIndex: 0,
+                detail: 'kosten (A, CH) 在德语通用语(D)中常使用 probieren / probieren schmecken，意为“品尝”。'
+            },
+            {
+                id: 35,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【词义与复数】',
+                question: '“化装舞会上的戏服”或“女士西服套装”在德语中被称为 ______ (复数: die Kostüme)？',
+                options: ['das Kostüm', 'die Kleidung', 'der Anzug', 'das Hemd'],
+                correctIndex: 0,
+                detail: 'das Kostüm, -e (戏服；女士西服套装)。'
+            },
+            {
+                id: 36,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【变音与复数】',
+                question: '名词 "die Kraft" (力量/能力) 的正确复数形式是？',
+                options: ['die Kräfte', 'die Krafte', 'die Kräften', 'die Kräfter'],
+                correctIndex: 0,
+                detail: 'die Kraft, "-e (力量，能力)。复数变音为 die Kräfte。'
+            },
+            {
+                id: 37,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【近义词辨析】',
+                question: '形容词 "kräftig" 描述一个人或声音时，意思最接近于：',
+                options: ['stark', 'schwach', 'krank', 'müde'],
+                correctIndex: 0,
+                detail: 'kräftig 意为“强壮的，强有力的；浓郁的”，近义词为 stark。'
+            },
+            {
+                id: 38,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【合成词辨析】',
+                question: '德语官方缩写 "KFZ" 代表什么专业名词？',
+                options: ['das Kraftfahrzeug', 'das Flugzeug', 'das Fahrzeug', 'das Werkzeug'],
+                correctIndex: 0,
+                detail: 'das Kraftfahrzeug, -e (机动车/动力车辆)，官方日常缩写为 KFZ。'
+            },
+            {
+                id: 39,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【合成词辨析】',
+                question: '由 Kraft (能量) + Werk (工厂) 组合而成的名词 "das Kraftwerk" 意思是？',
+                options: ['发电厂', '健身房', '修车厂', '机械厂'],
+                correctIndex: 0,
+                detail: 'das Kraftwerk, -e (发电厂/发电站)。'
+            },
+            {
+                id: 40,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【反义词辨析】',
+                question: '形容词 "gesund" (健康的) 的反义词是？',
+                options: ['krank', 'müde', 'schwach', 'kühl'],
+                correctIndex: 0,
+                detail: 'krank (生病的)，反义词为 gesund (健康的)。'
+            },
+            {
+                id: 41,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【形容词名词化】',
+                question: '“医院里有很多病人”，表达“病人”的名词 "der/die Kranke" 遵循什么变化规则？',
+                options: ['形容词词尾变格规则', '常规名词不规则变化', '无词尾变化', '复数始终加 -s'],
+                correctIndex: 0,
+                detail: 'der/die Kranke, -n 是由形容词 krank 名词化而来，遵循形容词变格规则 (例如: ein Kranker / der Kranke)。'
+            },
+            {
+                id: 42,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "das Krankenhaus" (医院) 的正确复数形式是？',
+                options: ['die Krankenhäuser', 'die Krankenhaused', 'die Krankenhafen', 'die Krankenhause'],
+                correctIndex: 0,
+                detail: 'das Krankenhaus, "-er (医院)。复数为 die Krankenhäuser。'
+            },
+            {
+                id: 43,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【社会生活词汇】',
+                question: '在德国，提供法定医疗保险的机构被称为：',
+                options: ['die Krankenkasse', 'die Kriminalpolizei', 'die Apotheke', 'die Bank'],
+                correctIndex: 0,
+                detail: 'die Krankenkasse, -n (法定医疗保险公司/医疗基金会)。'
+            },
+            {
+                id: 44,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【职业名词辨析】',
+                question: '在医院负责护理工作的“男护士/男性护理员”，德语称作？',
+                options: ['der Krankenpfleger', 'der Arzt', 'der Apotheker', 'der Patient'],
+                correctIndex: 0,
+                detail: 'der Krankenpfleger, - (男护士)；女性对应为 die Krankenschwester 或 die Krankenpflegerin。'
+            },
+            {
+                id: 45,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "die Krankenschwester" (女护士) 的复数形式是？',
+                options: ['die Krankenschwestern', 'die Krankenschwester', 'die Krankenschwesterns', 'die Krankenschwesters'],
+                correctIndex: 0,
+                detail: 'die Krankenschwester, -n (女护士)。'
+            },
+            {
+                id: 46,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "der Krankenwagen" (救护车) 的复数形式是？',
+                options: ['die Krankenwagen (单复同形)', 'die Krankenwägen', 'die Krankenwagens', 'die Krankenwagener'],
+                correctIndex: 0,
+                detail: 'der Krankenwagen, - (救护车)。复数形式与单数相同 (die Krankenwagen)。'
+            },
+            {
+                id: 47,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【语法规则】',
+                question: '名词 "die Krankheit" 的后缀 -heit 决定了它的词性语法特征是？',
+                options: ['始终为阴性 (die)，复数加 -en', '始终为阳性 (der)', '始终为中性 (das)', '没有复数形式'],
+                correctIndex: 0,
+                detail: '所有以 -heit 结尾的德语名词均为阴性 (die)，复数形式加 -en (die Krankheiten)。'
+            },
+            {
+                id: 48,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【词义辨析】',
+                question: '形容词 "kreativ" 的正确中文释义是？',
+                options: ['富有创造力的/有创意的', '保守传统的', '严肃严厉的', '批评苛刻的'],
+                correctIndex: 0,
+                detail: 'kreativ 意为“富有创造力的，有创意的”。'
+            },
+
+            // 图4 词汇 (19个)
+            {
+                id: 49,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【动词短语搭配】',
+                question: '“向银行申请办理贷款”在德语中通常表达为： "einen Kredit ______"',
+                options: ['aufnehmen', 'machen', 'kaufen', 'geben'],
+                correctIndex: 0,
+                detail: 'einen Kredit aufnehmen (申请/办理贷款) / einen Kredit bekommen (获得贷款)。'
+            },
+            {
+                id: 50,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【介词搭配】',
+                question: '“您可以用信用卡付款”： "Sie können ______ Kreditkarte bezahlen."',
+                options: ['mit', 'in', 'durch', 'auf'],
+                correctIndex: 0,
+                detail: 'mit Kreditkarte bezahlen (用信用卡支付)。'
+            },
+            {
+                id: 51,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【一词多义】',
+                question: '名词 "der Kreis" 除了表示几何图形“圆形”外，在德国行政区划中还可以指？',
+                options: ['行政县/区', '省/州', '首都', '街道'],
+                correctIndex: 0,
+                detail: 'der Kreis, -e 意为“圆圈；圈子；（行政）县/区”。'
+            },
+            {
+                id: 52,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【词义与复数】',
+                question: '“在正确选项前打叉”或“十字路”用名词 ______ (复数: die Kreuze)？',
+                options: ['das Kreuz', 'der Kreis', 'die Kreuzung', 'die Kurve'],
+                correctIndex: 0,
+                detail: 'das Kreuz, -e (十字，十字架，叉号)。例：ein Kreuz machen (画叉/勾选)。'
+            },
+            {
+                id: 53,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【交通词汇】',
+                question: '“在下一个十字路口向左拐”： "An der nächsten ______ links abbiegen."',
+                options: ['Kreuzung', 'Haltestelle', 'Brücke', 'Straße'],
+                correctIndex: 0,
+                detail: 'die Kreuzung, -en (十字路口，交叉路口)。源自动词 kreuzen。'
+            },
+            {
+                id: 54,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【反义词辨析】',
+                question: '名词 "der Frieden" (和平) 的反义词是？',
+                options: ['der Krieg', 'die Krise', 'der Konflikt', 'der Streit'],
+                correctIndex: 0,
+                detail: 'der Krieg, -e (战争)，反义词为 der Frieden (和平)。'
+            },
+            {
+                id: 55,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【口语近义词】',
+                question: '在德语日常口语中，动词 "kriegen" 经常直接等同于标准德语中的：',
+                options: ['bekommen', 'geben', 'bringen', 'kaufen'],
+                correctIndex: 0,
+                detail: 'kriegen (kriegt, kriegte, hat gekriegt) 是极常见的口语动词，相当于 bekommen (获得/拿到)。'
+            },
+            {
+                id: 56,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【部门缩写辨析】',
+                question: '德语口语与新闻中常说的 "die Kripo" 是哪个警察部门的缩写？',
+                options: ['die Kriminalpolizei', 'die Verkehrspolizei', 'die Grenzpolizei', 'die Bundespolizei'],
+                correctIndex: 0,
+                detail: 'die Kriminalpolizei (刑事警察局/刑警)，口语简称 Kripo。'
+            },
+            {
+                id: 57,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "der Krimi" (侦探小说/犯罪影视剧) 的复数形式是？',
+                options: ['die Krimis', 'die Krimie', 'die Krimien', 'die Krimines'],
+                correctIndex: 0,
+                detail: 'der Krimi, -s (侦探小说/犯罪片)。外来缩写词，复数加 -s。'
+            },
+            {
+                id: 58,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "die Krise" (危机) 的正确复数形式是？',
+                options: ['die Krisen', 'die Krise', 'die Krisis', 'die Kriser'],
+                correctIndex: 0,
+                detail: 'die Krise, -n (危机)。例：eine wirtschaftliche Krise (经济危机)。'
+            },
+            {
+                id: 59,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【分词变化】',
+                question: '动词 "kritisieren" (批评/评论) 的完成时形式是？',
+                options: ['hat kritisiert', 'ist kritisiert', 'hat gekritisiert', 'hat kritisierted'],
+                correctIndex: 0,
+                detail: 'kritisieren 以 -ieren 结尾，Partizip II 不加 ge-，为 kritisiert；助动词用 haben。'
+            },
+            {
+                id: 60,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【固定搭配】',
+                question: '表达“对……提出批评”，用固定词组： "______ Kritik üben"',
+                options: ['an (+ Dat.)', 'auf (+ Akk.)', 'über (+ Akk.)', 'mit (+ Dat.)'],
+                correctIndex: 0,
+                detail: '固定介词词组：Kritik üben an + Dat. (对……提出批评)。'
+            },
+            {
+                id: 61,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【一词多义】',
+                question: '“Achtung, die Lage ist sehr ______!” 句中此词表示“危急的/关头紧要的”，它是：',
+                options: ['kritisch', 'kompliziert', 'komisch', 'kreativ'],
+                correctIndex: 0,
+                detail: 'kritisch 可表示“批判性的”，也可表示“危急的，紧要关头的”。'
+            },
+            {
+                id: 62,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【易混词辨析】',
+                question: '“在厨房里做饭”使用名词 ______ (die Küchen)；而“吃蛋糕”使用名词 der Kuchen。',
+                options: ['die Küche', 'der Kuchen', 'die Köchin', 'das Kochen'],
+                correctIndex: 0,
+                detail: 'die Küche, -n (厨房)；der Kuchen, - (蛋糕)。注意二者拼写与性属差异。'
+            },
+            {
+                id: 63,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【冠词与复数】',
+                question: '名词 "Kuchen" (蛋糕) 的正确冠词与复数形式是？',
+                options: ['der Kuchen, 复数: die Kuchen (单复同形)', 'das Kuchen, 复数: die Kuchen', 'die Kuchen, 复数: die Küchen', 'der Kuchen, 复数: die Küchen'],
+                correctIndex: 0,
+                detail: 'der Kuchen, - (阳性，蛋糕，复数不变音，仍为 die Kuchen)。'
+            },
+            {
+                id: 64,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【口语缩写】',
+                question: '名词 "der Kugelschreiber" (圆珠笔) 在日常口语中最常用的简写是？',
+                options: ['der Kuli', 'der Schri', 'der Kugler', 'der Pen'],
+                correctIndex: 0,
+                detail: 'der Kugelschreiber, - (圆珠笔) 在口语中常简称为 der Kuli, -s。'
+            },
+            {
+                id: 65,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "der Kuli" (圆珠笔) 的正确复数形式是？',
+                options: ['die Kulis', 'die Kulien', 'die Kulie', 'die Kulin'],
+                correctIndex: 0,
+                detail: 'der Kuli, -s (圆珠笔)。口语外来缩写词，复数加 -s。'
+            },
+            {
+                id: 66,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【词义辨析】',
+                question: '形容词 "kühl" 表示温度时，其含义介于 kalt (冷) 与 warm (暖) 之间，意思是？',
+                options: ['凉爽的/微凉的', '炎热的', '冰冻的', '极寒的'],
+                correctIndex: 0,
+                detail: 'kühl 意为“凉爽的，微凉的”。'
+            },
+            {
+                id: 67,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【变音与复数】',
+                question: '名词 "der Kühlschrank" (冰箱) 的正确复数形式是？',
+                options: ['die Kühlschränke', 'die Kühlschranke', 'die Kühlschränker', 'die Kühlschränken'],
+                correctIndex: 0,
+                detail: 'der Kühlschrank, "-e (冰箱)。复数变音加 -e 为 die Kühlschränke。'
+            }
+        ];
+
+        // Native Audio Synthesizer
+        let audioCtx = null;
+        function getAudioContext() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
+
+        function playSound(isCorrect) {
+            try {
+                const ctx = getAudioContext();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                const now = ctx.currentTime;
+
+                if (isCorrect) {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(523.25, now); // C5
+                    osc.frequency.setValueAtTime(659.25, now + 0.08); // E5
+                    gain.gain.setValueAtTime(0.12, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+                    osc.start(now);
+                    osc.stop(now + 0.3);
+                } else {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(220, now);
+                    osc.frequency.exponentialRampToValueAtTime(140, now + 0.2);
+                    gain.gain.setValueAtTime(0.1, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+                    osc.start(now);
+                    osc.stop(now + 0.2);
+                }
+            } catch (e) {
+                console.error("Audio error:", e);
+            }
+        }
+
+        // Fisher-Yates Shuffle
+        function shuffleArray(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        // Shuffle options and recalculate correct index
+        function processQuestions(data) {
+            return shuffleArray(data).map(item => {
+                const originalOptions = [...item.options];
+                const correctAnswerText = originalOptions[item.correctIndex];
+                const shuffledOptions = shuffleArray(originalOptions);
+                const newCorrectIndex = shuffledOptions.indexOf(correctAnswerText);
+                return {
+                    ...item,
+                    options: shuffledOptions,
+                    answer: newCorrectIndex
+                };
+            });
+        }
+
+        // App State
+        let vocabularyData = [];
+        let currentIndex = 0;
+        let userAnswers = [];
+        let showExplanation = false;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            resetPractice();
+        });
+
+        function resetPractice() {
+            // 打乱题目 + 完全随机化打乱选项顺序 ABCD
+            vocabularyData = processQuestions(rawVocabularyData);
+            currentIndex = 0;
+            userAnswers = new Array(vocabularyData.length).fill(null);
+            showExplanation = false;
+
+            document.getElementById('quiz-container').classList.remove('hidden');
+            document.getElementById('bottom-nav').classList.remove('hidden');
+            document.getElementById('result-container').classList.add('hidden');
+
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const currentData = vocabularyData[currentIndex];
+
+            // Render Badges and Small Intention Titles
+            document.getElementById('word-badge').className = `px-3 py-0.5 rounded-full text-xs font-bold tracking-wider uppercase border ${currentData.badgeClass}`;
+            document.getElementById('word-badge').textContent = currentData.type;
+            document.getElementById('question-index-tag').textContent = `Q${currentIndex + 1}`;
+            document.getElementById('target-word').textContent = currentData.title;
+            
+            // Render Enlarged Question Prompt Text
+            document.getElementById('question-prompt').textContent = currentData.question;
+
+            // Progress Bar
+            const progressPercent = Math.round(((currentIndex + 1) / vocabularyData.length) * 100);
+            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+            document.getElementById('progress-text').textContent = `进度：${currentIndex + 1} / ${vocabularyData.length}`;
+            document.getElementById('progress-percent').textContent = `${progressPercent}%`;
+
+            // Options
+            const optionsGrid = document.getElementById('options-grid');
+            optionsGrid.innerHTML = '';
+
+            const selectedAnswer = userAnswers[currentIndex];
+            const isAnswered = selectedAnswer !== null;
+
+            currentData.options.forEach((optText, optIndex) => {
+                const btn = document.createElement('button');
+                btn.className = getOptionStyle(optIndex, selectedAnswer, currentData.answer);
+                btn.innerHTML = `
+                    <div class="flex items-center justify-between w-full">
+                        <span class="flex items-center gap-3.5">
+                            <span class="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold border transition-all ${getOptionMarkerStyle(optIndex, selectedAnswer, currentData.answer)}">
+                                ${String.fromCharCode(65 + optIndex)}
+                            </span>
+                            <span class="font-medium">${optText}</span>
+                        </span>
+                        ${getOptionIcon(optIndex, selectedAnswer, currentData.answer)}
+                    </div>
+                `;
+                btn.onclick = () => selectOption(optIndex);
+                optionsGrid.appendChild(btn);
+            });
+
+            // Explanation
+            const explainCard = document.getElementById('explanation-card');
+            const explainText = document.getElementById('explanation-text');
+            explainText.textContent = currentData.detail;
+
+            if (showExplanation || isAnswered) {
+                explainCard.classList.remove('hidden');
+            } else {
+                explainCard.classList.add('hidden');
+            }
+
+            // Controls
+            document.getElementById('btn-prev').disabled = currentIndex === 0;
+            const btnNext = document.getElementById('btn-next');
+            if (currentIndex === vocabularyData.length - 1) {
+                btnNext.textContent = '完成特训';
+                btnNext.className = 'px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-teal-700 hover:bg-teal-800 text-white shadow-md transition-all';
+            } else {
+                btnNext.textContent = '下一题';
+                btnNext.className = 'px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-md transition-all';
+            }
+        }
+
+        function getOptionStyle(index, selected, correct) {
+            const base = "w-full text-left p-4 sm:p-4.5 rounded-2xl border text-sm sm:text-base transition-all duration-200 flex items-center justify-between ";
+            if (selected === null) {
+                return base + "border-slate-200/80 bg-white hover:border-slate-400 hover:shadow-md text-slate-800";
+            }
+            if (index === correct) {
+                return base + "border-emerald-300 bg-emerald-50/90 text-emerald-900 font-semibold shadow-sm";
+            }
+            if (index === selected && selected !== correct) {
+                return base + "border-rose-300 bg-rose-50/90 text-rose-900 font-semibold shadow-sm";
+            }
+            return base + "border-slate-100 bg-slate-50/50 text-slate-400 opacity-50";
+        }
+
+        function getOptionMarkerStyle(index, selected, correct) {
+            if (selected === null) {
+                return "border-slate-200 text-slate-500 bg-slate-50";
+            }
+            if (index === correct) {
+                return "border-emerald-500 text-white bg-emerald-600 shadow-sm";
+            }
+            if (index === selected && selected !== correct) {
+                return "border-rose-500 text-white bg-rose-500 shadow-sm";
+            }
+            return "border-slate-200 text-slate-300 bg-slate-100";
+        }
+
+        function getOptionIcon(index, selected, correct) {
+            if (selected === null) return '';
+            if (index === correct) {
+                return `<svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>`;
+            }
+            if (index === selected && selected !== correct) {
+                return `<svg class="w-5 h-5 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>`;
+            }
+            return '';
+        }
+
+        function selectOption(index) {
+            if (userAnswers[currentIndex] === null) {
+                const isCorrect = index === vocabularyData[currentIndex].answer;
+                playSound(isCorrect);
+            }
+            userAnswers[currentIndex] = index;
+            showExplanation = true;
+            renderQuestion();
+        }
+
+        function toggleExplanation() {
+            showExplanation = !showExplanation;
+            const explainCard = document.getElementById('explanation-card');
+            if (showExplanation) {
+                explainCard.classList.remove('hidden');
+            } else {
+                explainCard.classList.add('hidden');
+            }
+        }
+
+        function nextQuestion() {
+            if (currentIndex < vocabularyData.length - 1) {
+                currentIndex++;
+                showExplanation = false;
+                renderQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                showExplanation = false;
+                renderQuestion();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quiz-container').classList.add('hidden');
+            document.getElementById('bottom-nav').classList.add('hidden');
+            document.getElementById('result-container').classList.remove('hidden');
+
+            let mistakeCount = 0;
+            const mistakesList = document.getElementById('mistakes-list');
+            mistakesList.innerHTML = '';
+
+            userAnswers.forEach((ans, idx) => {
+                const item = vocabularyData[idx];
+                if (ans !== item.answer) {
+                    mistakeCount++;
+                    const mistakeDiv = document.createElement('div');
+                    mistakeDiv.className = 'p-4 bg-slate-50 rounded-2xl border border-slate-200/80 text-xs sm:text-sm';
+                    mistakeDiv.innerHTML = `
+                        <div class="font-bold text-teal-800 text-sm mb-1">${item.title}</div>
+                        <div class="font-german text-slate-800 font-medium mb-1.5">${item.question}</div>
+                        <div class="text-slate-600 leading-relaxed">${item.detail}</div>
+                    `;
+                    mistakesList.appendChild(mistakeDiv);
+                }
+            });
+
+            document.getElementById('stat-total').textContent = vocabularyData.length;
+            document.getElementById('stat-mistakes').textContent = mistakeCount;
+
+            const mistakesSection = document.getElementById('mistakes-section');
+            if (mistakeCount > 0) {
+                mistakesSection.classList.remove('hidden');
+            } else {
+                mistakesSection.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
