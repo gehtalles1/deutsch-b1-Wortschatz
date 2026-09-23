@@ -50,7 +50,6 @@
             </div>
         </div>
     </header>
-
     <!-- Main Section -->
     <main class="flex-1 max-w-3xl w-full mx-auto p-4 sm:p-6 flex flex-col justify-center">
         <!-- QUIZ CONTAINER -->
@@ -74,12 +73,10 @@
                     </p>
                 </div>
             </div>
-
             <!-- Options Grid -->
             <div id="options-grid" class="grid grid-cols-1 gap-3.5">
                 <!-- Dynamic options -->
             </div>
-
             <!-- Explanation Card -->
             <div id="explanation-card" class="hidden bg-slate-900 text-slate-100 rounded-2xl p-5 sm:p-6 shadow-lg border border-slate-800 text-sm leading-relaxed space-y-2">
                 <div class="font-semibold text-teal-400 flex items-center gap-2 text-xs sm:text-sm uppercase tracking-wider">
@@ -89,7 +86,6 @@
                 <div id="explanation-text" class="text-slate-300 text-xs sm:text-sm font-normal"></div>
             </div>
         </div>
-
         <!-- RESULT CONTAINER -->
         <div id="result-container" class="hidden bg-white/90 backdrop-blur-sm rounded-3xl p-8 sm:p-10 border border-slate-200/70 shadow-xl shadow-slate-200/50 text-center space-y-8">
             <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-900 text-teal-400 shadow-lg shadow-slate-900/10 mb-2">
@@ -128,7 +124,6 @@
             </div>
         </div>
     </main>
-
     <!-- Bottom Actions Nav -->
     <footer id="bottom-nav" class="sticky bottom-0 z-30 custom-glass border-t border-slate-200/60 px-4 py-3.5 sm:px-8">
         <div class="max-w-3xl mx-auto flex items-center justify-between gap-3">
@@ -144,14 +139,13 @@
             </button>
         </div>
     </footer>
-
     <script>
         const rawVocabularyData = [
             {
                 id: 1,
                 type: 'Verb Grammatik',
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
-                word: 'entstehen, entsteht, entstand, ist entstanden',
+                word: 'entstehen',
                 question: '动词 "entstehen" (产生，形成) 的完成时 (Perfekt) 形式是哪一个？（注意助动词选择）',
                 options: ['hat entstanden', 'ist entstanden', 'hat entsteht', 'ist entsteht'],
                 answer: 1,
@@ -163,28 +157,28 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'unentschieden / entscheiden / die Entscheidung',
                 question: '在足球比赛中，如果两队最终打成平局 (1:1)，在德语中可以用哪一个词形容比赛结果？',
-                options: ['unentschieden', 'entschlossen', 'erschöpft', 'erfolgreich'],
-                answer: 0,
+                options: ['entschlossen', 'erschöpft', 'unentschieden', 'erfolgreich'],
+                answer: 2,
                 detail: 'unentschieden 表示“未决胜负的，平局的”。动词：entscheiden (决定)，名词：die Entscheidung, -en (决定)。'
             },
             {
                 id: 3,
                 type: 'Reflexivverb',
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
-                word: 'sich entschließen / entschlossen',
+                word: 'sich entschließen',
                 question: '句子 “Er hat sich endlich ______, nach Deutschland zu ziehen.” 中应填入哪个词？',
-                options: ['entschlossen', 'entschieden', 'erschrocken', 'entwickelt'],
-                answer: 0,
+                options: ['entschieden', 'entschlossen', 'erschrocken', 'entwickelt'],
+                answer: 1,
                 detail: 'sich entschließen zu + Dat. (下定决心做某事)，完成时为 hat sich entschlossen。entschlossen 还可作形容词表示“果断的”。'
             },
             {
                 id: 4,
                 type: 'Verb',
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
-                word: 'entsorgen, entsorgt, entsorgte, hat entsorgt',
+                word: 'entsorgen',
                 question: '在日常与环保话题中，动词 "entsorgen" 的正确含义是？',
-                options: ['照顾，照料', '消除顾虑', '清理，处置(废弃物/垃圾)', '表达歉意'],
-                answer: 2,
+                options: ['照顾，照料', '消除顾虑', '表达歉意', '清理，处置(废弃物/垃圾)'],
+                answer: 3,
                 detail: 'entsorgen (entsorgt, entsorgte, hat entsorgt) 表示“处置，清除(垃圾等)”。名词为 die Entsorgung。'
             },
             {
@@ -193,18 +187,18 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'entspannend',
                 question: '句子 “Ein heißes Bad ist sehr ______.” (洗个热澡非常令人放松。) 括号中应填入？',
-                options: ['enttäuschend', 'entspannend', 'erschöpft', 'erforderlich'],
-                answer: 1,
+                options: ['entspannend', 'enttäuschend', 'erschöpft', 'erforderlich'],
+                answer: 0,
                 detail: 'entspannend (令人放松的)。源动词 entspannen (放松)，反义词为 stressig (令人紧张有压力的)。'
             },
             {
                 id: 6,
                 type: 'Verb & Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'enttäuschen / die Enttäuschung, -en',
+                word: 'enttäuschen',
                 question: '名词 "die Enttäuschung" (失望) 的对应动词 enttäuschen 的正确完成时形式是？',
-                options: ['hat enttäuscht', 'ist enttäuscht', 'hat enttauscht', 'ist enttäuschen'],
-                answer: 0,
+                options: ['ist enttäuscht', 'hat enttäuscht', 'hat enttauscht', 'ist enttäuschen'],
+                answer: 1,
                 detail: 'enttäuschen (enttäuscht, enttäuschte, hat enttäuscht) - 使失望。前缀 ent- 不可分，完成时过去分词不加 ge-。'
             },
             {
@@ -213,85 +207,85 @@
                 badgeClass: 'bg-violet-50 text-violet-700 border-violet-200',
                 word: 'entweder ... oder',
                 question: '关联连词 "entweder ... oder" 在句中表示什么逻辑关系？',
-                options: ['既……又……', '要么……要么…… (二选一)', '虽然……但是……', '不仅……而且……'],
-                answer: 1,
+                options: ['既……又……', '虽然……但是……', '要么……要么…… (二选一)', '不仅……而且……'],
+                answer: 2,
                 detail: 'entweder ... oder (要么……要么……) 表示选择关系。例：Entweder wir gehen heute, oder wir bleiben zu Hause.'
             },
             {
                 id: 8,
                 type: 'Nomen & Verb',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'entwickeln / die Entwicklung, -en',
+                word: 'entwickeln',
                 question: '科技与企业语境中的缩写 "Forschung und Entwicklung" (F&E) 意思是？',
-                options: ['调查与报告', '研究与开发 (研发)', '发现与创造', '计划与实施'],
-                answer: 1,
+                options: ['研究与开发 (研发)', '调查与报告', '发现与创造', '计划与实施'],
+                answer: 0,
                 detail: 'die Entwicklung, -en (发展，开发，研制)，源自动词 entwickeln ( hat entwickelt)。F&E 代表“研发”。'
             },
             {
                 id: 9,
                 type: 'Nomen Variation',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'die Erde / der Erdapfel, "- / das Erdgeschoss, -e',
+                word: 'der Erdapfel',
                 question: '在奥地利德语 (Österreichisches Deutsch) 中，"der Erdapfel" 指的是什么？',
-                options: ['苹果', '吐司', '土豆 (Kartoffel)', '茄子'],
-                answer: 2,
+                options: ['苹果', '土豆 (Kartoffel)', '吐司', '茄子'],
+                answer: 1,
                 detail: 'der Erdapfel, "- (奥地利德语) = die Kartoffel (土豆)。字面意为“地里的苹果”。同时：das Erdgeschoss (一楼/底层)，die Erde (地球/土壤)。'
             },
             {
                 id: 10,
                 type: 'Reflexivverb & Nomen',
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
-                word: 'sich ereignen / das Ereignis, -se',
+                word: 'das Ereignis',
                 question: '名词 "das Ereignis" (重大事件) 的复数形式以及对应动词是哪一组？',
-                options: ['die Ereignisse / sich ereignen', 'die Ereignis / ereignen', 'die Ereignissen / ereignen', 'die Ereignisse / ersetzen'],
-                answer: 0,
+                options: ['die Ereignis / ereignen', 'die Ereignissen / ereignen', 'die Ereignisse / sich ereignen', 'die Ereignisse / ersetzen'],
+                answer: 2,
                 detail: 'das Ereignis, 复数为 die Ereignisse (以 -nis 结尾的中性名词，复数加 -se)。对应反身动词：sich ereignen (发生)。'
             },
             {
                 id: 11,
                 type: 'Verb & Nomen',
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
-                word: 'erfahren / die Erfahrung, -en',
+                word: 'erfahren',
                 question: '“Ich habe aus der Zeitung davon ______.” (我从报纸上得知了此事。) 句中应填？',
-                options: ['erfahren', 'erfunden', 'erlaubt', 'erreicht'],
-                answer: 0,
+                options: ['erfunden', 'erlaubt', 'erreicht', 'erfahren'],
+                answer: 3,
                 detail: 'erfahren (erfährt, erfuhr, hat erfahren) - 获悉，得知；经历。名词：die Erfahrung, -en (经验，经历)。'
             },
             {
                 id: 12,
                 type: 'Verb Unterscheidung',
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
-                word: 'erfinden / die Erfindung, -en',
+                word: 'erfinden',
                 question: '区分概念："erfinden" 与 "entdecken" 的区别在于，"die Erfindung" 专指？',
-                options: ['发现原本就存在的事物', '发明原本不存在的新事物', '购买工业专利', '制造量产产品'],
-                answer: 1,
+                options: ['发明原本不存在的新事物', '发现原本就存在的事物', '购买工业专利', '制造量产产品'],
+                answer: 0,
                 detail: 'erfinden (erfindet, erfand, hat erfunden) - 发明 (原本不存在的科技或物品)；entdecken - 发现 (原本已存在的东西)。'
             },
             {
                 id: 13,
                 type: 'Nomen & Adjektiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'der Erfolg, -e / erfolgreich',
+                word: 'erfolgreich',
                 question: '形容词 "erfolgreich" 的含义及对应名词 "der Erfolg" 的复数形式是？',
-                options: ['失败的 / die Erfolge', '成功的 / die Erfolge', '有效的 / die Erfolgen', '努力的 / die Erfolge'],
-                answer: 1,
+                options: ['失败的 / die Erfolge', '有效的 / die Erfolgen', '成功的 / die Erfolge', '努力的 / die Erfolge'],
+                answer: 2,
                 detail: 'erfolgreich (成功的)；der Erfolg, 复数为 die Erfolge (成功，成就)。'
             },
             {
                 id: 14,
                 type: 'Adjektiv & Verb',
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
-                word: 'erforderlich / erfordern',
+                word: 'erforderlich',
                 question: '“Geduld ist für diese Arbeit ______.” (这项工作需要耐心。) 句中 "erforderlich" 相当于？',
-                options: ['wichtig (重要的)', 'notwendig / nötig (必要的，不可或缺的)', 'möglich (可能的)', 'einfach (简单的)'],
-                answer: 1,
+                options: ['wichtig (重要的)', 'möglich (可能的)', 'einfach (简单的)', 'notwendig / nötig (必要的，不可或缺的)'],
+                answer: 3,
                 detail: 'erforderlich (必要的，要求的)。动词形式：erfordern (erfordert, erforderte, hat erfordert) - 需要，要求。'
             },
             {
                 id: 15,
                 type: 'Verb Kollokation',
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
-                word: 'erfüllen, erfüllt, erfüllte, hat erfüllt',
+                word: 'erfüllen',
                 question: '固定搭配 “einen Wunsch ______” (实现愿望) 或 “die Bedingungen ______” (满足条件)，使用哪个动词？',
                 options: ['erreichen', 'erfüllen', 'erhöhen', 'erheben'],
                 answer: 1,
@@ -301,17 +295,17 @@
                 id: 16,
                 type: 'Verb & Nomen',
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
-                word: 'ergänzen / das Ergebnis, -se',
+                word: 'ergänzen',
                 question: '德语题目要求 “Ergänzen Sie die Lücken!” 这里的 "ergänzen" 意思是？',
-                options: ['解释', '填空，补充完整', '修改', '删除'],
-                answer: 1,
+                options: ['解释', '修改', '填空，补充完整', '删除'],
+                answer: 2,
                 detail: 'ergänzen (ergänzt, ergänzte, hat ergänzt) - 补充，填空。补充完后得到 das Ergebnis, -se (结果，答案)。'
             },
             {
                 id: 17,
                 type: 'Verb Synonym',
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
-                word: 'erhalten, erhält, erhielt, hat erhalten',
+                word: 'erhalten',
                 question: '动词 "erhalten" 在官方或正式书面语中，常用作哪个动词的高级同义词？',
                 options: ['bekommen / empfangen (收到，获得)', 'geben (给予)', 'behalten (保留)', 'kaufen (购买)'],
                 answer: 0,
@@ -321,38 +315,38 @@
                 id: 18,
                 type: 'Verb & Nomen',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'erhöhen / die Erhöhung, -en',
+                word: 'die Erhöhung',
                 question: '新闻报道中 “eine Erhöhung der Preise” 的意思是？',
-                options: ['价格打折', '价格上涨 / 提高', '价格保持不变', '价格取消'],
-                answer: 1,
+                options: ['价格打折', '价格保持不变', '价格取消', '价格上涨 / 提高'],
+                answer: 3,
                 detail: 'die Erhöhung, -en (提高，增加)。动词：erhöhen (erhöht, erhöhte, hat erhöht)。反义词：senken / die Senkung.'
             },
             {
                 id: 19,
                 type: 'Reflexivverb',
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
-                word: 'sich erholen / die Erholung, -en',
+                word: 'sich erholen',
                 question: '假期结束后的问候 “Haben Sie sich gut ______?”, 动词 "sich erholen" 的意思是？',
-                options: ['休养，恢复，复原', '玩得开心', '准备就绪', '取得成功'],
-                answer: 0,
+                options: ['玩得开心', '休养，恢复，复原', '准备就绪', '取得成功'],
+                answer: 1,
                 detail: 'sich erholen (休养，休整，复原)。名词：die Erholung, -en。例：Erholung suchen (寻求休养)。'
             },
             {
                 id: 20,
                 type: 'Präpositionalverb',
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
-                word: 'erinnern / die Erinnerung, -en',
+                word: 'sich erinnern',
                 question: '语法搭配：表达“我记得这件事”用反身结构 “Ich erinnere mich ______ das.”，括号内填哪个介词？',
-                options: ['an (+ Akk.)', 'auf (+ Akk.)', 'über (+ Akk.)', 'von (+ Dat.)'],
-                answer: 0,
+                options: ['auf (+ Akk.)', 'über (+ Akk.)', 'an (+ Akk.)', 'von (+ Dat.)'],
+                answer: 2,
                 detail: 'sich erinnern an + Akk. (回忆起，记得……)。名词：die Erinnerung, -en (回忆，记忆)。'
             },
             {
                 id: 21,
-                type: 'Verb & Adjektiv',
+                type: 'Grammatik & Wortschatz',
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
-                word: 'sich erkälten / erkältet / die Erkältung',
-                question: '“Ich bin stark ______.” (我感冒很严重。) 句子中 "erkältet" 的词性及用法的正确分析是？',
+                word: 'erkältet',
+                question: '“Ich bin stark ______.” (我感冒很严重。) 句子中 "erkältet" 的用法与词性是？',
                 options: ['动词现在时', '形容词/过去分词作表语', '副词', '介词'],
                 answer: 1,
                 detail: 'erkältet sein (感冒了，作表语)；反身动词：sich erkälten (感冒)；名词：die Erkältung, -en (感冒)。'
@@ -361,7 +355,7 @@
                 id: 22,
                 type: 'Präpositionalverb',
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
-                word: 'erkennen, erkennt, erkannte, hat erkannt',
+                word: 'erkennen',
                 question: '语法搭配：“Ich habe ihn ______ seiner Stimme erkannt.” (我凭声音认出了他。) 应填入介词？',
                 options: ['an (+ Dat.)', 'aus (+ Dat.)', 'durch (+ Akk.)', 'mit (+ Dat.)'],
                 answer: 0,
@@ -371,27 +365,27 @@
                 id: 23,
                 type: 'Verb Formen',
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
-                word: 'erklären / die Erklärung, -en',
+                word: 'erklären',
                 question: '动词 "erklären" (解释，说明) 的第三人称单数过去时 (Präteritum) 是？',
-                options: ['erklärt', 'erklärte', 'erhörte', 'erstand'],
-                answer: 1,
+                options: ['erklärt', 'erhörte', 'erklärte', 'erstand'],
+                answer: 2,
                 detail: 'erklären 是规则(弱变化)动词：erklärt, erklärte, hat erklärt。名词：die Erklärung, -en (解释，说明)。'
             },
             {
                 id: 24,
                 type: 'Präpositionalverb',
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
-                word: 'sich erkundigen, erkundigt sich, hat sich erkundigt',
+                word: 'sich erkundigen',
                 question: '在车站询问发车时间：“Ich möchte mich ______ den Abfahrtszeiten erkundigen.” 应填入？',
-                options: ['nach (+ Dat.)', 'für (+ Akk.)', 'über (+ Akk.)', 'um (+ Akk.)'],
-                answer: 0,
+                options: ['für (+ Akk.)', ' über (+ Akk.)', 'um (+ Akk.)', 'nach (+ Dat.)'],
+                answer: 3,
                 detail: 'sich erkundigen nach + Dat. - 打听，询问(某事)。例：sich nach dem Weg erkundigen (问路)。'
             },
             {
                 id: 25,
                 type: 'Verb & Nomen',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'erlauben / die Erlaubnis',
+                word: 'die Erlaubnis',
                 question: '告示牌 “Parken verboten” (禁止停车) 意味着没有得到停车的 ______。',
                 options: ['die Erlaubnis', 'die Ermäßigung', 'die Entschuldigung', 'die Erhöhung'],
                 answer: 0,
@@ -401,7 +395,7 @@
                 id: 26,
                 type: 'Verb & Nomen',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'erleben / das Erlebnis, -se',
+                word: 'das Erlebnis',
                 question: '名词 "das Erlebnis, -se" 的正确中文释义是？',
                 options: ['经验，履历 (Erfahrung)', '亲身经历，难忘的体验', '客观结果 (Ergebnis)', '突发事件 (Ereignis)'],
                 answer: 1,
@@ -411,27 +405,27 @@
                 id: 27,
                 type: 'Verb',
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
-                word: 'erledigen, erledigt, erledigte, hat erledigt',
+                word: 'erledigen',
                 question: '工作与日常中，“Formulare / Aufgaben erledigen” 的正确意思是？',
-                options: ['收集表格/任务', '办妥/完成/处理表格或任务', '放弃任务', '打印表格'],
-                answer: 1,
+                options: ['收集表格/任务', '放弃任务', '办妥/完成/处理表格或任务', '打印表格'],
+                answer: 2,
                 detail: 'erledigen (erledigt, erledigte, hat erledigt) - 处理，完成，办妥。例：Ich habe alles erledigt (我把事情都办好了)。'
             },
             {
                 id: 28,
                 type: 'Verb',
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
-                word: 'erleichtert, erleichterte, hat erleichtert',
+                word: 'erleichtern',
                 question: '“Das neue System erleichtert die Arbeit.” 句中 "erleichtern" 的词根构成与含义是？',
-                options: ['er- + leicht (轻) -> 使……减轻/变轻松', 'er- + leucht -> 使……光亮', 'er- + leid -> 使……痛苦', 'er- + lang -> 使……变长'],
-                answer: 0,
+                options: ['er- + leucht -> 使……光亮', 'er- + leid -> 使……痛苦', 'er- + lang -> 使……变长', 'er- + leicht (轻) -> 使……减轻/变轻松'],
+                answer: 3,
                 detail: 'erleichtern (使减轻，使减轻负担/轻松)。反义词：erschweren (使加重/变困难)。'
             },
             {
                 id: 29,
                 type: 'Nomen',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'die Ermäßigung, -en',
+                word: 'die Ermäßigung',
                 question: '凭学生证购买剧院门票时享受 “eine Ermäßigung”。这里的 "Ermäßigung" 指的是？',
                 options: ['免费招待', '折扣，优惠减价', '优先入场权', '退票许可'],
                 answer: 1,
@@ -441,27 +435,27 @@
                 id: 30,
                 type: 'Verb & Nomen',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'ernähren / die Ernährung',
+                word: 'die Ernährung',
                 question: '健康生活话题中，“gesunde Ernährung” 的意思是？',
-                options: ['新鲜蔬菜', '健康的营养/饮食', '体育锻炼', '良好作息'],
-                answer: 1,
+                options: ['新鲜蔬菜', '体育锻炼', '健康的营养/饮食', '良好作息'],
+                answer: 2,
                 detail: 'die Ernährung (营养，饮食)。动词：sich/jdn. ernähren (ernährt, ernährte, hat ernährt) - 供养，进食。'
             },
             {
                 id: 31,
                 type: 'Adjektiv & Redewendung',
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
-                word: 'ernst / ernsthaft',
+                word: 'ernst',
                 question: '表达“这可不是开玩笑，我是认真的！”德语习惯用语是？',
-                options: ['Das ist mein Ernst!', 'Das ist meine Ernte!', 'Das ist mein Ersatz!', 'Das ist mein Erfolg!'],
-                answer: 0,
+                options: ['Das ist meine Ernte!', 'Das ist mein Ersatz!', 'Das ist mein Erfolg!', 'Das ist mein Ernst!'],
+                answer: 3,
                 detail: 'Das ist mein Ernst! (我是认真的！/ 这不是开玩笑！)。ernst / ernsthaft 作形容词表示“严肃的，认真的”。'
             },
             {
                 id: 32,
                 type: 'Nomen',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'die Ernte, -n',
+                word: 'die Ernte',
                 question: '农业与季节话题中，"die Ernte, -n" 的正确含义是？',
                 options: ['播种', '庄稼收获，收成', '耕地', '旱灾'],
                 answer: 1,
@@ -471,20 +465,20 @@
                 id: 33,
                 type: 'Verb & Nomen',
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
-                word: 'eröffnen / die Eröffnung, -en',
+                word: 'eröffnen',
                 question: '新店开业、展览开幕或开立银行账户，德语中使用哪个动词？',
-                options: ['erfinden', 'eröffnen', 'erreichen', 'erfordern'],
-                answer: 1,
+                options: ['erfinden', 'erreichen', 'eröffnen', 'erfordern'],
+                answer: 2,
                 detail: 'eröffnen (eröffnet, eröffnete, hat eröffnet) - 开启，开业，开幕，开户。名词：die Eröffnung, -en。'
             },
             {
                 id: 34,
                 type: 'Verb Polysemie',
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
-                word: 'erreichen, erreicht, erreichte, hat erreicht',
+                word: 'erreichen',
                 question: '“Ich konnte ihn telefonisch nicht ______.” 句中的 "erreichen" 表示？',
-                options: ['理解', '联系到，找得到(某人)', '听清', '叫醒'],
-                answer: 1,
+                options: ['理解', '听清', '叫醒', '联系到，找得到(某人)'],
+                answer: 3,
                 detail: 'erreichen 有多重含义：① (电话/书信)联系上某人；② 达到(目标/数量)；③ 赶上(火车/公交)。'
             },
             {
@@ -501,20 +495,20 @@
                 id: 36,
                 type: 'Verb Grammatik Spezial',
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
-                word: 'erschrecken (sich/jdn.)',
+                word: 'erschrecken',
                 question: '考点精讲！动词 erschrecken 有两种用法，请选出括号内助动词对应的正确组合：<br>① 不及物“受惊”：er erschrickt, erschrak, [ ? ] erschrocken.<br>② 及物“吓唬某人”：er erschreckt, erschreckte, [ ? ] erschreckt.',
-                options: ['ist / hat', 'hat / ist', 'ist / ist', 'hat / hat'],
-                answer: 0,
+                options: ['hat / ist', 'ist / hat', 'ist / ist', 'hat / hat'],
+                answer: 1,
                 detail: '不及物强变化表示状态改变：ist erschrocken (受惊吓)；及物弱变化：hat jdn. erschreckt (吓唬某人)。'
             },
             {
                 id: 37,
                 type: 'Verb & Nomen',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                word: 'ersetzen / der Ersatz',
+                word: 'der Ersatz',
                 question: '机器坏了需要“替换部件”或“备用件”，德语对应的名词是？',
-                options: ['der Erfolg', 'der Ersatz', 'der Erdapfel', 'der Abschluss'],
-                answer: 1,
+                options: ['der Erfolg', 'der Erdapfel', 'der Ersatz', 'der Abschluss'],
+                answer: 2,
                 detail: 'der Ersatz (替代品，备用)；Ersatzteile (备件)。动词：ersetzen durch + Akk. (用……替换)。'
             },
             {
@@ -531,10 +525,10 @@
                 id: 39,
                 type: 'Verb & Nomen',
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
-                word: 'entschuldigen / die Entschuldigung, -en',
+                word: 'entschuldigen',
                 question: '常用道歉语 “Entschuldigen Sie bitte!” 中，动词 "entschuldigen" 的语法特征是？',
-                options: ['带前缀 ent-，重音在第一音节', '带不可分前缀 ent-，完成时为 hat entschuldigt', '是可分动词', '过去分词需要加 -ge-'],
-                answer: 1,
+                options: ['带前缀 ent-，重音在第一音节', '是可分动词', '过去分词需要加 -ge-', '带不可分前缀 ent-，完成时为 hat entschuldigt'],
+                answer: 3,
                 detail: 'entschuldigen 是带有不可分前缀 ent- 的弱变化动词，完成时过去分词为 entschuldigt (不加 -ge-)。名词为 die Entschuldigung, -en。'
             }
         ];
@@ -599,10 +593,21 @@
         });
 
         function resetPractice() {
-            vocabularyData = shuffleArray(rawVocabularyData);
+            // Shuffle question order and shuffle options per question
+            vocabularyData = shuffleArray(rawVocabularyData).map(item => {
+                const correctAnswerText = item.options[item.answer];
+                const shuffledOptions = shuffleArray(item.options);
+                const newAnswerIndex = shuffledOptions.indexOf(correctAnswerText);
+                return {
+                    ...item,
+                    options: shuffledOptions,
+                    answer: newAnswerIndex
+                };
+            });
             currentIndex = 0;
             userAnswers = new Array(vocabularyData.length).fill(null);
             showExplanation = false;
+
             document.getElementById('quiz-container').classList.remove('hidden');
             document.getElementById('bottom-nav').classList.remove('hidden');
             document.getElementById('result-container').classList.add('hidden');
@@ -611,7 +616,6 @@
 
         function renderQuestion() {
             const currentData = vocabularyData[currentIndex];
-
             document.getElementById('word-badge').className = `px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase border ${currentData.badgeClass}`;
             document.getElementById('word-badge').textContent = currentData.type;
             document.getElementById('question-index-tag').textContent = `Q${currentIndex + 1}`;
@@ -625,6 +629,7 @@
 
             const optionsGrid = document.getElementById('options-grid');
             optionsGrid.innerHTML = '';
+
             const selectedAnswer = userAnswers[currentIndex];
             const isAnswered = selectedAnswer !== null;
 
