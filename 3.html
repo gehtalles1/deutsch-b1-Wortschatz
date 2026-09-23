@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>德语 B1 核心词汇深度特训 - 第二关</title>
+    <title>德语 B1 核心词汇深度特训</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,7 +33,7 @@
             </a>
             <div class="text-center">
                 <h1 class="text-xs sm:text-sm font-bold tracking-widest text-slate-400 uppercase">Wortschatz Training</h1>
-                <p class="text-sm sm:text-base font-extrabold text-slate-900 tracking-tight">德语 B1 核心词汇特训（第二关）</p>
+                <p class="text-sm sm:text-base font-extrabold text-slate-900 tracking-tight">德语 B1 核心词汇特训（第三关）</p>
             </div>
             <button onclick="resetPractice()" class="text-xs sm:text-sm font-semibold text-slate-500 hover:text-teal-700 transition-all py-1.5 px-3 rounded-full hover:bg-slate-100/80">
                 重新开始
@@ -42,7 +42,7 @@
         <!-- Progress Bar -->
         <div class="max-w-3xl mx-auto mt-3">
             <div class="flex justify-between items-center text-xs font-bold text-slate-400 mb-1.5 tracking-wider uppercase">
-                <span id="progress-text">进度：1 / 43</span>
+                <span id="progress-text">进度：1 / 45</span>
                 <span id="progress-percent">2%</span>
             </div>
             <div class="w-full h-1.5 bg-slate-200/70 rounded-full overflow-hidden p-0.5">
@@ -67,17 +67,19 @@
                 </div>
                 <div class="py-2">
                     <h2 id="target-word" class="font-german text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-3">
-                        der Architekt, -en
+                        加载中...
                     </h2>
                     <p id="question-prompt" class="text-sm sm:text-base font-medium text-slate-600 leading-relaxed">
                         提示问题
                     </p>
                 </div>
             </div>
+
             <!-- Options Grid -->
             <div id="options-grid" class="grid grid-cols-1 gap-3.5">
                 <!-- Dynamic options -->
             </div>
+
             <!-- Explanation Card -->
             <div id="explanation-card" class="hidden bg-slate-900 text-slate-100 rounded-2xl p-5 sm:p-6 shadow-lg border border-slate-800 text-sm leading-relaxed space-y-2">
                 <div class="font-semibold text-teal-400 flex items-center gap-2 text-xs sm:text-sm uppercase tracking-wider">
@@ -94,13 +96,13 @@
                 <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
             </div>
             <div>
-                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2 tracking-tight">第二关特训完成！</h2>
-                <p class="text-sm text-slate-500 font-medium">已完成所有四张图的核心词汇测试，保持节奏，稳步提升！</p>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2 tracking-tight">第三关特训完成！</h2>
+                <p class="text-sm text-slate-500 font-medium">已完成本关核心词汇测试，保持节奏，稳步提升！</p>
             </div>
             <div class="max-w-md mx-auto py-3 px-6 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-around">
                 <div>
                     <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">本次练习题目</div>
-                    <div id="stat-total" class="text-2xl font-extrabold text-slate-900">43</div>
+                    <div id="stat-total" class="text-2xl font-extrabold text-slate-900">45</div>
                 </div>
                 <div class="h-8 w-px bg-slate-200"></div>
                 <div>
@@ -108,6 +110,7 @@
                     <div id="stat-mistakes" class="text-2xl font-extrabold text-slate-900">0</div>
                 </div>
             </div>
+
             <!-- Incorrect Words Review List -->
             <div id="mistakes-section" class="text-left hidden space-y-4 pt-2">
                 <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
@@ -116,6 +119,7 @@
                 </h3>
                 <div id="mistakes-list" class="space-y-2.5 max-h-64 overflow-y-auto pr-1"></div>
             </div>
+
             <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-6 border-t border-slate-100">
                 <button onclick="resetPractice()" class="w-full sm:w-auto px-8 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm transition-all shadow-md hover:shadow-lg">
                     再练一次
@@ -144,17 +148,16 @@
     </footer>
 
     <script>
-        // 包含4张图片中所有 43 个单词的关卡数据
+        // 包含改正_3.docx中全部 45 个核心词汇的关卡数据（选项已均衡打乱，ABCD分布平均）
         const rawVocabularyData = [
-            // --- 来自 Image 1 (1_3.png) ---
             {
                 id: 1,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'der Architekt, -en / die Architektin, -nen',
                 question: '名词 "der Architekt" 属于德语中的阳性弱变化名词 (N-Deklination)，其三格和四格形式为？',
-                options: ['dem/den Architekt', 'dem/den Architekten', 'dem/den Architektene', 'dem/den Architekter'],
-                answer: 1,
+                options: ['dem/den Architekt', 'dem/den Architektene', 'dem/den Architekten', 'dem/den Architekter'],
+                answer: 2,
                 detail: 'der Architekt, -en / die Architektin, -nen (建筑师)。阳性弱变化名词单数二、三、四格及复数加 -en。'
             },
             {
@@ -163,8 +166,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: '(sich) ärgern',
                 question: '反身动词 "sich ärgern" 表示“生……的气/为……烦恼”时，搭配哪个介词？',
-                options: ['über + Akk.', 'auf + Akk.', 'mit + Dat.', 'von + Dat.'],
-                answer: 0,
+                options: ['auf + Akk.', 'über + Akk.', 'mit + Dat.', 'von + Dat.'],
+                answer: 1,
                 detail: '(sich) ärgern, ärgert, ärgerte, hat geärgert - 生气，烦恼。固定搭配：sich über jemanden/etwas (Akk.) ärgern。'
             },
             {
@@ -173,8 +176,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'der Ärger',
                 question: '名词 "der Ärger" 的中文含义是？',
-                options: ['喜悦', '生气，烦恼，麻烦', '恐惧', '骄傲'],
-                answer: 1,
+                options: ['恐惧', '喜悦', '骄傲', '生气，烦恼，麻烦'],
+                answer: 3,
                 detail: 'der Ärger (不可数名词) - 生气，恼火，麻烦。例句：Ärger mit dem Nachbarn haben (和邻居有纠纷)。'
             },
             {
@@ -193,8 +196,8 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'arm',
                 question: '形容词 "arm" (贫穷的) 的反义词是哪一个？',
-                options: ['reich', 'teuer', 'billig', 'schwach'],
-                answer: 0,
+                options: ['teuer', 'billig', 'reich', 'schwach'],
+                answer: 2,
                 detail: 'arm (贫穷的，可怜的) - 比较级 ärmer, 最高级 am ärmsten。反义词：reich (富有)。'
             },
             {
@@ -203,8 +206,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'der Arm, -e',
                 question: '名词 "der Arm" 的正确复数形式是？',
-                options: ['die Ärme', 'die Arme', 'die Armen', 'die Armer'],
-                answer: 1,
+                options: ['die Ärme', 'die Armen', 'die Armer', 'die Arme'],
+                answer: 3,
                 detail: 'der Arm, -e (手臂)。注意复数形式元音不变音 (die Arme)。'
             },
             {
@@ -223,8 +226,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'der Artikel, -',
                 question: '名词 "der Artikel" 在德语中可以指语法上的“冠词”，此外它还可以指？',
-                options: ['（报刊）文章，（商品的）物品/商品', '标点符号', '章节，段落', '法律条款'],
-                answer: 0,
+                options: ['标点符号', '（报刊）文章，（商品的）物品/商品', '章节，段落', '法律条款'],
+                answer: 1,
                 detail: 'der Artikel, - (冠词；文章；商品/物品)。单复数同形 (die Artikel)。'
             },
             {
@@ -233,8 +236,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'der Arzt, "-e / die Ärztin, -nen',
                 question: '名词 "der Arzt" (医生) 的复数形式是？',
-                options: ['die Ärzte', 'die Arztem', 'die Ärzten', 'die Arzts'],
-                answer: 0,
+                options: ['die Arztem', 'die Ärzten', 'die Ärzte', 'die Arzts'],
+                answer: 2,
                 detail: 'der Arzt, "-e / die Ärztin, -nen (医生)。复数形式为 die Ärzte。'
             },
             {
@@ -243,8 +246,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Asyl',
                 question: '名词 "das Asyl" 的正确中文释义是？',
-                options: ['庇护，政治避难', '冒险，探险', '旅馆，住宿', '机构，学会'],
-                answer: 0,
+                options: ['冒险，探险', '旅馆，住宿', '机构，学会', '庇护，政治避难'],
+                answer: 3,
                 detail: 'das Asyl - 政治庇护，避难。常用表达：Asyl beantragen (申请政治庇护)。'
             },
             {
@@ -253,8 +256,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'atmen',
                 question: '动词 "atmen" (呼吸) 的现在时第三人称单数 (er/sie/es) 形式是？',
-                options: ['atmt', 'atmet', 'atmtet', 'geatmet'],
-                answer: 1,
+                options: ['atmet', 'atmt', 'atmtet', 'geatmet'],
+                answer: 0,
                 detail: 'atmen (atmet, atmete, hat geatmet) - 呼吸。词干以 -tm 结尾，动词变位需加词尾 -et。'
             },
             {
@@ -267,16 +270,14 @@
                 answer: 1,
                 detail: 'der Atem (不可数) - 呼吸，气息。außer Atem sein = 气喘吁吁，上气不接下气。'
             },
-
-            // --- 来自 Image 2 (2_3.png) ---
             {
                 id: 13,
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'der Aufenthalt, -e',
                 question: '名词 "der Aufenthalt" 通常用来指？',
-                options: ['停留，居留，逗留', '出发，离开', '延误，滞留', '接送，迎送'],
-                answer: 0,
+                options: ['出发，离开', '延误，滞留', '停留，居留，逗留', '接送，迎送'],
+                answer: 2,
                 detail: 'der Aufenthalt, -e - 停留，逗留，居留。例句：einen angenehmen Aufenthalt haben (祝您停留愉快)。'
             },
             {
@@ -285,8 +286,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'auffallen',
                 question: '“Es ist mir aufgefallen, dass...” 中动词 "auffallen" 的含义是？',
-                options: ['落下，跌倒', '引起注意，显眼，被注意到', '失败，取消', '进攻，袭击'],
-                answer: 1,
+                options: ['落下，跌倒', '失败，取消', '进攻，袭击', '引起注意，显眼，被注意到'],
+                answer: 3,
                 detail: 'auffallen (fällt auf, fiel auf, ist aufgefallen) - 显眼，引起注意。搭配与格(Dat.)，完成时助动词用 sein。'
             },
             {
@@ -305,8 +306,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Aufforderung, -en',
                 question: '名词 "die Aufforderung" 的中文意思是？',
-                options: ['邀请，要求，号召书', '允许，许可', '拒绝，否决', '申请，求职'],
-                answer: 0,
+                options: ['允许，许可', '邀请，要求，号召书', '拒绝，否决', '申请，求职'],
+                answer: 1,
                 detail: 'die Aufforderung, -en - 要求，号召，请柬。源自动词 auffordern。'
             },
             {
@@ -315,8 +316,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'aufführen',
                 question: '在剧院或舞台艺术语境中，"aufführen" 意思是？',
-                options: ['演出，上映，表演', '撤场，闭幕', '彩排，预演', '指挥，领奏'],
-                answer: 0,
+                options: ['撤场，闭幕', '彩排，预演', '演出，上映，表演', '指挥，领奏'],
+                answer: 2,
                 detail: 'aufführen (führt auf, führte auf, hat aufgeführt) - 上演，演出；列举。名词：die Aufführung (演出)。'
             },
             {
@@ -325,8 +326,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Aufgabe, -n',
                 question: '“Hausaufgaben machen” 中的 "die Aufgabe" 意思是？',
-                options: ['放弃', '任务，作业，职责', '递交，寄发', '目标'],
-                answer: 1,
+                options: ['放弃', '递交，寄发', '目标', '任务，作业，职责'],
+                answer: 3,
                 detail: 'die Aufgabe, -n - 任务，作业，职责。'
             },
             {
@@ -355,8 +356,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'aufheben',
                 question: '动词 "aufheben" 包含多个含义，以下哪一项不是它的含义？',
-                options: ['拾起，捡起', '保存，收好', '废除，取消', '彻底毁坏'],
-                answer: 3,
+                options: ['拾起，捡起', '保存，收好', '彻底毁坏', '废除，取消'],
+                answer: 2,
                 detail: 'aufheben (hebt auf, hob auf, hat aufgehoben) - 1.拾起；2.保存；3.废除/取消(法律或规定)。'
             },
             {
@@ -365,8 +366,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'aufhören',
                 question: '“Hör damit auf!” 句中的 "aufhören" 搭配 mit 表示什么？',
-                options: ['开始，着手', '停止，终止', '倾听，注意听', '听说，得知'],
-                answer: 1,
+                options: ['开始，着手', '倾听，注意听', '听说，得知', '停止，终止'],
+                answer: 3,
                 detail: 'aufhören (hört auf, hörte auf, hat aufgehört) - 停止，结束。固定搭配：mit etwas (Dat.) aufhören。'
             },
             {
@@ -395,8 +396,8 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'aufmerksam',
                 question: '形容词 "aufmerksam" (专心的，留心的) 常用作短语，搭配哪个介词表示“注意……”？',
-                options: ['auf + Akk.', 'an + Dat.', 'für + Akk.', 'mit + Dat.'],
-                answer: 0,
+                options: ['an + Dat.', 'für + Akk.', 'auf + Akk.', 'mit + Dat.'],
+                answer: 2,
                 detail: 'aufmerksam - 专心的，注意的。常见搭配：jemanden auf etwas (Akk.) aufmerksam machen (提醒某人注意……)。'
             },
             {
@@ -405,8 +406,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'aufnehmen',
                 question: '“ein Foto aufnehmen” 或 “Kontakt aufnehmen” 中，"aufnehmen" 意思是？',
-                options: ['拍摄/录制；建立（联系）', '删除，清空', '打印，复印', '借用，租用'],
-                answer: 0,
+                options: ['删除，清空', '打印，复印', '借用，租用', '拍摄/录制；建立（联系）'],
+                answer: 3,
                 detail: 'aufnehmen (nimmt auf, nahm auf, hat aufgenommen) - 吸收，接纳；拍照/录音；建立(联系)。'
             },
             {
@@ -419,16 +420,14 @@
                 answer: 0,
                 detail: 'die Aufnahme, -n - 拍摄，录音，照片；接纳，接收。源自动词 aufnehmen。'
             },
-
-            // --- 来自 Image 3 (3_3.png) ---
             {
                 id: 28,
                 type: 'Verb',
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'aufpassen',
                 question: '“Passt auf eure Sachen auf!” 中 "aufpassen auf" 表示？',
-                options: ['照看，照顾，留心', '模仿，仿效', '打扮，整理', '丢弃，抛弃'],
-                answer: 0,
+                options: ['模仿，仿效', '照看，照顾，留心', '打扮，整理', '丢弃，抛弃'],
+                answer: 1,
                 detail: 'aufpassen (passt auf, passte auf, hat aufgepasst) - 注意，照看，留心。固定搭配：aufpassen auf + Akk.。'
             },
             {
@@ -437,8 +436,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'aufräumen',
                 question: '“Das Zimmer aufräumen” 中的 "aufräumen" 意思是？',
-                options: ['装饰房间', '收拾，整理，打扫', '打扫退房', '退租房间'],
-                answer: 1,
+                options: ['装饰房间', '打扫退房', '收拾，整理，打扫', '退租房间'],
+                answer: 2,
                 detail: 'aufräumen (räumt auf, räumte auf, hat aufgeräumt) - 整理，打扫，收拾。'
             },
             {
@@ -447,8 +446,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'aufregen',
                 question: '反身动词 "sich aufregen" 的中文释义是？',
-                options: ['感到厌倦', '激动，激动不安，生气', '保持冷静', '非常骄傲'],
-                answer: 1,
+                options: ['感到厌倦', '保持冷静', '非常骄傲', '激动，激动不安，生气'],
+                answer: 3,
                 detail: 'aufregen (regt auf, regte auf, hat aufgeregt) - 使激动/不安；sich aufregen über + Akk. (对……感到激动/发火)。'
             },
             {
@@ -457,8 +456,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'aufstehen',
                 question: '动词 "aufstehen" (起床，站立) 的完成时助动词与形式是？',
-                options: ['hat aufgestanden', 'ist aufgestanden', 'hat aufstehen', 'ist gestanden auf'],
-                answer: 1,
+                options: ['ist aufgestanden', 'hat aufgestanden', 'hat aufstehen', 'ist gestanden auf'],
+                answer: 0,
                 detail: 'aufstehen (steht auf, stand auf, ist aufgestanden) - 起床，站立起来。状态变化，助动词用 sein。'
             },
             {
@@ -467,8 +466,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'der Auftrag, "-e',
                 question: '名词 "der Auftrag" 在商业活动中指？',
-                options: ['委托，订单，任务', '合同解约', '收据，发票', '产品折扣'],
-                answer: 0,
+                options: ['合同解约', '委托，订单，任务', '收据，发票', '产品折扣'],
+                answer: 1,
                 detail: 'der Auftrag, "-e - 委托，订单，任务。常用表达：im Auftrag von (受……委托)。'
             },
             {
@@ -477,8 +476,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'auftreten',
                 question: '动词 "auftreten" (登台表演；发生/出现) 的完成时形式是？',
-                options: ['ist aufgetreten', 'hat aufgetreten', 'ist aufgetretene', 'hat geauftreten'],
-                answer: 0,
+                options: ['hat aufgetreten', 'ist aufgetretene', 'ist aufgetreten', 'hat geauftreten'],
+                answer: 2,
                 detail: 'auftreten (tritt auf, trat auf, ist aufgetreten) - 登台演出；产生，出现。'
             },
             {
@@ -487,8 +486,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'der Auftritt, -e',
                 question: '名词 "der Auftritt" 的含义是？',
-                options: ['退场，谢幕', '登台，演出，出场', '门槛，阶梯', '排练，彩排'],
-                answer: 1,
+                options: ['退场，谢幕', '门槛，阶梯', '排练，彩排', '登台，演出，出场'],
+                answer: 3,
                 detail: 'der Auftritt, -e - 登台，演出，出场。'
             },
             {
@@ -517,8 +516,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'der Aufzug, "-e',
                 question: '名词 "der Aufzug" 在德语区常指“电梯”，在奥地利和瑞士常表达为？',
-                options: ['der Elevator', 'der Lift', 'die Treppe', 'das Rolltreppe'],
-                answer: 1,
+                options: ['der Elevator', 'die Treppe', 'der Lift', 'das Rolltreppe'],
+                answer: 2,
                 detail: 'der Aufzug, "-e (D, A) -> Lift (电梯)。'
             },
             {
@@ -527,8 +526,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Auge, -n',
                 question: '名词 "das Auge" 的复数形式是？',
-                options: ['die Augen', 'die Ager', 'die Äuger', 'die Augene'],
-                answer: 0,
+                options: ['die Ager', 'die Äuger', 'die Augene', 'die Augen'],
+                answer: 3,
                 detail: 'das Auge, -n (眼睛)。常用短语：Augen machen (睁大眼睛表示惊讶)。'
             },
             {
@@ -537,12 +536,10 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'der Augenblick, -e',
                 question: '“Einen Augenblick, bitte!” 句中的 "der Augenblick" 意思是？',
-                options: ['眼神，目光', '瞬间，片刻，时刻', '眨眼动作', '前景，展望'],
-                answer: 1,
+                options: ['瞬间，片刻，时刻', '眼神，目光', '眨眼动作', '前景，展望'],
+                answer: 0,
                 detail: 'der Augenblick, -e - 瞬间，片刻。近义词：der Moment。Im Augenblick = 目前，此刻。'
             },
-
-            // --- 来自 Image 4 (4_3.png) ---
             {
                 id: 40,
                 type: 'Substantiv',
@@ -559,8 +556,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'ausdrucken / der Ausdruck',
                 question: '动词 "ausdrucken" 意思是“打印”，名词 "der Ausdruck" 的两个复数形式分别代表什么？',
-                options: ['die Ausdrücke (表达方式); die Ausdrucke (打印件)', 'die Ausdrucke (表达方式); die Ausdrücke (打印件)', '两者没有区别，均可通用', '只有复数形式 die Ausdrücke'],
-                answer: 0,
+                options: ['die Ausdrucke (表达方式); die Ausdrücke (打印件)', '两者没有区别，均可通用', 'die Ausdrücke (表达方式); die Ausdrucke (打印件)', '只有复数形式 die Ausdrücke'],
+                answer: 2,
                 detail: 'ausdrucken (打印) -> der Ausdruck, "-e (表达，措辞，复数 die Ausdrücke)；der Ausdruck, -e (打印出来的文件/打印件，复数 die Ausdrucke)。'
             },
             {
@@ -569,8 +566,8 @@
                 badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
                 word: 'auseinander / die Ausfahrt, -en',
                 question: '“Das Fahrrad auseinanderbauen” 中副词 "auseinander" 意思是？高速公路出口 "die Ausfahrt" 的反义词是？',
-                options: ['分开地/拆开地；Anfahrt 或 Einfahrt', '紧密地；Eingang', '向上地；Abfahrt', '向下地；Ausgang'],
-                answer: 0,
+                options: ['紧密地；Eingang', '向上地；Abfahrt', '向下地；Ausgang', '分开地/拆开地；Anfahrt 或 Einfahrt'],
+                answer: 3,
                 detail: 'auseinander (分开，拆开)；die Ausfahrt, -en (驶出，出口)。反义词/对应词：die Einfahrt (驶入，入口)。'
             },
             {
@@ -579,8 +576,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'ausfallen / der Ausflug / ausfüllen / die Ausgabe',
                 question: '关于这组词汇：课程“取消”用 ausfallen，填表格用 ausfüllen，“开支”是 die Ausgabe，那么 "der Ausflug, "-e" 的中文是？',
-                options: ['出走，逃跑', '郊游，远足，短途旅行', '飞行航班', '出口通道'],
-                answer: 1,
+                options: ['郊游，远足，短途旅行', '出走，逃跑', '飞行航班', '出口通道'],
+                answer: 0,
                 detail: 'ausfallen (取消，停止)；der Ausflug, "-e (郊游，短途旅行)；ausfüllen (填写表格)；die Ausgabe, -n (开支，支出；分发；版本)。'
             },
             {
@@ -589,8 +586,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'der Ausgang / ausgehen / ausgezeichnet',
                 question: '名词 "der Ausgang" 意思是“出口”，形容词 "ausgezeichnet" 意思是“优秀的，出色的”，那么动词 "ausgehen" 常指？',
-                options: ['出去，外出（如聚会/娱乐）；熄灭；用光', '回到室内', '做体育运动', '办理离职'],
-                answer: 0,
+                options: ['回到室内', '出去，外出（如聚会/娱乐）；熄灭；用光', '做体育运动', '办理离职'],
+                answer: 1,
                 detail: 'der Ausgang, "-e (出口)；ausgehen (外出/聚会，熄灭，用光)；ausgezeichnet (优秀的，极好的)。'
             },
             {
@@ -599,13 +596,13 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Aushilfe / die Auskunft / das Ausland',
                 question: '名词 "die Auskunft" 意思是“问讯，信息/咨询处”，"das Ausland" 是“国外/外国”，那么 "die Aushilfe, -n" 指？',
-                options: ['永久员工', '兼职人员，临时帮手', '救援物资', '医疗救护'],
-                answer: 1,
+                options: ['永久员工', '救援物资', '兼职人员，临时帮手', '医疗救护'],
+                answer: 2,
                 detail: 'die Aushilfe, -n (临时工，兼职帮手)；die Auskunft, "-e (信息，咨询，问讯处)；das Ausland (国外，外国)。'
             }
         ];
 
-        // Native Audio Synthesizer
+        // Web Audio API 合成音效
         let audioCtx = null;
         function getAudioContext() {
             if (!audioCtx) {
@@ -625,6 +622,7 @@
                 osc.connect(gain);
                 gain.connect(ctx.destination);
                 const now = ctx.currentTime;
+                
                 if (isCorrect) {
                     osc.type = 'sine';
                     osc.frequency.setValueAtTime(523.25, now); // C5
@@ -647,7 +645,7 @@
             }
         }
 
-        // Fisher-Yates Shuffle
+        // Fisher-Yates 随机打乱数组（抽取题目顺序）
         function shuffleArray(array) {
             const arr = [...array];
             for (let i = arr.length - 1; i > 0; i--) {
@@ -657,7 +655,7 @@
             return arr;
         }
 
-        // App State
+        // 应用状态变量
         let vocabularyData = [];
         let currentIndex = 0;
         let userAnswers = [];
@@ -672,7 +670,7 @@
             currentIndex = 0;
             userAnswers = new Array(vocabularyData.length).fill(null);
             showExplanation = false;
-
+            
             document.getElementById('quiz-container').classList.remove('hidden');
             document.getElementById('bottom-nav').classList.remove('hidden');
             document.getElementById('result-container').classList.add('hidden');
@@ -682,24 +680,24 @@
 
         function renderQuestion() {
             const currentData = vocabularyData[currentIndex];
-
-            // Render Badges and Titles
+            
+            // 渲染词性与标题
             document.getElementById('word-badge').className = `px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase border ${currentData.badgeClass}`;
             document.getElementById('word-badge').textContent = currentData.type;
             document.getElementById('question-index-tag').textContent = `Q${currentIndex + 1}`;
             document.getElementById('target-word').textContent = currentData.word;
             document.getElementById('question-prompt').textContent = currentData.question;
 
-            // Progress Bar
+            // 渲染进度条
             const progressPercent = Math.round(((currentIndex + 1) / vocabularyData.length) * 100);
             document.getElementById('progress-bar').style.width = `${progressPercent}%`;
             document.getElementById('progress-text').textContent = `进度：${currentIndex + 1} / ${vocabularyData.length}`;
             document.getElementById('progress-percent').textContent = `${progressPercent}%`;
 
-            // Options
+            // 渲染选项列表
             const optionsGrid = document.getElementById('options-grid');
             optionsGrid.innerHTML = '';
-
+            
             const selectedAnswer = userAnswers[currentIndex];
             const isAnswered = selectedAnswer !== null;
 
@@ -721,18 +719,18 @@
                 optionsGrid.appendChild(btn);
             });
 
-            // Explanation
+            // 渲染解析卡片
             const explainCard = document.getElementById('explanation-card');
             const explainText = document.getElementById('explanation-text');
             explainText.textContent = currentData.detail;
-
+            
             if (showExplanation || isAnswered) {
                 explainCard.classList.remove('hidden');
             } else {
                 explainCard.classList.add('hidden');
             }
 
-            // Controls
+            // 控制按键状态
             document.getElementById('btn-prev').disabled = currentIndex === 0;
             const btnNext = document.getElementById('btn-next');
             if (currentIndex === vocabularyData.length - 1) {
