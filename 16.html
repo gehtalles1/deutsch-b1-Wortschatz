@@ -50,7 +50,6 @@
             </div>
         </div>
     </header>
-
     <!-- Main Section -->
     <main class="flex-1 max-w-3xl w-full mx-auto p-4 sm:p-6 flex flex-col justify-center">
         <!-- QUIZ CONTAINER -->
@@ -74,12 +73,10 @@
                     </p>
                 </div>
             </div>
-
             <!-- Options Grid -->
             <div id="options-grid" class="grid grid-cols-1 gap-3.5">
                 <!-- Dynamic options -->
             </div>
-
             <!-- Explanation Card -->
             <div id="explanation-card" class="hidden bg-slate-900 text-slate-100 rounded-2xl p-5 sm:p-6 shadow-lg border border-slate-800 text-sm leading-relaxed space-y-2">
                 <div class="font-semibold text-teal-400 flex items-center gap-2 text-xs sm:text-sm uppercase tracking-wider">
@@ -89,7 +86,6 @@
                 <div id="explanation-text" class="text-slate-300 text-xs sm:text-sm font-normal"></div>
             </div>
         </div>
-
         <!-- RESULT CONTAINER -->
         <div id="result-container" class="hidden bg-white/90 backdrop-blur-sm rounded-3xl p-8 sm:p-10 border border-slate-200/70 shadow-xl shadow-slate-200/50 text-center space-y-8">
             <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-900 text-teal-400 shadow-lg shadow-slate-900/10 mb-2">
@@ -99,7 +95,6 @@
                 <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2 tracking-tight">特训完成</h2>
                 <p class="text-sm text-slate-500 font-medium">已完成所有词汇测试，积累词汇量是语言通关的基石</p>
             </div>
-
             <div class="max-w-md mx-auto py-3 px-6 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-around">
                 <div>
                     <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">本次练习题目</div>
@@ -111,7 +106,6 @@
                     <div id="stat-mistakes" class="text-2xl font-extrabold text-slate-900">0</div>
                 </div>
             </div>
-
             <!-- Incorrect Words Review List -->
             <div id="mistakes-section" class="text-left hidden space-y-4 pt-2">
                 <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
@@ -120,7 +114,6 @@
                 </h3>
                 <div id="mistakes-list" class="space-y-2.5 max-h-64 overflow-y-auto pr-1"></div>
             </div>
-
             <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-6 border-t border-slate-100">
                 <button onclick="resetPractice()" class="w-full sm:w-auto px-8 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm transition-all shadow-md hover:shadow-lg">
                     再练一次
@@ -131,7 +124,6 @@
             </div>
         </div>
     </main>
-
     <!-- Bottom Actions Nav -->
     <footer id="bottom-nav" class="sticky bottom-0 z-30 custom-glass border-t border-slate-200/60 px-4 py-3.5 sm:px-8">
         <div class="max-w-3xl mx-auto flex items-center justify-between gap-3">
@@ -147,7 +139,6 @@
             </button>
         </div>
     </footer>
-
     <script>
         const rawVocabularyData = [
             {
@@ -156,8 +147,8 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'gespannt',
                 question: '“Ich bin schon sehr ______ auf das Konzert!” 在此表达“期待/好奇/紧张”的心情，填入哪个形容词？',
-                options: ['gespannt', 'entspannt', 'spannend', 'gestresst'],
-                answer: 0,
+                options: ['entspannt', 'gespannt', 'spannend', 'gestresst'],
+                answer: 1,
                 detail: 'gespannt auf + Akk. 表示“对……充满期待/紧张关注”。注意区别：spannend (令人兴奋的/精彩的) 与 entspannt (放松的)。'
             },
             {
@@ -166,8 +157,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Gespräch',
                 question: '德语中表达“进行一次交谈/对话”，最地道的动词固定搭配 (Nomen-Verb-Verbindung) 是？',
-                options: ['ein Gespräch machen', 'ein Gespräch führen', 'ein Gespräch tun', 'ein Gespräch bringen'],
-                answer: 1,
+                options: ['ein Gespräch führen', 'ein Gespräch machen', 'ein Gespräch tun', 'ein Gespräch bringen'],
+                answer: 0,
                 detail: 'das Gespräch, -e。ein Gespräch führen (mit + Dat. / über + Akk.) 为固定名词动词短语，意为“进行/举行交谈”。'
             },
             {
@@ -176,8 +167,8 @@
                 badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
                 word: 'gestern',
                 question: '时间副词 "gestern" (昨天) 的组合词 "gestern Morgen" 表达什么意思？',
-                options: ['昨天晚上', '昨天早晨', '明天早晨', '今天早晨'],
-                answer: 1,
+                options: ['昨天晚上', '明天早晨', '今天早晨', '昨天早晨'],
+                answer: 3,
                 detail: 'gestern Morgen = 昨天早晨；gestern Abend = 昨天晚上。注意：Morgen (大写，名词早晨) 与 morgen (小写，副词明天)。'
             },
             {
@@ -186,8 +177,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Gesundheit',
                 question: '在德语日常交际中，当身边有人打喷嚏时，通常会出于礼貌说哪句话？',
-                options: ['Gute Besserung!', 'Herzlichen Glückwunsch!', 'Gesundheit!', 'Viel Erfolg!'],
-                answer: 2,
+                options: ['Gute Besserung!', 'Gesundheit!', 'Herzlichen Glückwunsch!', 'Viel Erfolg!'],
+                answer: 1,
                 detail: 'Gesundheit! (祝你健康！) 是听见打喷嚏时的标准礼貌回应；Gute Besserung! 用于祝愿生病的人早日康复。'
             },
             {
@@ -195,10 +186,10 @@
                 type: 'Substantiv',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Getränk',
-                question: '名词 "das Getränk" (饮料) 的复数形式及常见词组 "alkoholfreie Getränke" 是指？',
-                options: ['die Getränke / 无酒精饮料', 'die Getränker / 免费饮料', 'die Getränke / 含酒精饮料', 'die Getränken / 软饮料'],
+                question: '名词 "das Getränk" (饮料) 的复数形式是？',
+                options: ['die Getränke', 'die Getränker', 'die Getränken', 'die Getränks'],
                 answer: 0,
-                detail: 'das Getränk, -e (饮料)。alkoholfrei 表示“无酒精的”，alkoholfreie Getränke 即“无酒精饮料”。'
+                detail: 'das Getränk, -e (饮料)。复数形式为 die Getränke。alkoholfreie Getränke 即“无酒精饮料”。'
             },
             {
                 id: 6,
@@ -206,8 +197,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Gewalt',
                 question: '名词 "die Gewalt" 在社会与法律语境中的主要含义是？',
-                options: ['森林，树木', '管理，行政', '财富，遗产', '暴力，武力，权力'],
-                answer: 3,
+                options: ['森林，树木', '管理，行政', '暴力，武力，权力', '财富，遗产'],
+                answer: 2,
                 detail: 'die Gewalt, -en 意为“暴力、武力、权力”。常见表达：häusliche Gewalt (家庭暴力)。'
             },
             {
@@ -216,8 +207,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Gewerkschaft',
                 question: '在德国劳动与社会体系中，"die Gewerkschaft" 代表哪个群体的利益？',
-                options: ['雇主协会', '工会 (维护雇员/工人权益)', '消费者协会', '商业银行'],
-                answer: 1,
+                options: ['工会 (维护雇员/工人权益)', '雇主协会', '消费者协会', '商业银行'],
+                answer: 0,
                 detail: 'die Gewerkschaft, -en (工会)。其宗旨是代表 Arbeitnehmer (雇员) 争取合理的薪资待遇与工作条件。'
             },
             {
@@ -226,8 +217,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Gewicht',
                 question: '“Ich möchte mein Gewicht reduzieren.” 句子中 "das Gewicht" 意思是？',
-                options: ['身高', '体重，重量', '年龄', '视力'],
-                answer: 1,
+                options: ['身高', '年龄', '视力', '体重，重量'],
+                answer: 3,
                 detail: 'das Gewicht, -e (重量，体重)。Gewicht verlieren (减轻体重) / Gewicht zunehmen (增加体重)。'
             },
             {
@@ -236,8 +227,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'gewinnen',
                 question: '不规则动词 "gewinnen" (获胜，赢得) 的过去时 (Präteritum) 和完成时 (Perfekt) 形式分别是？',
-                options: ['gewinnte, hat gewinnt', 'gewonn, ist gewonnen', 'gewann, hat gewonnen', 'gewann, ist gewonnen'],
-                answer: 2,
+                options: ['gewinnte, hat gewinnt', 'gewann, hat gewonnen', 'gewonn, ist gewonnen', 'gewann, ist gewonnen'],
+                answer: 1,
                 detail: 'gewinnen (gewinnt, gewann, hat gewonnen) - 赢得，获胜。反义词：verlieren (输，失去)。'
             },
             {
@@ -246,8 +237,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'der Gewinn',
                 question: '在商业财报或抽奖活动中，"der Gewinn" 的反义词是哪个名词？',
-                options: ['der Verlust (亏损，损失)', 'der Rabatt (折扣)', 'der Preis (价格)', 'der Umsatz (营业额)'],
-                answer: 0,
+                options: ['der Rabatt (折扣)', 'der Preis (价格)', 'der Verlust (亏损，损失)', 'der Umsatz (营业额)'],
+                answer: 2,
                 detail: 'der Gewinn, -e (利润，奖品)。反义词：der Verlust, -e (亏损，损失)。Gewinn machen 表示“盈利”。'
             },
             {
@@ -256,8 +247,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Gewissen',
                 question: '常用短语 “ein schlechtes Gewissen haben” 表达的是什么心理状态？',
-                options: ['记忆力差', '内疚，良心不安', '心情沉重', '毫无把握'],
-                answer: 1,
+                options: ['内疚，良心不安', '记忆力差', '心情沉重', '毫无把握'],
+                answer: 0,
                 detail: 'das Gewissen (良心，良知)。ein schlechtes / gutes Gewissen haben (良心不安 / 问心无愧)。'
             },
             {
@@ -266,8 +257,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Gewitter',
                 question: '气象词汇 "das Gewitter" 特指哪种天气现象？',
-                options: ['浓雾', '强降雪', '雷暴，雷阵雨', '微风'],
-                answer: 2,
+                options: ['浓雾', '雷暴，雷阵雨', '强降雪', '微风'],
+                answer: 1,
                 detail: 'das Gewitter, - (雷暴，雷阵雨)。通常伴有 Donner (雷) 和 Blitz (闪电)。'
             },
             {
@@ -276,8 +267,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'gewöhnen',
                 question: '反身动词 "sich gewöhnen" (习惯于……) 在句子中必须搭配哪个介词？',
-                options: ['an (+ Akk.)', 'auf (+ Akk.)', 'mit (+ Dat.)', 'zu (+ Dat.)'],
-                answer: 0,
+                options: ['auf (+ Akk.)', 'mit (+ Dat.)', 'an (+ Akk.)', 'zu (+ Dat.)'],
+                answer: 2,
                 detail: 'sich gewöhnen an + Akk. (使自己习惯于……)。例：Ich habe mich an das kalte Wetter gewöhnt.'
             },
             {
@@ -286,8 +277,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Gewohnheit',
                 question: '介词短语 “aus Gewohnheit” 在句子中作状语，意思是？',
-                options: ['出于偶然', '出于好奇', '出于习惯，习惯性地', '出于礼貌'],
-                answer: 2,
+                options: ['出于偶然', '出于习惯，习惯性地', '出于好奇', '出于礼貌'],
+                answer: 1,
                 detail: 'die Gewohnheit, -en (习惯)。aus Gewohnheit 表示“出于习惯”。'
             },
             {
@@ -296,8 +287,8 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'gewöhnlich',
                 question: '形容词 "gewöhnlich" 的中文释义及反义词分别是？',
-                options: ['特殊的 / besonders', '通常的，寻常的 / ungewöhnlich', '重要的 / unwichtig', '有趣的 / langweilig'],
-                answer: 1,
+                options: ['通常的，寻常的 / ungewöhnlich', '特殊的 / besonders', '重要的 / unwichtig', '有趣的 / langweilig'],
+                answer: 0,
                 detail: 'gewöhnlich (通常的，寻常的)。反义词：ungewöhnlich (不寻常的，特别的)。注意：etwas gewohnt sein 表示“习惯于某事”。'
             },
             {
@@ -306,8 +297,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Gewürz',
                 question: '在烹饪话题中，Salz (盐) 和 Pfeffer (胡椒) 统称为？',
-                options: ['das Gewürz, -e (调味料/香料)', 'das Gemüse, - (蔬菜)', 'das Gericht, -e (菜肴)', 'das Geschirr (餐具)'],
-                answer: 0,
+                options: ['das Gemüse, - (蔬菜)', 'das Gericht, -e (菜肴)', 'das Geschirr (餐具)', 'das Gewürz, -e (调味料/香料)'],
+                answer: 3,
                 detail: 'das Gewürz, -e (调味料，香料)。动词：würzen (给……调味)。'
             },
             {
@@ -316,8 +307,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'gießen',
                 question: '动词 "gießen" (gießt, goss, hat gegossen) 在“Blumen gießen”和天气表达“Es gießt”中分别指？',
-                options: ['摘花 / 刮大风', '阴天 / 下冰雹', '浇花 / 倾盆大雨', '买花 / 闪电'],
-                answer: 2,
+                options: ['摘花 / 刮大风', '浇花 / 倾盆大雨', '阴天 / 下冰雹', '买花 / 闪电'],
+                answer: 1,
                 detail: 'gießen 意为“浇水，倾倒”。Blumen gießen = 浇花；Es gießt (in Strömen) = 下倾盆大雨。'
             },
             {
@@ -326,8 +317,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Gift',
                 question: '【假友词警示】德语单词 "das Gift" 的真实含义是？(切勿与英语 gift 混淆！)',
-                options: ['礼物，赠品', '毒药，毒物', '天赋，才能', '许可，执照'],
-                answer: 1,
+                options: ['礼物，赠品', '天赋，才能', '毒药，毒物', '许可，执照'],
+                answer: 2,
                 detail: 'das Gift, -e 意为“毒药，毒物”；形容词 giftig (有毒的)。德语中的“礼物”是 das Geschenk, -e。'
             },
             {
@@ -336,8 +327,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Gitarre',
                 question: '句子 “Er kann sehr gut ______ spielen.” (他吉他弹得很好) 中，空格处正确的形式是？',
-                options: ['die Gitarre', 'auf der Gitarre', 'Gitarre', 'eine Gitarre'],
-                answer: 2,
+                options: ['Gitarre', 'die Gitarre', 'auf der Gitarre', 'eine Gitarre'],
+                answer: 0,
                 detail: 'die Gitarre, -n。表达演奏乐器时，通常直接用“乐器名词原形 + spielen”，如 Gitarre / Klavier / Geige spielen。'
             },
             {
@@ -346,8 +337,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die/das Glace',
                 question: '在瑞士德语 (CH) 中经常使用的词汇 "Glace / Glacé"，在德国 (D) 和奥地利 (A) 对应哪个标准表达？',
-                options: ['das Eis (冰淇淋)', 'der Kuchen (蛋糕)', 'der Saft (果汁)', 'die Schokolade (巧克力)'],
-                answer: 0,
+                options: ['der Kuchen (蛋糕)', 'das Eis (冰淇淋)', 'der Saft (果汁)', 'die Schokolade (巧克力)'],
+                answer: 1,
                 detail: 'Glace/Glacé 是瑞士德语对冰淇淋 (das Eis) 的特有称呼。德语区存在许多此类区域表达差异。'
             },
             {
@@ -356,8 +347,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Glas',
                 question: '“ein Glas Wasser” (一杯水) 中 "das Glas" 的复数形式是？',
-                options: ['die Gläser', 'die Glase', 'die Gläsern', 'die Glasen'],
-                answer: 0,
+                options: ['die Glase', 'die Gläsern', 'die Gläser', 'die Glasen'],
+                answer: 2,
                 detail: 'das Glas, "-er (玻璃杯，玻璃)。复数形式：die Gläser。'
             },
             {
@@ -366,8 +357,8 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'glatt',
                 question: '冬季路面结冰时，交通广播常提醒驾驶员：“Achtung, die Straße ist ______!” 此处的形容词是？',
-                options: ['hart (硬的)', 'glatt (滑的/结冰的)', 'eng (狭窄的)', 'steil (陡峭的)'],
-                answer: 1,
+                options: ['hart (硬的)', 'eng (狭窄的)', 'steil (陡峭的)', 'glatt (滑的/结冰的)'],
+                answer: 3,
                 detail: 'glatt 意为“光滑的，滑的”。Straßenglätte 指冬天的“路面结冰/滑”。'
             },
             {
@@ -376,8 +367,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'glauben',
                 question: '区分表达：“Ich glaube dir.” 与 “Ich glaube an Gott.” 两者的语法区别是？',
-                options: ['前者接第三格表示“相信某人说的话”，后者搭配 an+Akk. 表示“信仰/信赖”', '前者接第四格，后者接第三格', '两者意思完全一样', '前者表示怀疑，后者表示确认'],
-                answer: 0,
+                options: ['前者接第四格，后者接第三格', '前者接第三格表示“相信某人说的话”，后者搭配 an+Akk. 表示“信仰/信赖”', '两者意思完全一样', '前者表示怀疑，后者表示确认'],
+                answer: 1,
                 detail: 'glauben + Dat. (相信某人)；glauben an + Akk. (信仰，坚信，相信……的存在)。'
             },
             {
@@ -386,8 +377,8 @@
                 badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
                 word: 'gleichfalls',
                 question: '当别人对你说 “Schönes Wochenende!” (周末愉快！)，最体面简洁的回应是？',
-                options: ['Gleich!', 'Egal!', 'Gleichfalls!', 'Sehr gut!'],
-                answer: 2,
+                options: ['Gleich!', 'Gleichfalls!', 'Egal!', 'Sehr gut!'],
+                answer: 1,
                 detail: 'Gleichfalls! (同样祝您！/彼此彼此！) 用于回应各种祝愿；gleich 作副词时意为“马上，立刻”。'
             },
             {
@@ -396,8 +387,8 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'gleichberechtigt',
                 question: '“Männer und Frauen sind vor dem Gesetz ______.” 句中形容词 "gleichberechtigt" 意思是？',
-                options: ['享有平等权利的 / 权利平等的', '各自独立的', '互相竞争的', '同等财富的'],
-                answer: 0,
+                options: ['各自独立的', '互相竞争的', '享有平等权利的 / 权利平等的', '同等财富的'],
+                answer: 2,
                 detail: 'gleichberechtigt (享有同等权利的)。由 gleich (相同的) + das Recht / berechtigt (有权的) 复合而成。'
             },
             {
@@ -406,8 +397,8 @@
                 badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
                 word: 'gleichzeitig',
                 question: '“Man kann nicht zwei Dinge gleichzeitig tun.” 句子中的 "gleichzeitig" 相当于？',
-                options: ['manchmal (有时)', 'zur gleichen Zeit (同时)', 'später (以后)', 'sofort (立即)'],
-                answer: 1,
+                options: ['zur gleichen Zeit (同时)', 'manchmal (有时)', 'später (以后)', 'sofort (立即)'],
+                answer: 0,
                 detail: 'gleichzeitig (同时地，同步地) = zur selben / gleichen Zeit.'
             },
             {
@@ -416,8 +407,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Gleis',
                 question: '火车站广播：“Der ICE nach Berlin fährt heute von ______ 4 ab.” 空格处填入的名词是？',
-                options: ['Gleis (轨道/站台)', 'Platz (广场)', 'Steig (小路)', 'Wagen (车厢)'],
-                answer: 0,
+                options: ['Platz (广场)', 'Steig (小路)', 'Gleis (轨道/站台)', 'Wagen (车厢)'],
+                answer: 2,
                 detail: 'das Gleis, -e (铁轨，站台轨道)。auf Gleis 4 / von Gleis 4 abfahren.'
             },
             {
@@ -426,8 +417,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Glück',
                 question: '表达 “Zum Glück” 和 “Viel Glück!” 时，名词 "Glück" 的含义分别是？',
-                options: ['不幸的是 / 顺利！', '幸运的是 / 祝你好运！', '高兴地 / 恭喜你！', '终于 / 祝贺！'],
-                answer: 1,
+                options: ['不幸的是 / 顺利！', '高兴地 / 恭喜你！', '终于 / 祝贺！', '幸运的是 / 祝你好运！'],
+                answer: 3,
                 detail: 'das Glück (幸运，幸福)。Zum Glück = 幸好/幸运的是；Viel Glück! = 祝你好运！形容词为 glücklich。'
             },
             {
@@ -446,8 +437,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Gold',
                 question: '德语谚语 “Nicht alles, was glänzt, ist ______.” (发光的并不都是金子) 填入哪个名词？',
-                options: ['Silber', 'Geld', 'Gold', 'Glas'],
-                answer: 2,
+                options: ['Silber', 'Gold', 'Geld', 'Glas'],
+                answer: 1,
                 detail: 'das Gold (黄金，金子)。通常为不可数名词。形容词为 golden (金制的/金色的)。'
             },
             {
@@ -456,8 +447,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Golf',
                 question: '关于名词 "Golf"，当表示“高尔夫球运动”时，其正确的冠词是？',
-                options: ['der Golf', 'die Golf', 'das Golf (Golf spielen)', 'die Golfs'],
-                answer: 2,
+                options: ['der Golf', 'die Golf', 'die Golfs', 'das Golf (Golf spielen)'],
+                answer: 3,
                 detail: 'das Golf (高尔夫球运动，或 das Golfspiel)。注意：der Golf 指地理概念“海湾”(如 Persischer Golf)。'
             },
             {
@@ -466,8 +457,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'der Gott',
                 question: '名词 "der Gott" 的复数形式 (如希腊神话中的“众神”) 是？',
-                options: ['die Gotten', 'die Götter', 'die Göttern', 'die Gotter'],
-                answer: 1,
+                options: ['die Gotten', 'die Göttern', 'die Götter', 'die Gotter'],
+                answer: 2,
                 detail: 'der Gott, "-er (神，上帝)。复数形式：die Götter (众神)。'
             },
             {
@@ -476,8 +467,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Grafik',
                 question: '在德语 B1/B2 写作图表描述中，“Die ______ zeigt, dass...” 句中的 "die Grafik" 意思是？',
-                options: ['文章，短文', '小说，故事', '图表，示意图', '表格数据'],
-                answer: 2,
+                options: ['文章，短文', '图表，示意图', '小说，故事', '表格数据'],
+                answer: 1,
                 detail: 'die Grafik, -en (图表，图形)。写作常用句型：Aus der Grafik geht hervor, dass...'
             },
             {
@@ -486,8 +477,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Gras',
                 question: '花园维护中表达“割草 / 修剪草坪”的正确动词短语是？',
-                options: ['das Gras mähen', 'das Gras gießen', 'das Gras schneiden', 'das Gras pflanzen'],
-                answer: 0,
+                options: ['das Gras gießen', 'das Gras mähen', 'das Gras schneiden', 'das Gras pflanzen'],
+                answer: 1,
                 detail: 'das Gras (草，草坪)。割草/修剪草坪习惯用动词 mähen -> Gras mähen.'
             },
             {
@@ -495,7 +486,7 @@
                 type: 'Verb',
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'gratulieren',
-                question: '动词 "gratulieren" (祝贺) 和名词 "die Gratulation" 的关键语法搭配要求是？',
+                question: '动词 "gratulieren" (祝贺) 的关键语法搭配要求是？',
                 options: ['人用第三格(Dativ)，事用 zu + Dat.', '人用第四格(Akkusativ)，事用 für + Akk.', '人与事均用第四格', '必须接双宾语'],
                 answer: 0,
                 detail: 'jemandem (Dat.) zu etwas (Dat.) gratulieren. 例如：Ich gratuliere dir zum Geburtstag!'
@@ -506,8 +497,8 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'gratis',
                 question: '单词 "gratis" (免费的) 在语义上与下列哪个表达完全同义？',
-                options: ['günstig', 'billig', 'kostenlos / umsonst', 'wertvoll'],
-                answer: 2,
+                options: ['günstig', 'billig', 'wertvoll', 'kostenlos / umsonst'],
+                answer: 3,
                 detail: 'gratis (不变形形容词/副词) = kostenlos / umsonst (免费的)。'
             },
             {
@@ -516,8 +507,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'greifen',
                 question: '动词 "greifen" (抓，握) 的三态变化 (Präsens, Präteritum, Perfekt) 是？',
-                options: ['greift, griff, hat gegriffen', 'greift, greifte, hat gegreift', 'greift, groff, hat gegroffen', 'greift, griff, ist gegriffen'],
-                answer: 0,
+                options: ['greift, greifte, hat gegreift', 'greift, griff, hat gegriffen', 'greift, groff, hat gegroffen', 'greift, griff, ist gegriffen'],
+                answer: 1,
                 detail: 'greifen (greift, griff, hat gegriffen)。常用搭配：nach etwas (Dat.) greifen (伸手去抓某物)。'
             },
             {
@@ -536,8 +527,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'grillen / grillieren',
                 question: '关于“户外烧烤”，德国(D)/奥地利(A)使用动词 "grillen"，而瑞士德语(CH)习惯使用的对应动词是？',
-                options: ['braten', 'grillieren', 'kochen', 'backen'],
-                answer: 1,
+                options: ['braten', 'kochen', 'grillieren', 'backen'],
+                answer: 2,
                 detail: 'D, A: grillen (hat gegrillt) -> CH: grillieren (hat grilliert)。烧烤架名词为 der Grill.'
             },
             {
@@ -546,8 +537,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Grippe',
                 question: '“Er bleibt heute im Bett, weil er die ______ hat.” (他今天卧床，因为得了流感) 填入哪个名词？',
-                options: ['Erkältung', 'Fieber', 'Grippe (流行性感冒)', 'Schmerzen'],
-                answer: 2,
+                options: ['Erkältung', 'Grippe (流行性感冒)', 'Fieber', 'Schmerzen'],
+                answer: 1,
                 detail: 'die Grippe (流感)。注意搭配：die Grippe haben / bekommen. (普通的“感冒”是 die Erkältung)。'
             },
             {
@@ -556,8 +547,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Größe',
                 question: '在服装店买衣服询问“您穿多大码？”，德语正确表达是？',
-                options: ['Welche Größe tragen Sie?', 'Wie groß sind Sie?', 'Welche Nummer haben Sie?', 'Wie viel wiegen Sie?'],
-                answer: 0,
+                options: ['Wie groß sind Sie?', 'Welche Größe tragen Sie?', 'Welche Nummer haben Sie?', 'Wie viel wiegen Sie?'],
+                answer: 1,
                 detail: 'die Größe, -n (尺寸，尺码，大小)。“Wie groß sind Sie?” 是询问身高；“Welche Größe tragen Sie?” 是询问衣服尺码。'
             },
             {
@@ -566,8 +557,8 @@
                 badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
                 word: 'gründen',
                 question: '“eine Firma / einen Verein gründeten” 中的动词 "gründen" 意思是？',
-                options: ['购买，收购', '建立，创办，成立', '经营，管理', '倒闭，注销'],
-                answer: 1,
+                options: ['购买，收购', '经营，管理', '建立，创办，成立', '倒闭，注销'],
+                answer: 2,
                 detail: 'gründen (gründet, gründete, hat gegründet) - 建立，创办。名词：die Gründung (建立，成立)。'
             },
             {
@@ -586,8 +577,8 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'gründlich',
                 question: '形容词/副词 "gründlich" (来自 Grund) 在 “die Wohnung gründlich putzen” 中的意思是？',
-                options: ['彻底地，十分仔细地', '快速地', '大概地', '经常地'],
-                answer: 0,
+                options: ['快速地', '彻底地，十分仔细地', '大概地', '经常地'],
+                answer: 1,
                 detail: 'gründlich (彻底的，一丝不苟的)。如：eine gründliche Untersuchung (一次彻底的检查)。'
             },
             {
@@ -596,8 +587,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'das Grundstück',
                 question: '在房地产或建筑领域，"das Grundstück" 特指？',
-                options: ['建材，砖石', '地产，地块，地皮', '地下室', '基础施工'],
-                answer: 1,
+                options: ['建材，砖石', '地下室', '地产，地块，地皮', '基础施工'],
+                answer: 2,
                 detail: 'das Grundstück, -e (地块，地产，地皮)。指可以建造房屋或设施的一块土地。'
             },
             {
@@ -606,8 +597,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Gruppe',
                 question: '短语 “in der Gruppe arbeiten” 表示什么工作模式？',
-                options: ['小组/团队合作工作', '独立工作', '线上工作', '轮班工作'],
-                answer: 0,
+                options: ['独立工作', '小组/团队合作工作', '线上工作', '轮班工作'],
+                answer: 1,
                 detail: 'die Gruppe, -n (组，群，团队)。Gruppenarbeit (小组工作 / 团队作业)。'
             },
             {
@@ -616,8 +607,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'der Gruß',
                 question: '书信结尾常用敬语 “Mit freundlichen Grüßen” 中的 "Grüßen" 是哪个名词的复数与格形式？',
-                options: ['der Gruß, "-e (问候，致意)', 'die Grüße', 'das Grüßen', 'der Gruß, -en'],
-                answer: 0,
+                options: ['die Grüße', 'das Grüßen', 'der Gruß, -en', 'der Gruß, "-e (问候，致意)'],
+                answer: 3,
                 detail: 'der Gruß, "-e (问候)。Mit freundlichen Grüßen 中介词 mit 接第三格复数(Dat. Pl.)，故加 -n 变为 Grüßen。'
             },
             {
@@ -636,8 +627,8 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'gültig',
                 question: '“Der Pass ist noch zwei Jahre ______.” 句中的 "gültig" 意思是？',
-                options: ['过期的', '有效的', '免费的', '合法的'],
-                answer: 1,
+                options: ['过期的', '免费的', '有效的', '合法的'],
+                answer: 2,
                 detail: 'gültig (有效的)。动词形式：gelten (适用，有效)。反义词：ungültig (无效的)。'
             },
             {
@@ -646,8 +637,8 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'günstig',
                 question: '在购物或租赁语境中，形容词 "günstig" 常用作哪种替代表达？',
-                options: ['preiswert / nicht teuer (物美价廉的/划算的)', 'teuer (昂贵的)', 'kostenlos (免费的)', 'luxuriös (奢华的)'],
-                answer: 0,
+                options: ['teuer (昂贵的)', 'preiswert / nicht teuer (物美价廉的/划算的)', 'kostenlos (免费的)', 'luxuriös (奢华的)'],
+                answer: 1,
                 detail: 'günstig (有利的，便宜划算的) ≈ preiswert / billig. 例：ein günstiges Angebot (划算的优惠)。'
             },
             {
@@ -656,8 +647,8 @@
                 badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
                 word: 'gut',
                 question: '形容词 "gut" 的比较级 (Komparativ) 和最高级 (Superlativ) 形式分别是？',
-                options: ['guter / am gutesten', 'besser / am besten', 'mehr gut / am meisten gut', 'besten / am besser'],
-                answer: 1,
+                options: ['guter / am gutesten', 'mehr gut / am meisten gut', 'besser / am besten', 'besten / am besser'],
+                answer: 2,
                 detail: 'gut 是不规则变位形容词：gut -> besser -> am besten / der, die, das beste.'
             },
             {
@@ -666,8 +657,8 @@
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 word: 'die Gymnastik',
                 question: '名词 "die Gymnastik" 特指哪种健康锻炼活动？',
-                options: ['体操，健身操', '球类运动', '长跑', '游泳'],
-                answer: 0,
+                options: ['球类运动', '长跑', '体操，健身操', '游泳'],
+                answer: 2,
                 detail: 'die Gymnastik (体操，徒手操，健身操)。常用搭配：Gymnastik machen.'
             },
             {
@@ -681,7 +672,6 @@
                 detail: 'das Haar, -e (头发)。表达“全头头发”时习惯使用复数形式 die Haare (Acc. Pl. 为 die Haare)。'
             }
         ];
-
         // Native Audio Synthesizer
         let audioCtx = null;
         function getAudioContext() {
@@ -693,7 +683,6 @@
             }
             return audioCtx;
         }
-
         function playSound(isCorrect) {
             try {
                 const ctx = getAudioContext();
@@ -702,7 +691,6 @@
                 osc.connect(gain);
                 gain.connect(ctx.destination);
                 const now = ctx.currentTime;
-
                 if (isCorrect) {
                     osc.type = 'sine';
                     osc.frequency.setValueAtTime(523.25, now); // C5
@@ -724,7 +712,6 @@
                 console.error("Audio error:", e);
             }
         }
-
         // Fisher-Yates Shuffle
         function shuffleArray(array) {
             const arr = [...array];
@@ -734,53 +721,42 @@
             }
             return arr;
         }
-
         // App State
         let vocabularyData = [];
         let currentIndex = 0;
         let userAnswers = [];
         let showExplanation = false;
-
         document.addEventListener('DOMContentLoaded', () => {
             resetPractice();
         });
-
         function resetPractice() {
             vocabularyData = shuffleArray(rawVocabularyData);
             currentIndex = 0;
             userAnswers = new Array(vocabularyData.length).fill(null);
             showExplanation = false;
-
             document.getElementById('quiz-container').classList.remove('hidden');
             document.getElementById('bottom-nav').classList.remove('hidden');
             document.getElementById('result-container').classList.add('hidden');
-
             renderQuestion();
         }
-
         function renderQuestion() {
             const currentData = vocabularyData[currentIndex];
-
             // Render Badges and Titles
             document.getElementById('word-badge').className = `px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase border ${currentData.badgeClass}`;
             document.getElementById('word-badge').textContent = currentData.type;
             document.getElementById('question-index-tag').textContent = `Q${currentIndex + 1}`;
             document.getElementById('target-word').textContent = currentData.word;
             document.getElementById('question-prompt').textContent = currentData.question;
-
             // Progress Bar
             const progressPercent = Math.round(((currentIndex + 1) / vocabularyData.length) * 100);
             document.getElementById('progress-bar').style.width = `${progressPercent}%`;
             document.getElementById('progress-text').textContent = `进度：${currentIndex + 1} / ${vocabularyData.length}`;
             document.getElementById('progress-percent').textContent = `${progressPercent}%`;
-
             // Options
             const optionsGrid = document.getElementById('options-grid');
             optionsGrid.innerHTML = '';
-
             const selectedAnswer = userAnswers[currentIndex];
             const isAnswered = selectedAnswer !== null;
-
             currentData.options.forEach((optText, optIndex) => {
                 const btn = document.createElement('button');
                 btn.className = getOptionStyle(optIndex, selectedAnswer, currentData.answer);
@@ -798,18 +774,15 @@
                 btn.onclick = () => selectOption(optIndex);
                 optionsGrid.appendChild(btn);
             });
-
             // Explanation
             const explainCard = document.getElementById('explanation-card');
             const explainText = document.getElementById('explanation-text');
             explainText.textContent = currentData.detail;
-
             if (showExplanation || isAnswered) {
                 explainCard.classList.remove('hidden');
             } else {
                 explainCard.classList.add('hidden');
             }
-
             // Controls
             document.getElementById('btn-prev').disabled = currentIndex === 0;
             const btnNext = document.getElementById('btn-next');
@@ -821,7 +794,6 @@
                 btnNext.className = 'px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-md transition-all';
             }
         }
-
         function getOptionStyle(index, selected, correct) {
             const base = "w-full text-left p-4 sm:p-4.5 rounded-2xl border text-sm sm:text-base transition-all duration-200 flex items-center justify-between ";
             if (selected === null) {
@@ -835,7 +807,6 @@
             }
             return base + "border-slate-100 bg-slate-50/50 text-slate-400 opacity-50";
         }
-
         function getOptionMarkerStyle(index, selected, correct) {
             if (selected === null) {
                 return "border-slate-200 text-slate-500 bg-slate-50";
@@ -848,7 +819,6 @@
             }
             return "border-slate-200 text-slate-300 bg-slate-100";
         }
-
         function getOptionIcon(index, selected, correct) {
             if (selected === null) return '';
             if (index === correct) {
@@ -859,7 +829,6 @@
             }
             return '';
         }
-
         function selectOption(index) {
             if (userAnswers[currentIndex] === null) {
                 const isCorrect = index === vocabularyData[currentIndex].answer;
@@ -869,7 +838,6 @@
             showExplanation = true;
             renderQuestion();
         }
-
         function toggleExplanation() {
             showExplanation = !showExplanation;
             const explainCard = document.getElementById('explanation-card');
@@ -879,7 +847,6 @@
                 explainCard.classList.add('hidden');
             }
         }
-
         function nextQuestion() {
             if (currentIndex < vocabularyData.length - 1) {
                 currentIndex++;
@@ -889,7 +856,6 @@
                 showResults();
             }
         }
-
         function prevQuestion() {
             if (currentIndex > 0) {
                 currentIndex--;
@@ -897,16 +863,13 @@
                 renderQuestion();
             }
         }
-
         function showResults() {
             document.getElementById('quiz-container').classList.add('hidden');
             document.getElementById('bottom-nav').classList.add('hidden');
             document.getElementById('result-container').classList.remove('hidden');
-
             let mistakeCount = 0;
             const mistakesList = document.getElementById('mistakes-list');
             mistakesList.innerHTML = '';
-
             userAnswers.forEach((ans, idx) => {
                 const item = vocabularyData[idx];
                 if (ans !== item.answer) {
@@ -920,10 +883,8 @@
                     mistakesList.appendChild(mistakeDiv);
                 }
             });
-
             document.getElementById('stat-total').textContent = vocabularyData.length;
             document.getElementById('stat-mistakes').textContent = mistakeCount;
-
             const mistakesSection = document.getElementById('mistakes-section');
             if (mistakeCount > 0) {
                 mistakesSection.classList.remove('hidden');
