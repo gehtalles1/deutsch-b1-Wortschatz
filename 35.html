@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="h-full bg-slate-50/80">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>德语 B1 核心词汇特训</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Serif+Georgia&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .font-german {
+            font-family: 'Noto Serif Georgia', Georgia, serif;
+        }
+        .custom-glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+    </style>
+</head>
+<body class="h-full text-slate-800 antialiased selection:bg-teal-100 selection:text-teal-900 flex flex-col justify-between bg-gradient-to-br from-slate-50 via-zinc-50 to-teal-50/20">
+    <!-- Header Area -->
+    <header class="sticky top-0 z-30 custom-glass border-b border-slate-200/60 px-4 py-3.5 sm:px-8 shadow-sm">
+        <div class="max-w-3xl mx-auto flex items-center justify-between">
+            <a href="index.html" class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-500 hover:text-slate-900 transition-all py-1.5 px-3 rounded-full hover:bg-slate-100/80">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+                返回主页
+            </a>
+            <div class="text-center">
+                <h1 class="text-xs sm:text-sm font-bold tracking-widest text-slate-400 uppercase">Wortschatz Training</h1>
+                <p class="text-sm sm:text-base font-extrabold text-slate-900 tracking-tight">德语 B1 核心词汇特训</p>
+            </div>
+            <button onclick="resetPractice()" class="text-xs sm:text-sm font-semibold text-slate-500 hover:text-teal-700 transition-all py-1.5 px-3 rounded-full hover:bg-slate-100/80">
+                重新开始
+            </button>
+        </div>
+        <!-- Progress Bar -->
+        <div class="max-w-3xl mx-auto mt-3">
+            <div class="flex justify-between items-center text-xs font-bold text-slate-400 mb-1.5 tracking-wider uppercase">
+                <span id="progress-text">进度：1 / 30</span>
+                <span id="progress-percent">3%</span>
+            </div>
+            <div class="w-full h-1.5 bg-slate-200/70 rounded-full overflow-hidden p-0.5">
+                <div id="progress-bar" class="h-full bg-slate-900 transition-all duration-300 rounded-full" style="width: 3%"></div>
+            </div>
+        </div>
+    </header>
+    <!-- Main Section -->
+    <main class="flex-1 max-w-3xl w-full mx-auto p-4 sm:p-6 flex flex-col justify-center">
+        <!-- QUIZ CONTAINER -->
+        <div id="quiz-container" class="space-y-6">
+            <!-- Word Header Card -->
+            <div class="bg-white/90 backdrop-blur-sm rounded-3xl p-6 sm:p-9 border border-slate-200/70 shadow-xl shadow-slate-200/50 relative overflow-hidden transition-all">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="flex items-center gap-2">
+                        <span id="word-badge" class="px-3 py-0.5 rounded-full text-xs font-bold tracking-wider uppercase border">
+                            Substantiv
+                        </span>
+                        <span id="target-word" class="text-xs font-semibold text-teal-700 bg-teal-50 px-2.5 py-0.5 rounded-md border border-teal-100">
+                            --
+                        </span>
+                    </div>
+                    <span id="question-index-tag" class="text-xs font-bold text-slate-400 tracking-widest uppercase">
+                        Q1
+                    </span>
+                </div>
+                <div class="py-2">
+                    <p id="question-prompt" class="font-german text-lg sm:text-2xl font-semibold text-slate-800 leading-relaxed sm:leading-relaxed">
+                        --
+                    </p>
+                </div>
+            </div>
+            <!-- Options Grid -->
+            <div id="options-grid" class="grid grid-cols-1 gap-3.5">
+                <!-- Dynamic options -->
+            </div>
+            <!-- Explanation Card -->
+            <div id="explanation-card" class="hidden bg-slate-900 text-slate-100 rounded-2xl p-5 sm:p-6 shadow-lg border border-slate-800 text-sm leading-relaxed space-y-2">
+                <div class="font-semibold text-teal-400 flex items-center gap-2 text-xs sm:text-sm uppercase tracking-wider">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    词汇解析与答案说明
+                </div>
+                <div id="explanation-text" class="text-slate-300 text-xs sm:text-sm font-normal"></div>
+            </div>
+        </div>
+        <!-- RESULT CONTAINER -->
+        <div id="result-container" class="hidden bg-white/90 backdrop-blur-sm rounded-3xl p-8 sm:p-10 border border-slate-200/70 shadow-xl shadow-slate-200/50 text-center space-y-8">
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-900 text-teal-400 shadow-lg shadow-slate-900/10 mb-2">
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <div>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2 tracking-tight">特训完成</h2>
+                <p class="text-sm text-slate-500 font-medium">已完成本关所有核心词汇测试，熟练掌握巩固知识点</p>
+            </div>
+            <div class="max-w-md mx-auto py-3 px-6 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-around">
+                <div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">本次练习题目</div>
+                    <div id="stat-total" class="text-2xl font-extrabold text-slate-900">0</div>
+                </div>
+                <div class="h-8 w-px bg-slate-200"></div>
+                <div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">重点标注/错题巩固</div>
+                    <div id="stat-mistakes" class="text-2xl font-extrabold text-slate-900">0</div>
+                </div>
+            </div>
+            <!-- Incorrect Words Review List -->
+            <div id="mistakes-section" class="text-left hidden space-y-4 pt-2">
+                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                    需重点巩固的词汇
+                </h3>
+                <div id="mistakes-list" class="space-y-2.5 max-h-64 overflow-y-auto pr-1"></div>
+            </div>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-6 border-t border-slate-100">
+                <button onclick="resetPractice()" class="w-full sm:w-auto px-8 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm transition-all shadow-md hover:shadow-lg">
+                    再练一次
+                </button>
+                <a href="index.html" class="w-full sm:w-auto px-8 py-3 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 font-bold text-sm transition-all text-center">
+                    返回主页
+                </a>
+            </div>
+        </div>
+    </main>
+    <!-- Bottom Actions Nav -->
+    <footer id="bottom-nav" class="sticky bottom-0 z-30 custom-glass border-t border-slate-200/60 px-4 py-3.5 sm:px-8">
+        <div class="max-w-3xl mx-auto flex items-center justify-between gap-3">
+            <button id="btn-prev" onclick="prevQuestion()" disabled class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 text-slate-600 hover:bg-slate-100 disabled:opacity-30 disabled:cursor-not-allowed transition-all">
+                上一题
+            </button>
+            <button id="btn-toggle-explain" onclick="toggleExplanation()" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 hover:bg-slate-200/80 text-slate-700 transition-all flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                查看释义
+            </button>
+            <button id="btn-next" onclick="nextQuestion()" class="px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-md transition-all">
+                下一题
+            </button>
+        </div>
+    </footer>
+    <script>
+        // 结合四张图全部有效单词新编的题目数据
+        const rawVocabularyData = [
+            {
+                id: 1,
+                type: 'Wortschatz & Kontext',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【Speisekarte】菜单与餐饮',
+                question: '在餐馆里，服务员递给你一本用来挑选菜品的册子，这本册子德语叫作：',
+                options: ['die Speisekarte', 'der Speisewagen', 'die Vorspeise', 'die Kuchentabelle'],
+                correctIndex: 0,
+                detail: 'die Speisekarte意为“菜单”。die Speisewagen（餐车）通常指火车上的餐饮车厢。'
+            },
+            {
+                id: 2,
+                type: 'Grammatik & Verben',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【sprechen】动词变位与用法',
+                question: '句子 "Er ______ fließend Deutsch und Englisch." 中的正确动词形式应为：',
+                options: ['spricht', 'sprecht', 'sprecht', 'sprichten'],
+                correctIndex: 0,
+                detail: 'sprechen 是不规则动词，其第三人称单数 (er/sie/es) 发生元音变音：spricht。'
+            },
+            {
+                id: 3,
+                type: 'Wortschatz & Alltag',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【Spiegel】日常家居',
+                question: '当你每天早上出门前，想照一下仪容仪表，你需要看：',
+                options: ['der Spiegel', 'das Fenster', 'der Teppich', 'die Lampe'],
+                correctIndex: 0,
+                detail: 'der Spiegel 意为“镜子”。'
+            },
+            {
+                id: 4,
+                type: 'Zusammengesetzte Nomen',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【Spielplatz】复合名词',
+                question: '周末带小孩子去社区里有滑梯、秋千供儿童玩耍的“游乐场”，德语是：',
+                options: ['der Spielplatz', 'das Spielzeug', 'das Stadion', 'die Sportart'],
+                correctIndex: 0,
+                detail: 'der Spielplatz（儿童游乐场）由 spielen（玩）与 Platz（场地）复合而成。'
+            },
+            {
+                id: 5,
+                type: 'Synonym & Ausdruck',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【stark】形容词近义词',
+                question: '形容一个人力气很大或咖啡非常浓郁，可以用哪个形容词来表达？',
+                options: ['stark', 'schwach', 'müde', 'krank'],
+                correctIndex: 0,
+                detail: 'stark 意为“强壮的、强烈的、浓的”，其反义词为 schwach（虚弱的、淡的）。'
+            },
+            {
+                id: 6,
+                type: 'Grammatik & Präposition',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【starten】运动与交通',
+                question: '航班或赛车比赛“开始启动、起飞”时，常使用的不及物动词完成时助动词是：',
+                options: ['sein', 'haben', 'werden', 'tun'],
+                correctIndex: 0,
+                detail: 'starten 在表示位移或状态彻底改变（如飞机起飞、比赛开始）时，其完成时助动词通常用 sein。'
+            },
+            {
+                id: 7,
+                type: 'Wortschatz & Stadt',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【Stadtplan】城市导航',
+                question: '初到一个陌生城市旅游时，如果你想找一条具体的街道，手里最好备一份：',
+                options: ['der Stadtplan', 'die Speisekarte', 'das Tagebuch', 'das Ticket'],
+                correctIndex: 0,
+                detail: 'der Stadtplan 意为“城市地图、街道图”。'
+            },
+            {
+                id: 8,
+                type: 'Grammatik & Nomen',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【Stadion】外来词复数',
+                question: '德语中大型足球比赛场馆 "das Stadion" 的标准复数形式是：',
+                options: ['die Stadien', 'die Stadions', 'die Stadionen', 'die Stadie'],
+                correctIndex: 0,
+                detail: 'das Stadion 属于希腊/拉丁语源的中性外来词，复数形式变化为特殊的 -ien -> die Stadien。'
+            },
+            {
+                id: 9,
+                type: 'Wortschatz & Verkehr',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【Stau】交通状况',
+                question: '上下班高峰期高速公路上车辆大面积堵塞，动弹不得，德语称作：',
+                options: ['der Stau', 'die Start', 'der Stein', 'die Spur'],
+                correctIndex: 0,
+                detail: 'der Stau（常构成短语 im Stau stehen）意为“交通堵塞”。'
+            },
+            {
+                id: 10,
+                type: 'Grammatik & Verben',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【stattfinden】可分动词',
+                question: '“年度音乐会将于周五在剧院举行。” 句中的谓语动词应选用：',
+                options: ['findet ... statt', 'fandet ... statt', 'hat stattgefunden', 'findet statt'],
+                correctIndex: 0,
+                detail: 'stattfinden 是可分动词（意为：举行、发生），现在时中前缀 statt 位于句末。'
+            },
+            {
+                id: 11,
+                type: 'Wortschatz & Haushalt',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【Steckdose & Stecker】电器配件',
+                question: '手机没电了，你需要把充电器的 ______ 插入墙上的 ______ 里。',
+                options: ['Stecker / Steckdose', 'Stift / Stil', 'Stempel / Stein', 'Stiefel / Stange'],
+                correctIndex: 0,
+                detail: 'der Stecker 是“插头”，die Steckdose 是“插座”。二者是配套使用的电器配件。'
+            },
+            {
+                id: 12,
+                type: 'Grammatik & Verben',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【stehlen】不规则动词',
+                question: '自行车在街上被小偷偷走了：“Das Fahrrad wurde von einem Dieb ______.”',
+                options: ['gestohlen', 'gestochen', 'gestorben', 'gestanden'],
+                correctIndex: 0,
+                detail: 'stehlen（偷）的过去分词（Partizip II）是 gestohlen。'
+            },
+            {
+                id: 13,
+                type: 'Wortschatz & Natur',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【steil】地形描述',
+                question: '爬山时遇到一条几乎呈垂直向上的山路，十分陡峭，可以用哪个形容词形容？',
+                options: ['steil', 'still', 'stark', 'speziell'],
+                correctIndex: 0,
+                detail: 'steil 意为“陡峭的、险峻的”。'
+            },
+            {
+                id: 14,
+                type: 'Wortschatz & Amt',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【Steuer】财税与生活',
+                question: '在德国每年报税季，成年公民都需要向国家缴纳的费用是：',
+                options: ['die Steuer', 'der Stempel', 'der Stern', 'die Stelle'],
+                correctIndex: 0,
+                detail: 'die Steuer 意为“税收”。'
+            },
+            {
+                id: 15,
+                type: 'Wortschatz & Stil',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【stilvoll】风格与美学',
+                question: '形容一个人的穿着或室内装修很有品位、有独特的艺术风格，可以关联的名词是：',
+                options: ['der Stil', 'der Stift', 'der Stiefel', 'die Stiege'],
+                correctIndex: 0,
+                detail: 'der Stil 意为“风格、文风、作风”。'
+            },
+            {
+                id: 16,
+                type: 'Wortschatz & Medizin',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【Sprechstunde】医疗与预约',
+                question: '去诊所看病前，你需要先向医生了解今天接待病人的固定时间，即：',
+                options: ['die Sprechstunde', 'die Sprache', 'die Speise', 'die Spur'],
+                correctIndex: 0,
+                detail: 'die Sprechstunde 意为“（医生、教授等的）接待时间、门诊时间”。'
+            },
+            {
+                id: 17,
+                type: 'Wortschatz & Sport',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【Spur】交通与痕迹',
+                question: '高速公路上有多条行车道，其中超车道德语常称为 Überholspur，这里的 "die Spur" 意思是：',
+                options: ['车道、痕迹、线索', '速度、快车', '桥梁、建筑', '方向、目标'],
+                correctIndex: 0,
+                detail: 'die Spur 意为“车道、足迹、线索”。'
+            },
+            {
+                id: 18,
+                type: 'Grammatik & Verben',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【spüren】感官动词',
+                question: '“当冷空气袭来时，我能明显感觉到气温下降。” 句中的“感觉到”应使用动词：',
+                options: ['spüren', 'spülen', 'springen', 'sprechen'],
+                correctIndex: 0,
+                detail: 'spüren 意为“感觉、察觉到”；spülen 是冲洗；springen 是跳跃。'
+            },
+            {
+                id: 19,
+                type: 'Wortschatz & Geografie',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【städtisch】城市形容词',
+                question: '由名词 die Stadt（城市）派生出来的形容词 "städtisch" 的意思是：',
+                options: ['城市的、市立的', '乡村的、田园的', '国家的、联邦的', '国际的、全球的'],
+                correctIndex: 0,
+                detail: 'städtisch 是形容词，意为“城市的、市镇的、市立的”。'
+            },
+            {
+                id: 20,
+                type: 'Wortschatz & Arbeit',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【Standpunkt】观点与立场',
+                question: '在激烈的讨论中，每个人都可以阐述自己对某一问题的看法和：',
+                options: ['der Standpunkt', 'der Star', 'der Stempel', 'der Stein'],
+                correctIndex: 0,
+                detail: 'der Standpunkt 意为“立场、观点”。'
+            },
+            {
+                id: 21,
+                type: 'Wortschatz & Wohnen (Austriazismus)',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【Stiege】区域德语词汇',
+                question: '在奥地利（A）日常租房或建筑中，常说的 "die Stiege" 在德国标准语（D）中通常对应的是：',
+                options: ['die Treppe (楼梯)', 'der Keller (地下室)', 'das Dach (屋顶)', 'der Garten (花园)'],
+                correctIndex: 0,
+                detail: 'die Stiege（奥地利常用）对应德国标准德语的 die Treppe（楼梯）。'
+            },
+            {
+                id: 22,
+                type: 'Wortschatz & Haushalt',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【staubsaugen】可分动词',
+                question: '周末大扫除时，用吸尘器打扫房间地毯的动词表达是：',
+                options: ['staubsaugen', 'staubmachen', 'staublaufen', 'staubwaschen'],
+                correctIndex: 0,
+                detail: 'staubsaugen 是复合动词（由 der Staub 尘土 + saugen 吸），意为“吸尘、扫地”。'
+            },
+            {
+                id: 23,
+                type: 'Wortschatz & Bildung',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【Fremdsprache】语言分类',
+                question: '除了从小习得的 die Muttersprache（母语）之外，你在学校里选修或后天学习的语言被称为：',
+                options: ['die Fremdsprache', 'die Zivilisation', 'die Grammatik', 'die Literatur'],
+                correctIndex: 0,
+                detail: 'die Fremdsprache 意为“外语”。'
+            },
+            {
+                id: 24,
+                type: 'Wortschatz & Natur',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【Stein】自然与户外',
+                question: '溪流边有很多大大小小的鹅卵石和岩石，德语名词是：',
+                options: ['der Stein', 'der Stern', 'die Stelle', 'der Stift'],
+                correctIndex: 0,
+                detail: 'der Stein 意为“石头、宝石”。'
+            },
+            {
+                id: 25,
+                type: 'Wortschatz & Büro',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【Stift】办公文具',
+                question: '平时写字、做笔记时离不开的铅笔、圆珠笔等书写工具统称为：',
+                options: ['der Stift', 'der Stempel', 'der Stil', 'der Spiegel'],
+                correctIndex: 0,
+                detail: 'der Stift 意为“笔（铅笔/圆珠笔等）”。'
+            },
+            {
+                id: 26,
+                type: 'Grammatik & Verben',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【stellen】动词用法与方向',
+                question: '“请把花瓶放到桌子上。” 这里的动作方向需要用支配第四格的动词：',
+                options: ['stellen', 'stehen', 'legen', 'sitzen'],
+                correctIndex: 0,
+                detail: 'stellen 表示竖着放置（及物动词，支配第四格 Akk.），表示位置移动。'
+            },
+            {
+                id: 27,
+                type: 'Wortschatz & Sport',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【Sportart】运动项目',
+                question: '足球、篮球、网球属于不同的运动类别，德语专业名词是：',
+                options: ['die Sportart', 'der Sportler', 'das Sportzeug', 'das Stadion'],
+                correctIndex: 0,
+                detail: 'die Sportart 意为“运动项目、体育种类”。'
+            },
+            {
+                id: 28,
+                type: 'Wortschatz & Kleidung',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【Stiefel】鞋靴服饰',
+                question: '冬天或雨雪天气里，人们为了保暖防水，脚上通常会穿高筒的：',
+                options: ['der Stiefel', 'der Schuh', 'die Jacke', 'der Mantel'],
+                correctIndex: 0,
+                detail: 'der Stiefel 意为“靴子、长统靴”。'
+            },
+            {
+                id: 29,
+                type: 'Wortschatz & Medien',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【Star】文娱与体育',
+                question: '在电影界或歌坛备受瞩目的超级巨星、大腕，德语外来词常简称为：',
+                options: ['der Star', 'der Chef', 'der Profi', 'der Fan'],
+                correctIndex: 0,
+                detail: 'der Star（源自英语 star）意为“明星、巨星”。'
+            },
+            {
+                id: 30,
+                type: 'Wortschatz & Gastronomie',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【Speise】食品统称',
+                question: '在正式菜单或餐饮文学中，用来统称“菜肴、食物”的名词是：',
+                options: ['die Speise', 'das Getränk', 'der Tisch', 'die Serviette'],
+                correctIndex: 0,
+                detail: 'die Speise 意为“饭菜、食物、菜肴”。'
+            }
+        ];
+
+        // Native Audio Synthesizer
+        let audioCtx = null;
+        function getAudioContext() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
+        function playSound(isCorrect) {
+            try {
+                const ctx = getAudioContext();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                const now = ctx.currentTime;
+                if (isCorrect) {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(523.25, now); // C5
+                    osc.frequency.setValueAtTime(659.25, now + 0.08); // E5
+                    gain.gain.setValueAtTime(0.12, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+                    osc.start(now);
+                    osc.stop(now + 0.3);
+                } else {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(220, now);
+                    osc.frequency.exponentialRampToValueAtTime(140, now + 0.2);
+                    gain.gain.setValueAtTime(0.1, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+                    osc.start(now);
+                    osc.stop(now + 0.2);
+                }
+            } catch (e) {
+                console.error("Audio error:", e);
+            }
+        }
+        // Fisher-Yates Shuffle
+        function shuffleArray(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+        // Shuffle options and recalculate correct index
+        function processQuestions(data) {
+            return shuffleArray(data).map(item => {
+                const originalOptions = [...item.options];
+                const correctAnswerText = originalOptions[item.correctIndex];
+                const shuffledOptions = shuffleArray(originalOptions);
+                const newCorrectIndex = shuffledOptions.indexOf(correctAnswerText);
+                return {
+                    ...item,
+                    options: shuffledOptions,
+                    answer: newCorrectIndex
+                };
+            });
+        }
+        // App State
+        let vocabularyData = [];
+        let currentIndex = 0;
+        let userAnswers = [];
+        let showExplanation = false;
+        document.addEventListener('DOMContentLoaded', () => {
+            resetPractice();
+        });
+        function resetPractice() {
+            vocabularyData = processQuestions(rawVocabularyData);
+            currentIndex = 0;
+            userAnswers = new Array(vocabularyData.length).fill(null);
+            showExplanation = false;
+            document.getElementById('quiz-container').classList.remove('hidden');
+            document.getElementById('bottom-nav').classList.remove('hidden');
+            document.getElementById('result-container').classList.add('hidden');
+            renderQuestion();
+        }
+        function renderQuestion() {
+            const currentData = vocabularyData[currentIndex];
+            document.getElementById('word-badge').className = `px-3 py-0.5 rounded-full text-xs font-bold tracking-wider uppercase border ${currentData.badgeClass}`;
+            document.getElementById('word-badge').textContent = currentData.type;
+            document.getElementById('question-index-tag').textContent = `Q${currentIndex + 1}`;
+            document.getElementById('target-word').textContent = currentData.title;
+            
+            document.getElementById('question-prompt').textContent = currentData.question;
+            const progressPercent = Math.round(((currentIndex + 1) / vocabularyData.length) * 100);
+            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+            document.getElementById('progress-text').textContent = `进度：${currentIndex + 1} / ${vocabularyData.length}`;
+            document.getElementById('progress-percent').textContent = `${progressPercent}%`;
+            
+            const optionsGrid = document.getElementById('options-grid');
+            optionsGrid.innerHTML = '';
+            const selectedAnswer = userAnswers[currentIndex];
+            const isAnswered = selectedAnswer !== null;
+            currentData.options.forEach((optText, optIndex) => {
+                const btn = document.createElement('button');
+                btn.className = getOptionStyle(optIndex, selectedAnswer, currentData.answer);
+                btn.innerHTML = `
+                    <div class="flex items-center justify-between w-full">
+                        <span class="flex items-center gap-3.5">
+                            <span class="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold border transition-all ${getOptionMarkerStyle(optIndex, selectedAnswer, currentData.answer)}">
+                                ${String.fromCharCode(65 + optIndex)}
+                            </span>
+                            <span class="font-medium">${optText}</span>
+                        </span>
+                        ${getOptionIcon(optIndex, selectedAnswer, currentData.answer)}
+                    </div>
+                `;
+                btn.onclick = () => selectOption(optIndex);
+                optionsGrid.appendChild(btn);
+            });
+            
+            const explainCard = document.getElementById('explanation-card');
+            const explainText = document.getElementById('explanation-text');
+            explainText.textContent = currentData.detail;
+            if (showExplanation || isAnswered) {
+                explainCard.classList.remove('hidden');
+            } else {
+                explainCard.classList.add('hidden');
+            }
+            
+            document.getElementById('btn-prev').disabled = currentIndex === 0;
+            const btnNext = document.getElementById('btn-next');
+            if (currentIndex === vocabularyData.length - 1) {
+                btnNext.textContent = '完成特训';
+                btnNext.className = 'px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-teal-700 hover:bg-teal-800 text-white shadow-md transition-all';
+            } else {
+                btnNext.textContent = '下一题';
+                btnNext.className = 'px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-md transition-all';
+            }
+        }
+        function getOptionStyle(index, selected, correct) {
+            const base = "w-full text-left p-4 sm:p-4.5 rounded-2xl border text-sm sm:text-base transition-all duration-200 flex items-center justify-between ";
+            if (selected === null) {
+                return base + "border-slate-200/80 bg-white hover:border-slate-400 hover:shadow-md text-slate-800";
+            }
+            if (index === correct) {
+                return base + "border-emerald-300 bg-emerald-50/90 text-emerald-900 font-semibold shadow-sm";
+            }
+            if (index === selected && selected !== correct) {
+                return base + "border-rose-300 bg-rose-50/90 text-rose-900 font-semibold shadow-sm";
+            }
+            return base + "border-slate-100 bg-slate-50/50 text-slate-400 opacity-50";
+        }
+        function getOptionMarkerStyle(index, selected, correct) {
+            if (selected === null) {
+                return "border-slate-200 text-slate-500 bg-slate-50";
+            }
+            if (index === correct) {
+                return "border-emerald-500 text-white bg-emerald-600 shadow-sm";
+            }
+            if (index === selected && selected !== correct) {
+                return "border-rose-500 text-white bg-rose-500 shadow-sm";
+            }
+            return "border-slate-200 text-slate-300 bg-slate-100";
+        }
+        function getOptionIcon(index, selected, correct) {
+            if (selected === null) return '';
+            if (index === correct) {
+                return `<svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>`;
+            }
+            if (index === selected && selected !== correct) {
+                return `<svg class="w-5 h-5 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>`;
+            }
+            return '';
+        }
+        function selectOption(index) {
+            if (userAnswers[currentIndex] === null) {
+                const isCorrect = index === vocabularyData[currentIndex].answer;
+                playSound(isCorrect);
+            }
+            userAnswers[currentIndex] = index;
+            showExplanation = true;
+            renderQuestion();
+        }
+        function toggleExplanation() {
+            showExplanation = !showExplanation;
+            const explainCard = document.getElementById('explanation-card');
+            if (showExplanation) {
+                explainCard.classList.remove('hidden');
+            } else {
+                explainCard.classList.add('hidden');
+            }
+        }
+        function nextQuestion() {
+            if (currentIndex < vocabularyData.length - 1) {
+                currentIndex++;
+                showExplanation = false;
+                renderQuestion();
+            } else {
+                showResults();
+            }
+        }
+        function prevQuestion() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                showExplanation = false;
+                renderQuestion();
+            }
+        }
+        function showResults() {
+            document.getElementById('quiz-container').classList.add('hidden');
+            document.getElementById('bottom-nav').classList.add('hidden');
+            document.getElementById('result-container').classList.remove('hidden');
+            let mistakeCount = 0;
+            const mistakesList = document.getElementById('mistakes-list');
+            mistakesList.innerHTML = '';
+            userAnswers.forEach((ans, idx) => {
+                const item = vocabularyData[idx];
+                if (ans !== item.answer) {
+                    mistakeCount++;
+                    const mistakeDiv = document.createElement('div');
+                    mistakeDiv.className = 'p-4 bg-slate-50 rounded-2xl border border-slate-200/80 text-xs sm:text-sm';
+                    mistakeDiv.innerHTML = `
+                        <div class="font-bold text-teal-800 text-sm mb-1">${item.title}</div>
+                        <div class="font-german text-slate-800 font-medium mb-1.5">${item.question}</div>
+                        <div class="text-slate-600 leading-relaxed">${item.detail}</div>
+                    `;
+                    mistakesList.appendChild(mistakeDiv);
+                }
+            });
+            document.getElementById('stat-total').textContent = vocabularyData.length;
+            document.getElementById('stat-mistakes').textContent = mistakeCount;
+            const mistakesSection = document.getElementById('mistakes-section');
+            if (mistakeCount > 0) {
+                mistakesSection.classList.remove('hidden');
+            } else {
+                mistakesSection.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
