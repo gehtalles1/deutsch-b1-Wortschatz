@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="h-full bg-slate-50/80">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>德语 B1 核心词汇特训</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Serif+Georgia&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .font-german {
+            font-family: 'Noto Serif Georgia', Georgia, serif;
+        }
+        .custom-glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+    </style>
+</head>
+<body class="h-full text-slate-800 antialiased selection:bg-teal-100 selection:text-teal-900 flex flex-col justify-between bg-gradient-to-br from-slate-50 via-zinc-50 to-teal-50/20">
+    <!-- Header Area -->
+    <header class="sticky top-0 z-30 custom-glass border-b border-slate-200/60 px-4 py-3.5 sm:px-8 shadow-sm">
+        <div class="max-w-3xl mx-auto flex items-center justify-between">
+            <a href="index.html" class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-500 hover:text-slate-900 transition-all py-1.5 px-3 rounded-full hover:bg-slate-100/80">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+                返回主页
+            </a>
+            <div class="text-center">
+                <h1 class="text-xs sm:text-sm font-bold tracking-widest text-slate-400 uppercase">Wortschatz Training</h1>
+                <p class="text-sm sm:text-base font-extrabold text-slate-900 tracking-tight">德语 B1 核心词汇特训</p>
+            </div>
+            <button onclick="resetPractice()" class="text-xs sm:text-sm font-semibold text-slate-500 hover:text-teal-700 transition-all py-1.5 px-3 rounded-full hover:bg-slate-100/80">
+                重新开始
+            </button>
+        </div>
+        <!-- Progress Bar -->
+        <div class="max-w-3xl mx-auto mt-3">
+            <div class="flex justify-between items-center text-xs font-bold text-slate-400 mb-1.5 tracking-wider uppercase">
+                <span id="progress-text">进度：1 / 63</span>
+                <span id="progress-percent">1%</span>
+            </div>
+            <div class="w-full h-1.5 bg-slate-200/70 rounded-full overflow-hidden p-0.5">
+                <div id="progress-bar" class="h-full bg-slate-900 transition-all duration-300 rounded-full" style="width: 1%"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Section -->
+    <main class="flex-1 max-w-3xl w-full mx-auto p-4 sm:p-6 flex flex-col justify-center">
+        <!-- QUIZ CONTAINER -->
+        <div id="quiz-container" class="space-y-6">
+            <!-- Word Header Card -->
+            <div class="bg-white/90 backdrop-blur-sm rounded-3xl p-6 sm:p-9 border border-slate-200/70 shadow-xl shadow-slate-200/50 relative overflow-hidden transition-all">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="flex items-center gap-2">
+                        <span id="word-badge" class="px-3 py-0.5 rounded-full text-xs font-bold tracking-wider uppercase border">
+                            Substantiv
+                        </span>
+                        <!-- 缩小版的考察意图提示字 -->
+                        <span id="target-word" class="text-xs font-semibold text-teal-700 bg-teal-50 px-2.5 py-0.5 rounded-md border border-teal-100">
+                            --
+                        </span>
+                    </div>
+                    <span id="question-index-tag" class="text-xs font-bold text-slate-400 tracking-widest uppercase">
+                        Q1
+                    </span>
+                </div>
+                <!-- 放大且清晰的题面文字 -->
+                <div class="py-2">
+                    <p id="question-prompt" class="font-german text-lg sm:text-2xl font-semibold text-slate-800 leading-relaxed sm:leading-relaxed">
+                        --
+                    </p>
+                </div>
+            </div>
+
+            <!-- Options Grid -->
+            <div id="options-grid" class="grid grid-cols-1 gap-3.5">
+                <!-- Dynamic options -->
+            </div>
+
+            <!-- Explanation Card -->
+            <div id="explanation-card" class="hidden bg-slate-900 text-slate-100 rounded-2xl p-5 sm:p-6 shadow-lg border border-slate-800 text-sm leading-relaxed space-y-2">
+                <div class="font-semibold text-teal-400 flex items-center gap-2 text-xs sm:text-sm uppercase tracking-wider">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    词汇解析与答案说明
+                </div>
+                <div id="explanation-text" class="text-slate-300 text-xs sm:text-sm font-normal"></div>
+            </div>
+        </div>
+
+        <!-- RESULT CONTAINER -->
+        <div id="result-container" class="hidden bg-white/90 backdrop-blur-sm rounded-3xl p-8 sm:p-10 border border-slate-200/70 shadow-xl shadow-slate-200/50 text-center space-y-8">
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-900 text-teal-400 shadow-lg shadow-slate-900/10 mb-2">
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <div>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2 tracking-tight">特训完成</h2>
+                <p class="text-sm text-slate-500 font-medium">已完成本关所有核心词汇测试，熟练掌握巩固知识点</p>
+            </div>
+            <div class="max-w-md mx-auto py-3 px-6 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-around">
+                <div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">本次练习题目</div>
+                    <div id="stat-total" class="text-2xl font-extrabold text-slate-900">0</div>
+                </div>
+                <div class="h-8 w-px bg-slate-200"></div>
+                <div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">重点标注/错题巩固</div>
+                    <div id="stat-mistakes" class="text-2xl font-extrabold text-slate-900">0</div>
+                </div>
+            </div>
+
+            <!-- Incorrect Words Review List -->
+            <div id="mistakes-section" class="text-left hidden space-y-4 pt-2">
+                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                    需重点巩固的词汇
+                </h3>
+                <div id="mistakes-list" class="space-y-2.5 max-h-64 overflow-y-auto pr-1"></div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-6 border-t border-slate-100">
+                <button onclick="resetPractice()" class="w-full sm:w-auto px-8 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm transition-all shadow-md hover:shadow-lg">
+                    再练一次
+                </button>
+                <a href="index.html" class="w-full sm:w-auto px-8 py-3 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 font-bold text-sm transition-all text-center">
+                    返回主页
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Actions Nav -->
+    <footer id="bottom-nav" class="sticky bottom-0 z-30 custom-glass border-t border-slate-200/60 px-4 py-3.5 sm:px-8">
+        <div class="max-w-3xl mx-auto flex items-center justify-between gap-3">
+            <button id="btn-prev" onclick="prevQuestion()" disabled class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 text-slate-600 hover:bg-slate-100 disabled:opacity-30 disabled:cursor-not-allowed transition-all">
+                上一题
+            </button>
+            <button id="btn-toggle-explain" onclick="toggleExplanation()" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 hover:bg-slate-200/80 text-slate-700 transition-all flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                查看释义
+            </button>
+            <button id="btn-next" onclick="nextQuestion()" class="px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-md transition-all">
+                下一题
+            </button>
+        </div>
+    </footer>
+
+    <script>
+        const rawVocabularyData = [
+            // ==================== 图 1 词汇 (1_7.png) ====================
+            {
+                id: 1,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词变音与复数】',
+                question: '名词 "der Mitarbeiter" (员工/同事) 的复数形式是？',
+                options: ['die Mitarbeiter (单复同形)', 'die Mitarbeiterin', 'die Mitarbeitern', 'die Mitarbeitere'],
+                correctIndex: 0,
+                detail: 'der Mitarbeiter, - (员工/同事)。以 -er 结尾的阳性名词复数通常单复同形；女性员工为 die Mitarbeiterin, -nen[cite: 36]。'
+            },
+            {
+                id: 2,
+                type: 'Adverb',
+                badgeClass: 'bg-purple-50 text-purple-700 border-purple-200',
+                title: '【副词辨析】',
+                question: '句子 "Wir müssen mehr ______ sprechen, um Probleme zu lösen." 中，表示“互相/彼此”填入：',
+                options: ['miteinander', 'mittlerweile', 'mitten', 'nachher'],
+                correctIndex: 0,
+                detail: 'miteinander 意为“互相、共同”[cite: 36]。例如：miteinander sprechen (互相交流)。'
+            },
+            {
+                id: 3,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "das Mitglied" (成员/会员) 的正确复数形式是？',
+                options: ['die Mitglieder', 'die Mitglied', 'die Mitgliedern', 'die Mitgliedes'],
+                correctIndex: 0,
+                detail: 'das Mitglied, -er (成员，会员)。复数加 -er 为 die Mitglieder[cite: 36]。'
+            },
+            {
+                id: 4,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【固定介词搭配】',
+                question: '表达“在五月中旬/在中间”用德语表达： "______ der Mitte des Monats"',
+                options: ['in', 'an', 'auf', 'bei'],
+                correctIndex: 0,
+                detail: 'die Mitte (中间/中部)[cite: 36]；固定介词搭配：in der Mitte (在中间)。'
+            },
+            {
+                id: 5,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【可分动词与搭配】',
+                question: '可分动词 "mitteilen" (告知/通知) 的固定语法搭配是？',
+                options: ['jemandem(D) etwas(A) mitteilen', 'jemanden(A) etwas(A) mitteilen', 'mit jemandem(D) mitteilen', 'über etwas(A) mitteilen'],
+                correctIndex: 0,
+                detail: 'mitteilen (teilt mit, teilte mit, hat mitgeteilt) 结构为 jmdm. etw. mitteilen (向某人告知某事)[cite: 36]。'
+            },
+            {
+                id: 6,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【词义辨析】',
+                question: '“交通工具”在德语中被称为 "Verkehrsmittel"，其中的 "das Mittel" 意思是？',
+                options: ['手段/工具/药剂', '中间/中央', '平均数', '方法/技巧'],
+                correctIndex: 0,
+                detail: 'das Mittel, - (手段，工具，资金，药剂)[cite: 36]。'
+            },
+            {
+                id: 7,
+                type: 'Adverb',
+                badgeClass: 'bg-purple-50 text-purple-700 border-purple-200',
+                title: '【介词短语/副词】',
+                question: '“在正午/在市中心”德语表达为 "______ am Tag / ______ in der Stadt"',
+                options: ['mitten', 'mittlerweile', 'nachher', 'nah'],
+                correctIndex: 0,
+                detail: 'mitten 表示“在……正当中”[cite: 36]，常搭配介词 mitten am Tag (正午), mitten in der Stadt (在市中心)。'
+            },
+            {
+                id: 8,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【形容词用法】',
+                question: '形容词 "mittler-" (中等的/中间的) 在句中作为定语时，正确的语法特征是？',
+                options: ['必须带有形容词词尾变格', '只能作表语不变格', '只能作副词使用', '无复数形式'],
+                correctIndex: 0,
+                detail: 'mittler- 为前置定语形容词 (例如: in mittlerem Alter 中年)[cite: 36]，必须带词尾变格。'
+            },
+            {
+                id: 9,
+                type: 'Adverb',
+                badgeClass: 'bg-purple-50 text-purple-700 border-purple-200',
+                title: '【时间副词】',
+                question: '时间副词 "mittlerweile" 的近义词是？',
+                options: ['inzwischen', 'nachher', 'mitten', 'vorher'],
+                correctIndex: 0,
+                detail: 'mittlerweile 意为“在此期间，如今，渐成”[cite: 36]，近义词为 inzwischen。'
+            },
+            {
+                id: 10,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "das Möbel" (家具) 的正确冠词与复数形式是？',
+                options: ['das Möbel, 复数: die Möbel (单复同形)', 'die Möbel (仅复数)', 'der Möbel, 复数: die Möbele', 'das Möbel, 复数: die Möbeln'],
+                correctIndex: 0,
+                detail: 'das Möbel, - (家具，单复同形，日常也常直接用复数 die Möbel)[cite: 36]。'
+            },
+            {
+                id: 11,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【住房词汇】',
+                question: '租房广告中看到 "eine möblierte Wohnung"，意思是？',
+                options: ['带家具的公寓', '不带家具的公寓', '翻新过的公寓', '位于市中心的公寓'],
+                correctIndex: 0,
+                detail: 'möbliert 意为“配有家具的”[cite: 36]。'
+            },
+            {
+                id: 12,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【情态动词过去时】',
+                question: '情态动词 "möchten" 的虚拟式/过去时原型及完成时助动词对应动词为？',
+                options: ['mögen', 'müssen', 'mitteilen', 'machen'],
+                correctIndex: 0,
+                detail: 'möchten 实际上是 mögen (mag, mochte, hat gemocht) 的第二虚拟式形式[cite: 36]。'
+            },
+            {
+                id: 13,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【词义辨析】',
+                question: '“移动电话”在德语中除了 das Handy，还可以称作？',
+                options: ['das Mobiltelefon', 'die Mobilbox', 'die Mobilität', 'das Modell'],
+                correctIndex: 0,
+                detail: 'mobil / mobil- 表示“可移动的”[cite: 36]；das Mobiltelefon 意为“移动电话/手机”。'
+            },
+            {
+                id: 14,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "die Mobilbox" (语音信箱) 的正确复数形式是？',
+                options: ['die Mobilboxen', 'die Mobilboxe', 'die Mobilbox', 'die Mobilboxes'],
+                correctIndex: 0,
+                detail: 'die Mobilbox, -en (语音信箱)[cite: 36]。以 -x 结尾的名词复数通常加 -en。'
+            },
+            {
+                id: 15,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【抽象名词】',
+                question: '名词 "die Mobilität" (机动性/流动性) 的正确复数形式是？',
+                options: ['die Mobilitäten', 'die Mobilität', 'die Mobilitäte', 'die Mobilitäts'],
+                correctIndex: 0,
+                detail: 'die Mobilität, -en (机动性，移动性)[cite: 36]。以 -ät 结尾的名词复数加 -en。'
+            },
+
+            // ==================== 图 2 词汇 (2_7.png) ====================
+            {
+                id: 16,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "das Mobiltelefon" (手机/移动电话) 的正确复数形式是？',
+                options: ['die Mobiltelefone', 'die Mobiltelefonen', 'die Mobiltelefons', 'die Mobiltelefoner'],
+                correctIndex: 0,
+                detail: 'das Mobiltelefon, -e (移动电话)[cite: 35]。'
+            },
+            {
+                id: 17,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【时尚与习惯】',
+                question: '“过时了/不流行了”在德语中表达为： "aus der ______ sein"',
+                options: ['Mode', 'Möglichkeit', 'Mühe', 'Mutter'],
+                correctIndex: 0,
+                detail: 'die Mode, -n (时装，时尚)[cite: 35]；固定搭配：in Mode sein (流行) / aus der Mode sein (过时)。'
+            },
+            {
+                id: 18,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "das Modell" (模型/款式/模特) 的正确复数形式是？',
+                options: ['die Modelle', 'die Modellen', 'die Modells', 'die Modeller'],
+                correctIndex: 0,
+                detail: 'das Modell, -e (模型，样式，模特)[cite: 35]。'
+            },
+            {
+                id: 19,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【反义词辨析】',
+                question: '形容词 "altmodisch" (老式的/守旧的) 的反义词是？',
+                options: ['modern', 'möglich', 'müde', 'mündlich'],
+                correctIndex: 0,
+                detail: 'modern (现代的，时髦的)[cite: 35]；反义词为 altmodisch / unmodern。'
+            },
+            {
+                id: 20,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【情态动词过去式】',
+                question: '动词 "mögen" (喜欢) 的现在时单数(er/sie/es)和过去时 Partizip II 形式分别是？',
+                options: ['mag / hat gemocht', 'magst / hat gemögt', 'mög / hat gemögt', 'mag / ist gemocht'],
+                correctIndex: 0,
+                detail: 'mögen (mag, mochte, hat gemocht)[cite: 35]。现在时单数变音为 mag。'
+            },
+            {
+                id: 21,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【反义词辨析】',
+                question: '形容词 "unmöglich" (不可能的) 的反义词是？',
+                options: ['möglich', 'modern', 'müde', 'mutig'],
+                correctIndex: 0,
+                detail: 'möglich (可能的)[cite: 35]；反义词为 unmöglich。'
+            },
+            {
+                id: 22,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数与搭配】',
+                question: '名词 "die Möglichkeit" (可能性/机会) 的复数及“有能力做某事”的句型是？',
+                options: ['die Möglichkeiten / die Möglichkeit haben, zu + Inf.', 'die Möglichkeite / in Möglichkeit sein', 'die Möglichkeiten / auf Möglichkeit stehen', 'die Möglichkeiten / nach Möglichkeit gehen'],
+                correctIndex: 0,
+                detail: 'die Möglichkeit, -en[cite: 35]；句型：die Möglichkeit haben, etw. zu tun (有机会/可能做某事)。'
+            },
+            {
+                id: 23,
+                type: 'Adverb',
+                badgeClass: 'bg-purple-50 text-purple-700 border-purple-200',
+                title: '【固定表达】',
+                question: '“请尽快回复”德语表达为： "Bitte antworten Sie ______ schnell!"',
+                options: ['möglichst', 'möglich', 'mitten', 'modern'],
+                correctIndex: 0,
+                detail: 'möglichst 意为“尽可能地”[cite: 35]。例如：möglichst bald / möglichst schnell (尽可能快)。'
+            },
+            {
+                id: 24,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【区域德语辨析】',
+                question: '在德国(D)常称胡萝卜为 "die Möhre, -n"，在瑞士(CH)通常被称为？',
+                options: ['Rüebli', 'Karotte', 'Müsli', 'Dessert'],
+                correctIndex: 0,
+                detail: 'die Möhre, -n (D) 对应 Karotte，在瑞士德语区(CH)被称为 Rüebli[cite: 35]。'
+            },
+            {
+                id: 25,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【固定介词搭配】',
+                question: '表达“等一下/稍等片刻”用德语短语： "Einen ______ bitte!" 或 "Im ______"',
+                options: ['Moment', 'Mond', 'Motor', 'Müll'],
+                correctIndex: 0,
+                detail: 'der Moment, -e (瞬间，时刻)[cite: 35]；固定搭配：Im Moment (目前/眼下)，Einen Moment! (稍等)。'
+            },
+            {
+                id: 26,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "der Mond" (月亮) 的正确复数形式是？',
+                options: ['die Monde', 'die Mōnde', 'die Monden', 'die Monder'],
+                correctIndex: 0,
+                detail: 'der Mond, -e (月亮)[cite: 35]。复数直接加 -e，元音 o 不变音。'
+            },
+            {
+                id: 27,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "der Monitor" (显示器/监视器) 的正确复数形式是？',
+                options: ['die Monitore', 'die Monitoren', 'die Monitors', 'die Monitorer'],
+                correctIndex: 0,
+                detail: 'der Monitor, -e (显示器/屏幕)[cite: 35]。'
+            },
+            {
+                id: 28,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "der Motor" (发动机/电机) 的正确复数形式是？',
+                options: ['die Motoren', 'die Motore', 'die Motors', 'die Motörer'],
+                correctIndex: 0,
+                detail: 'der Motor, -en (发动机，引擎)[cite: 35]。复数加 -en。'
+            },
+            {
+                id: 29,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【变音与复数】',
+                question: '名词 "das Motorrad" (摩托车) 的正确复数形式是？',
+                options: ['die Motorräder', 'die Motorrade', 'die Motorräde', 'die Motorrads'],
+                correctIndex: 0,
+                detail: 'das Motorrad, "-er (摩托车)[cite: 35]。复数元音 a 变音加 -er。'
+            },
+            {
+                id: 30,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【形容词搭配】',
+                question: '“我觉得很累，想去睡觉”：“Ich bin ______ und möchte schlafen.”',
+                options: ['müde', 'mutig', 'modern', 'möglich'],
+                correctIndex: 0,
+                detail: 'müde (疲倦的，累的)[cite: 35]。'
+            },
+            {
+                id: 31,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【固定搭配】',
+                question: '表达“费劲/付出努力做某事”在德语中用固定短语： "sich(A) ______ geben"',
+                options: ['Mühe', 'Mode', 'Möglichkeit', 'Mutter'],
+                correctIndex: 0,
+                detail: 'die Mühe (辛苦/努力)[cite: 35]；固定动名词短语：sich Mühe geben (努力，费心)。'
+            },
+            {
+                id: 32,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【不可数名词】',
+                question: '名词 "der Müll" (垃圾) 在德语中的语法特征是？',
+                options: ['通常只有单数形式 (Singularwort)', '复数为 die Mülle', '复数为 die Müllen', '中性名词 das Müll'],
+                correctIndex: 0,
+                detail: 'der Müll (阳性，垃圾)[cite: 35]，通常为不可数名词，只有单数形式。'
+            },
+            {
+                id: 33,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【日常生活词汇】',
+                question: '在德国，负责运走和处理生活垃圾的“垃圾清运部门/垃圾车”被称为？',
+                options: ['die Müllabfuhr', 'die Mülltonne', 'der Nachwuchs', 'die Nachhilfe'],
+                correctIndex: 0,
+                detail: 'die Müllabfuhr (垃圾清运/垃圾处理服务)[cite: 35]。'
+            },
+
+            // ==================== 图 3 词汇 (3_7.png) ====================
+            {
+                id: 34,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "die Mülltonne" (大型垃圾桶) 的正确复数形式是？',
+                options: ['die Mülltonnen', 'die Mülltonne', 'die Mülltonner', 'die Mülltonnes'],
+                correctIndex: 0,
+                detail: 'die Mülltonne, -n (大型垃圾桶)[cite: 34]。'
+            },
+            {
+                id: 35,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【变音与复数】',
+                question: '名词 "der Mund" (嘴巴) 的正确复数形式是？',
+                options: ['die Münder', 'die Munde', 'die Mündere', 'die Münden'],
+                correctIndex: 0,
+                detail: 'der Mund, "-er (嘴巴)[cite: 34]。复数变音加 -er 为 die Münder。'
+            },
+            {
+                id: 36,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【反义词辨析】',
+                question: '在语言考试中，"die schriftliche Prüfung" (笔试) 的反义词是 "die ______ Prüfung" (口试)？',
+                options: ['mündliche', 'mögliche', 'musikalische', 'moderne'],
+                correctIndex: 0,
+                detail: 'mündlich (口头的/口试的)[cite: 34]，反义词为 schriftlich (书面的)。'
+            },
+            {
+                id: 37,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "die Münze" (硬币) 的正确复数形式是？',
+                options: ['die Münzen', 'die Münze', 'die Münzer', 'die Münzes'],
+                correctIndex: 0,
+                detail: 'die Münze, -n (硬币)[cite: 34]。'
+            },
+            {
+                id: 38,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【不规则复数】',
+                question: '名词 "das Museum" (博物馆) 的正确复数形式是？',
+                options: ['die Museen', 'die Museums', 'die Museume', 'die Museumen'],
+                correctIndex: 0,
+                detail: 'das Museum, 复数为 die Museen (博物馆)[cite: 34]。来自拉丁语的不规则复数。'
+            },
+            {
+                id: 39,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【不可数名词】',
+                question: '表达“听音乐”用短语 "Musik hören"，名词 "die Musik" 的复数用法是？',
+                options: ['通常只用单数', '复数为 die Musiken', '复数为 die Musike', '复数为 die Musiken'],
+                correctIndex: 0,
+                detail: 'die Musik (音乐)[cite: 34]，通常作为抽象不可数名词，只用单数。'
+            },
+            {
+                id: 40,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【词义辨析】',
+                question: '形容词 "musikalisch" 的正确意思和用法是？',
+                options: ['有音乐天赋的/音乐的', '富有创造力的', '喜欢唱歌的', '吵闹的'],
+                correctIndex: 0,
+                detail: 'musikalisch 意为“有音乐天赋的，音乐上的”[cite: 34]。例：Er ist sehr musikalisch.'
+            },
+            {
+                id: 41,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【职业名词复数】',
+                question: '名词 "der Musiker" (男音乐家) 与 "die Musikerin" (女音乐家) 的复数分别是？',
+                options: ['die Musiker / die Musikerinnen', 'die Musikere / die Musikerin', 'die Musikern / die Musikerin', 'die Musikers / die Musikerins'],
+                correctIndex: 0,
+                detail: 'der Musiker, - / die Musikerin, -nen (音乐家)[cite: 34]。'
+            },
+            {
+                id: 42,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "der Muskel" (肌肉) 的正确复数形式是？',
+                options: ['die Muskeln', 'die Muskel', 'die Muskeler', 'die Muskels'],
+                correctIndex: 0,
+                detail: 'der Muskel, -n (肌肉)[cite: 34]。复数加 -n。'
+            },
+            {
+                id: 43,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【拼写与拼读】',
+                question: '德语区常见早餐“麦片/混合谷物”通常写作 "das Müsli"，在瑞士德语区常写作？',
+                options: ['das Müesli', 'das Müslein', 'das Muster', 'das Brot'],
+                correctIndex: 0,
+                detail: 'das Müsli, - (麦片)[cite: 34]，在瑞士等地区常用拼写为 Müesli。'
+            },
+            {
+                id: 44,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【情态动词双不定式】',
+                question: '情态动词 "müssen" (必须) 在完成时搭配其他动词时，Partizip II 的结构是？',
+                options: ['hat ... machen müssen (双不定式)', 'hat ... gemacht gemusst', 'ist ... machen gemusst', 'hat ... gemacht müssen'],
+                correctIndex: 0,
+                detail: 'müssen (muss, musste, hat gemusst)[cite: 34]。当与实义动词连用时，完成时使用双不定式 (Ersatzinfinitiv)：hat ... müssen[cite: 34]。'
+            },
+            {
+                id: 45,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【抽象名词】',
+                question: '名词 "der Mut" (勇气) 的语法特征及反义表达是？',
+                options: ['阳性单数，无复数；Mut machen (给……鼓励)', '中性名词 das Mut', '阴性名词 die Mut', '复数为 die Mute'],
+                correctIndex: 0,
+                detail: 'der Mut (勇气)[cite: 34] 为抽象名词，无复数。短语：jemandem Mut machen (给某人打气/鼓励)。'
+            },
+            {
+                id: 46,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【近义词替换】',
+                question: '形容词 "mutig" (勇敢的) 的近义词是？',
+                options: ['tapfer', 'ängstlich', 'müde', 'mündlich'],
+                correctIndex: 0,
+                detail: 'mutig (勇敢的，有胆量的)[cite: 34]，近义词为 tapfer，反义词为 ängstlich。'
+            },
+
+            // ==================== 图 4 词汇 (4_7.png) ====================
+            {
+                id: 47,
+                type: 'Konjunktion',
+                badgeClass: 'bg-blue-50 text-blue-700 border-blue-200',
+                title: '【从属连词从句】',
+                question: '连词 "nachdem" (在……之后) 引导从句时，从句动词的时态要求是？',
+                options: ['从句时态必须比主句早一个时态 (先时性)', '从句时态必须与主句完全一致', '从句必须使用虚拟式', '从句动词放在句首'],
+                correctIndex: 0,
+                detail: 'nachdem 引导时间状语从句[cite: 33]，要求先时性（如主句现在时，从句用现在完成时；主句过去时，从句用过去完成时）。'
+            },
+            {
+                id: 48,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【可分动词与搭配】',
+                question: '动词 "nachdenken" (深思/考虑) 的变化及固定介词搭配是？',
+                options: ['denkt nach, dachte nach, hat nachgedacht / über (+ Akk.)', 'denkt nach, denkste nach, hat nachgedenkt / an (+ Akk.)', 'nachdenkt, nachdachte, hat nachgedacht / von (+ Dat.)', 'denkt nach, dachte nach, ist nachgedacht / auf (+ Akk.)'],
+                correctIndex: 0,
+                detail: 'nachdenken (denkt nach, dachte nach, hat nachgedacht)[cite: 33]；固定搭配：nachdenken über + Akk. (仔细思考某事)。'
+            },
+            {
+                id: 49,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【反义词辨析】',
+                question: '在经济学与日常中，名词 "das Angebot" (供给/供应) 的反义词是 "die ______" (需求)？',
+                options: ['Nachfrage', 'Nachhilfe', 'Nachricht', 'Nachspeise'],
+                correctIndex: 0,
+                detail: 'die Nachfrage, -n (需求，询问)[cite: 33]；固定短语：Angebot und Nachfrage (供求关系)。'
+            },
+            {
+                id: 50,
+                type: 'Adverb',
+                badgeClass: 'bg-purple-50 text-purple-700 border-purple-200',
+                title: '【时间副词辨析】',
+                question: '时间副词 "nachher" 的含义最接近于下列哪个词？',
+                options: ['später', 'vorher', 'mittlerweile', 'mitten'],
+                correctIndex: 0,
+                detail: 'nachher 意为“过一会儿，待会儿，事后”[cite: 33]，近义词为 später / danach。'
+            },
+            {
+                id: 51,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【日常生活词汇】',
+                question: '给学生上“课外辅导课/补习班”，德语用短语 "______ geben / bekommen"',
+                options: ['Nachhilfe', 'Nachricht', 'Nachfrage', 'Nachspeise'],
+                correctIndex: 0,
+                detail: 'die Nachhilfe, -n (补课/课外辅导)[cite: 33]。例如：Nachhilfe in Deutsch geben (补习德语)。'
+            },
+            {
+                id: 52,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "die Nachricht" (消息/新闻/短信) 的正确复数形式是？',
+                options: ['die Nachrichten', 'die Nachricht', 'die Nachrichte', 'die Nachrichts'],
+                correctIndex: 0,
+                detail: 'die Nachricht, -en (消息，新闻，短信息)[cite: 33]。'
+            },
+            {
+                id: 53,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【动词三态与含义】',
+                question: '动词 "nachschlagen" (查阅字典/资料) 的三态变化是？',
+                options: ['schlägt nach, schlug nach, hat nachgeschlagen', 'schlagt nach, schlagte nach, hat nachgeschlagt', 'nachschlägt, nachschlug, hat nachgeschlagen', 'schlägt nach, schlug nach, ist nachgeschlagen'],
+                correctIndex: 0,
+                detail: 'nachschlagen (schlägt nach, schlug nach, hat nachgeschlagen)[cite: 33] 意为“查阅，翻查（书本/字典）”。'
+            },
+            {
+                id: 54,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【区域德语辨析】',
+                question: '“餐后甜点”在德/奥(D, A)常称作 "die Nachspeise, -n"，其通用的外来语近义词是？',
+                options: ['das Dessert', 'die Vorspeise', 'das Müsli', 'der Kuchen'],
+                correctIndex: 0,
+                detail: 'die Nachspeise, -n (甜点，甜品)[cite: 33]，近义词为 das Dessert[cite: 33] (主菜后的甜点)。'
+            },
+            {
+                id: 55,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【定语形容词变格】',
+                question: '表达“下一个星期”：“______ Woche”',
+                options: ['nächste', 'nachher', 'nähere', 'nachkommen'],
+                correctIndex: 0,
+                detail: 'nächst- (下一个的，最近的)[cite: 33]，做定语时须变格：nächste Woche / nächstes Jahr。'
+            },
+            {
+                id: 56,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【反义词辨析】',
+                question: '名词 "der Vorteil" (优点/好处) 的反义词是 "der ______" (缺点/劣势)？',
+                options: ['Nachteil', 'Nachwuchs', 'Nagel', 'Nähe'],
+                correctIndex: 0,
+                detail: 'der Nachteil, -e (缺点，不利条件)[cite: 33]；反义词为 der Vorteil。'
+            },
+            {
+                id: 57,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【不可数名词/集合词】',
+                question: '在公司或体育界表示“后备人才/年轻一代”的集合名词是？',
+                options: ['der Nachwuchs', 'der Nachteil', 'der Mitarbeiter', 'die Nachhilfe'],
+                correctIndex: 0,
+                detail: 'der Nachwuchs (后备人员，年轻一代，后代)[cite: 33]，通常用作单数集合名词。'
+            },
+            {
+                id: 58,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "die Nadel" (针/缝衣针) 的正确复数形式是？',
+                options: ['die Nadeln', 'die Nadel', 'die Nadeler', 'die Nadels'],
+                correctIndex: 0,
+                detail: 'die Nadel, -n (针)[cite: 33]。复数加 -n。'
+            },
+            {
+                id: 59,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【变音与复数】',
+                question: '名词 "der Nagel" (钉子/指甲) 的正确复数形式是？',
+                options: ['die Nägel', 'die Nageln', 'die Nagele', 'die Nägeln'],
+                correctIndex: 0,
+                detail: 'der Nagel, "- (钉子，指甲)[cite: 33]。复数变音为 die Nägel。'
+            },
+            {
+                id: 60,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【比较级与最高级】',
+                question: '形容词 "nah(e)" (近的) 的比较级和最高级形式分别是？',
+                options: ['näher / am nächsten', 'näher / am nähesten', 'naher / am nahesten', 'näherer / am nächsten'],
+                correctIndex: 0,
+                detail: 'nah(e) (近的)[cite: 33] 不规则比较等级为：nah -> näher -> am nächsten。'
+            },
+            {
+                id: 61,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【固定介词搭配】',
+                question: '表达“在附近/在近旁”用德语短语： "in der ______ von ..."',
+                options: ['Nähe', 'Nadel', 'Nachricht', 'Nacht'],
+                correctIndex: 0,
+                detail: 'die Nähe (附近)[cite: 33]；固定搭配：in der Nähe von + Dat. (在……附近)。'
+            },
+            {
+                id: 62,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【动词三态变化】',
+                question: '动词 "nähen" (缝纫/缝制) 的三态变化是？',
+                options: ['näht, nähte, hat genäht', 'näht, nahte, hat genaht', 'näht, nähte, ist genäht', 'genäht, nähte, hat genäht'],
+                correctIndex: 0,
+                detail: 'nähen (näht, nähte, hat genäht)[cite: 33] 意为“缝纫，缝补”。'
+            },
+            {
+                id: 63,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【反身动词与介词】',
+                question: '反身动词 "sich nähern" (靠近/接近) 的固定介词搭配与助动词是？',
+                options: ['hat sich genähert / (+ Dat.) 或 an (+ Akk.)', 'ist sich genähert / über (+ Akk.)', 'hat sich genähert / mit (+ Dat.)', 'ist sich genähert / zu (+ Dat.)'],
+                correctIndex: 0,
+                detail: 'sich nähern (nähert sich, näherte sich, hat sich genähert)[cite: 33] + Dat. 或 an + Akk. (靠近/接近)。助动词使用 haben[cite: 33]。'
+            }
+        ];
+
+        // Native Audio Synthesizer
+        let audioCtx = null;
+        function getAudioContext() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
+
+        function playSound(isCorrect) {
+            try {
+                const ctx = getAudioContext();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                const now = ctx.currentTime;
+
+                if (isCorrect) {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(523.25, now); // C5
+                    osc.frequency.setValueAtTime(659.25, now + 0.08); // E5
+                    gain.gain.setValueAtTime(0.12, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+                    osc.start(now);
+                    osc.stop(now + 0.3);
+                } else {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(220, now);
+                    osc.frequency.exponentialRampToValueAtTime(140, now + 0.2);
+                    gain.gain.setValueAtTime(0.1, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+                    osc.start(now);
+                    osc.stop(now + 0.2);
+                }
+            } catch (e) {
+                console.error("Audio error:", e);
+            }
+        }
+
+        // Fisher-Yates Shuffle
+        function shuffleArray(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        // Shuffle options and recalculate correct index
+        function processQuestions(data) {
+            return shuffleArray(data).map(item => {
+                const originalOptions = [...item.options];
+                const correctAnswerText = originalOptions[item.correctIndex];
+                const shuffledOptions = shuffleArray(originalOptions);
+                const newCorrectIndex = shuffledOptions.indexOf(correctAnswerText);
+
+                return {
+                    ...item,
+                    options: shuffledOptions,
+                    answer: newCorrectIndex
+                };
+            });
+        }
+
+        // App State
+        let vocabularyData = [];
+        let currentIndex = 0;
+        let userAnswers = [];
+        let showExplanation = false;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            resetPractice();
+        });
+
+        function resetPractice() {
+            // 打乱题目 + 完全随机化打乱选项顺序 ABCD
+            vocabularyData = processQuestions(rawVocabularyData);
+            currentIndex = 0;
+            userAnswers = new Array(vocabularyData.length).fill(null);
+            showExplanation = false;
+
+            document.getElementById('quiz-container').classList.remove('hidden');
+            document.getElementById('bottom-nav').classList.remove('hidden');
+            document.getElementById('result-container').classList.add('hidden');
+
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const currentData = vocabularyData[currentIndex];
+
+            // Render Badges and Small Intention Titles
+            document.getElementById('word-badge').className = `px-3 py-0.5 rounded-full text-xs font-bold tracking-wider uppercase border ${currentData.badgeClass}`;
+            document.getElementById('word-badge').textContent = currentData.type;
+            document.getElementById('question-index-tag').textContent = `Q${currentIndex + 1}`;
+            document.getElementById('target-word').textContent = currentData.title;
+            
+            // Render Enlarged Question Prompt Text
+            document.getElementById('question-prompt').textContent = currentData.question;
+
+            // Progress Bar
+            const progressPercent = Math.round(((currentIndex + 1) / vocabularyData.length) * 100);
+            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+            document.getElementById('progress-text').textContent = `进度：${currentIndex + 1} / ${vocabularyData.length}`;
+            document.getElementById('progress-percent').textContent = `${progressPercent}%`;
+
+            // Options
+            const optionsGrid = document.getElementById('options-grid');
+            optionsGrid.innerHTML = '';
+
+            const selectedAnswer = userAnswers[currentIndex];
+            const isAnswered = selectedAnswer !== null;
+
+            currentData.options.forEach((optText, optIndex) => {
+                const btn = document.createElement('button');
+                btn.className = getOptionStyle(optIndex, selectedAnswer, currentData.answer);
+                btn.innerHTML = `
+                    <div class="flex items-center justify-between w-full">
+                        <span class="flex items-center gap-3.5">
+                            <span class="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold border transition-all ${getOptionMarkerStyle(optIndex, selectedAnswer, currentData.answer)}">
+                                ${String.fromCharCode(65 + optIndex)}
+                            </span>
+                            <span class="font-medium">${optText}</span>
+                        </span>
+                        ${getOptionIcon(optIndex, selectedAnswer, currentData.answer)}
+                    </div>
+                `;
+                btn.onclick = () => selectOption(optIndex);
+                optionsGrid.appendChild(btn);
+            });
+
+            // Explanation
+            const explainCard = document.getElementById('explanation-card');
+            const explainText = document.getElementById('explanation-text');
+            explainText.textContent = currentData.detail;
+
+            if (showExplanation || isAnswered) {
+                explainCard.classList.remove('hidden');
+            } else {
+                explainCard.classList.add('hidden');
+            }
+
+            // Controls
+            document.getElementById('btn-prev').disabled = currentIndex === 0;
+            const btnNext = document.getElementById('btn-next');
+            if (currentIndex === vocabularyData.length - 1) {
+                btnNext.textContent = '完成特训';
+                btnNext.className = 'px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-teal-700 hover:bg-teal-800 text-white shadow-md transition-all';
+            } else {
+                btnNext.textContent = '下一题';
+                btnNext.className = 'px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-md transition-all';
+            }
+        }
+
+        function getOptionStyle(index, selected, correct) {
+            const base = "w-full text-left p-4 sm:p-4.5 rounded-2xl border text-sm sm:text-base transition-all duration-200 flex items-center justify-between ";
+            if (selected === null) {
+                return base + "border-slate-200/80 bg-white hover:border-slate-400 hover:shadow-md text-slate-800";
+            }
+            if (index === correct) {
+                return base + "border-emerald-300 bg-emerald-50/90 text-emerald-900 font-semibold shadow-sm";
+            }
+            if (index === selected && selected !== correct) {
+                return base + "border-rose-300 bg-rose-50/90 text-rose-900 font-semibold shadow-sm";
+            }
+            return base + "border-slate-100 bg-slate-50/50 text-slate-400 opacity-50";
+        }
+
+        function getOptionMarkerStyle(index, selected, correct) {
+            if (selected === null) {
+                return "border-slate-200 text-slate-500 bg-slate-50";
+            }
+            if (index === correct) {
+                return "border-emerald-500 text-white bg-emerald-600 shadow-sm";
+            }
+            if (index === selected && selected !== correct) {
+                return "border-rose-500 text-white bg-rose-500 shadow-sm";
+            }
+            return "border-slate-200 text-slate-300 bg-slate-100";
+        }
+
+        function getOptionIcon(index, selected, correct) {
+            if (selected === null) return '';
+            if (index === correct) {
+                return `<svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>`;
+            }
+            if (index === selected && selected !== correct) {
+                return `<svg class="w-5 h-5 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>`;
+            }
+            return '';
+        }
+
+        function selectOption(index) {
+            if (userAnswers[currentIndex] === null) {
+                const isCorrect = index === vocabularyData[currentIndex].answer;
+                playSound(isCorrect);
+            }
+            userAnswers[currentIndex] = index;
+            showExplanation = true;
+            renderQuestion();
+        }
+
+        function toggleExplanation() {
+            showExplanation = !showExplanation;
+            const explainCard = document.getElementById('explanation-card');
+            if (showExplanation) {
+                explainCard.classList.remove('hidden');
+            } else {
+                explainCard.classList.add('hidden');
+            }
+        }
+
+        function nextQuestion() {
+            if (currentIndex < vocabularyData.length - 1) {
+                currentIndex++;
+                showExplanation = false;
+                renderQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                showExplanation = false;
+                renderQuestion();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quiz-container').classList.add('hidden');
+            document.getElementById('bottom-nav').classList.add('hidden');
+            document.getElementById('result-container').classList.remove('hidden');
+
+            let mistakeCount = 0;
+            const mistakesList = document.getElementById('mistakes-list');
+            mistakesList.innerHTML = '';
+
+            userAnswers.forEach((ans, idx) => {
+                const item = vocabularyData[idx];
+                if (ans !== item.answer) {
+                    mistakeCount++;
+                    const mistakeDiv = document.createElement('div');
+                    mistakeDiv.className = 'p-4 bg-slate-50 rounded-2xl border border-slate-200/80 text-xs sm:text-sm';
+                    mistakeDiv.innerHTML = `
+                        <div class="font-bold text-teal-800 text-sm mb-1">${item.title}</div>
+                        <div class="font-german text-slate-800 font-medium mb-1.5">${item.question}</div>
+                        <div class="text-slate-600 leading-relaxed">${item.detail}</div>
+                    `;
+                    mistakesList.appendChild(mistakeDiv);
+                }
+            });
+
+            document.getElementById('stat-total').textContent = vocabularyData.length;
+            document.getElementById('stat-mistakes').textContent = mistakeCount;
+
+            const mistakesSection = document.getElementById('mistakes-section');
+            if (mistakeCount > 0) {
+                mistakesSection.classList.remove('hidden');
+            } else {
+                mistakesSection.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
