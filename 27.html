@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="h-full bg-slate-50/80">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>德语 B1 核心词汇特训 - N 词汇专场</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Serif+Georgia&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .font-german {
+            font-family: 'Noto Serif Georgia', Georgia, serif;
+        }
+        .custom-glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+    </style>
+</head>
+<body class="h-full text-slate-800 antialiased selection:bg-teal-100 selection:text-teal-900 flex flex-col justify-between bg-gradient-to-br from-slate-50 via-zinc-50 to-teal-50/20">
+    <!-- Header Area -->
+    <header class="sticky top-0 z-30 custom-glass border-b border-slate-200/60 px-4 py-3.5 sm:px-8 shadow-sm">
+        <div class="max-w-3xl mx-auto flex items-center justify-between">
+            <a href="index.html" class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-500 hover:text-slate-900 transition-all py-1.5 px-3 rounded-full hover:bg-slate-100/80">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+                返回主页
+            </a>
+            <div class="text-center">
+                <h1 class="text-xs sm:text-sm font-bold tracking-widest text-slate-400 uppercase">Wortschatz Training</h1>
+                <p class="text-sm sm:text-base font-extrabold text-slate-900 tracking-tight">德语 B1 核心词汇特训 (N开头专场)</p>
+            </div>
+            <button onclick="resetPractice()" class="text-xs sm:text-sm font-semibold text-slate-500 hover:text-teal-700 transition-all py-1.5 px-3 rounded-full hover:bg-slate-100/80">
+                重新开始
+            </button>
+        </div>
+        <!-- Progress Bar -->
+        <div class="max-w-3xl mx-auto mt-3">
+            <div class="flex justify-between items-center text-xs font-bold text-slate-400 mb-1.5 tracking-wider uppercase">
+                <span id="progress-text">进度：1 / 45</span>
+                <span id="progress-percent">2%</span>
+            </div>
+            <div class="w-full h-1.5 bg-slate-200/70 rounded-full overflow-hidden p-0.5">
+                <div id="progress-bar" class="h-full bg-slate-900 transition-all duration-300 rounded-full" style="width: 2%"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Section -->
+    <main class="flex-1 max-w-3xl w-full mx-auto p-4 sm:p-6 flex flex-col justify-center">
+        <!-- QUIZ CONTAINER -->
+        <div id="quiz-container" class="space-y-6">
+            <!-- Word Header Card -->
+            <div class="bg-white/90 backdrop-blur-sm rounded-3xl p-6 sm:p-9 border border-slate-200/70 shadow-xl shadow-slate-200/50 relative overflow-hidden transition-all">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="flex items-center gap-2">
+                        <span id="word-badge" class="px-3 py-0.5 rounded-full text-xs font-bold tracking-wider uppercase border">
+                            Substantiv
+                        </span>
+                        <span id="target-word" class="text-xs font-semibold text-teal-700 bg-teal-50 px-2.5 py-0.5 rounded-md border border-teal-100">
+                            --
+                        </span>
+                    </div>
+                    <span id="question-index-tag" class="text-xs font-bold text-slate-400 tracking-widest uppercase">
+                        Q1
+                    </span>
+                </div>
+                <div class="py-2">
+                    <p id="question-prompt" class="font-german text-lg sm:text-2xl font-semibold text-slate-800 leading-relaxed sm:leading-relaxed">
+                        --
+                    </p>
+                </div>
+            </div>
+
+            <!-- Options Grid -->
+            <div id="options-grid" class="grid grid-cols-1 gap-3.5">
+                <!-- Dynamic options -->
+            </div>
+
+            <!-- Explanation Card -->
+            <div id="explanation-card" class="hidden bg-slate-900 text-slate-100 rounded-2xl p-5 sm:p-6 shadow-lg border border-slate-800 text-sm leading-relaxed space-y-2">
+                <div class="font-semibold text-teal-400 flex items-center gap-2 text-xs sm:text-sm uppercase tracking-wider">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    词汇解析与答案说明
+                </div>
+                <div id="explanation-text" class="text-slate-300 text-xs sm:text-sm font-normal"></div>
+            </div>
+        </div>
+
+        <!-- RESULT CONTAINER -->
+        <div id="result-container" class="hidden bg-white/90 backdrop-blur-sm rounded-3xl p-8 sm:p-10 border border-slate-200/70 shadow-xl shadow-slate-200/50 text-center space-y-8">
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-900 text-teal-400 shadow-lg shadow-slate-900/10 mb-2">
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <div>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2 tracking-tight">N 词汇关卡特训完成</h2>
+                <p class="text-sm text-slate-500 font-medium">已全面巩固图片中的 N 字母开头核心词汇与常考语法点！</p>
+            </div>
+            <div class="max-w-md mx-auto py-3 px-6 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-around">
+                <div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">本次练习题目</div>
+                    <div id="stat-total" class="text-2xl font-extrabold text-slate-900">0</div>
+                </div>
+                <div class="h-8 w-px bg-slate-200"></div>
+                <div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">错题/待巩固数</div>
+                    <div id="stat-mistakes" class="text-2xl font-extrabold text-slate-900">0</div>
+                </div>
+            </div>
+            <div id="mistakes-section" class="text-left hidden space-y-4 pt-2">
+                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                    需重点巩固的词汇
+                </h3>
+                <div id="mistakes-list" class="space-y-2.5 max-h-64 overflow-y-auto pr-1"></div>
+            </div>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-6 border-t border-slate-100">
+                <button onclick="resetPractice()" class="w-full sm:w-auto px-8 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm transition-all shadow-md hover:shadow-lg">
+                    再练一次
+                </button>
+                <a href="index.html" class="w-full sm:w-auto px-8 py-3 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 font-bold text-sm transition-all text-center">
+                    返回主页
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Actions Nav -->
+    <footer id="bottom-nav" class="sticky bottom-0 z-30 custom-glass border-t border-slate-200/60 px-4 py-3.5 sm:px-8">
+        <div class="max-w-3xl mx-auto flex items-center justify-between gap-3">
+            <button id="btn-prev" onclick="prevQuestion()" disabled class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 text-slate-600 hover:bg-slate-100 disabled:opacity-30 disabled:cursor-not-allowed transition-all">
+                上一题
+            </button>
+            <button id="btn-toggle-explain" onclick="toggleExplanation()" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 hover:bg-slate-200/80 text-slate-700 transition-all flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                查看释义
+            </button>
+            <button id="btn-next" onclick="nextQuestion()" class="px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-md transition-all">
+                下一题
+            </button>
+        </div>
+    </footer>
+
+    <script>
+        // 根据上传的4张图(1_8.png, 2_8.png, 3_8.png, 4_8.png)提取并精心设计的 N 字母开头词汇题目数据
+        const rawVocabularyData = [
+            // --- 图1词汇 (1_8.png) ---
+            {
+                id: 1,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【词性与复数】',
+                question: '名词 "das Nahrungsmittel" (食品/食物) 的正确复数形式是？',
+                options: ['die Nahrungsmittel (单复同形)', 'die Nahrungsmitteln', 'die Nahrungsmittelne', 'die Nahrungsmitteler'],
+                correctIndex: 0,
+                detail: 'das Nahrungsmittel, - (食品，食物)。以 -el 结尾的中性名词，复数通常单复同形。'
+            },
+            {
+                id: 2,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【N-变格名词】',
+                question: '名词 "der Name" (姓名) 属于阳性弱变化(N-Deklination)，其单数第三格/第四格形式是？',
+                options: ['dem / den Namen', 'dem / den Name', 'dem / den Names', 'dem / den Namer'],
+                correctIndex: 0,
+                detail: 'der Name, -ns, -n 属于 N-变格名词，除了单数第一格为 Name，其余格单复数均加上 -n (属格加 -ns)。'
+            },
+            {
+                id: 3,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【合成名词辨析】',
+                question: '在填写个人表格时，"der Familienname" 和 "der Vorname" 分别代表什么？',
+                options: ['姓氏 / 名字', '名字 / 姓氏', '全名 / 曾用名', '昵称 / 正式名'],
+                correctIndex: 0,
+                detail: 'der Familienname (姓氏 / 相当于 Nachname)；der Vorname (名字)。'
+            },
+            {
+                id: 4,
+                type: 'Adverb',
+                badgeClass: 'bg-purple-50 text-purple-700 border-purple-200',
+                title: '【副词用法】',
+                question: '句子 "Ich fahre nicht mit, ich habe nämlich keine Zeit." 中，"nämlich" 的作用和翻译是？',
+                options: ['补充说明理由：“因为/即”', '表示转折：“但是”', '表示时间：“突然”', '表示让步：“尽管”'],
+                correctIndex: 0,
+                detail: 'nämlich 意为“因为，即”，用于对前文进行解释说明。注意：nämlich 不能放在句首！'
+            },
+            {
+                id: 5,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【词汇与复数】',
+                question: '名词 "die Nase" (鼻子) 的正确复数形式是？',
+                options: ['die Nasen', 'die Näse', 'die Näsen', 'die Nase'],
+                correctIndex: 0,
+                detail: 'die Nase, -n (鼻子)。以 -e 结尾的阴性名词复数加 -n。'
+            },
+            {
+                id: 6,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【反义词辨析】',
+                question: '形容词 "nass" (湿的) 的反义词是？',
+                options: ['trocken', 'kalt', 'sauber', 'weich'],
+                correctIndex: 0,
+                detail: 'nass (湿的)，反义词为 trocken (干燥的)。'
+            },
+            {
+                id: 7,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【词义辨析】',
+                question: '形容词 "national" 表达的含义是？',
+                options: ['国家的 / 民族的 / 全国的', '国际的', '地方的', '洲际的'],
+                correctIndex: 0,
+                detail: 'national 意为“国家的，民族的”。国际的则为 international。'
+            },
+            {
+                id: 8,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词语法】',
+                question: '名词 "die Natur" (大自然/自然) 的词性及复数使用特点是？',
+                options: ['阴性 (die)，通常只用单数', '中性 (das)，复数加 -en', '阳性 (der)，单复同形', '阴性 (die)，复数变音'],
+                correctIndex: 0,
+                detail: 'die Natur (大自然/本性) 是阴性名词，作为“自然界”讲时通常只使用单数。'
+            },
+            {
+                id: 9,
+                type: 'Adverb',
+                badgeClass: 'bg-purple-50 text-purple-700 border-purple-200',
+                title: '【口语回应】',
+                question: '当有人问 "Hilfst du mir?" 你回答 "Natürlich!"，此时 "natürlich" 意为？',
+                options: ['当然 / 自然地', '可能吧', '完全不', '遗憾地'],
+                correctIndex: 0,
+                detail: 'natürlich 意为“当然，自然而然地”，是口语中高频使用的肯订答复词。'
+            },
+            {
+                id: 10,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【派生词辨析】',
+                question: '名词 "der Nebel" 意为“雾”，其对应的形容词“有雾的/多雾的”是？',
+                options: ['neblig', 'nebelisch', 'nebelvoll', 'nebeligst'],
+                correctIndex: 0,
+                detail: 'der Nebel (雾) -> neblig (有雾的)。例：Es ist neblig. (天正在下雾)。'
+            },
+            {
+                id: 11,
+                type: 'Präposition',
+                badgeClass: 'bg-rose-50 text-rose-700 border-rose-200',
+                title: '【静动介词搭配】',
+                question: '介词 "neben" (在……旁边) 属于双介词(Wechselpräposition)，表示静止位置时接第几格？',
+                options: ['第三格 (Dativ)', '第四格 (Akkusativ)', '第二格 (Genitiv)', '第一格 (Nominativ)'],
+                correctIndex: 0,
+                detail: 'neben 表示“静止在……旁边”用第三格 (Dat.)；表示“动态移动到……旁边”用第四格 (Akk.)。'
+            },
+            {
+                id: 12,
+                type: 'Adverb',
+                badgeClass: 'bg-purple-50 text-purple-700 border-purple-200',
+                title: '【副词辨析】',
+                question: '“隔壁/邻近”德语用副词 "nebenan"，表达“顺便/兼职”用哪个副词？',
+                options: ['nebenbei', 'nebenan', 'nebeneinander', 'nebenher'],
+                correctIndex: 0,
+                detail: 'nebenan 表示位置“在隔壁”；nebenbei 表示“顺便，附带，兼职”。'
+            },
+            {
+                id: 13,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【亲属称谓】',
+                question: '“der Neffe” 表达的亲属关系是？',
+                options: ['侄子 / 外甥', '侄女 / 外甥女', '叔叔 / 舅舅', '堂兄弟'],
+                correctIndex: 0,
+                detail: 'der Neffe, -n 意为“侄子，外甥”（注意也是 N-变格名词）；侄女/外甥女为 die Nichte。'
+            },
+            {
+                id: 14,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【反义词辨析】',
+                question: '形容词 "negativ" (消极的/负面的/阴性的) 的反义词是？',
+                options: ['positiv', 'normal', 'nervös', 'nützlich'],
+                correctIndex: 0,
+                detail: 'negativ (负面的，消极的，阴性的)，反义词为 positiv (积极的，阳性的)。'
+            },
+            {
+                id: 15,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【不规则动词三态】',
+                question: '动词 "nehmen" (拿/乘坐/吃药) 的第三人称单数现在时、过去时及完成时Partizip II是？',
+                options: ['nimmt, nahm, hat genommen', 'nehmt, nehmte, hat genehmt', 'nimmt, nähm, ist genommen', 'nehme, nahm, hat genommen'],
+                correctIndex: 0,
+                detail: 'nehmen 为强变化动词：er nimmt, nahm, hat genommen。'
+            },
+
+            // --- 图2词汇 (2_8.png) ---
+            {
+                id: 16,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【混合变化动词】',
+                question: '动词 "nennen" (命名/称呼/举例) 的过去时和完成时Partizip II是？',
+                options: ['nannte, hat genannt', 'nennte, hat genennt', 'nannte, ist genannt', 'nennte, hat genannt'],
+                correctIndex: 0,
+                detail: 'nennen 属于混合变化动词(Mischverb)：nennen, nennt, nannte, hat genannt。'
+            },
+            {
+                id: 17,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【固定短语】',
+                question: '“这真让人烦躁/伤脑筋”德语表达为： "Das geht mir auf die ______!"',
+                options: ['Nerven', 'Nase', 'Note', 'Nummer'],
+                correctIndex: 0,
+                detail: '固定俗语搭配：jemandem auf die Nerven gehen (让某人极为烦躁/耗尽某人神经)。'
+            },
+            {
+                id: 18,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【词义与近义】',
+                question: '形容词 "nervös" 表达“紧张的，不安的”，它的反义词是？',
+                options: ['ruhig / gelassen', 'nett', 'neugierig', 'niedrig'],
+                correctIndex: 0,
+                detail: 'nervös (紧张不安的)，反义词为 ruhig / gelassen (平静镇定的)。'
+            },
+            {
+                id: 19,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【词义辨析】',
+                question: '“Er ist ein sehr netter Mann.” 句中 "nett" 的意思是？',
+                options: ['友善的 / 友好的 / 讨人喜欢的', '严厉的', '骄傲的', '冷漠的'],
+                correctIndex: 0,
+                detail: 'nett 意为“友善的，体贴的，客气的”，近义词为 freundlich / lieb。'
+            },
+            {
+                id: 20,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【合成名词】',
+                question: '名词 "das Netz" (网/网络) 与 "das Netzwerk" (网络/社交网络) 的词性均是？',
+                options: ['中性 (das)', '阳性 (der)', '阴性 (die)', '复数 (Pl.)'],
+                correctIndex: 0,
+                detail: 'das Netz, -e 以及合成词 das Netzwerk, -e 均为中性名词。'
+            },
+            {
+                id: 21,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【派生名词】',
+                question: '形容词 "neu" (新的) 派生出的名词 "die Neuigkeit" (复数: -en) 意思是？',
+                options: ['新闻 / 新鲜事 / 消息', '新房', '新手', '新赛季'],
+                correctIndex: 0,
+                detail: 'die Neuigkeit, -en 意为“新闻，消息，新鲜事”。以 -keit 结尾均为阴性名词。'
+            },
+            {
+                id: 22,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【固定介词搭配】',
+                question: '“对……感到好奇”用德语表达为： "neugierig sein ______ (+ Akk.)"',
+                options: ['auf', 'über', 'an', 'für'],
+                correctIndex: 0,
+                detail: '固定介词短语：neugierig sein auf + Akk. (对……充满好奇)。'
+            },
+            {
+                id: 23,
+                type: 'Adverb',
+                badgeClass: 'bg-purple-50 text-purple-700 border-purple-200',
+                title: '【时间副词】',
+                question: '时间副词 "neulich" 表达的时间含义是？',
+                options: ['不久前 / 前几天 (kürzlich)', '明天', '现在', '将来某时'],
+                correctIndex: 0,
+                detail: 'neulich 意为“不久前，前不久，前几天”，相当于 vor kurzem / kürzlich。'
+            },
+            {
+                id: 24,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【亲属与词汇】',
+                question: '“die Nichte” (侄女/外甥女) 的复数形式是？',
+                options: ['die Nichten', 'die Nichte', 'die Nichtenne', 'die Nichter'],
+                correctIndex: 0,
+                detail: 'die Nichte, -n (侄女，外甥女)。'
+            },
+            {
+                id: 25,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【复合名词】',
+                question: '在餐厅或车厢中，"der Nichtraucher / die Nichtraucherin" 标识表示？',
+                options: ['无烟区 / 非吸烟者', '吸烟区', '安全出口', '候车室'],
+                correctIndex: 0,
+                detail: 'der Nichtraucher, - (非吸烟者 / 无烟区)。反义为 der Raucher。'
+            },
+
+            // --- 图3词汇 (3_8.png) ---
+            {
+                id: 26,
+                type: 'Pronomen',
+                badgeClass: 'bg-blue-50 text-blue-700 border-blue-200',
+                title: '【不定代词】',
+                question: '代词 "nichts" (没有什么/什么也没有) 在句中的用法特点是？',
+                options: ['无词尾变化，永远小写', '需要根据性数格变格', '只能放在句首', '后面必须接复数动词'],
+                correctIndex: 0,
+                detail: 'nichts 是不变化的代词，小写（除非句首）。例：Ich weiß nichts. (我什么也不知道)。'
+            },
+            {
+                id: 27,
+                type: 'Adverb',
+                badgeClass: 'bg-purple-50 text-purple-700 border-purple-200',
+                title: '【频率副词】',
+                question: '频率副词 "nie" (从不 / 绝不) 的近义表达是？',
+                options: ['niemals', 'oft', 'selten', 'manchmal'],
+                correctIndex: 0,
+                detail: 'nie 的同义加强形式为 niemals (从不，绝不)。'
+            },
+            {
+                id: 28,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【反义词辨析】',
+                question: '形容词 "niedrig" (低的 / 矮的) 的反义词是？',
+                options: ['hoch', 'groß', 'lang', 'breit'],
+                correctIndex: 0,
+                detail: 'niedrig (数值、高度“低”)，反义词为 hoch (高)。描述身高则通常用 klein / groß。'
+            },
+            {
+                id: 29,
+                type: 'Pronomen',
+                badgeClass: 'bg-blue-50 text-blue-700 border-blue-200',
+                title: '【不定代词】',
+                question: '“没有人”用代词 "niemand"，它的反义代词“所有人”是？',
+                options: ['alle / jemand', 'etwas', 'nichts', 'manchen'],
+                correctIndex: 0,
+                detail: 'niemand (没有人)，反义为 jemand (有人) 或 alle (所有人)。'
+            },
+            {
+                id: 30,
+                type: 'Adverb',
+                badgeClass: 'bg-purple-50 text-purple-700 border-purple-200',
+                title: '【地点副词】',
+                question: '地点副词 "nirgends" / "nirgendwo" 的正确含义是？',
+                options: ['无处 / 到处都没有', '任何地方', '在附近', '在远处'],
+                correctIndex: 0,
+                detail: 'nirgends 或 nirgendwo 均表示“无处，哪里都没有” (überall nicht)。'
+            },
+            {
+                id: 31,
+                type: 'Adverb',
+                badgeClass: 'bg-purple-50 text-purple-700 border-purple-200',
+                title: '【副词短语】',
+                question: '口语中听到 "Sag das bitte noch einmal / nochmals!"，"noch mal" 的意思是？',
+                options: ['再一次 / 再一遍', '绝不', '立刻', '已经'],
+                correctIndex: 0,
+                detail: 'noch mal 或 nochmals 意为“再次，重新，又一遍”。'
+            },
+            {
+                id: 32,
+                type: 'Adverb',
+                badgeClass: 'bg-purple-50 text-purple-700 border-purple-200',
+                title: '【派生副词】',
+                question: '由形容词 "normal" 派生出的副词 "normalerweise" 意思是？',
+                options: ['通常情况下 / 一般来说', '异常地', '正好', '不幸的是'],
+                correctIndex: 0,
+                detail: 'normalerweise 意为“通常，一般情况下”。'
+            },
+            {
+                id: 33,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【应急词汇】',
+                question: '在德国医院中，"die Notaufnahme" 部门指的是？',
+                options: ['急诊室 / 急诊接收处', '手术室', '挂号处', '住院部'],
+                correctIndex: 0,
+                detail: 'die Notaufnahme, -n (医院急诊室/急诊部)；Not- 前缀表示“紧急/应急”。'
+            },
+            {
+                id: 34,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【安全标识】',
+                question: '公共场所建筑物上的绿色 "der Notausgang" 标识代表？',
+                options: ['安全出口 / 紧急出口', '紧急电话', '消防栓', '入口'],
+                correctIndex: 0,
+                detail: 'der Notausgang, "-e (紧急出口/安全出口)。'
+            },
+            {
+                id: 35,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【词义与变音】',
+                question: '名词 "der Notfall" (突发紧急情况) 的正确复数形式是？',
+                options: ['die Notfälle', 'die Notfalle', 'die Notfallen', 'die Notfaller'],
+                correctIndex: 0,
+                detail: 'der Notfall, "-e (紧急情况，突发事件)。复数变音为 die Notfälle。'
+            },
+
+            // --- 图4词汇 (4_8.png) ---
+            {
+                id: 36,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【应急常识】',
+                question: '在德国发生紧急危险时打 112 或 110 叫救护车/报警，这个“紧急呼救电话”称为？',
+                options: ['der Notruf', 'die Note', 'die Nummer', 'die Notiz'],
+                correctIndex: 0,
+                detail: 'der Notruf, -e (紧急呼救/报警电话)。'
+            },
+            {
+                id: 37,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【文化与分级】',
+                question: '德国学校成绩评定中，"die Note" (分数) 采用1-6分制，其中最好的成绩 "Sehr gut" 对应的数字是？',
+                options: ['1分', '6分', '100分', '5分'],
+                correctIndex: 0,
+                detail: 'die Note, -n (分数/音符)。德国评分体制中 1 分为最高分(Sehr gut)，6 分为最低分/不及格(Ungenügend)。'
+            },
+            {
+                id: 38,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【动词辨析】',
+                question: '“请把重要信息记录下来”： "Bitte ______ Sie die wichtigen Informationen!"',
+                options: ['notieren', 'nützen', 'nennen', 'nehmen'],
+                correctIndex: 0,
+                detail: 'notieren (记录，记下)。以 -ieren 结尾，完成时 Partizip II 为 hat notiert。'
+            },
+            {
+                id: 39,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "die Notiz" (笔记/便条) 的正确复数形式是？',
+                options: ['die Notizen', 'die Notize', 'die Notizes', 'die Notizner'],
+                correctIndex: 0,
+                detail: 'die Notiz, -en (笔记，便条)。例：Notizen machen (做笔记)。'
+            },
+            {
+                id: 40,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【近义词辨析】',
+                question: '形容词 "nötig" 与 "notwendig" 均表达“必要的，需要的”，它们的近义词是？',
+                options: ['erforderlich', 'möglich', 'nützlich', 'normal'],
+                correctIndex: 0,
+                detail: 'nötig 与 notwendig 均意为“必要的，不可或缺的”，同义词为 erforderlich。'
+            },
+            {
+                id: 41,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【日常词汇】',
+                question: '名词 "die Nudel" (复数: -n) 表达的食物种类是？',
+                options: ['面条 / 意面', '面包', '土豆', '米饭'],
+                correctIndex: 0,
+                detail: 'die Nudel, -n (面条，意大利面)。'
+            },
+            {
+                id: 42,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "die Nummer" (号码/数字) 的复数形式是？',
+                options: ['die Nummern', 'die Nummer', 'die Nummernne', 'die Nümmer'],
+                correctIndex: 0,
+                detail: 'die Nummer, -n (号码)。例：Hausnummer (门牌号), Telefonnummer (电话号码)。'
+            },
+            {
+                id: 43,
+                type: 'Adverb',
+                badgeClass: 'bg-purple-50 text-purple-700 border-purple-200',
+                title: '【时间与限定】',
+                question: '副词 "nun" 与 "nur" 的含义分别对应的是？',
+                options: ['现在(jetzt) / 仅仅(bloss)', '仅仅 / 现在', '过去 / 经常', '永远 / 绝不'],
+                correctIndex: 0,
+                detail: 'nun 意为“现在，此时”(相当于 jetzt)；nur 意为“仅仅，只有”(相当于 bloß)。'
+            },
+            {
+                id: 44,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【动词与介词】',
+                question: '动词 "nutzen" / "nützen" (利用/有好处) 表达“对某人有好处/有益”时，接第几格？',
+                options: ['jemandem (Dat.) nützen', 'jemanden (Akk.) nützen', 'von jemandem nützen', 'für jemanden nützen'],
+                correctIndex: 0,
+                detail: 'nützen 表达“对……有益”时后接第三格：Das nützt mir nichts. (这对我毫无益处)。'
+            },
+            {
+                id: 45,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【派生形容词】',
+                question: '形容词 "nützlich" (有用的/有益的) 的反义词是？',
+                options: ['nützlos / unnütz', 'nötig', 'nervös', 'negativ'],
+                correctIndex: 0,
+                detail: 'nützlich (有用的，有益的)，反义词为 nützlos 或 unnütz (无用的)。'
+            }
+        ];
+
+        // Native Audio Synthesizer
+        let audioCtx = null;
+        function getAudioContext() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
+
+        function playSound(isCorrect) {
+            try {
+                const ctx = getAudioContext();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                const now = ctx.currentTime;
+                if (isCorrect) {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(523.25, now); // C5
+                    osc.frequency.setValueAtTime(659.25, now + 0.08); // E5
+                    gain.gain.setValueAtTime(0.12, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+                    osc.start(now);
+                    osc.stop(now + 0.3);
+                } else {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(220, now);
+                    osc.frequency.exponentialRampToValueAtTime(140, now + 0.2);
+                    gain.gain.setValueAtTime(0.1, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+                    osc.start(now);
+                    osc.stop(now + 0.2);
+                }
+            } catch (e) {
+                console.error("Audio error:", e);
+            }
+        }
+
+        // Fisher-Yates Shuffle
+        function shuffleArray(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        function processQuestions(data) {
+            return shuffleArray(data).map(item => {
+                const originalOptions = [...item.options];
+                const correctAnswerText = originalOptions[item.correctIndex];
+                const shuffledOptions = shuffleArray(originalOptions);
+                const newCorrectIndex = shuffledOptions.indexOf(correctAnswerText);
+                return {
+                    ...item,
+                    options: shuffledOptions,
+                    answer: newCorrectIndex
+                };
+            });
+        }
+
+        // App State
+        let vocabularyData = [];
+        let currentIndex = 0;
+        let userAnswers = [];
+        let showExplanation = false;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            resetPractice();
+        });
+
+        function resetPractice() {
+            vocabularyData = processQuestions(rawVocabularyData);
+            currentIndex = 0;
+            userAnswers = new Array(vocabularyData.length).fill(null);
+            showExplanation = false;
+
+            document.getElementById('quiz-container').classList.remove('hidden');
+            document.getElementById('bottom-nav').classList.remove('hidden');
+            document.getElementById('result-container').classList.add('hidden');
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const currentData = vocabularyData[currentIndex];
+
+            document.getElementById('word-badge').className = `px-3 py-0.5 rounded-full text-xs font-bold tracking-wider uppercase border ${currentData.badgeClass}`;
+            document.getElementById('word-badge').textContent = currentData.type;
+            document.getElementById('question-index-tag').textContent = `Q${currentIndex + 1}`;
+            document.getElementById('target-word').textContent = currentData.title;
+            document.getElementById('question-prompt').textContent = currentData.question;
+
+            const progressPercent = Math.round(((currentIndex + 1) / vocabularyData.length) * 100);
+            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+            document.getElementById('progress-text').textContent = `进度：${currentIndex + 1} / ${vocabularyData.length}`;
+            document.getElementById('progress-percent').textContent = `${progressPercent}%`;
+
+            const optionsGrid = document.getElementById('options-grid');
+            optionsGrid.innerHTML = '';
+
+            const selectedAnswer = userAnswers[currentIndex];
+            const isAnswered = selectedAnswer !== null;
+
+            currentData.options.forEach((optText, optIndex) => {
+                const btn = document.createElement('button');
+                btn.className = getOptionStyle(optIndex, selectedAnswer, currentData.answer);
+                btn.innerHTML = `
+                    <div class="flex items-center justify-between w-full">
+                        <span class="flex items-center gap-3.5">
+                            <span class="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold border transition-all ${getOptionMarkerStyle(optIndex, selectedAnswer, currentData.answer)}">
+                                ${String.fromCharCode(65 + optIndex)}
+                            </span>
+                            <span class="font-medium">${optText}</span>
+                        </span>
+                        ${getOptionIcon(optIndex, selectedAnswer, currentData.answer)}
+                    </div>
+                `;
+                btn.onclick = () => selectOption(optIndex);
+                optionsGrid.appendChild(btn);
+            });
+
+            const explainCard = document.getElementById('explanation-card');
+            const explainText = document.getElementById('explanation-text');
+            explainText.textContent = currentData.detail;
+
+            if (showExplanation || isAnswered) {
+                explainCard.classList.remove('hidden');
+            } else {
+                explainCard.classList.add('hidden');
+            }
+
+            document.getElementById('btn-prev').disabled = currentIndex === 0;
+            const btnNext = document.getElementById('btn-next');
+            if (currentIndex === vocabularyData.length - 1) {
+                btnNext.textContent = '完成特训';
+                btnNext.className = 'px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-teal-700 hover:bg-teal-800 text-white shadow-md transition-all';
+            } else {
+                btnNext.textContent = '下一题';
+                btnNext.className = 'px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-md transition-all';
+            }
+        }
+
+        function getOptionStyle(index, selected, correct) {
+            const base = "w-full text-left p-4 sm:p-4.5 rounded-2xl border text-sm sm:text-base transition-all duration-200 flex items-center justify-between ";
+            if (selected === null) {
+                return base + "border-slate-200/80 bg-white hover:border-slate-400 hover:shadow-md text-slate-800";
+            }
+            if (index === correct) {
+                return base + "border-emerald-300 bg-emerald-50/90 text-emerald-900 font-semibold shadow-sm";
+            }
+            if (index === selected && selected !== correct) {
+                return base + "border-rose-300 bg-rose-50/90 text-rose-900 font-semibold shadow-sm";
+            }
+            return base + "border-slate-100 bg-slate-50/50 text-slate-400 opacity-50";
+        }
+
+        function getOptionMarkerStyle(index, selected, correct) {
+            if (selected === null) {
+                return "border-slate-200 text-slate-500 bg-slate-50";
+            }
+            if (index === correct) {
+                return "border-emerald-500 text-white bg-emerald-600 shadow-sm";
+            }
+            if (index === selected && selected !== correct) {
+                return "border-rose-500 text-white bg-rose-500 shadow-sm";
+            }
+            return "border-slate-200 text-slate-300 bg-slate-100";
+        }
+
+        function getOptionIcon(index, selected, correct) {
+            if (selected === null) return '';
+            if (index === correct) {
+                return `<svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>`;
+            }
+            if (index === selected && selected !== correct) {
+                return `<svg class="w-5 h-5 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>`;
+            }
+            return '';
+        }
+
+        function selectOption(index) {
+            if (userAnswers[currentIndex] === null) {
+                const isCorrect = index === vocabularyData[currentIndex].answer;
+                playSound(isCorrect);
+            }
+            userAnswers[currentIndex] = index;
+            showExplanation = true;
+            renderQuestion();
+        }
+
+        function toggleExplanation() {
+            showExplanation = !showExplanation;
+            const explainCard = document.getElementById('explanation-card');
+            if (showExplanation) {
+                explainCard.classList.remove('hidden');
+            } else {
+                explainCard.classList.add('hidden');
+            }
+        }
+
+        function nextQuestion() {
+            if (currentIndex < vocabularyData.length - 1) {
+                currentIndex++;
+                showExplanation = false;
+                renderQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                showExplanation = false;
+                renderQuestion();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quiz-container').classList.add('hidden');
+            document.getElementById('bottom-nav').classList.add('hidden');
+            document.getElementById('result-container').classList.remove('hidden');
+
+            let mistakeCount = 0;
+            const mistakesList = document.getElementById('mistakes-list');
+            mistakesList.innerHTML = '';
+
+            userAnswers.forEach((ans, idx) => {
+                const item = vocabularyData[idx];
+                if (ans !== item.answer) {
+                    mistakeCount++;
+                    const mistakeDiv = document.createElement('div');
+                    mistakeDiv.className = 'p-4 bg-slate-50 rounded-2xl border border-slate-200/80 text-xs sm:text-sm';
+                    mistakeDiv.innerHTML = `
+                        <div class="font-bold text-teal-800 text-sm mb-1">${item.title}</div>
+                        <div class="font-german text-slate-800 font-medium mb-1.5">${item.question}</div>
+                        <div class="text-slate-600 leading-relaxed">${item.detail}</div>
+                    `;
+                    mistakesList.appendChild(mistakeDiv);
+                }
+            });
+
+            document.getElementById('stat-total').textContent = vocabularyData.length;
+            document.getElementById('stat-mistakes').textContent = mistakeCount;
+
+            const mistakesSection = document.getElementById('mistakes-section');
+            if (mistakeCount > 0) {
+                mistakesSection.classList.remove('hidden');
+            } else {
+                mistakesSection.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
