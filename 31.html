@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="h-full bg-slate-50/80">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>德语 B1 核心词汇特训</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Serif+Georgia&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .font-german {
+            font-family: 'Noto Serif Georgia', Georgia, serif;
+        }
+        .custom-glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+    </style>
+</head>
+<body class="h-full text-slate-800 antialiased selection:bg-teal-100 selection:text-teal-900 flex flex-col justify-between bg-gradient-to-br from-slate-50 via-zinc-50 to-teal-50/20">
+    <!-- Header Area -->
+    <header class="sticky top-0 z-30 custom-glass border-b border-slate-200/60 px-4 py-3.5 sm:px-8 shadow-sm">
+        <div class="max-w-3xl mx-auto flex items-center justify-between">
+            <a href="index.html" class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-500 hover:text-slate-900 transition-all py-1.5 px-3 rounded-full hover:bg-slate-100/80">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+                返回主页
+            </a>
+            <div class="text-center">
+                <h1 class="text-xs sm:text-sm font-bold tracking-widest text-slate-400 uppercase">Wortschatz Training</h1>
+                <p class="text-sm sm:text-base font-extrabold text-slate-900 tracking-tight">德语 B1 核心词汇特训</p>
+            </div>
+            <button onclick="resetPractice()" class="text-xs sm:text-sm font-semibold text-slate-500 hover:text-teal-700 transition-all py-1.5 px-3 rounded-full hover:bg-slate-100/80">
+                重新开始
+            </button>
+        </div>
+        <!-- Progress Bar -->
+        <div class="max-w-3xl mx-auto mt-3">
+            <div class="flex justify-between items-center text-xs font-bold text-slate-400 mb-1.5 tracking-wider uppercase">
+                <span id="progress-text">进度：1 / 67</span>
+                <span id="progress-percent">1%</span>
+            </div>
+            <div class="w-full h-1.5 bg-slate-200/70 rounded-full overflow-hidden p-0.5">
+                <div id="progress-bar" class="h-full bg-slate-900 transition-all duration-300 rounded-full" style="width: 1%"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Section -->
+    <main class="flex-1 max-w-3xl w-full mx-auto p-4 sm:p-6 flex flex-col justify-center">
+        <!-- QUIZ CONTAINER -->
+        <div id="quiz-container" class="space-y-6">
+            <!-- Word Header Card -->
+            <div class="bg-white/90 backdrop-blur-sm rounded-3xl p-6 sm:p-9 border border-slate-200/70 shadow-xl shadow-slate-200/50 relative overflow-hidden transition-all">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="flex items-center gap-2">
+                        <span id="word-badge" class="px-3 py-0.5 rounded-full text-xs font-bold tracking-wider uppercase border">
+                            Substantiv
+                        </span>
+                        <span id="target-word" class="text-xs font-semibold text-teal-700 bg-teal-50 px-2.5 py-0.5 rounded-md border border-teal-100">
+                            --
+                        </span>
+                    </div>
+                    <span id="question-index-tag" class="text-xs font-bold text-slate-400 tracking-widest uppercase">
+                        Q1
+                    </span>
+                </div>
+                <div class="py-2">
+                    <p id="question-prompt" class="font-german text-lg sm:text-2xl font-semibold text-slate-800 leading-relaxed sm:leading-relaxed">
+                        --
+                    </p>
+                </div>
+            </div>
+
+            <!-- Options Grid -->
+            <div id="options-grid" class="grid grid-cols-1 gap-3.5">
+                <!-- Dynamic options -->
+            </div>
+
+            <!-- Explanation Card -->
+            <div id="explanation-card" class="hidden bg-slate-900 text-slate-100 rounded-2xl p-5 sm:p-6 shadow-lg border border-slate-800 text-sm leading-relaxed space-y-2">
+                <div class="font-semibold text-teal-400 flex items-center gap-2 text-xs sm:text-sm uppercase tracking-wider">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    词汇解析与答案说明
+                </div>
+                <div id="explanation-text" class="text-slate-300 text-xs sm:text-sm font-normal"></div>
+            </div>
+        </div>
+
+        <!-- RESULT CONTAINER -->
+        <div id="result-container" class="hidden bg-white/90 backdrop-blur-sm rounded-3xl p-8 sm:p-10 border border-slate-200/70 shadow-xl shadow-slate-200/50 text-center space-y-8">
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-900 text-teal-400 shadow-lg shadow-slate-900/10 mb-2">
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <div>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2 tracking-tight">特训完成</h2>
+                <p class="text-sm text-slate-500 font-medium">已完成本关所有核心词汇测试，熟练掌握巩固知识点</p>
+            </div>
+            <div class="max-w-md mx-auto py-3 px-6 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-around">
+                <div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">本次练习题目</div>
+                    <div id="stat-total" class="text-2xl font-extrabold text-slate-900">0</div>
+                </div>
+                <div class="h-8 w-px bg-slate-200"></div>
+                <div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">重点标注/错题巩固</div>
+                    <div id="stat-mistakes" class="text-2xl font-extrabold text-slate-900">0</div>
+                </div>
+            </div>
+
+            <div id="mistakes-section" class="text-left hidden space-y-4 pt-2">
+                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                    需重点巩固的词汇
+                </h3>
+                <div id="mistakes-list" class="space-y-2.5 max-h-64 overflow-y-auto pr-1"></div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-6 border-t border-slate-100">
+                <button onclick="resetPractice()" class="w-full sm:w-auto px-8 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm transition-all shadow-md hover:shadow-lg">
+                    再练一次
+                </button>
+                <a href="index.html" class="w-full sm:w-auto px-8 py-3 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 font-bold text-sm transition-all text-center">
+                    返回主页
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Actions Nav -->
+    <footer id="bottom-nav" class="sticky bottom-0 z-30 custom-glass border-t border-slate-200/60 px-4 py-3.5 sm:px-8">
+        <div class="max-w-3xl mx-auto flex items-center justify-between gap-3">
+            <button id="btn-prev" onclick="prevQuestion()" disabled class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 text-slate-600 hover:bg-slate-100 disabled:opacity-30 disabled:cursor-not-allowed transition-all">
+                上一题
+            </button>
+            <button id="btn-toggle-explain" onclick="toggleExplanation()" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 hover:bg-slate-200/80 text-slate-700 transition-all flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                查看释义
+            </button>
+            <button id="btn-next" onclick="nextQuestion()" class="px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-md transition-all">
+                下一题
+            </button>
+        </div>
+    </footer>
+
+    <script>
+        const rawVocabularyData = [
+            // 图1 (1_11.png) 词汇提取[cite: 56]
+            {
+                id: 1,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "die Reihenfolge" (顺序，次序) 的正确复数形式是？',
+                options: ['die Reihenfolgen', 'die Reihenfolge', 'die Reihenfolger', 'die Reihenfolges'],
+                correctIndex: 0,
+                detail: 'die Reihenfolge, -n (顺序/次序)。阴性名词以 -e 结尾，复数直接加 -n。'
+            },
+            {
+                id: 2,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【词义辨析】',
+                question: '形容词 "rein" 表达“纯洁的，纯净的”或“完全的”，它的反义词是？',
+                options: ['schmutzig / unrein', 'klein', 'schwer', 'kurz'],
+                correctIndex: 0,
+                detail: 'rein (纯净的/纯粹的)，反义词为 schmutzig (脏的) 或 unrein (不纯的)。'
+            },
+            {
+                id: 3,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【动词三态与完成时】',
+                question: '动词 "reinigen" (清洁，打扫) 的过去时与完成时形式是？',
+                options: ['reinigte, hat gereinigt', 'reinigte, ist gereinigt', 'rang, hat gerungen', 'reinigen, hat gereinigt'],
+                correctIndex: 0,
+                detail: 'reinigen, reinigt, reinigte, hat gereinigt (打扫，清洁)。及物动词完成时助动词用 haben。'
+            },
+            {
+                id: 4,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '表达“干洗店/打扫”的名词 "die Reinigung" 的复数形式是？',
+                options: ['die Reinigungen', 'die Reinigung', 'die Reinigunger', 'die Reinigungs'],
+                correctIndex: 0,
+                detail: 'die Reinigung, -en (清洁，干洗店)。以 -ung 结尾的名词均为阴性，复数加 -en。'
+            },
+            {
+                id: 5,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【冠词与名词】',
+                question: '“米饭”在德语中的名词及冠词是？',
+                options: ['der Reis', 'das Reis', 'die Reis', 'die Reise'],
+                correctIndex: 0,
+                detail: 'der Reis (阳性名词，不可数，意为“米饭/大米”)。注意与 die Reise (旅行) 区分。'
+            },
+            {
+                id: 6,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【助动词选择】',
+                question: '“我们去年夏天去日本旅行了”：“Wir ______ letzten Sommer nach Japan gereist.”',
+                options: ['sind', 'haben', 'werden', 'hatten'],
+                correctIndex: 0,
+                detail: 'reisen, reist, reiste, ist gereist (旅行)。表示位置移动的不及物动词完成时用 sein。'
+            },
+            {
+                id: 7,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "die Reise" (旅行/旅程) 的复数形式是？',
+                options: ['die Reisen', 'die Reise', 'die Reiser', 'die Reises'],
+                correctIndex: 0,
+                detail: 'die Reise, -n (旅行)。'
+            },
+            {
+                id: 8,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【合成词辨析】',
+                question: '“旅行社”在德语中表达为：',
+                options: ['das Reisebüro', 'die Reisekasse', 'der Reisebus', 'die Reisezeit'],
+                correctIndex: 0,
+                detail: 'das Reisebüro, -s (旅行社)。'
+            },
+            {
+                id: 9,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【不规则动词变化】',
+                question: '动词 "reiten" (骑马) 的三态变化是？',
+                options: ['reiten, reitet, ritt, ist geritten', 'reiten, reitet, reitete, hat gereitet', 'reiten, reitet, rott, ist gerotten', 'reiten, reitet, ritt, hat geritten'],
+                correctIndex: 0,
+                detail: 'reiten, reitet, ritt, ist geritten (骑马)。表移动时助动词用 sein。'
+            },
+            {
+                id: 10,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【同义词辨析】',
+                question: '“广告”用名词 "die Reklame"，它的常见近义词是？',
+                options: ['die Werbung', 'die Zeitung', 'die Nachricht', 'die Durchsage'],
+                correctIndex: 0,
+                detail: 'die Reklame, -n 意为“商业广告”，近义词为 die Werbung。'
+            },
+            {
+                id: 11,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "der Rekord" (记录/最高纪录) 的复数形式是？',
+                options: ['die Rekorde', 'die Rekorden', 'die Rekords', 'die Rekorder'],
+                correctIndex: 0,
+                detail: 'der Rekord, -e (记录)。例如：einen Rekord brechen (打破记录)。'
+            },
+            {
+                id: 12,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【词义辨析】',
+                question: '形容词 "relativ" 的中文含义是？',
+                options: ['相对的/比较而言的', '绝对的', '相同的', '完美的'],
+                correctIndex: 0,
+                detail: 'relativ 意为“相对的；相当地”。如：Das ist relativ einfach. (这相对挺简单)。'
+            },
+            {
+                id: 13,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "die Religion" (宗教) 的复数形式是？',
+                options: ['die Religionen', 'die Religion', 'die Religione', 'die Religions'],
+                correctIndex: 0,
+                detail: 'die Religion, -en (宗教)。以 -ion 结尾的阴性名词复数加 -en。'
+            },
+            {
+                id: 14,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【不规则动词变化】',
+                question: '动词 "rennen" (奔跑) 的三态变化是？',
+                options: ['rennen, rennt, rannte, ist gerannt', 'rennen, rennt, rennte, hat gerennt', 'rennen, rennt, rann, hat geronnen', 'rennen, rennt, rannte, hat gerannt'],
+                correctIndex: 0,
+                detail: 'rennen, rennt, rannte, ist gerannt (奔跑)。混合变化动词，助动词用 sein。'
+            },
+            {
+                id: 15,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【德语区差异】',
+                question: '表达“养老金/退休金”，在德国(D)常用 "die Rente"，而在奥地利(A)与瑞士(CH)常使用哪个词？',
+                options: ['die Pension', 'das Gehalt', 'der Lohn', 'die Steuer'],
+                correctIndex: 0,
+                detail: 'die Rente, -n (D, CH) 相当于 (A, CH) 的 die Pension (养老金/退休金)。'
+            },
+            {
+                id: 16,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【固定短语】',
+                question: '“退休 / 享用养老金”在德国表达为 "in Rente gehen/sein"，在奥地利与瑞士可表达为：',
+                options: ['in Pension gehen/sein (A) / pensioniert werden/sein (CH)', 'in Pause gehen', 'in Urlaub fahren', 'in Ruhe leben'],
+                correctIndex: 0,
+                detail: '表达退休：D/A用 in Pension gehen/sein；CH用 pensioniert werden/sein。'
+            },
+            {
+                id: 17,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【职业名词】',
+                question: '“退休人员/领养老金者”德语称作 der Rentner / die Rentnerin，在奥地利被称为？',
+                options: ['der Pensionist', 'der Arbeiter', 'der Student', 'der Beamte'],
+                correctIndex: 0,
+                detail: 'der Rentner, - / die Rentnerin, -nen 在奥地利(A)常被称为 der Pensionist, -en。'
+            },
+            {
+                id: 18,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【完成时分词】',
+                question: '动词 "reparieren" (修理) 的完成时 Partizip II 是？',
+                options: ['repariert', 'gerepariert', 'reparieren', 'gereparierten'],
+                correctIndex: 0,
+                detail: '以 -ieren 结尾的动词，完成时分词不加 ge-，为 repariert (hat repariert)。'
+            },
+
+            // 图2 (2_11.png) 词汇提取[cite: 55]
+            {
+                id: 19,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "die Reparatur" (维修/修理) 的复数形式是？',
+                options: ['die Reparaturen', 'die Reparatur', 'die Reparature', 'die Reparaturs'],
+                correctIndex: 0,
+                detail: 'die Reparatur, -en (修理，维修)。'
+            },
+            {
+                id: 20,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "die Reportage" (新闻报道/专题报道) 的复数形式是？',
+                options: ['die Reportagen', 'die Reportage', 'die Reportager', 'die Reportages'],
+                correctIndex: 0,
+                detail: 'die Reportage, -n (新闻报道)。'
+            },
+            {
+                id: 21,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【职业名词】',
+                question: '“记者/报道员”的德语阳性与阴性形式分别是？',
+                options: ['der Reporter, - / die Reporterin, -nen', 'der Journalist, - / die Journalistin, -nen', 'der Redakteur, - / die Redakteurin, -nen', 'der Autor, - / die Autorin, -nen'],
+                correctIndex: 0,
+                detail: 'der Reporter, - (阳性，单复同形) / die Reporterin, -nen (阴性)。'
+            },
+            {
+                id: 22,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【动词短语】',
+                question: '“在饭店预订座位”：“Einen Tisch im Restaurant ______.”',
+                options: ['reservieren', 'bestellen', 'kaufen', 'nehmen'],
+                correctIndex: 0,
+                detail: 'reservieren (reserviert, reservierte, hat reserviert) 意为“预订/保留”。'
+            },
+            {
+                id: 23,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "die Reservierung" (预订/保留) 的复数形式是？',
+                options: ['die Reservierungen', 'die Reservierung', 'die Reservierunger', 'die Reservierungs'],
+                correctIndex: 0,
+                detail: 'die Reservierung, -en (预订)。'
+            },
+            {
+                id: 24,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【介词搭配】',
+                question: '表达“尊重某人/对某人怀有敬意”：“______ jemandem Respekt haben”',
+                options: ['vor', 'für', 'mit', 'auf'],
+                correctIndex: 0,
+                detail: 'der Respekt (单数专用)，固定搭配：Respekt haben vor + Dat. (对……有敬意)。'
+            },
+            {
+                id: 25,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "der Rest" (剩余/残余/零钱) 的复数形式是？',
+                options: ['die Reste', 'die Resten', 'die Rester', 'die Rests'],
+                correctIndex: 0,
+                detail: 'der Rest, -e (剩余物，残余)。'
+            },
+            {
+                id: 26,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "das Restaurant" (餐馆/餐厅) 的复数形式是？',
+                options: ['die Restaurants', 'die Restaurante', 'die Restauranten', 'die Restaurant'],
+                correctIndex: 0,
+                detail: 'das Restaurant, -s (餐馆)。外来词复数加 -s。'
+            },
+            {
+                id: 27,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【介词搭配】',
+                question: '“警察将孩子从危险中拯救出来”：“Die Polizei rettet das Kind ______ der Gefahr.”',
+                options: ['vor (+ Dat.) / aus (+ Dat.)', 'an', 'über', 'in'],
+                correctIndex: 0,
+                detail: 'retten (rettet, rettete, hat gerettet) 意为“拯救/挽救”，常搭配 vor / aus。'
+            },
+            {
+                id: 28,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "das Rezept" (烹饪食谱 / 医生处方) 的复数形式是？',
+                options: ['die Rezepte', 'die Rezepten', 'die Rezepter', 'die Rezepts'],
+                correctIndex: 0,
+                detail: 'das Rezept, -e (处方；食谱)。一词多义：1. 药方；2. 菜谱。'
+            },
+            {
+                id: 29,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词拼写与复数】',
+                question: '酒店的“前台/接待处”德语拼写为 die Rezeption (或 Reception)，其复数是？',
+                options: ['die Rezeptionen', 'die Rezeption', 'die Rezeptioner', 'die Rezeptions'],
+                correctIndex: 0,
+                detail: 'die Rezeption, -en (接待处，前台)。'
+            },
+            {
+                id: 30,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【职业名词】',
+                question: '“法官”的德语阳性与阴性形式分别是？',
+                options: ['der Richter, - / die Richterin, -nen', 'der Anwalt, - / die Anwältin, -nen', 'der Polizist, - / die Polizistin, -nen', 'der Zeuge, - / die Zeugin, -nen'],
+                correctIndex: 0,
+                detail: 'der Richter, - (法官) / die Richterin, -nen。'
+            },
+            {
+                id: 31,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【反义词辨析】',
+                question: '形容词 "richtig" (正确的) 的反义词是？',
+                options: ['falsch', 'korrekt', 'klug', 'schlecht'],
+                correctIndex: 0,
+                detail: 'richtig (正确的)，反义词为 falsch (错误的)。'
+            },
+            {
+                id: 32,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "die Richtung" (方向/趋势) 的复数形式是？',
+                options: ['die Richtungen', 'die Richtung', 'die Richtunge', 'die Richtungs'],
+                correctIndex: 0,
+                detail: 'die Richtung, -en (方向)。例：In welche Richtung fahren wir? (我们开往哪个方向？)'
+            },
+            {
+                id: 33,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【强变化动词】',
+                question: '动词 "riechen" (闻/气味) 的三态变化是？',
+                options: ['riechen, riecht, roch, hat gerochen', 'riechen, riecht, riechte, hat geriecht', 'riechen, riecht, rach, hat gerachen', 'riechen, riecht, roch, ist gerochen'],
+                correctIndex: 0,
+                detail: 'riechen, riecht, roch, hat gerochen (闻起来/闻到)。例：Es riecht gut. (闻起来很香)。'
+            },
+            {
+                id: 34,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【近义词辨析】',
+                question: '形容词 "riesig" 表达“巨大的”，最接近下列哪个表达？',
+                options: ['sehr groß', 'sehr klein', 'sehr schwer', 'sehr weit'],
+                correctIndex: 0,
+                detail: 'riesig 意为“庞大的，巨大的”，相当于 sehr groß。'
+            },
+            {
+                id: 35,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【变音与复数】',
+                question: '名词 "das Rind" (牛肉/家牛) 的正确复数形式是？',
+                options: ['die Rinder', 'die Rinde', 'die Rindes', 'die Rindern'],
+                correctIndex: 0,
+                detail: 'das Rind, -er (牛肉，牛)。复数加 -er 为 die Rinder。'
+            },
+            {
+                id: 36,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "der Ring" (戒指/环形物) 的复数形式是？',
+                options: ['die Ringe', 'die Ringen', 'die Ringer', 'die Rings'],
+                correctIndex: 0,
+                detail: 'der Ring, -e (戒指，环)。'
+            },
+
+            // 图3 (3_11.png) 词汇提取[cite: 54]
+            {
+                id: 37,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【不规则复数】',
+                question: '名词 "das Risiko" (风险) 的正确复数形式是？',
+                options: ['die Risiken', 'die Risikos', 'die Risikoen', 'die Risike'],
+                correctIndex: 0,
+                detail: 'das Risiko, 复数为 die Risiken (风险)。'
+            },
+            {
+                id: 38,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【变音与复数】',
+                question: '名词 "der Rock" (短裙/半身裙) 的正确复数形式是？',
+                options: ['die Röcke', 'die Rocke', 'die Röcker', 'die Rocken'],
+                correctIndex: 0,
+                detail: 'der Rock, "-e (裙子/半身裙)。复数变音加 -e 为 die Röcke。'
+            },
+            {
+                id: 39,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【反义词辨析】',
+                question: '形容词 "roh" 表示食物“生的/未煮过的”，它的反义词是？',
+                options: ['gekocht / gar', 'kalt', 'frisch', 'süß'],
+                correctIndex: 0,
+                detail: 'roh (生的/未加工的)。如：roher Fisch (生鱼片)。反义词为 gekocht / gar (熟的)。'
+            },
+            {
+                id: 40,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【德语区差异】',
+                question: '表示“烤箱/烘培炉”，奥地利(A)常使用 "das Rohr" (或 Backrohr)，而在德国(D)和瑞士(CH)通用的是？',
+                options: ['der (Back-)Ofen', 'der Herd', 'die Mikrowelle', 'der Kühlschrank'],
+                correctIndex: 0,
+                detail: 'das (Back-)Rohr, -e (A) 相当于 D/CH 通用的 der (Back-)Ofen (烤箱)。'
+            },
+            {
+                id: 41,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "die Rolle" (角色/卷/胶卷) 的复数形式是？',
+                options: ['die Rollen', 'die Rolle', 'die Roller', 'die Rolles'],
+                correctIndex: 0,
+                detail: 'die Rolle, -n (角色，卷)。固定短语：eine Rolle spielen (扮演角色/起作用)。'
+            },
+            {
+                id: 42,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "der Roman" (长篇小说) 的复数形式是？',
+                options: ['die Romane', 'die Romanen', 'die Romans', 'die Romäner'],
+                correctIndex: 0,
+                detail: 'der Roman, -e (长篇小说)。'
+            },
+            {
+                id: 43,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "die Rose" (玫瑰花) 的复数形式是？',
+                options: ['die Rosen', 'die Rose', 'die Roser', 'die Roses'],
+                correctIndex: 0,
+                detail: 'die Rose, -n (玫瑰)。'
+            },
+            {
+                id: 44,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【变音与复数】',
+                question: '名词 "der Rucksack" (双肩背包) 的正确复数形式是？',
+                options: ['die Rucksäcke', 'die Rucksacke', 'die Rucksäcker', 'die Rucksacken'],
+                correctIndex: 0,
+                detail: 'der Rucksack, "-e (双肩包)。复数变音为 die Rucksäcke。'
+            },
+            {
+                id: 45,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【合成词辨析】',
+                question: '前缀 "rück-" 表示“向后/返回”，由其构成的名词 "die Rückfahrt" 意思是？',
+                options: ['返程 / 回程车程', '单程', '转车', '出发'],
+                correctIndex: 0,
+                detail: 'die Rückfahrt, -en (回程/返程)。反义词为 die Hinfahrt (去程)。'
+            },
+            {
+                id: 46,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【词义辨析】',
+                question: '名词 "die Rückkehr" 表示：',
+                options: ['归来 / 重返', '出发', '放弃', '转弯'],
+                correctIndex: 0,
+                detail: 'die Rückkehr (单数专用)，意为“归来，返回”。源动词为 zurückkehren。'
+            },
+            {
+                id: 47,
+                type: 'Adverb',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【副词辨析】',
+                question: '副词 "rückwärts" 的中文含义及反义词是？',
+                options: ['向后/倒退 (反义词: vorwärts)', '向前', '向上', '向左'],
+                correctIndex: 0,
+                detail: 'rückwärts (向后/倒退)，反义词为 vorwärts (向前)。'
+            },
+            {
+                id: 48,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【单复同形】',
+                question: '名词 "der Rücken" (后背/脊背) 的复数形式是？',
+                options: ['die Rücken (单复同形)', 'die Rücken', 'die Rücker', 'die Rückene'],
+                correctIndex: 0,
+                detail: 'der Rücken, - (背部)。以 -en 结尾的阳性名词，复数单复同形。'
+            },
+            {
+                id: 49,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【固定搭配】',
+                question: '表达“顾及/体谅某人”用固定短语：“______ jemanden Rücksicht nehmen”',
+                options: ['auf (+ Akk.)', 'für', 'über', 'mit'],
+                correctIndex: 0,
+                detail: 'die Rücksicht, -en (顾及/体谅)。固定搭配：Rücksicht nehmen auf + Akk.。'
+            },
+            {
+                id: 50,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【德语区差异】',
+                question: '表达“胡萝卜/黄萝卜”，瑞士德语用 "das Rüebli"，在德国(D)通用表达为？',
+                options: ['die Möhre / die Karotte', 'die Kartoffel', 'die Zwiebel', 'der Salat'],
+                correctIndex: 0,
+                detail: 'das Rüebli, - (CH) 相当于 D/A 通用的 die Möhre / die Karotte (胡萝卜)。'
+            },
+            {
+                id: 51,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【不规则动词变化】',
+                question: '动词 "rufen" (呼喊/召唤) 的三态变化是？',
+                options: ['rufen, ruft, rief, hat gerufen', 'rufen, ruft, rufte, hat geruft', 'rufen, ruft, rof, hat gerofen', 'rufen, ruft, rief, ist gerufen'],
+                correctIndex: 0,
+                detail: 'rufen, ruft, rief, hat gerufen (呼喊，叫)。'
+            },
+            {
+                id: 52,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【同义词替换】',
+                question: '名词 "die Rufnummer" (电话号码) 的常用近义词是？',
+                options: ['die Telefonnummer', 'die Hausnummer', 'die Postleitzahl', 'die Passnummer'],
+                correctIndex: 0,
+                detail: 'die Rufnummer, -n 意为“电话号码”，等同于 die Telefonnummer。'
+            },
+            {
+                id: 53,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【词性与含义】',
+                question: '名词 "die Ruhe" 的含义及语法特征是？',
+                options: ['阴性单数名词，意为“安静/休息”', '阳性名词，意为“噪声”', '中性名词，意为“运动”', '复数专用词'],
+                correctIndex: 0,
+                detail: 'die Ruhe (通常仅用单数)，意为“安静，宁静，休息”。如：Ruhe bitte! (请安静！)'
+            },
+            {
+                id: 54,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【近义词辨析】',
+                question: '形容词 "ruhig" (安静的/平静的) 的近义词是？',
+                options: ['still / leise', 'laut', 'hektisch', 'schnell'],
+                correctIndex: 0,
+                detail: 'ruhig 意为“安静的，冷静的”，近义词为 still / leise，反义词为 laut (吵闹的)。'
+            },
+            {
+                id: 55,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【词义辨析】',
+                question: '形容词 "rund" 在描述形状或数字时分别表示？',
+                options: ['圆形的；大约/大约额', '方形的；精准的', '长形的多余的', '弯曲的；极少的'],
+                correctIndex: 0,
+                detail: 'rund 1. 形容词：圆形的； 2. 副词：大约，概数 (如：rund 100 Euro)。'
+            },
+
+            // 图4 (4_11.png) 词汇提取[cite: 53]
+            {
+                id: 56,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【固定短语】',
+                question: '“请大家喝酒 / 轮到某人”在德语中常说 "Eine Runde geben / ausgeben"，此处 "die Runde" 意思是？',
+                options: ['一圈 / 一轮', '一个圆球', '一打', '一次机会'],
+                correctIndex: 0,
+                detail: 'die Runde, -n (一圈，一轮)。如：eine Runde drehen (散步转一圈)。'
+            },
+            {
+                id: 57,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【合成词辨析】',
+                question: '“环游/观光游览”在德语中表达为：',
+                options: ['die Rundfahrt', 'die Hinfahrt', 'die Rückfahrt', 'die Schwarzfahrt'],
+                correctIndex: 0,
+                detail: 'die Rundfahrt, -en (环游/观光游览)。例如：Eine Stadtrundfahrt machen (做城市环游观光)。'
+            },
+            {
+                id: 58,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【变音与复数】',
+                question: '名词 "der Saal" (大厅/礼堂) 的正确复数形式是？',
+                options: ['die Säle', 'die Saale', 'die Säler', 'die Saalen'],
+                correctIndex: 0,
+                detail: 'der Saal, 复数为 die Säle (大厅，礼堂)。注意复数拼写变音为 Säle。'
+            },
+            {
+                id: 59,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "die Sache" (事情/物品) 的复数形式是？',
+                options: ['die Sachen', 'die Sache', 'die Sacher', 'die Saches'],
+                correctIndex: 0,
+                detail: 'die Sache, -n (事情，东西)。如：Meine Sachen packen (收拾我的东西)。'
+            },
+            {
+                id: 60,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【变音与复数】',
+                question: '名词 "der Sack" (大袋子/麻袋) 的正确复数形式是？',
+                options: ['die Säcke', 'die Sacke', 'die Säcker', 'die Sacken'],
+                correctIndex: 0,
+                detail: 'der Sack, "-e (袋子，麻袋)。复数变音为 die Säcke。'
+            },
+            {
+                id: 61,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【变音与复数】',
+                question: '名词 "der Saft" (果汁/汁液) 的正确复数形式是？',
+                options: ['die Säfte', 'die Safte', 'die Säfter', 'die Saften'],
+                correctIndex: 0,
+                detail: 'der Saft, "-e (果汁)。复数变音为 die Säfte。'
+            },
+            {
+                id: 62,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【动词三态】',
+                question: '动词 "sagen" (说/表达) 的过去时与完成时形式是？',
+                options: ['sagte, hat gesagt', 'sagte, ist gesagt', 'sieg, hat gesiegt', 'sagte, hat gesagted'],
+                correctIndex: 0,
+                detail: 'sagen, sagt, sagte, hat gesagt (说)。'
+            },
+            {
+                id: 63,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【德语区差异】',
+                question: '表达“鲜奶油”，德国(D)使用 "die Sahne" (或 Schlag-Sahne)，在奥地利(A)与瑞士(CH)分别被称为？',
+                options: ['A: der Obers ; CH: der Rahm', 'A: die Milch ; CH: die Butter', 'A: der Käse ; CH: der Quark', 'A: die Soße ; CH: das Öl'],
+                correctIndex: 0,
+                detail: 'die Sahne (D) 相当于 A 的 der (Schlag-)Obers 和 CH 的 der (Schlag-)Rahm (奶油)。'
+            },
+            {
+                id: 64,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【外来词复数】',
+                question: '名词 "die Saison" (季节/赛季/旺季) 的复数形式是？',
+                options: ['die Saisons', 'die Saisonen', 'die Saison', 'die Saisonner'],
+                correctIndex: 0,
+                detail: 'die Saison, -s (赛季，季节)。外来词复数加 -s。'
+            },
+            {
+                id: 65,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "der Salat" (沙拉/生菜) 的复数形式是？',
+                options: ['die Salate', 'die Salaten', 'die Salats', 'die Saläter'],
+                correctIndex: 0,
+                detail: 'der Salat, -e (沙拉，生菜)。'
+            },
+            {
+                id: 66,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "die Salbe" (软膏/药膏) 的复数形式是？',
+                options: ['die Salben', 'die Salbe', 'die Salber', 'die Salbes'],
+                correctIndex: 0,
+                detail: 'die Salbe, -n (药膏，软膏)。'
+            },
+            {
+                id: 67,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "der Salon" (沙龙/美容院/客厅) 的复数形式是？',
+                options: ['die Salons', 'die Salone', 'die Salonen', 'die Salöner'],
+                correctIndex: 0,
+                detail: 'der Salon, -s (沙龙/营业厅)。外来词复数加 -s。'
+            },
+            {
+                id: 68,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词与形容词】',
+                question: '“盐”是名词 das Salz (-e)，对应的形容词“咸的”在德语中是？',
+                options: ['salzig', 'süß', 'sauer', 'bitter'],
+                correctIndex: 0,
+                detail: 'das Salz, -e (盐) -> salzig (咸的)。'
+            },
+            {
+                id: 69,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【动词三态】',
+                question: '动词 "sammeln" (收集/采集) 的现在时第一人称及完成时形式是？',
+                options: ['ich sammle, hat gesammelt', 'ich sammele, ist gesammelt', 'ich sammel, hat gesammelte', 'ich sammle, ist gesammelte'],
+                correctIndex: 0,
+                detail: 'sammeln, sammelt, sammelte, hat gesammelt (收集)。以 -eln 结尾的动词在 ich 变位时去掉 e (sammle)。'
+            },
+            {
+                id: 70,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【近义词替换】',
+                question: '形容词/代词 "sämtliche" 表示“所有的/全部的”，近义词是？',
+                options: ['alle', 'einige', 'manche', 'wenige'],
+                correctIndex: 0,
+                detail: 'sämtliche 意为“所有的，全部的”，近义词为 alle。'
+            },
+            {
+                id: 71,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【冠词与名词】',
+                question: '“沙子”在德语中的名词及冠词是？',
+                options: ['der Sand', 'das Sand', 'die Sand', 'die Sande'],
+                correctIndex: 0,
+                detail: 'der Sand (阳性名词，通常用单数，意为“沙子/沙土”)。'
+            }
+        ];
+
+        // Native Audio Synthesizer
+        let audioCtx = null;
+        function getAudioContext() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
+
+        function playSound(isCorrect) {
+            try {
+                const ctx = getAudioContext();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                const now = ctx.currentTime;
+
+                if (isCorrect) {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(523.25, now); // C5
+                    osc.frequency.setValueAtTime(659.25, now + 0.08); // E5
+                    gain.gain.setValueAtTime(0.12, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+                    osc.start(now);
+                    osc.stop(now + 0.3);
+                } else {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(220, now);
+                    osc.frequency.exponentialRampToValueAtTime(140, now + 0.2);
+                    gain.gain.setValueAtTime(0.1, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+                    osc.start(now);
+                    osc.stop(now + 0.2);
+                }
+            } catch (e) {
+                console.error("Audio error:", e);
+            }
+        }
+
+        // Fisher-Yates Shuffle
+        function shuffleArray(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        // Shuffle options and recalculate correct index
+        function processQuestions(data) {
+            return shuffleArray(data).map(item => {
+                const originalOptions = [...item.options];
+                const correctAnswerText = originalOptions[item.correctIndex];
+                const shuffledOptions = shuffleArray(originalOptions);
+                const newCorrectIndex = shuffledOptions.indexOf(correctAnswerText);
+                return {
+                    ...item,
+                    options: shuffledOptions,
+                    answer: newCorrectIndex
+                };
+            });
+        }
+
+        // App State
+        let vocabularyData = [];
+        let currentIndex = 0;
+        let userAnswers = [];
+        let showExplanation = false;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            resetPractice();
+        });
+
+        function resetPractice() {
+            // 打乱题目 + 完全随机化打乱选项顺序 ABCD
+            vocabularyData = processQuestions(rawVocabularyData);
+            currentIndex = 0;
+            userAnswers = new Array(vocabularyData.length).fill(null);
+            showExplanation = false;
+
+            document.getElementById('quiz-container').classList.remove('hidden');
+            document.getElementById('bottom-nav').classList.remove('hidden');
+            document.getElementById('result-container').classList.add('hidden');
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const currentData = vocabularyData[currentIndex];
+            
+            // Render Badges and Small Intention Titles
+            document.getElementById('word-badge').className = `px-3 py-0.5 rounded-full text-xs font-bold tracking-wider uppercase border ${currentData.badgeClass}`;
+            document.getElementById('word-badge').textContent = currentData.type;
+            document.getElementById('question-index-tag').textContent = `Q${currentIndex + 1}`;
+            document.getElementById('target-word').textContent = currentData.title;
+            
+            // Render Enlarged Question Prompt Text
+            document.getElementById('question-prompt').textContent = currentData.question;
+
+            // Progress Bar
+            const progressPercent = Math.round(((currentIndex + 1) / vocabularyData.length) * 100);
+            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+            document.getElementById('progress-text').textContent = `进度：${currentIndex + 1} / ${vocabularyData.length}`;
+            document.getElementById('progress-percent').textContent = `${progressPercent}%`;
+
+            // Options
+            const optionsGrid = document.getElementById('options-grid');
+            optionsGrid.innerHTML = '';
+            const selectedAnswer = userAnswers[currentIndex];
+            const isAnswered = selectedAnswer !== null;
+
+            currentData.options.forEach((optText, optIndex) => {
+                const btn = document.createElement('button');
+                btn.className = getOptionStyle(optIndex, selectedAnswer, currentData.answer);
+                btn.innerHTML = `
+                    <div class="flex items-center justify-between w-full">
+                        <span class="flex items-center gap-3.5">
+                            <span class="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold border transition-all ${getOptionMarkerStyle(optIndex, selectedAnswer, currentData.answer)}">
+                                ${String.fromCharCode(65 + optIndex)}
+                            </span>
+                            <span class="font-medium">${optText}</span>
+                        </span>
+                        ${getOptionIcon(optIndex, selectedAnswer, currentData.answer)}
+                    </div>
+                `;
+                btn.onclick = () => selectOption(optIndex);
+                optionsGrid.appendChild(btn);
+            });
+
+            // Explanation
+            const explainCard = document.getElementById('explanation-card');
+            const explainText = document.getElementById('explanation-text');
+            explainText.textContent = currentData.detail;
+
+            if (showExplanation || isAnswered) {
+                explainCard.classList.remove('hidden');
+            } else {
+                explainCard.classList.add('hidden');
+            }
+
+            // Controls
+            document.getElementById('btn-prev').disabled = currentIndex === 0;
+            const btnNext = document.getElementById('btn-next');
+            if (currentIndex === vocabularyData.length - 1) {
+                btnNext.textContent = '完成特训';
+                btnNext.className = 'px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-teal-700 hover:bg-teal-800 text-white shadow-md transition-all';
+            } else {
+                btnNext.textContent = '下一题';
+                btnNext.className = 'px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-md transition-all';
+            }
+        }
+
+        function getOptionStyle(index, selected, correct) {
+            const base = "w-full text-left p-4 sm:p-4.5 rounded-2xl border text-sm sm:text-base transition-all duration-200 flex items-center justify-between ";
+            if (selected === null) {
+                return base + "border-slate-200/80 bg-white hover:border-slate-400 hover:shadow-md text-slate-800";
+            }
+            if (index === correct) {
+                return base + "border-emerald-300 bg-emerald-50/90 text-emerald-900 font-semibold shadow-sm";
+            }
+            if (index === selected && selected !== correct) {
+                return base + "border-rose-300 bg-rose-50/90 text-rose-900 font-semibold shadow-sm";
+            }
+            return base + "border-slate-100 bg-slate-50/50 text-slate-400 opacity-50";
+        }
+
+        function getOptionMarkerStyle(index, selected, correct) {
+            if (selected === null) {
+                return "border-slate-200 text-slate-500 bg-slate-50";
+            }
+            if (index === correct) {
+                return "border-emerald-500 text-white bg-emerald-600 shadow-sm";
+            }
+            if (index === selected && selected !== correct) {
+                return "border-rose-500 text-white bg-rose-500 shadow-sm";
+            }
+            return "border-slate-200 text-slate-300 bg-slate-100";
+        }
+
+        function getOptionIcon(index, selected, correct) {
+            if (selected === null) return '';
+            if (index === correct) {
+                return `<svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>`;
+            }
+            if (index === selected && selected !== correct) {
+                return `<svg class="w-5 h-5 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>`;
+            }
+            return '';
+        }
+
+        function selectOption(index) {
+            if (userAnswers[currentIndex] === null) {
+                const isCorrect = index === vocabularyData[currentIndex].answer;
+                playSound(isCorrect);
+            }
+            userAnswers[currentIndex] = index;
+            showExplanation = true;
+            renderQuestion();
+        }
+
+        function toggleExplanation() {
+            showExplanation = !showExplanation;
+            const explainCard = document.getElementById('explanation-card');
+            if (showExplanation) {
+                explainCard.classList.remove('hidden');
+            } else {
+                explainCard.classList.add('hidden');
+            }
+        }
+
+        function nextQuestion() {
+            if (currentIndex < vocabularyData.length - 1) {
+                currentIndex++;
+                showExplanation = false;
+                renderQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                showExplanation = false;
+                renderQuestion();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quiz-container').classList.add('hidden');
+            document.getElementById('bottom-nav').classList.add('hidden');
+            document.getElementById('result-container').classList.remove('hidden');
+
+            let mistakeCount = 0;
+            const mistakesList = document.getElementById('mistakes-list');
+            mistakesList.innerHTML = '';
+
+            userAnswers.forEach((ans, idx) => {
+                const item = vocabularyData[idx];
+                if (ans !== item.answer) {
+                    mistakeCount++;
+                    const mistakeDiv = document.createElement('div');
+                    mistakeDiv.className = 'p-4 bg-slate-50 rounded-2xl border border-slate-200/80 text-xs sm:text-sm';
+                    mistakeDiv.innerHTML = `
+                        <div class="font-bold text-teal-800 text-sm mb-1">${item.title}</div>
+                        <div class="font-german text-slate-800 font-medium mb-1.5">${item.question}</div>
+                        <div class="text-slate-600 leading-relaxed">${item.detail}</div>
+                    `;
+                    mistakesList.appendChild(mistakeDiv);
+                }
+            });
+
+            document.getElementById('stat-total').textContent = vocabularyData.length;
+            document.getElementById('stat-mistakes').textContent = mistakeCount;
+
+            const mistakesSection = document.getElementById('mistakes-section');
+            if (mistakeCount > 0) {
+                mistakesSection.classList.remove('hidden');
+            } else {
+                mistakesSection.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
