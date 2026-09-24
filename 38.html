@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="h-full bg-slate-50/80">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>德语 B1 核心词汇特训</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Serif+Georgia&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .font-german {
+            font-family: 'Noto Serif Georgia', Georgia, serif;
+        }
+        .custom-glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+    </style>
+</head>
+<body class="h-full text-slate-800 antialiased selection:bg-teal-100 selection:text-teal-900 flex flex-col justify-between bg-gradient-to-br from-slate-50 via-zinc-50 to-teal-50/20">
+    <!-- Header Area -->
+    <header class="sticky top-0 z-30 custom-glass border-b border-slate-200/60 px-4 py-3.5 sm:px-8 shadow-sm">
+        <div class="max-w-3xl mx-auto flex items-center justify-between">
+            <a href="index.html" class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-500 hover:text-slate-900 transition-all py-1.5 px-3 rounded-full hover:bg-slate-100/80">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+                返回主页
+            </a>
+            <div class="text-center">
+                <h1 class="text-xs sm:text-sm font-bold tracking-widest text-slate-400 uppercase">Wortschatz Training</h1>
+                <p class="text-sm sm:text-base font-extrabold text-slate-900 tracking-tight">德语 B1 核心词汇特训</p>
+            </div>
+            <button onclick="resetPractice()" class="text-xs sm:text-sm font-semibold text-slate-500 hover:text-teal-700 transition-all py-1.5 px-3 rounded-full hover:bg-slate-100/80">
+                重新开始
+            </button>
+        </div>
+        <!-- Progress Bar -->
+        <div class="max-w-3xl mx-auto mt-3">
+            <div class="flex justify-between items-center text-xs font-bold text-slate-400 mb-1.5 tracking-wider uppercase">
+                <span id="progress-text">进度：1 / 49</span>
+                <span id="progress-percent">2%</span>
+            </div>
+            <div class="w-full h-1.5 bg-slate-200/70 rounded-full overflow-hidden p-0.5">
+                <div id="progress-bar" class="h-full bg-slate-900 transition-all duration-300 rounded-full" style="width: 2%"></div>
+            </div>
+        </div>
+    </header>
+    <!-- Main Section -->
+    <main class="flex-1 max-w-3xl w-full mx-auto p-4 sm:p-6 flex flex-col justify-center">
+        <!-- QUIZ CONTAINER -->
+        <div id="quiz-container" class="space-y-6">
+            <!-- Word Header Card -->
+            <div class="bg-white/90 backdrop-blur-sm rounded-3xl p-6 sm:p-9 border border-slate-200/70 shadow-xl shadow-slate-200/50 relative overflow-hidden transition-all">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="flex items-center gap-2">
+                        <span id="word-badge" class="px-3 py-0.5 rounded-full text-xs font-bold tracking-wider uppercase border">
+                            Substantiv
+                        </span>
+                        <span id="target-word" class="text-xs font-semibold text-teal-700 bg-teal-50 px-2.5 py-0.5 rounded-md border border-teal-100">
+                            --
+                        </span>
+                    </div>
+                    <span id="question-index-tag" class="text-xs font-bold text-slate-400 tracking-widest uppercase">
+                        Q1
+                    </span>
+                </div>
+                <div class="py-2">
+                    <p id="question-prompt" class="font-german text-lg sm:text-2xl font-semibold text-slate-800 leading-relaxed sm:leading-relaxed">
+                        --
+                    </p>
+                </div>
+            </div>
+            <!-- Options Grid -->
+            <div id="options-grid" class="grid grid-cols-1 gap-3.5">
+                <!-- Dynamic options -->
+            </div>
+            <!-- Explanation Card -->
+            <div id="explanation-card" class="hidden bg-slate-900 text-slate-100 rounded-2xl p-5 sm:p-6 shadow-lg border border-slate-800 text-sm leading-relaxed space-y-2">
+                <div class="font-semibold text-teal-400 flex items-center gap-2 text-xs sm:text-sm uppercase tracking-wider">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    词汇解析与答案说明
+                </div>
+                <div id="explanation-text" class="text-slate-300 text-xs sm:text-sm font-normal"></div>
+            </div>
+        </div>
+        <!-- RESULT CONTAINER -->
+        <div id="result-container" class="hidden bg-white/90 backdrop-blur-sm rounded-3xl p-8 sm:p-10 border border-slate-200/70 shadow-xl shadow-slate-200/50 text-center space-y-8">
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-900 text-teal-400 shadow-lg shadow-slate-900/10 mb-2">
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <div>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2 tracking-tight">特训完成</h2>
+                <p class="text-sm text-slate-500 font-medium">已完成本关所有核心词汇测试，熟练掌握巩固知识点</p>
+            </div>
+            <div class="max-w-md mx-auto py-3 px-6 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-around">
+                <div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">本次练习题目</div>
+                    <div id="stat-total" class="text-2xl font-extrabold text-slate-900">0</div>
+                </div>
+                <div class="h-8 w-px bg-slate-200"></div>
+                <div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">重点标注/错题巩固</div>
+                    <div id="stat-mistakes" class="text-2xl font-extrabold text-slate-900">0</div>
+                </div>
+            </div>
+            <!-- Incorrect Words Review List -->
+            <div id="mistakes-section" class="text-left hidden space-y-4 pt-2">
+                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                    需重点巩固的词汇
+                </h3>
+                <div id="mistakes-list" class="space-y-2.5 max-h-64 overflow-y-auto pr-1"></div>
+            </div>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-6 border-t border-slate-100">
+                <button onclick="resetPractice()" class="w-full sm:w-auto px-8 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm transition-all shadow-md hover:shadow-lg">
+                    再练一次
+                </button>
+                <a href="index.html" class="w-full sm:w-auto px-8 py-3 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 font-bold text-sm transition-all text-center">
+                    返回主页
+                </a>
+            </div>
+        </div>
+    </main>
+    <!-- Bottom Actions Nav -->
+    <footer id="bottom-nav" class="sticky bottom-0 z-30 custom-glass border-t border-slate-200/60 px-4 py-3.5 sm:px-8">
+        <div class="max-w-3xl mx-auto flex items-center justify-between gap-3">
+            <button id="btn-prev" onclick="prevQuestion()" disabled class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 text-slate-600 hover:bg-slate-100 disabled:opacity-30 disabled:cursor-not-allowed transition-all">
+                上一题
+            </button>
+            <button id="btn-toggle-explain" onclick="toggleExplanation()" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 hover:bg-slate-200/80 text-slate-700 transition-all flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                查看释义
+            </button>
+            <button id="btn-next" onclick="nextQuestion()" class="px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-md transition-all">
+                下一题
+            </button>
+        </div>
+    </footer>
+    <script>
+        const rawVocabularyData = [
+            // --- 图1 词汇 (15题) ---
+            {
+                id: 1,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【德语区域词汇】',
+                question: '在奥地利(A)，"die Treppe" (楼梯) 常被叫作什么？',
+                options: ['die Stiege', 'das Trottoir', 'der Flur', 'der Aufzug'],
+                correctIndex: 0,
+                detail: 'die Treppe, -n 在德国和瑞士通用；而在奥地利(A)常使用 die Stiege, -n。'
+            },
+            {
+                id: 2,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数与变音】',
+                question: '名词 "das Treppenhaus" (楼梯间/楼梯井) 的正确复数形式是？',
+                options: ['die Treppenhäuser', 'die Treppenhause', 'die Treppenhäusern', 'die Treppenhauser'],
+                correctIndex: 0,
+                detail: 'das Treppenhaus, "-er (楼梯间)。复数由 Haus 变音为 Häuser，即 die Treppenhäuser (奥地利: Stiegenhaus)。'
+            },
+            {
+                id: 3,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【动词三态与助动词】',
+                question: '动词 "treten" (踩/踏/走进) 的三态形式及完成时助动词是？',
+                options: ['tritt, trat, hat/ist getreten', 'tritt, trete, hat getreten', 'tritt, trat, ist getretened', 'trettet, trat, hat getreten'],
+                correctIndex: 0,
+                detail: 'treten (tritt, trat, hat/ist getreten)。表示位移用 ist；表示“踩某物”用 hat。'
+            },
+            {
+                id: 4,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【介词搭配】',
+                question: '形容词 "treu" (忠诚的) 常与哪个格搭配？例如：“忠于他的朋友”： "Er ist seinem Freund ______."',
+                options: ['treu (+ Dat.)', 'treu (+ Akk.)', 'treu (+ Gen.)', 'treu (+ An)'],
+                correctIndex: 0,
+                detail: 'treu 表示“忠诚的、忠实的”，后接第三格 Dat. (jemandem treu sein)。'
+            },
+            {
+                id: 5,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【动词三态】',
+                question: '动词 "trinken" (喝) 的过去式(Präteritum)和完成时(Partizip II)形式是？',
+                options: ['trank, hat getrunken', 'trinkte, hat getranken', 'trank, ist getrunken', 'trinkt, hat getrunken'],
+                correctIndex: 0,
+                detail: 'trinken 的三态变化为：trinken, trinkt, trank, hat getrunken。'
+            },
+            {
+                id: 6,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "das Trinkgeld" (小费) 的正确复数形式是？',
+                options: ['die Trinkgelder', 'die Trinkgelde', 'die Trinkgelden', 'die Trinkgeldes'],
+                correctIndex: 0,
+                detail: 'das Trinkgeld, -er (小费)。复数加 -er 为 die Trinkgelder。'
+            },
+            {
+                id: 7,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【反义词辨析】',
+                question: '形容词 "trocken" (干燥的) 的反义词是？',
+                options: ['nass', 'kalt', 'kühl', 'sauber'],
+                correctIndex: 0,
+                detail: 'trocken (干燥的) 与 nass (湿的) / feucht (潮湿的) 互为反义词。'
+            },
+            {
+                id: 8,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【动词助动词】',
+                question: '表达“衣服在阳台上晾干了 (Die Wäsche ist getrocknet)”或“他把衣服擦干了 (Er hat die Wäsche getrocknet)”，动词 "trocknen" 的完成时助动词是？',
+                options: ['根据及物/不及物用 hat 或 ist', '只用 hat', '只用 ist', '用 werden'],
+                correctIndex: 0,
+                detail: 'trocknen 表示不及物（物变干）时助动词用 ist；表示及物（把……使干）时助动词用 hat。'
+            },
+            {
+                id: 9,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【语法特征与单复数】',
+                question: '表达“眼药水/药滴”时，"die Tropfen" 在日常医疗场景中通常以什么形式出现？',
+                options: ['通常使用复数 die Tropfen', '只使用单数 der Tropfen', '中性名词 das Tropfen', '阴性名词 die Tropfe'],
+                correctIndex: 0,
+                detail: 'der Tropfen, - (滴/液体滴)，在药品和医疗中多以复数 die Tropfen (如 Augentropfen) 出现。'
+            },
+            {
+                id: 10,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【瑞士德语表达】',
+                question: '在瑞士德语(CH)中，"das Trottoir" 指的是什么？（德/奥通用: Gehsteig）',
+                options: ['人行道', '马路', '立交桥', '地下通道'],
+                correctIndex: 0,
+                detail: 'das Trottoir, -s 是瑞士德语(CH)表达，相当于德国与奥地利的 der Gehsteig / der Bürgersteig (人行道)。'
+            },
+            {
+                id: 11,
+                type: 'Präposition',
+                badgeClass: 'bg-purple-50 text-purple-700 border-purple-200',
+                title: '【介词支配格】',
+                question: '介词 "trotz" (尽管) 在标准德语中通常支配哪个格？',
+                options: ['Genitiv (第二格)', 'Dativ (第三格)', 'Akkusativ (第四格)', 'Nominativ (第一格)'],
+                correctIndex: 0,
+                detail: 'trotz 在标准语法中要求第二格 Genitiv (例如: trotz des Regens)；口语中亦可见接 Dativ。'
+            },
+            {
+                id: 12,
+                type: 'Adverb',
+                badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
+                title: '【连词/副词用法】',
+                question: '副词 "trotzdem" 表达“尽管如此/然而”，在句首时句子的语序应为？',
+                options: ['Trotzdem + 动词 + 主语 (倒装)', 'Trotzdem + 主语 + 动词 (正装)', 'Trotzdem 置于句尾', '动词置于句尾'],
+                correctIndex: 0,
+                detail: 'trotzdem 是副词，位于句首时占用第一位，其后紧跟变位动词（如：Es regnet. Trotzdem gehe ich spazieren.）。'
+            },
+            {
+                id: 13,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词变音与复数】',
+                question: '名词 "das Tuch" (布巾/抹布/围巾) 的正确复数形式是？',
+                options: ['die Tücher', 'die Tuche', 'die Tüchern', 'die Tucher'],
+                correctIndex: 0,
+                detail: 'das Tuch, "-er (布巾，织物)。复数元音 u 变音为 ü 加 -er，即 die Tücher。'
+            },
+            {
+                id: 14,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【核心动词三态】',
+                question: '动词 "tun" (做/干) 的第三人称单数、过去式和完成时形式是？',
+                options: ['tut, tat, hat getan', 'tut, tute, hat getat', 'tunnt, tat, ist getan', 'tut, taten, hat getun'],
+                correctIndex: 0,
+                detail: 'tun 的三态变化为：tun, tut, tat, hat getan。'
+            },
+            {
+                id: 15,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数与变音】',
+                question: '名词 "die Tür" (门) 和 "der Turm" (塔楼) 的复数形式分别是？',
+                options: ['die Türen / die Türme', 'die Türs / die Turme', 'die Türen / die Turmen', 'die Türe / die Türmer'],
+                correctIndex: 0,
+                detail: 'die Tür, -en (门) 复数加 -en；der Turm, "-e (塔/高楼) 复数变音加 -e，即 die Türme。'
+            },
+
+            // --- 图2 词汇 (11题) ---
+            {
+                id: 16,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【日常生活词汇】',
+                question: '购物时装东西用的“塑料袋/手提袋”，德语表达为？',
+                options: ['die Tüte, -n', 'die Tasche, -n', 'der Sack, "-e', 'die Schachtel, -n'],
+                correctIndex: 0,
+                detail: 'die Tüte, -n 通常指塑料袋、纸袋或包装袋 (Plastiktüte / Papiertüte)。'
+            },
+            {
+                id: 17,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "der Typ" (类型/家伙/人) 的正确复数形式是？',
+                options: ['die Typen', 'die Typs', 'die Type', 'die Typener'],
+                correctIndex: 0,
+                detail: 'der Typ, -en (类型，型号；口语中指“家伙/人”)。复数加 -en。'
+            },
+            {
+                id: 18,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【介词搭配】',
+                question: '“这是典型的德国早餐”： "Das ist typisch ______ ein deutsches Frühstück."',
+                options: ['für (+ Akk.)', 'von (+ Dat.)', 'bei (+ Dat.)', 'mit (+ Dat.)'],
+                correctIndex: 0,
+                detail: 'typisch 为形容词，常见固定搭配为 typisch für + Akk. (对……来说是典型的/特有的)。'
+            },
+            {
+                id: 19,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【交通词汇与复数】',
+                question: '名词 "die U-Bahn" (地铁) 的正确复数形式是？',
+                options: ['die U-Bahnen', 'die U-Bahne', 'die U-Bahns', 'die U-Bähnle'],
+                correctIndex: 0,
+                detail: 'die U-Bahn, -en (Untergrundbahn 地铁)。复数加 -en。'
+            },
+            {
+                id: 20,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【动词与名词派生】',
+                question: '动词 "üben" (练习) 派生的名词“练习/习题” (die Übung) 的复数形式是？',
+                options: ['die Übungen', 'die Übunge', 'die Übunger', 'die Übung'],
+                correctIndex: 0,
+                detail: '以 -ung 结尾的名词均为阴性 (die)，复数统一加 -en，即 die Übungen。'
+            },
+            {
+                id: 21,
+                type: 'Präposition',
+                badgeClass: 'bg-purple-50 text-purple-700 border-purple-200',
+                title: '【介词用法】',
+                question: '介词 "über" 是静动双轨介词。表达“挂在桌子上方 (静止)”与“悬挂到桌子上方 (动作)”分别接？',
+                options: ['静止接 Dativ，动作接 Akkusativ', '静止接 Akkusativ，动作接 Dativ', '均接 Dativ', '均接 Akkusativ'],
+                correctIndex: 0,
+                detail: 'über 属于 Wechselpräposition (双轨介词)：表示位置/静止接 Dativ；表示方向/位移接 Akkusativ。'
+            },
+            {
+                id: 22,
+                type: 'Adverb',
+                badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
+                title: '【词义辨析】',
+                question: '“我在到处都找不到我的钥匙”： "Ich kann meinen Schlüssel ______ nicht finden."',
+                options: ['überall', 'irgendwo', 'draußen', 'nirgends'],
+                correctIndex: 0,
+                detail: 'überall 意为“到处，到处都”。'
+            },
+            {
+                id: 23,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【不可分动词三态】',
+                question: '动词 "überfahren" (压过/碾压/压死；闯红灯) 的完成时形式是？',
+                options: ['hat überfahren', 'hat übergefahren', 'ist übergefahren', 'ist überfuhrt'],
+                correctIndex: 0,
+                detail: 'überfahren 作为“碾压/闯过”时是不可分动词，Partizip II 不加 ge-，为 überfahren，助动词用 hat。'
+            },
+            {
+                id: 24,
+                type: 'Adverb',
+                badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
+                title: '【语意与否定搭配】',
+                question: '短语 "überhaupt nicht" 的中文意思是？',
+                options: ['一点也不 / 完全不', '大概不', '经常不', '几乎不'],
+                correctIndex: 0,
+                detail: 'überhaupt 与否定词 nicht / kein 连用，表示“根本不，一点也不”。'
+            },
+            {
+                id: 25,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【不可分动词三态】',
+                question: '动词 "überholen" (超车；赶超) 的第三人称单数与完成时形式是？',
+                options: ['überholt, hat überholt', 'holt über, hat übergeholt', 'überholt, ist übergeholt', 'überholt, hat übergeholt'],
+                correctIndex: 0,
+                detail: 'überholen (超车) 为不可分动词，变位为：überholt, überholte, hat überholt。'
+            },
+            {
+                id: 26,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【反身与不可分动词】',
+                question: '“我必须好好考虑一下这件事”： "Ich muss mir die Sache reiflich ______."',
+                options: ['überlegen', 'überholen', 'überraschen', 'übernehmen'],
+                correctIndex: 0,
+                detail: 'sich (Dat.) etwas überlegen (考虑/斟酌某事)。不可分动词，完成时为 hat überlegt。'
+            },
+
+            // --- 图3 词汇 (11题) ---
+            {
+                id: 27,
+                type: 'Adverb',
+                badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
+                title: '【时间副词辨析】',
+                question: '时间副词 "übermorgen" 的中文意思是？',
+                options: ['后天', '大后天', '明天早晨', '昨天'],
+                correctIndex: 0,
+                detail: 'morgen (明天) -> übermorgen (后天)。注意与 morgen früh (明天早晨) 区分。'
+            },
+            {
+                id: 28,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【动词与派生名词】',
+                question: '动词 "übernachten" (过夜/住宿) 的完成时以及派生名词“过夜/住宿”是？',
+                options: ['hat übernachtet / die Übernachtung, -en', 'hat übernachted / die Übernachtung, -e', 'ist übernachtete / das Übernachten', 'hat übergenachtet / die Übernachtung'],
+                correctIndex: 0,
+                detail: 'übernachten 是不可分动词 (hat übernachtet)；派生名词为 die Übernachtung, -en。'
+            },
+            {
+                id: 29,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【不规则动词三态】',
+                question: '动词 "übernehmen" (接管/承担/接任) 的现在时第三人称单数和过去式是？',
+                options: ['übernimmt, übernahm', 'übernehmt, übernehmte', 'übernimmt, übernahmte', 'übernehmt, übernam'],
+                correctIndex: 0,
+                detail: 'übernehmen 遵循 nehmen 的变化规则：übernimmt, übernahm, hat übernommen。'
+            },
+            {
+                id: 30,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【不可分动词】',
+                question: '“请仔细核对/检查这些数据”： "Bitte ______ Sie diese Daten sorgfältig."',
+                options: ['überprüfen', 'überraschen', 'überreden', 'überweisen'],
+                correctIndex: 0,
+                detail: 'überprüfen (检查，审查，核对)。不可分动词，完成时为 hat überprüft。'
+            },
+            {
+                id: 31,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【动作动词用法】',
+                question: '“过马路”用德语表达为： "die Straße ______"',
+                options: ['überqueren', 'überfahren', 'überholen', 'übergehen'],
+                correctIndex: 0,
+                detail: 'überqueren (横穿，穿过，横渡)。例：die Straße / den Fluss überqueren (hat überquert)。'
+            },
+            {
+                id: 32,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【动词与派生名词】',
+                question: '表达“给某人一个惊喜”： "jemanden ______"；派生名词“惊喜”为？',
+                options: ['überraschen / die Überraschung, -en', 'überreden / die Überredung', 'überrascht / das Überraschen', 'überprüfen / die Überraschung'],
+                correctIndex: 0,
+                detail: 'überraschen (使吃惊/给惊喜) -> die Überraschung, -en (惊喜/意外)。'
+            },
+            {
+                id: 33,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【介词与动词搭配】',
+                question: '表达“说服某人做某事”： "jemanden ______ etwas zu tun (zu + Inf.)"',
+                options: ['überreden', 'überzeugen', 'überlegen', 'überprüfen'],
+                correctIndex: 0,
+                detail: 'überreden 强调通过劝说使人同意 (jemanden überreden zu + Dat.)。注意与 überzeugen (用事实说服) 区分。'
+            },
+            {
+                id: 34,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【文章/阅读词汇】',
+                question: '阅读理解和新闻文章中的“大标题/标题”，德语称为？',
+                options: ['die Überschrift, -en', 'die Unterschrift, -en', 'die Geschichte, -n', 'die Nachricht, -en'],
+                correctIndex: 0,
+                detail: 'die Überschrift, -en (标题)；区分：die Unterschrift, -en (签名)。'
+            },
+            {
+                id: 35,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【职业与派生词】',
+                question: '动词 "übersetzen" (翻译) 派生的“男译员”和“翻译文本/译本”分别是？',
+                options: ['der Übersetzer / die Übersetzung', 'der Übersetzter / das Übersetzen', 'der Übersetzerin / die Übersetzung', 'der Überseher / die Übersetzung'],
+                correctIndex: 0,
+                detail: 'übersetzen (hat übersetzt) -> der Übersetzer, - (翻译者) / die Übersetzung, -en (翻译/译文)。'
+            },
+            {
+                id: 36,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【职场与加班词汇】',
+                question: '“在公司加班”中的“加班/加班工时”，德语表达为？',
+                options: ['die Überstunde, -n', 'die Arbeitszeit, -en', 'die Pause, -n', 'die Schicht, -en'],
+                correctIndex: 0,
+                detail: 'die Überstunde, -n (加班工时)。常见短语：Überstunden machen (加班)。'
+            },
+            {
+                id: 37,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【银行业务与三态】',
+                question: '动词 "überweisen" (转账/汇款；转诊) 的三态变化及派生名词“转账”是？',
+                options: ['überweist, überwies, hat überwiesen / die Überweisung, -en', 'überweist, überweiset, hat übergewiesen / das Überweisen', 'überweist, überwies, ist überwiesen / die Überweisung', 'überweist, überwis, hat überwiesen / die Überweisungs'],
+                correctIndex: 0,
+                detail: 'überweisen (überweist, überwies, hat überwiesen) -> die Überweisung, -en (银行转账/医院转诊单)。'
+            },
+
+            // --- 图4 词汇 (12题) ---
+            {
+                id: 38,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【介词搭配】',
+                question: '“使某人对某事信服/确信”： "jemanden ______ etwas (Dat.) überzeugen"',
+                options: ['von', 'über', 'für', 'an'],
+                correctIndex: 0,
+                detail: 'jemanden von etwas (Dat.) überzeugen (使某人信服/确信某事)；派生名词 die Überzeugung, -en (信念/确信)。'
+            },
+            {
+                id: 39,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【近义词与常用表达】',
+                question: '形容词 "üblich" 表达“通常的/惯常的”，其近义词为？',
+                options: ['normal / wie immer', 'selten / unmöglich', 'neu / frisch', 'kompliziert'],
+                correctIndex: 0,
+                detail: 'üblich 意为“通常的，按惯例的”，表达“像往常一样”可以说 wie üblich。'
+            },
+            {
+                id: 40,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【常用短语】',
+                question: '短语 "übrig bleiben" 的中文意思是？',
+                options: ['剩余 / 留下', '离开', '缺少', '超时'],
+                correctIndex: 0,
+                detail: 'übrig 表示“剩余的/多余的”，übrig bleiben 意为“剩下，残留”。'
+            },
+            {
+                id: 41,
+                type: 'Adverb',
+                badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
+                title: '【口语过渡词】',
+                question: '在对话中用于转换话题的副词 "übrigens" 中文意思是？',
+                options: ['顺便提一句 / 此外', '特别地', '然而', '最后'],
+                correctIndex: 0,
+                detail: 'übrigens 相当于英语的 "by the way"，用于顺便插入补充信息或转换话题。'
+            },
+            {
+                id: 42,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【地理与自然词汇】',
+                question: '名词 "das Ufer" (岸/河岸/湖岸) 的复数形式是？',
+                options: ['die Ufer (单复同形)', 'die Ufern', 'die Üfer', 'die Uferen'],
+                correctIndex: 0,
+                detail: 'das Ufer, - (岸，滨)。以 -er 结尾的中性名词复数单复同形 (die Ufer)。'
+            },
+            {
+                id: 43,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【时间与时间介词】',
+                question: '名词 "die Uhr" (钟表/点钟) 的复数是 die Uhren；表达“在8点钟”用哪个介词？',
+                options: ['um 8 Uhr', 'am 8 Uhr', 'im 8 Uhr', 'an 8 Uhr'],
+                correctIndex: 0,
+                detail: '表达具体钟点统一使用介词 um (例如: um 8 Uhr)。'
+            },
+            {
+                id: 44,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【不可分动词】',
+                question: '动词 "umarmen" (拥抱) 的三态和结构是？',
+                options: ['umarmt, umarmte, hat umarmt', 'armt um, armte um, hat umgearmt', 'umarmt, umarmte, ist umarmt', 'umarmt, umarmt, hat geumarmt'],
+                correctIndex: 0,
+                detail: 'umarmen (拥抱) 是不可分动词，变化为：umarmt, umarmte, hat umarmt。'
+            },
+            {
+                id: 45,
+                type: 'Grammatik',
+                badgeClass: 'bg-purple-50 text-purple-700 border-purple-200',
+                title: '【目的不定式句型】',
+                question: '句型 "um ... zu + Infinitiv" 表达什么逻辑关系？',
+                options: ['目的 (为了……)', '原因 (因为……)', '时间 (当……时)', '让步 (尽管……)'],
+                correctIndex: 0,
+                detail: 'um ... zu + 不定式 表示目的（为了做某事），主句与从句的主语必须一致。'
+            },
+            {
+                id: 46,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【可分动词与反身】',
+                question: '“他转过身来”： "Er ______ sich ______."',
+                options: ['dreht ... um (umdrehen)', 'umdreht (umdrehen)', 'dreht ... ab (abdrehen)', 'kehrt ... um (umkehren)'],
+                correctIndex: 0,
+                detail: 'sich umdrehen (转身) 是可分动词：dreht um, drehte um, hat umgedreht。'
+            },
+            {
+                id: 47,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "die Umfrage" (问卷调查) 和 "die Umgebung" (周边环境) 的复数分别是？',
+                options: ['die Umfragen / die Umgebungen', 'die Umfrage / die Umgebung', 'die Umfragen / die Umgebungs', 'die Umfragee / die Umgebunge'],
+                correctIndex: 0,
+                detail: 'die Umfrage, -n (调查)；die Umgebung, -en (周围/环境)。均加 -n / -en。'
+            },
+            {
+                id: 48,
+                type: 'Grammatik',
+                badgeClass: 'bg-purple-50 text-purple-700 border-purple-200',
+                title: '【比较级固定句型】',
+                question: '句型 "je ... desto / umso ..." 表达什么意思？',
+                options: ['越……，就越……', '不仅……而且……', '既不……也不……', '虽然……但是……'],
+                correctIndex: 0,
+                detail: 'je + 比较级 (从句), desto / umso + 比较级 (主句)，表示“越……，就越……”。'
+            },
+            {
+                id: 49,
+                type: 'Adverb',
+                badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
+                title: '【同义词辨析】',
+                question: '副词 "umsonst" 表达“免费地”时，近义词是？',
+                options: ['kostenlos / gratis', 'teuer', 'umweltschädlich', 'unbedingt'],
+                correctIndex: 0,
+                detail: 'umsonst 有两个主意思：1. 免费地 (kostenlos)；2. 白白地/徒劳地 (vergeblich)。'
+            }
+        ];
+
+        // Native Audio Synthesizer
+        let audioCtx = null;
+        function getAudioContext() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
+        function playSound(isCorrect) {
+            try {
+                const ctx = getAudioContext();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                const now = ctx.currentTime;
+                if (isCorrect) {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(523.25, now); // C5
+                    osc.frequency.setValueAtTime(659.25, now + 0.08); // E5
+                    gain.gain.setValueAtTime(0.12, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+                    osc.start(now);
+                    osc.stop(now + 0.3);
+                } else {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(220, now);
+                    osc.frequency.exponentialRampToValueAtTime(140, now + 0.2);
+                    gain.gain.setValueAtTime(0.1, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+                    osc.start(now);
+                    osc.stop(now + 0.2);
+                }
+            } catch (e) {
+                console.error("Audio error:", e);
+            }
+        }
+
+        // Fisher-Yates Shuffle
+        function shuffleArray(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        // Shuffle options and recalculate correct index
+        function processQuestions(data) {
+            return shuffleArray(data).map(item => {
+                const originalOptions = [...item.options];
+                const correctAnswerText = originalOptions[item.correctIndex];
+                const shuffledOptions = shuffleArray(originalOptions);
+                const newCorrectIndex = shuffledOptions.indexOf(correctAnswerText);
+                return {
+                    ...item,
+                    options: shuffledOptions,
+                    answer: newCorrectIndex
+                };
+            });
+        }
+
+        // App State
+        let vocabularyData = [];
+        let currentIndex = 0;
+        let userAnswers = [];
+        let showExplanation = false;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            resetPractice();
+        });
+
+        function resetPractice() {
+            vocabularyData = processQuestions(rawVocabularyData);
+            currentIndex = 0;
+            userAnswers = new Array(vocabularyData.length).fill(null);
+            showExplanation = false;
+            document.getElementById('quiz-container').classList.remove('hidden');
+            document.getElementById('bottom-nav').classList.remove('hidden');
+            document.getElementById('result-container').classList.add('hidden');
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const currentData = vocabularyData[currentIndex];
+            
+            document.getElementById('word-badge').className = `px-3 py-0.5 rounded-full text-xs font-bold tracking-wider uppercase border ${currentData.badgeClass}`;
+            document.getElementById('word-badge').textContent = currentData.type;
+            document.getElementById('question-index-tag').textContent = `Q${currentIndex + 1}`;
+            document.getElementById('target-word').textContent = currentData.title;
+            
+            document.getElementById('question-prompt').textContent = currentData.question;
+            
+            const progressPercent = Math.round(((currentIndex + 1) / vocabularyData.length) * 100);
+            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+            document.getElementById('progress-text').textContent = `进度：${currentIndex + 1} / ${vocabularyData.length}`;
+            document.getElementById('progress-percent').textContent = `${progressPercent}%`;
+            
+            const optionsGrid = document.getElementById('options-grid');
+            optionsGrid.innerHTML = '';
+            const selectedAnswer = userAnswers[currentIndex];
+            const isAnswered = selectedAnswer !== null;
+
+            currentData.options.forEach((optText, optIndex) => {
+                const btn = document.createElement('button');
+                btn.className = getOptionStyle(optIndex, selectedAnswer, currentData.answer);
+                btn.innerHTML = `
+                    <div class="flex items-center justify-between w-full">
+                        <span class="flex items-center gap-3.5">
+                            <span class="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold border transition-all ${getOptionMarkerStyle(optIndex, selectedAnswer, currentData.answer)}">
+                                ${String.fromCharCode(65 + optIndex)}
+                            </span>
+                            <span class="font-medium">${optText}</span>
+                        </span>
+                        ${getOptionIcon(optIndex, selectedAnswer, currentData.answer)}
+                    </div>
+                `;
+                btn.onclick = () => selectOption(optIndex);
+                optionsGrid.appendChild(btn);
+            });
+
+            const explainCard = document.getElementById('explanation-card');
+            const explainText = document.getElementById('explanation-text');
+            explainText.textContent = currentData.detail;
+            if (showExplanation || isAnswered) {
+                explainCard.classList.remove('hidden');
+            } else {
+                explainCard.classList.add('hidden');
+            }
+
+            document.getElementById('btn-prev').disabled = currentIndex === 0;
+            const btnNext = document.getElementById('btn-next');
+            if (currentIndex === vocabularyData.length - 1) {
+                btnNext.textContent = '完成特训';
+                btnNext.className = 'px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-teal-700 hover:bg-teal-800 text-white shadow-md transition-all';
+            } else {
+                btnNext.textContent = '下一题';
+                btnNext.className = 'px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-md transition-all';
+            }
+        }
+
+        function getOptionStyle(index, selected, correct) {
+            const base = "w-full text-left p-4 sm:p-4.5 rounded-2xl border text-sm sm:text-base transition-all duration-200 flex items-center justify-between ";
+            if (selected === null) {
+                return base + "border-slate-200/80 bg-white hover:border-slate-400 hover:shadow-md text-slate-800";
+            }
+            if (index === correct) {
+                return base + "border-emerald-300 bg-emerald-50/90 text-emerald-900 font-semibold shadow-sm";
+            }
+            if (index === selected && selected !== correct) {
+                return base + "border-rose-300 bg-rose-50/90 text-rose-900 font-semibold shadow-sm";
+            }
+            return base + "border-slate-100 bg-slate-50/50 text-slate-400 opacity-50";
+        }
+
+        function getOptionMarkerStyle(index, selected, correct) {
+            if (selected === null) {
+                return "border-slate-200 text-slate-500 bg-slate-50";
+            }
+            if (index === correct) {
+                return "border-emerald-500 text-white bg-emerald-600 shadow-sm";
+            }
+            if (index === selected && selected !== correct) {
+                return "border-rose-500 text-white bg-rose-500 shadow-sm";
+            }
+            return "border-slate-200 text-slate-300 bg-slate-100";
+        }
+
+        function getOptionIcon(index, selected, correct) {
+            if (selected === null) return '';
+            if (index === correct) {
+                return `<svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>`;
+            }
+            if (index === selected && selected !== correct) {
+                return `<svg class="w-5 h-5 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>`;
+            }
+            return '';
+        }
+
+        function selectOption(index) {
+            if (userAnswers[currentIndex] === null) {
+                const isCorrect = index === vocabularyData[currentIndex].answer;
+                playSound(isCorrect);
+            }
+            userAnswers[currentIndex] = index;
+            showExplanation = true;
+            renderQuestion();
+        }
+
+        function toggleExplanation() {
+            showExplanation = !showExplanation;
+            const explainCard = document.getElementById('explanation-card');
+            if (showExplanation) {
+                explainCard.classList.remove('hidden');
+            } else {
+                explainCard.classList.add('hidden');
+            }
+        }
+
+        function nextQuestion() {
+            if (currentIndex < vocabularyData.length - 1) {
+                currentIndex++;
+                showExplanation = false;
+                renderQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                showExplanation = false;
+                renderQuestion();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quiz-container').classList.add('hidden');
+            document.getElementById('bottom-nav').classList.add('hidden');
+            document.getElementById('result-container').classList.remove('hidden');
+
+            let mistakeCount = 0;
+            const mistakesList = document.getElementById('mistakes-list');
+            mistakesList.innerHTML = '';
+
+            userAnswers.forEach((ans, idx) => {
+                const item = vocabularyData[idx];
+                if (ans !== item.answer) {
+                    mistakeCount++;
+                    const mistakeDiv = document.createElement('div');
+                    mistakeDiv.className = 'p-4 bg-slate-50 rounded-2xl border border-slate-200/80 text-xs sm:text-sm';
+                    mistakeDiv.innerHTML = `
+                        <div class="font-bold text-teal-800 text-sm mb-1">${item.title}</div>
+                        <div class="font-german text-slate-800 font-medium mb-1.5">${item.question}</div>
+                        <div class="text-slate-600 leading-relaxed">${item.detail}</div>
+                    `;
+                    mistakesList.appendChild(mistakeDiv);
+                }
+            });
+
+            document.getElementById('stat-total').textContent = vocabularyData.length;
+            document.getElementById('stat-mistakes').textContent = mistakeCount;
+
+            const mistakesSection = document.getElementById('mistakes-section');
+            if (mistakeCount > 0) {
+                mistakesSection.classList.remove('hidden');
+            } else {
+                mistakesSection.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
