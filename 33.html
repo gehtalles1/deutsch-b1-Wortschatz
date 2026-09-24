@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="h-full bg-slate-50/80">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>德语 B1 核心词汇特训 - S 开头词汇</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Serif+Georgia&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .font-german {
+            font-family: 'Noto Serif Georgia', Georgia, serif;
+        }
+        .custom-glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+    </style>
+</head>
+<body class="h-full text-slate-800 antialiased selection:bg-teal-100 selection:text-teal-900 flex flex-col justify-between bg-gradient-to-br from-slate-50 via-zinc-50 to-teal-50/20">
+    <!-- Header Area -->
+    <header class="sticky top-0 z-30 custom-glass border-b border-slate-200/60 px-4 py-3.5 sm:px-8 shadow-sm">
+        <div class="max-w-3xl mx-auto flex items-center justify-between">
+            <a href="index.html" class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-500 hover:text-slate-900 transition-all py-1.5 px-3 rounded-full hover:bg-slate-100/80">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+                返回主页
+            </a>
+            <div class="text-center">
+                <h1 class="text-xs sm:text-sm font-bold tracking-widest text-slate-400 uppercase">Wortschatz Training</h1>
+                <p class="text-sm sm:text-base font-extrabold text-slate-900 tracking-tight">德语 B1 核心词汇特训 (S-Teil)</p>
+            </div>
+            <button onclick="resetPractice()" class="text-xs sm:text-sm font-semibold text-slate-500 hover:text-teal-700 transition-all py-1.5 px-3 rounded-full hover:bg-slate-100/80">
+                重新开始
+            </button>
+        </div>
+        <!-- Progress Bar -->
+        <div class="max-w-3xl mx-auto mt-3">
+            <div class="flex justify-between items-center text-xs font-bold text-slate-400 mb-1.5 tracking-wider uppercase">
+                <span id="progress-text">进度：1 / 45</span>
+                <span id="progress-percent">1%</span>
+            </div>
+            <div class="w-full h-1.5 bg-slate-200/70 rounded-full overflow-hidden p-0.5">
+                <div id="progress-bar" class="h-full bg-slate-900 transition-all duration-300 rounded-full" style="width: 1%"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Section -->
+    <main class="flex-1 max-w-3xl w-full mx-auto p-4 sm:p-6 flex flex-col justify-center">
+        <!-- QUIZ CONTAINER -->
+        <div id="quiz-container" class="space-y-6">
+            <!-- Word Header Card -->
+            <div class="bg-white/90 backdrop-blur-sm rounded-3xl p-6 sm:p-9 border border-slate-200/70 shadow-xl shadow-slate-200/50 relative overflow-hidden transition-all">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="flex items-center gap-2">
+                        <span id="word-badge" class="px-3 py-0.5 rounded-full text-xs font-bold tracking-wider uppercase border">
+                            Substantiv
+                        </span>
+                        <span id="target-word" class="text-xs font-semibold text-teal-700 bg-teal-50 px-2.5 py-0.5 rounded-md border border-teal-100">
+                            --
+                        </span>
+                    </div>
+                    <span id="question-index-tag" class="text-xs font-bold text-slate-400 tracking-widest uppercase">
+                        Q1
+                    </span>
+                </div>
+                <div class="py-2">
+                    <p id="question-prompt" class="font-german text-lg sm:text-2xl font-semibold text-slate-800 leading-relaxed sm:leading-relaxed">
+                        --
+                    </p>
+                </div>
+            </div>
+
+            <!-- Options Grid -->
+            <div id="options-grid" class="grid grid-cols-1 gap-3.5">
+                <!-- Dynamic options -->
+            </div>
+
+            <!-- Explanation Card -->
+            <div id="explanation-card" class="hidden bg-slate-900 text-slate-100 rounded-2xl p-5 sm:p-6 shadow-lg border border-slate-800 text-sm leading-relaxed space-y-2">
+                <div class="font-semibold text-teal-400 flex items-center gap-2 text-xs sm:text-sm uppercase tracking-wider">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    词汇解析与答案说明
+                </div>
+                <div id="explanation-text" class="text-slate-300 text-xs sm:text-sm font-normal"></div>
+            </div>
+        </div>
+
+        <!-- RESULT CONTAINER -->
+        <div id="result-container" class="hidden bg-white/90 backdrop-blur-sm rounded-3xl p-8 sm:p-10 border border-slate-200/70 shadow-xl shadow-slate-200/50 text-center space-y-8">
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-900 text-teal-400 shadow-lg shadow-slate-900/10 mb-2">
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <div>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2 tracking-tight">特训完成</h2>
+                <p class="text-sm text-slate-500 font-medium">已完成本关所有核心词汇测试，熟练掌握巩固知识点</p>
+            </div>
+
+            <div class="max-w-md mx-auto py-3 px-6 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-around">
+                <div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">本次练习题目</div>
+                    <div id="stat-total" class="text-2xl font-extrabold text-slate-900">0</div>
+                </div>
+                <div class="h-8 w-px bg-slate-200"></div>
+                <div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">重点标注/错题巩固</div>
+                    <div id="stat-mistakes" class="text-2xl font-extrabold text-slate-900">0</div>
+                </div>
+            </div>
+
+            <div id="mistakes-section" class="text-left hidden space-y-4 pt-2">
+                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                    需重点巩固的词汇
+                </h3>
+                <div id="mistakes-list" class="space-y-2.5 max-h-64 overflow-y-auto pr-1"></div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-6 border-t border-slate-100">
+                <button onclick="resetPractice()" class="w-full sm:w-auto px-8 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm transition-all shadow-md hover:shadow-lg">
+                    再练一次
+                </button>
+                <a href="index.html" class="w-full sm:w-auto px-8 py-3 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 font-bold text-sm transition-all text-center">
+                    返回主页
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Actions Nav -->
+    <footer id="bottom-nav" class="sticky bottom-0 z-30 custom-glass border-t border-slate-200/60 px-4 py-3.5 sm:px-8">
+        <div class="max-w-3xl mx-auto flex items-center justify-between gap-3">
+            <button id="btn-prev" onclick="prevQuestion()" disabled class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 text-slate-600 hover:bg-slate-100 disabled:opacity-30 disabled:cursor-not-allowed transition-all">
+                上一题
+            </button>
+            <button id="btn-toggle-explain" onclick="toggleExplanation()" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 hover:bg-slate-200/80 text-slate-700 transition-all flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                查看释义
+            </button>
+            <button id="btn-next" onclick="nextQuestion()" class="px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-md transition-all">
+                下一题
+            </button>
+        </div>
+    </footer>
+
+    <script>
+        // 替换为包含4张图片提取内容的全新词汇数据 (45题)
+        const rawVocabularyData = [
+            // --- 图片 1 (1_12.png) 词汇 ---
+            {
+                id: 1,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【菜肴与名词单复数】',
+                question: '在奥地利或德国餐厅菜单上常见的“炸肉排”，德语写作 ______ (单复数同形)？',
+                options: ['das Schnitzel', 'der Schnitzel', 'die Schnitzel', 'das Hähnchen'],
+                correctIndex: 0,
+                detail: 'das Schnitzel, - (炸肉排)。中性名词，复数单复同形 (die Schnitzel)。'
+            },
+            {
+                id: 2,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【健康与疾病词汇】',
+                question: '表达“感冒/流鼻涕”的名词 "der Schnupfen" 的词性及搭配是？',
+                options: ['der Schnupfen', 'das Schnupfen', 'die Schnupfen', 'die Schnupfe'],
+                correctIndex: 0,
+                detail: 'der Schnupfen (阳性名词，通常用单数，意为“感冒、流鼻涕”)。例：Schnupfen haben (患感冒/流鼻涕)。'
+            },
+            {
+                id: 3,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【词性判断】',
+                question: '名词 "Schokolade" (巧克力) 的正确冠词是？',
+                options: ['die Schokolade', 'das Schokolade', 'der Schokolade', 'die Schokoladen'],
+                correctIndex: 0,
+                detail: 'die Schokolade (阴性名词，巧克力)。复数为 die Schokoladen。'
+            },
+            {
+                id: 4,
+                type: 'Adverb',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【易混副词辨析】',
+                question: '句子 "Ich bin ______ seit zwei Stunden hier." (我已经在这里两小时了) 应该填入哪个副词？',
+                options: ['schon', 'schön', 'sehr', 'spät'],
+                correctIndex: 0,
+                detail: 'schon 意为“已经”；而 schön (带变音符) 意为“美丽的，漂亮的”。注意拼写差异。'
+            },
+            {
+                id: 5,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【形容词辨析】',
+                question: '表达“天气真好 / 祝你周末愉快”时，形容词应该使用：',
+                options: ['schön', 'schon', 'schlecht', 'schwer'],
+                correctIndex: 0,
+                detail: 'schön 意为“美丽的，美好的”。例：Ein schönes Wochenende! (周末愉快！)'
+            },
+            {
+                id: 6,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【区域德语辨析】',
+                question: '表示“柜子/衣柜”，德语通用语为 "der Schrank"，而在奥地利(A)和瑞士(CH)常用哪个词表达？',
+                options: ['der Kasten', 'die Kiste', 'der Regal', 'die Kommode'],
+                correctIndex: 0,
+                detail: 'der Schrank, "-e (D, CH) 在奥地利(A)和瑞士(CH)常用 der Kasten 表达。'
+            },
+            {
+                id: 7,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "der Schrank" (柜子) 的正确复数形式是？',
+                options: ['die Schränke', 'die Schranke', 'die Schränker', 'die Schranken'],
+                correctIndex: 0,
+                detail: 'der Schrank, "-e (柜子)。复数变音为 die Schränke。'
+            },
+            {
+                id: 8,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词与衍生形容词】',
+                question: '“受惊/惊吓”名词为 der Schreck(en)，其对应的衍生形容词“可怕的、非常糟糕的”是？',
+                options: ['schrecklich', 'schrecksam', 'schreckbar', 'schreckig'],
+                correctIndex: 0,
+                detail: 'schrecklich 意为“可怕的，糟糕的”，口语中也常作为副词表程度（非常/极其）。'
+            },
+            {
+                id: 9,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【不规则动词三态】',
+                question: '动词 "schreiben" (书写) 的过去式 (Präteritum) 和完成时 Partizip II 形式分别是？',
+                options: ['schrieb / geschrieben', 'schrieb / geschreibt', 'schreibte / geschrieben', 'schrieb / geschreiben'],
+                correctIndex: 0,
+                detail: 'schreiben -> schreibt, schrieb, hat geschrieben (强变化动词 ei-ie-ie)。'
+            },
+            {
+                id: 10,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【可分动词辨析】',
+                question: '“请把这个电话号码记/写下来”：“Bitte ______ Sie diese Telefonnummer ______.”',
+                options: ['schreiben ... auf', 'schreiben ... an', 'schreiben ... mit', 'schreiben ... aus'],
+                correctIndex: 0,
+                detail: 'auf/schreiben 是可分动词，意为“写下、记下”。'
+            },
+
+            // --- 图片 2 (2_12.png) 词汇 ---
+            {
+                id: 11,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【动词三态】',
+                question: '动词 "schreien" (尖叫，大喊) 的变位三态是：schreit, ______, hat geschrien。',
+                options: ['schrie', 'schreite', 'schrien', 'geschrien'],
+                correctIndex: 0,
+                detail: 'schreien -> schreit, schrie, hat geschrien (尖叫/喊叫)。'
+            },
+            {
+                id: 12,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词与衍生副词】',
+                question: '名词 "die Schrift" 意为文字/笔迹，其衍生形容词/副词 "schriftlich" 的意思是？',
+                options: ['书面的 / 以书面形式', '口头的', '印制好的', '艺术的'],
+                correctIndex: 0,
+                detail: 'schriftlich 意为“书面的” (例: eine schriftliche Prüfung 书面考试)。'
+            },
+            {
+                id: 13,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【职业名词】',
+                question: '“作家/作者”在德语中称作 der Schriftsteller，其阴性女性形式是？',
+                options: ['die Schriftstellerin', 'die Schriftsteller', 'die Schriftstellere', 'die Schriftstellerinnen'],
+                correctIndex: 0,
+                detail: 'der Schriftsteller, - / die Schriftstellerin, -nen (作家)。'
+            },
+            {
+                id: 14,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "der Schritt" (脚步/步骤) 的复数形式是？',
+                options: ['die Schritte', 'die Schritten', 'die Schritt', 'die Schritted'],
+                correctIndex: 0,
+                detail: 'der Schritt, -e (脚步，步骤)。例：Schritt für Schritt (一步一步地)。'
+            },
+            {
+                id: 15,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "der Schuh" (鞋子) 的复数形式是？',
+                options: ['die Schuhe', 'die Schuhen', 'die Schüh', 'die Schuhs'],
+                correctIndex: 0,
+                detail: 'der Schuh, -e (鞋子)。复数加 -e 为 die Schuhe。'
+            },
+            {
+                id: 16,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【词义与复数】',
+                question: '表达“债务”的名词 "die Schulden" 在语法使用上有何特点？',
+                options: ['通常只使用复数形式 (Pluralwort)', '只有单数形式', '是阳性单数 der Schulden', '是中性单数 das Schulden'],
+                correctIndex: 0,
+                detail: 'die Schulden (Pl.) 表示“债务”时一般只用复数。而抽象的“过错/罪责”用阴性单数 die Schuld。'
+            },
+            {
+                id: 17,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【固定搭配】',
+                question: '表达“这不是我的错/我不承担责任”：“Ich bin nicht daran ______.”',
+                options: ['schuld', 'schuldig', 'Schulden', 'Schuld'],
+                correctIndex: 0,
+                detail: 'schuld sein an + Dat. (对……负有责任/是……的错)，这里 schuld 作为形容词词性使用小写。'
+            },
+            {
+                id: 18,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【词义辨析】',
+                question: '形容词 "schuldig" 在法律或道德语义中表达的意思是？',
+                options: ['有罪的 / 负有责任的', '无辜的', '贫穷的', '慷慨的'],
+                correctIndex: 0,
+                detail: 'schuldig 意为“有罪的、犯错的”或“欠债的”。'
+            },
+            {
+                id: 19,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【区域表达辨析】',
+                question: '在奥地利(A)，学校里的“课堂测验/笔试”常称为 "die Schularbeit"，这相当于德国(D)的：',
+                options: ['die Klassenarbeit', 'die Hausaufgabe', 'die Vorlesung', 'die Übung'],
+                correctIndex: 0,
+                detail: 'die Schularbeit, -en (A) 对应德国通用语中的 die Klassenarbeit, -en (课堂测验/随堂考)。'
+            },
+            {
+                id: 20,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【人体结构与复数】',
+                question: '名词 "die Shoulder" 的正确德语拼写与复数是？',
+                options: ['die Schulter, -n', 'der Schulter, -e', 'das Schulter, -n', 'die Schülter, -n'],
+                correctIndex: 0,
+                detail: 'die Schulter, -n (肩膀)。'
+            },
+            {
+                id: 21,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【餐具与复数】',
+                question: '用于盛汤或装沙拉的“深碗/大碗”，德语称作：',
+                options: ['die Schüssel, -n', 'der Teller, -', 'die Tasse, -n', 'das Glas, "-er'],
+                correctIndex: 0,
+                detail: 'die Schüssel, -n (碗，深碗)。'
+            },
+            {
+                id: 22,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【动作动词】',
+                question: '“摇晃/摇动” (如：服药前摇匀) 的德语动词是？',
+                options: ['schütteln', 'schützen', 'schwitzen', 'schweigen'],
+                correctIndex: 0,
+                detail: 'schütteln (schüttelt, schüttelte, hat geschüttelt) 意为“摇晃，摇动”。注意与 schützen (保护) 区分。'
+            },
+            {
+                id: 23,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【固定介词搭配】',
+                question: '“保护某人免受……侵害”：“jemanden schützen ______ (+ Dat.)”',
+                options: ['vor', 'gegen', 'aus', 'bei'],
+                correctIndex: 0,
+                detail: 'schützen vor + Dat. (保护某人免受……，如：schützen vor der Kälte 防寒)。'
+            },
+
+            // --- 图片 3 (3_12.png) 词汇 ---
+            {
+                id: 24,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【抽象名词与性属】',
+                question: '名词 "Schutz" (保护/防护) 的冠词和语法特点是？',
+                options: ['der Schutz (通常仅用单数)', 'das Schutz', 'die Schutz', 'die Schütze'],
+                correctIndex: 0,
+                detail: 'der Schutz (阳性名词，通常用单数)。'
+            },
+            {
+                id: 25,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【反义词辨析】',
+                question: '形容词 "stark" (强壮的) 的反义词是？',
+                options: ['schwach', 'schwer', 'schlecht', 'schmal'],
+                correctIndex: 0,
+                detail: 'schwach (虚弱的，虚弱的)，反义词为 stark。'
+            },
+            {
+                id: 26,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【区域德语辨析】',
+                question: '在奥地利(A)，食用蘑菇常被称为 "das Schwammerl, -n"，这相当于德国(D)的哪个词？',
+                options: ['der Pilz, -e', 'die Kartoffel, -n', 'die Tomate, -n', 'die Gurke, -n'],
+                correctIndex: 0,
+                detail: 'das Schwammerl, -n (A) 即德国通用德语中的 der Pilz, -e (食用菌/蘑菇)。'
+            },
+            {
+                id: 27,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【生活生理状态】',
+                question: '表达“怀孕的”德语形容词是？',
+                options: ['schwanger', 'schwer', 'schwach', 'müde'],
+                correctIndex: 0,
+                detail: 'schwanger 意为“怀孕的”。例：schwanger sein (怀孕)。'
+            },
+            {
+                id: 28,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "die Schwangerschaft" (怀孕/孕期) 的正确复数是？',
+                options: ['die Schwangerschaften', 'die Schwangerschaft', 'die Schwangerschafte', 'die Schwangerschafte'],
+                correctIndex: 0,
+                detail: 'die Schwangerschaft, -en (孕期/怀孕)。-schaft 结尾的名词复数加 -en。'
+            },
+            {
+                id: 29,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【不规则动词变位】',
+                question: '动词 "schweigen" (沉默/保持安静) 的过去式与完成时分别是？',
+                options: ['schwieg / hat geschwiegen', 'schweigte / hat geschweigt', 'schwieg / ist geschwiegen', 'schwieg / hat geschwiegt'],
+                correctIndex: 0,
+                detail: 'schweigen -> schweigt, schwieg, hat geschwiegen (保持沉默)。'
+            },
+            {
+                id: 30,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【一词多义】',
+                question: '形容词 "schwer" 除了表示“沉重的”，还可以表示？',
+                options: ['困难的 (schwierig)', '简单的 (einfach)', '轻的 (leicht)', '便宜的 (billig)'],
+                correctIndex: 0,
+                detail: 'schwer 意为：1. 重的 (反义: leicht)；2. 困难的 (近义: schwierig)。'
+            },
+            {
+                id: 31,
+                type: 'Prefix',
+                badgeClass: 'bg-slate-100 text-slate-700 border-slate-300',
+                title: '【前缀构词法】',
+                question: '前缀 "Schwieger-" 用于构成姻亲称谓，例如 "die Schwiegermutter" 意思是？',
+                options: ['岳母 / 婆婆', '亲生母亲', '继母', '教母'],
+                correctIndex: 0,
+                detail: 'Schwieger- 表示配偶的亲属。Schwiegermutter (岳母/婆婆)，Schwiegervater (公公/岳父)。'
+            },
+            {
+                id: 32,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【名词复数】',
+                question: '名词 "die Schwierigkeit" (困难/难题) 的复数形式是？',
+                options: ['die Schwierigkeiten', 'die Schwierigkeit', 'die Schwierigkeite', 'die Schwierigkeitn'],
+                correctIndex: 0,
+                detail: 'die Schwierigkeit, -en (-keit 结尾阴性名词复数加 -en)。'
+            },
+            {
+                id: 33,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【助动词选择】',
+                question: '动词 "schwimmen" (游泳) 在表达运动过程的完成时，助动词通常用：',
+                options: ['ist (ist geschwommen)', 'hat (hat geschwommen)', 'wird', 'wurde'],
+                correctIndex: 0,
+                detail: 'schwimmen -> schwimmt, schwamm, ist geschwommen (表示位移运动，完成时用 ist)。'
+            },
+            {
+                id: 34,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【合成词与变音复数】',
+                question: '“游泳馆/游泳池”德语写作 das Schwimmbad，其复数形式是？',
+                options: ['die Schwimmbäder', 'die Schwimmbade', 'die Schwimmbaden', 'die Schwimmbads'],
+                correctIndex: 0,
+                detail: 'das Schwimmbad, "-er (游泳池/游泳馆)。复数变音加 -er。'
+            },
+            {
+                id: 35,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【生理反应动词】',
+                question: '天热或运动后“流汗/出汗”，德语动词是：',
+                options: ['schwitzen', 'schütteln', 'schützen', 'schweigen'],
+                correctIndex: 0,
+                detail: 'schwitzen (schwitzt, schwitzte, hat geschwitzt) 意为“流汗，出汗”。'
+            },
+            {
+                id: 36,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【易混同形/不同词性】',
+                question: '阳性名词 "der See" 指的是“湖泊”，而阴性名词 "die See" 指的是？',
+                options: ['大海 / 海洋', '河流', '池塘', '溪流'],
+                correctIndex: 0,
+                detail: 'der See, -n (湖泊，如 Bodensee)；die See, -n (大海/海洋，如 Nordsee 北海)。'
+            },
+
+            // --- 图片 4 (4_12.png) 词汇 ---
+            {
+                id: 37,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【旅游核心词汇】',
+                question: '“名胜古迹/景点”在德语中称作：',
+                options: ['die Sehenswürdigkeit, -en', 'die Sehensart, -en', 'das Sehen, -', 'die Sehenswürdig, -e'],
+                correctIndex: 0,
+                detail: 'die Sehenswürdigkeit, -en (名胜古迹，景点)。'
+            },
+            {
+                id: 38,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【日用品词汇】',
+                question: '洗手用的“香皂/肥皂”，德语写作：',
+                options: ['die Seife, -n', 'der Seife, -n', 'das Seife, -n', 'die Suppe, -n'],
+                correctIndex: 0,
+                detail: 'die Seife, -n (香皂，肥皂)。'
+            },
+            {
+                id: 39,
+                type: 'Verb',
+                badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                title: '【联系动词三态】',
+                question: '联系动词 "sein" (是/在) 的三态变化是：ist, ______, ist gewesen。',
+                options: ['war', 'wäre', 'wurden', 'gewesen'],
+                correctIndex: 0,
+                detail: 'sein -> ist, war, ist gewesen。过去式为 war。'
+            },
+            {
+                id: 40,
+                type: '介词/连词',
+                badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
+                title: '【介词与连词辨析】',
+                question: '“自从/自……以来”，引导介词时用 "seit" (+ Dat.)；而作为从属连词引导时间从句时用？',
+                options: ['seitdem', 'seitdenn', 'seithier', 'seitwann'],
+                correctIndex: 0,
+                detail: 'seitdem (连词，自……以来，引导从句动词置底)；seit (介词，后接第三格 Dat.)。'
+            },
+            {
+                id: 41,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【多义名词】',
+                question: '名词 "die Seite, -n" 可以表达“侧面/方向”，在书本或网页中表达的意思是？',
+                options: ['页 / 页面', '章节', '封面', '标题'],
+                correctIndex: 0,
+                detail: 'die Seite, -n (页，页面；侧面，方向)。例：auf Seite 10 (在第10页)。'
+            },
+            {
+                id: 42,
+                type: 'Substantiv',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                title: '【职业名词】',
+                question: '“秘书/助理”阳性为 der Sekretär，其阴性复数形式是？',
+                options: ['die Sekretärinnen', 'die Sekretärin', 'die Sekretäre', 'die Sekretärs'],
+                correctIndex: 0,
+                detail: 'der Sekretär, -e / die Sekretärin, -nen (秘书，助理)。'
+            },
+            {
+                id: 43,
+                type: 'Pronomen',
+                badgeClass: 'bg-purple-50 text-purple-700 border-purple-200',
+                title: '【代词/副词辨析】',
+                question: '“我自己做这件事”：“Ich mache das ______.”（口语中亦常用 selber）',
+                options: ['selbst', 'selb', 'selbstständig', 'selbstverständlich'],
+                correctIndex: 0,
+                detail: 'selbst / selber (强调亲自、我自己)。'
+            },
+            {
+                id: 44,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【工作形态词汇】',
+                question: '形容词 "selbstständig" 描述工作状态时，意思是？',
+                options: ['自主的 / 自由职业的 / 独立的', '受雇的', '失业的', '兼职的'],
+                correctIndex: 0,
+                detail: 'selbstständig 意为“独立的，自主的；自雇的/自由职业的”。'
+            },
+            {
+                id: 45,
+                type: 'Adjektiv',
+                badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+                title: '【日常交际用语】',
+                question: '当他人表达感谢或询问请求时，回答 "Selbstverständlich!" 意思是？',
+                options: ['当然！/ 那是理所当然的！', '没关系！', '不可能！', '对不起！'],
+                correctIndex: 0,
+                detail: 'selbstverständlich 意为“不言而喻的，理所当然的”；作为应答语意为“当然！没问题！”'
+            }
+        ];
+
+        // Native Audio Synthesizer
+        let audioCtx = null;
+        function getAudioContext() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
+
+        function playSound(isCorrect) {
+            try {
+                const ctx = getAudioContext();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                const now = ctx.currentTime;
+                if (isCorrect) {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(523.25, now);
+                    osc.frequency.setValueAtTime(659.25, now + 0.08);
+                    gain.gain.setValueAtTime(0.12, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+                    osc.start(now);
+                    osc.stop(now + 0.3);
+                } else {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(220, now);
+                    osc.frequency.exponentialRampToValueAtTime(140, now + 0.2);
+                    gain.gain.setValueAtTime(0.1, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+                    osc.start(now);
+                    osc.stop(now + 0.2);
+                }
+            } catch (e) {
+                console.error("Audio error:", e);
+            }
+        }
+
+        function shuffleArray(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        function processQuestions(data) {
+            return shuffleArray(data).map(item => {
+                const originalOptions = [...item.options];
+                const correctAnswerText = originalOptions[item.correctIndex];
+                const shuffledOptions = shuffleArray(originalOptions);
+                const newCorrectIndex = shuffledOptions.indexOf(correctAnswerText);
+                return {
+                    ...item,
+                    options: shuffledOptions,
+                    answer: newCorrectIndex
+                };
+            });
+        }
+
+        let vocabularyData = [];
+        let currentIndex = 0;
+        let userAnswers = [];
+        let showExplanation = false;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            resetPractice();
+        });
+
+        function resetPractice() {
+            vocabularyData = processQuestions(rawVocabularyData);
+            currentIndex = 0;
+            userAnswers = new Array(vocabularyData.length).fill(null);
+            showExplanation = false;
+            document.getElementById('quiz-container').classList.remove('hidden');
+            document.getElementById('bottom-nav').classList.remove('hidden');
+            document.getElementById('result-container').classList.add('hidden');
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const currentData = vocabularyData[currentIndex];
+            document.getElementById('word-badge').className = `px-3 py-0.5 rounded-full text-xs font-bold tracking-wider uppercase border ${currentData.badgeClass}`;
+            document.getElementById('word-badge').textContent = currentData.type;
+            document.getElementById('question-index-tag').textContent = `Q${currentIndex + 1}`;
+            document.getElementById('target-word').textContent = currentData.title;
+            
+            document.getElementById('question-prompt').textContent = currentData.question;
+
+            const progressPercent = Math.round(((currentIndex + 1) / vocabularyData.length) * 100);
+            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+            document.getElementById('progress-text').textContent = `进度：${currentIndex + 1} / ${vocabularyData.length}`;
+            document.getElementById('progress-percent').textContent = `${progressPercent}%`;
+
+            const optionsGrid = document.getElementById('options-grid');
+            optionsGrid.innerHTML = '';
+            const selectedAnswer = userAnswers[currentIndex];
+            const isAnswered = selectedAnswer !== null;
+
+            currentData.options.forEach((optText, optIndex) => {
+                const btn = document.createElement('button');
+                btn.className = getOptionStyle(optIndex, selectedAnswer, currentData.answer);
+                btn.innerHTML = `
+                    <div class="flex items-center justify-between w-full">
+                        <span class="flex items-center gap-3.5">
+                            <span class="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold border transition-all ${getOptionMarkerStyle(optIndex, selectedAnswer, currentData.answer)}">
+                                ${String.fromCharCode(65 + optIndex)}
+                            </span>
+                            <span class="font-medium">${optText}</span>
+                        </span>
+                        ${getOptionIcon(optIndex, selectedAnswer, currentData.answer)}
+                    </div>
+                `;
+                btn.onclick = () => selectOption(optIndex);
+                optionsGrid.appendChild(btn);
+            });
+
+            const explainCard = document.getElementById('explanation-card');
+            const explainText = document.getElementById('explanation-text');
+            explainText.textContent = currentData.detail;
+            if (showExplanation || isAnswered) {
+                explainCard.classList.remove('hidden');
+            } else {
+                explainCard.classList.add('hidden');
+            }
+
+            document.getElementById('btn-prev').disabled = currentIndex === 0;
+            const btnNext = document.getElementById('btn-next');
+            if (currentIndex === vocabularyData.length - 1) {
+                btnNext.textContent = '完成特训';
+                btnNext.className = 'px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-teal-700 hover:bg-teal-800 text-white shadow-md transition-all';
+            } else {
+                btnNext.textContent = '下一题';
+                btnNext.className = 'px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-md transition-all';
+            }
+        }
+
+        function getOptionStyle(index, selected, correct) {
+            const base = "w-full text-left p-4 sm:p-4.5 rounded-2xl border text-sm sm:text-base transition-all duration-200 flex items-center justify-between ";
+            if (selected === null) {
+                return base + "border-slate-200/80 bg-white hover:border-slate-400 hover:shadow-md text-slate-800";
+            }
+            if (index === correct) {
+                return base + "border-emerald-300 bg-emerald-50/90 text-emerald-900 font-semibold shadow-sm";
+            }
+            if (index === selected && selected !== correct) {
+                return base + "border-rose-300 bg-rose-50/90 text-rose-900 font-semibold shadow-sm";
+            }
+            return base + "border-slate-100 bg-slate-50/50 text-slate-400 opacity-50";
+        }
+
+        function getOptionMarkerStyle(index, selected, correct) {
+            if (selected === null) {
+                return "border-slate-200 text-slate-500 bg-slate-50";
+            }
+            if (index === correct) {
+                return "border-emerald-500 text-white bg-emerald-600 shadow-sm";
+            }
+            if (index === selected && selected !== correct) {
+                return "border-rose-500 text-white bg-rose-500 shadow-sm";
+            }
+            return "border-slate-200 text-slate-300 bg-slate-100";
+        }
+
+        function getOptionIcon(index, selected, correct) {
+            if (selected === null) return '';
+            if (index === correct) {
+                return `<svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>`;
+            }
+            if (index === selected && selected !== correct) {
+                return `<svg class="w-5 h-5 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>`;
+            }
+            return '';
+        }
+
+        function selectOption(index) {
+            if (userAnswers[currentIndex] === null) {
+                const isCorrect = index === vocabularyData[currentIndex].answer;
+                playSound(isCorrect);
+            }
+            userAnswers[currentIndex] = index;
+            showExplanation = true;
+            renderQuestion();
+        }
+
+        function toggleExplanation() {
+            showExplanation = !showExplanation;
+            const explainCard = document.getElementById('explanation-card');
+            if (showExplanation) {
+                explainCard.classList.remove('hidden');
+            } else {
+                explainCard.classList.add('hidden');
+            }
+        }
+
+        function nextQuestion() {
+            if (currentIndex < vocabularyData.length - 1) {
+                currentIndex++;
+                showExplanation = false;
+                renderQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                showExplanation = false;
+                renderQuestion();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quiz-container').classList.add('hidden');
+            document.getElementById('bottom-nav').classList.add('hidden');
+            document.getElementById('result-container').classList.remove('hidden');
+
+            let mistakeCount = 0;
+            const mistakesList = document.getElementById('mistakes-list');
+            mistakesList.innerHTML = '';
+
+            userAnswers.forEach((ans, idx) => {
+                const item = vocabularyData[idx];
+                if (ans !== item.answer) {
+                    mistakeCount++;
+                    const mistakeDiv = document.createElement('div');
+                    mistakeDiv.className = 'p-4 bg-slate-50 rounded-2xl border border-slate-200/80 text-xs sm:text-sm';
+                    mistakeDiv.innerHTML = `
+                        <div class="font-bold text-teal-800 text-sm mb-1">${item.title}</div>
+                        <div class="font-german text-slate-800 font-medium mb-1.5">${item.question}</div>
+                        <div class="text-slate-600 leading-relaxed">${item.detail}</div>
+                    `;
+                    mistakesList.appendChild(mistakeDiv);
+                }
+            });
+
+            document.getElementById('stat-total').textContent = vocabularyData.length;
+            document.getElementById('stat-mistakes').textContent = mistakeCount;
+
+            const mistakesSection = document.getElementById('mistakes-section');
+            if (mistakeCount > 0) {
+                mistakesSection.classList.remove('hidden');
+            } else {
+                mistakesSection.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
