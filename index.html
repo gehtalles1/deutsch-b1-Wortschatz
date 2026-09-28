@@ -14,14 +14,12 @@
             --text-link: #9ca3af;
             --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans CJK SC", sans-serif;
         }
-
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
             -webkit-tap-highlight-color: transparent;
         }
-
         body {
             background-color: var(--bg-color);
             font-family: var(--font-family);
@@ -32,7 +30,6 @@
             padding: 20px 16px;
             color: var(--text-main);
         }
-
         /* 核心容器 */
         .container {
             width: 100%;
@@ -42,7 +39,6 @@
             gap: 16px;
             margin: 0 auto;
         }
-
         /* 头部大卡片 */
         .header-card {
             background: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
@@ -55,7 +51,6 @@
             flex-direction: column;
             align-items: center;
         }
-
         /* CEFR 标签 */
         .badge {
             background-color: #111827;
@@ -68,7 +63,6 @@
             margin-bottom: 20px;
             text-transform: uppercase;
         }
-
         /* 霸气主标题 */
         .main-title {
             font-size: 30px; 
@@ -77,7 +71,6 @@
             margin-bottom: 18px;
             letter-spacing: 1.5px; 
         }
-
         /* 副标题描述 */
         .description {
             background-color: rgba(243, 244, 246, 0.6);
@@ -89,12 +82,10 @@
             line-height: 1.7;
             text-align: center;
         }
-
         /* 语义块样式 */
         .phrase-block {
             display: inline-block;
         }
-
         /* 关卡列表容器 */
         .level-list {
             display: flex;
@@ -102,7 +93,6 @@
             gap: 12px;
             width: 100%;
         }
-
         /* 单个关卡卡片入口 */
         .level-item {
             background: var(--card-bg);
@@ -115,7 +105,6 @@
             border: 1px solid rgba(243, 244, 246, 0.8);
             transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
         @media (hover: hover) {
             .level-item:hover {
                 transform: translateY(-2px);
@@ -127,7 +116,6 @@
             transform: scale(0.98);
             background-color: #f9fafb;
         }
-
         /* 关卡数字图标基础样式 */
         .level-number {
             width: 48px;
@@ -143,7 +131,6 @@
             flex-shrink: 0;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
         }
-
         /* 各关卡渐变色 */
         .bg-level-1 { background: linear-gradient(135deg, #2563eb, #3b82f6); }
         .bg-level-2 { background: linear-gradient(135deg, #0d9488, #14b8a6); }
@@ -188,7 +175,7 @@
         .bg-level-41 { background: linear-gradient(135deg, #0f172a, #06b6d4); }
         .bg-level-42 { background: linear-gradient(135deg, #09090b, #d946ef); }
         .bg-level-43 { background: linear-gradient(135deg, #09090b, #f59e0b); }
-
+        .bg-level-44 { background: linear-gradient(135deg, #1e1b4b, #ec4899); }
         /* 文本内容区域 */
         .level-content {
             flex-grow: 1;
@@ -197,14 +184,12 @@
             gap: 4px;
             padding-right: 8px;
         }
-
         .level-title {
             font-size: 16px;
             font-weight: 700;
             color: var(--text-main);
             line-height: 1.4;
         }
-
         .level-subtitle {
             font-size: 11px;
             font-weight: 600;
@@ -212,7 +197,6 @@
             letter-spacing: 1px;
             text-transform: uppercase;
         }
-
         /* 右侧箭头 */
         .chevron {
             color: var(--text-link);
@@ -232,7 +216,6 @@
     </style>
 </head>
 <body>
-
     <div class="container">
         <!-- 头部大卡片 -->
         <header class="header-card">
@@ -244,7 +227,6 @@
                 <span class="phrase-block">全机构 B1 考试核心必背真题词汇！</span>
             </div>
         </header>
-
         <!-- 关卡入口列表 -->
         <main class="level-list">
             
@@ -259,7 +241,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 02 -->
             <a href="2.html" class="level-item">
                 <div class="level-number bg-level-2">02</div>
@@ -271,7 +252,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 03 -->
             <a href="3.html" class="level-item">
                 <div class="level-number bg-level-3">03</div>
@@ -283,7 +263,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 04 -->
             <a href="4.html" class="level-item">
                 <div class="level-number bg-level-4">04</div>
@@ -295,7 +274,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 05 -->
             <a href="5.html" class="level-item">
                 <div class="level-number bg-level-5">05</div>
@@ -307,7 +285,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 06 -->
             <a href="6.html" class="level-item">
                 <div class="level-number bg-level-6">06</div>
@@ -319,7 +296,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 07 -->
             <a href="7.html" class="level-item">
                 <div class="level-number bg-level-7">07</div>
@@ -331,7 +307,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 08 -->
             <a href="8.html" class="level-item">
                 <div class="level-number bg-level-8">08</div>
@@ -343,7 +318,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 09 -->
             <a href="9.html" class="level-item">
                 <div class="level-number bg-level-9">09</div>
@@ -355,7 +329,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 10 -->
             <a href="10.html" class="level-item">
                 <div class="level-number bg-level-10">10</div>
@@ -367,7 +340,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 11 -->
             <a href="11.html" class="level-item">
                 <div class="level-number bg-level-11">11</div>
@@ -379,7 +351,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 12 -->
             <a href="12.html" class="level-item">
                 <div class="level-number bg-level-12">12</div>
@@ -391,7 +362,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 13 -->
             <a href="13.html" class="level-item">
                 <div class="level-number bg-level-13">13</div>
@@ -403,7 +373,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 14 -->
             <a href="14.html" class="level-item">
                 <div class="level-number bg-level-14">14</div>
@@ -415,7 +384,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 15 -->
             <a href="15.html" class="level-item">
                 <div class="level-number bg-level-15">15</div>
@@ -427,7 +395,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 16 -->
             <a href="16.html" class="level-item">
                 <div class="level-number bg-level-16">16</div>
@@ -439,7 +406,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 17 -->
             <a href="17.html" class="level-item">
                 <div class="level-number bg-level-17">17</div>
@@ -451,7 +417,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 18 -->
             <a href="18.html" class="level-item">
                 <div class="level-number bg-level-18">18</div>
@@ -463,7 +428,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 19 -->
             <a href="19.html" class="level-item">
                 <div class="level-number bg-level-19">19</div>
@@ -475,7 +439,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 20 -->
             <a href="20.html" class="level-item">
                 <div class="level-number bg-level-20">20</div>
@@ -487,7 +450,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 21 -->
             <a href="21.html" class="level-item">
                 <div class="level-number bg-level-21">21</div>
@@ -499,7 +461,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 22 -->
             <a href="22.html" class="level-item">
                 <div class="level-number bg-level-22">22</div>
@@ -511,7 +472,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 23 -->
             <a href="23.html" class="level-item">
                 <div class="level-number bg-level-23">23</div>
@@ -523,7 +483,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 24 -->
             <a href="24.html" class="level-item">
                 <div class="level-number bg-level-24">24</div>
@@ -535,7 +494,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 25 -->
             <a href="25.html" class="level-item">
                 <div class="level-number bg-level-25">25</div>
@@ -547,7 +505,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 26 -->
             <a href="26.html" class="level-item">
                 <div class="level-number bg-level-26">26</div>
@@ -559,7 +516,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 27 -->
             <a href="27.html" class="level-item">
                 <div class="level-number bg-level-27">27</div>
@@ -571,7 +527,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 28 -->
             <a href="28.html" class="level-item">
                 <div class="level-number bg-level-28">28</div>
@@ -583,7 +538,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 29 -->
             <a href="29.html" class="level-item">
                 <div class="level-number bg-level-29">29</div>
@@ -595,7 +549,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 30 -->
             <a href="30.html" class="level-item">
                 <div class="level-number bg-level-30">30</div>
@@ -607,7 +560,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 31 -->
             <a href="31.html" class="level-item">
                 <div class="level-number bg-level-31">31</div>
@@ -619,7 +571,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 32 -->
             <a href="32.html" class="level-item">
                 <div class="level-number bg-level-32">32</div>
@@ -631,7 +582,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 33 -->
             <a href="33.html" class="level-item">
                 <div class="level-number bg-level-33">33</div>
@@ -643,7 +593,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 34 -->
             <a href="34.html" class="level-item">
                 <div class="level-number bg-level-34">34</div>
@@ -655,7 +604,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 35 -->
             <a href="35.html" class="level-item">
                 <div class="level-number bg-level-35">35</div>
@@ -667,7 +615,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 36 -->
             <a href="36.html" class="level-item">
                 <div class="level-number bg-level-36">36</div>
@@ -679,7 +626,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 37 -->
             <a href="37.html" class="level-item">
                 <div class="level-number bg-level-37">37</div>
@@ -691,7 +637,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 38 -->
             <a href="38.html" class="level-item">
                 <div class="level-number bg-level-38">38</div>
@@ -703,7 +648,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 39 -->
             <a href="39.html" class="level-item">
                 <div class="level-number bg-level-39">39</div>
@@ -715,7 +659,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 40 -->
             <a href="40.html" class="level-item">
                 <div class="level-number bg-level-40">40</div>
@@ -727,7 +670,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 41 -->
             <a href="41.html" class="level-item">
                 <div class="level-number bg-level-41">41</div>
@@ -739,7 +681,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 42 -->
             <a href="42.html" class="level-item">
                 <div class="level-number bg-level-42">42</div>
@@ -751,7 +692,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
             <!-- 关卡 43 -->
             <a href="43.html" class="level-item">
                 <div class="level-number bg-level-43">43</div>
@@ -763,9 +703,18 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
-
+            <!-- 关卡 44 -->
+            <a href="44.html" class="level-item">
+                <div class="level-number bg-level-44">44</div>
+                <div class="level-content">
+                    <span class="level-title">第四十四关 · 万世不朽</span>
+                    <span class="level-subtitle">Etappe 44 • Die Unvergänglichkeit</span>
+                </div>
+                <div class="chevron">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </div>
+            </a>
         </main>
     </div>
-
 </body>
 </html>
